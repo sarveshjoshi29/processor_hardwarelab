@@ -1,0 +1,4 @@
+
+../modules/pipeline.v
+../modules/tb_pipeline.v
+../modules/memory.v
