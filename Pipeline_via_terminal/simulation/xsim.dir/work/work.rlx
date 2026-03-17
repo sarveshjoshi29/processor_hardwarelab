@@ -1,0 +1,11 @@
+0.7
+2020.2
+Nov 14 2025
+19:37:27
+D:/3-Stage-Pipeline/Pipeline_via_terminal/modules/IF_ID.v,1773757527,verilog,,,D:/3-Stage-Pipeline/Pipeline_via_terminal/modules/opcode.vh,IF_ID;id_ex_reg,,,,,,,,
+D:/3-Stage-Pipeline/Pipeline_via_terminal/modules/execute.v,1773756730,verilog,,,D:/3-Stage-Pipeline/Pipeline_via_terminal/modules/opcode.vh,ex_mem_wb_reg;execute,,,,,,,,
+D:/3-Stage-Pipeline/Pipeline_via_terminal/modules/memory.v,1773727221,verilog,,,,data_mem;instr_mem,,,../modules,,,,,
+D:/3-Stage-Pipeline/Pipeline_via_terminal/modules/opcode.vh,1773727147,verilog,,,,,,,,,,,,
+D:/3-Stage-Pipeline/Pipeline_via_terminal/modules/pipeline.v,1773757423,verilog,,D:/3-Stage-Pipeline/Pipeline_via_terminal/modules/tb_pipeline.v,D:/3-Stage-Pipeline/Pipeline_via_terminal/modules/IF_ID.v;D:/3-Stage-Pipeline/Pipeline_via_terminal/modules/execute.v;D:/3-Stage-Pipeline/Pipeline_via_terminal/modules/wb.v;D:/3-Stage-Pipeline/Pipeline_via_terminal/modules/memory.v,pipe,,,../modules,,,,,
+D:/3-Stage-Pipeline/Pipeline_via_terminal/modules/tb_pipeline.v,1773752997,verilog,,D:/3-Stage-Pipeline/Pipeline_via_terminal/modules/memory.v,,tb_pipeline,,,../modules,,,,,
+D:/3-Stage-Pipeline/Pipeline_via_terminal/modules/wb.v,1773727147,verilog,,,D:/3-Stage-Pipeline/Pipeline_via_terminal/modules/opcode.vh,wb,,,,,,,,

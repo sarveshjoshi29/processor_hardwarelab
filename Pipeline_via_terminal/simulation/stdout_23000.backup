@@ -1,0 +1,261 @@
+#-----------------------------------------------------------
+# xsim v2025.2 (64-bit)
+# SW Build 6299465 on Fri Nov 14 19:35:11 GMT 2025
+# IP Build 6300035 on Fri Nov 14 10:48:45 MST 2025
+# SharedData Build 6298862 on Thu Nov 13 04:50:51 MST 2025
+# Start of session at: Tue Mar 17 19:44:14 2026
+# Process ID         : 23000
+# Current directory  : D:/3-Stage-Pipeline/Pipeline_via_terminal/simulation
+# Command line       : xsim.exe -log stdout -mode tcl -source {xsim.dir/riscv_sim/xsim_script.tcl}
+# Log file           : D:/3-Stage-Pipeline/Pipeline_via_terminal/simulation/stdout
+# Journal file       : D:/3-Stage-Pipeline/Pipeline_via_terminal/simulation\xsim.jou
+# Running On         : LAPTOP-PEJA2QNK
+# Platform           : Windows Server 2016 or Windows 10
+# Operating System   : 26200
+# Processor Detail   : 13th Gen Intel(R) Core(TM) i5-13500H
+# CPU Frequency      : 3187 MHz
+# CPU Physical cores : 12
+# CPU Logical cores  : 16
+# Host memory        : 16890 MB
+# Swap memory        : 13421 MB
+# Total Virtual      : 30312 MB
+# Available Virtual  : 13931 MB
+#-----------------------------------------------------------
+source xsim.dir/riscv_sim/xsim_script.tcl
+# xsim {riscv_sim} -autoloadwcfg -runall
+Time resolution is 1 ps
+run -all
+time:                    0 ,result =          0
+time = 5000 , next_pc = 00000000 , instruction = xxxxxxxx, stall = 0
+time = 15000 , next_pc = 00000000 , instruction = fd010113, stall = 0
+time = 25000 , next_pc = 00000000 , instruction = fd010113, stall = 0
+time = 35000 , next_pc = 00000000 , instruction = fd010113, stall = 0
+time = 45000 , next_pc = 00000000 , instruction = fd010113, stall = 0
+time = 55000 , next_pc = 00000000 , instruction = xxxxxxxx, stall = 0
+time = 65000 , next_pc = 00000004 , instruction = xxxxxxxx, stall = 0
+time = 75000 , next_pc = 00000004 , instruction = 02112623, stall = 0
+time = 85000 , next_pc = 00000004 , instruction = xxxxxxxx, stall = 0
+time:                95000 ,result = x, instruction = xxxxxxxx , stall = 0
+time = 105000 , next_pc = 00000008 , instruction = 02812423, stall = 0
+time = 115000 , next_pc = 00000008 , instruction = xxxxxxxx, stall = 0
+time:               125000 ,result = x, instruction = xxxxxxxx , stall = 0
+time = 135000 , next_pc = 0000000c , instruction = 03010413, stall = 0
+time = 145000 , next_pc = 0000000c , instruction = xxxxxxxx, stall = 0
+time = 155000 , next_pc = 00000010 , instruction = xxxxxxxx, stall = 0
+time = 165000 , next_pc = 00000010 , instruction = 00300793, stall = 0
+time = 175000 , next_pc = 00000010 , instruction = xxxxxxxx, stall = 0
+time = 185000 , next_pc = 00000014 , instruction = xxxxxxxx, stall = 0
+time = 195000 , next_pc = 00000014 , instruction = fef42423, stall = 0
+time = 205000 , next_pc = 00000014 , instruction = xxxxxxxx, stall = 0
+time:               215000 ,result = x, instruction = xxxxxxxx , stall = 0
+time = 225000 , next_pc = 00000018 , instruction = 00600793, stall = 0
+time = 235000 , next_pc = 00000018 , instruction = xxxxxxxx, stall = 0
+time = 245000 , next_pc = 0000001c , instruction = xxxxxxxx, stall = 0
+time = 255000 , next_pc = 0000001c , instruction = fcf42823, stall = 0
+time = 265000 , next_pc = 0000001c , instruction = xxxxxxxx, stall = 0
+time:               275000 ,result = x, instruction = xxxxxxxx , stall = 0
+time = 285000 , next_pc = 00000020 , instruction = 00300793, stall = 0
+time = 295000 , next_pc = 00000020 , instruction = xxxxxxxx, stall = 0
+time = 305000 , next_pc = 00000024 , instruction = xxxxxxxx, stall = 0
+time = 315000 , next_pc = 00000024 , instruction = fcf42a23, stall = 0
+time = 325000 , next_pc = 00000024 , instruction = xxxxxxxx, stall = 0
+time:               335000 ,result = x, instruction = xxxxxxxx , stall = 0
+time = 345000 , next_pc = 00000028 , instruction = 00900793, stall = 0
+time = 355000 , next_pc = 00000028 , instruction = xxxxxxxx, stall = 0
+time = 365000 , next_pc = 0000002c , instruction = xxxxxxxx, stall = 0
+time = 375000 , next_pc = 0000002c , instruction = fcf42c23, stall = 0
+time = 385000 , next_pc = 0000002c , instruction = xxxxxxxx, stall = 0
+time:               395000 ,result = x, instruction = xxxxxxxx , stall = 0
+time = 405000 , next_pc = 00000030 , instruction = fe842783, stall = 0
+time = 415000 , next_pc = 00000030 , instruction = xxxxxxxx, stall = 0
+time = 425000 , next_pc = 00000034 , instruction = xxxxxxxx, stall = 0
+time = 435000 , next_pc = 00000034 , instruction = fef42023, stall = 0
+time = 445000 , next_pc = 00000034 , instruction = xxxxxxxx, stall = 0
+time:               455000 ,result = x, instruction = xxxxxxxx , stall = 0
+time = 465000 , next_pc = 00000038 , instruction = fe042623, stall = 0
+time = 475000 , next_pc = 00000038 , instruction = xxxxxxxx, stall = 0
+time:               485000 ,result = 0, instruction = xxxxxxxx , stall = 0
+time = 495000 , next_pc = 0000003c , instruction = fe042223, stall = 0
+time = 505000 , next_pc = 0000003c , instruction = xxxxxxxx, stall = 0
+time:               515000 ,result = 0, instruction = xxxxxxxx , stall = 0
+time = 525000 , next_pc = 00000040 , instruction = 0a80006f, stall = 0
+time = 535000 , next_pc = 00000040 , instruction = xxxxxxxx, stall = 0
+time = 545000 , next_pc = 00000044 , instruction = xxxxxxxx, stall = 1
+time = 555000 , next_pc = 00000044 , instruction = xxxxxxxx, stall = 1
+time = 565000 , next_pc = 00000044 , instruction = xxxxxxxx, stall = 0
+time = 575000 , next_pc = 00000044 , instruction = xxxxxxxx, stall = 0
+time = 585000 , next_pc = 00000048 , instruction = xxxxxxxx, stall = 0
+time = 595000 , next_pc = 00000048 , instruction = fd040793, stall = 0
+time = 605000 , next_pc = 00000048 , instruction = xxxxxxxx, stall = 0
+time = 615000 , next_pc = 0000004c , instruction = xxxxxxxx, stall = 0
+time = 625000 , next_pc = 0000004c , instruction = 00271713, stall = 0
+time = 635000 , next_pc = 0000004c , instruction = xxxxxxxx, stall = 0
+time = 645000 , next_pc = 00000050 , instruction = xxxxxxxx, stall = 0
+time = 655000 , next_pc = 00000050 , instruction = 00f707b3, stall = 0
+time = 665000 , next_pc = 00000050 , instruction = xxxxxxxx, stall = 0
+time = 675000 , next_pc = 00000054 , instruction = xxxxxxxx, stall = 0
+time = 685000 , next_pc = 00000054 , instruction = 0007a703, stall = 0
+time = 695000 , next_pc = 00000054 , instruction = xxxxxxxx, stall = 0
+time = 705000 , next_pc = 00000058 , instruction = xxxxxxxx, stall = 0
+time = 715000 , next_pc = 00000058 , instruction = fe442783, stall = 0
+time = 725000 , next_pc = 00000058 , instruction = xxxxxxxx, stall = 0
+time = 735000 , next_pc = 0000005c , instruction = xxxxxxxx, stall = 0
+time = 745000 , next_pc = 0000005c , instruction = 00178693, stall = 0
+time = 755000 , next_pc = 0000005c , instruction = xxxxxxxx, stall = 0
+time = 765000 , next_pc = 00000060 , instruction = xxxxxxxx, stall = 0
+time = 775000 , next_pc = 00000060 , instruction = fd040793, stall = 0
+time = 785000 , next_pc = 00000060 , instruction = xxxxxxxx, stall = 0
+time = 795000 , next_pc = 00000064 , instruction = xxxxxxxx, stall = 0
+time = 805000 , next_pc = 00000064 , instruction = 00269693, stall = 0
+time = 815000 , next_pc = 00000064 , instruction = xxxxxxxx, stall = 0
+time = 825000 , next_pc = 00000068 , instruction = xxxxxxxx, stall = 0
+time = 835000 , next_pc = 00000068 , instruction = 00f687b3, stall = 0
+time = 845000 , next_pc = 00000068 , instruction = xxxxxxxx, stall = 0
+time = 855000 , next_pc = 0000006c , instruction = xxxxxxxx, stall = 0
+time = 865000 , next_pc = 0000006c , instruction = 0007a783, stall = 0
+time = 875000 , next_pc = 0000006c , instruction = xxxxxxxx, stall = 0
+time = 885000 , next_pc = 00000070 , instruction = xxxxxxxx, stall = 0
+time = 895000 , next_pc = 00000070 , instruction = 06e7d663, stall = 0
+time = 905000 , next_pc = 00000070 , instruction = xxxxxxxx, stall = 0
+time = 915000 , next_pc = 00000074 , instruction = xxxxxxxx, stall = 1
+time = 925000 , next_pc = 00000074 , instruction = xxxxxxxx, stall = 1
+time = 935000 , next_pc = 00000074 , instruction = xxxxxxxx, stall = 0
+time = 945000 , next_pc = 00000074 , instruction = xxxxxxxx, stall = 0
+time = 955000 , next_pc = 00000078 , instruction = xxxxxxxx, stall = 0
+time = 965000 , next_pc = 00000078 , instruction = fd040793, stall = 0
+time = 975000 , next_pc = 00000078 , instruction = xxxxxxxx, stall = 0
+time = 985000 , next_pc = 0000007c , instruction = xxxxxxxx, stall = 0
+time = 995000 , next_pc = 0000007c , instruction = 00271713, stall = 0
+time = 1005000 , next_pc = 0000007c , instruction = xxxxxxxx, stall = 0
+time = 1015000 , next_pc = 00000080 , instruction = xxxxxxxx, stall = 0
+time = 1025000 , next_pc = 00000080 , instruction = 00f707b3, stall = 0
+time = 1035000 , next_pc = 00000080 , instruction = xxxxxxxx, stall = 0
+time = 1045000 , next_pc = 00000084 , instruction = xxxxxxxx, stall = 0
+time = 1055000 , next_pc = 00000084 , instruction = 0007a783, stall = 0
+time = 1065000 , next_pc = 00000084 , instruction = xxxxxxxx, stall = 0
+time = 1075000 , next_pc = 00000088 , instruction = xxxxxxxx, stall = 0
+time = 1085000 , next_pc = 00000088 , instruction = fcf42e23, stall = 0
+time = 1095000 , next_pc = 00000088 , instruction = xxxxxxxx, stall = 0
+time:              1105000 ,result = x, instruction = xxxxxxxx , stall = 0
+time = 1115000 , next_pc = 0000008c , instruction = fe442783, stall = 0
+time = 1125000 , next_pc = 0000008c , instruction = xxxxxxxx, stall = 0
+time = 1135000 , next_pc = 00000090 , instruction = xxxxxxxx, stall = 0
+time = 1145000 , next_pc = 00000090 , instruction = 00178713, stall = 0
+time = 1155000 , next_pc = 00000090 , instruction = xxxxxxxx, stall = 0
+time = 1165000 , next_pc = 00000094 , instruction = xxxxxxxx, stall = 0
+time = 1175000 , next_pc = 00000094 , instruction = fd040793, stall = 0
+time = 1185000 , next_pc = 00000094 , instruction = xxxxxxxx, stall = 0
+time = 1195000 , next_pc = 00000098 , instruction = xxxxxxxx, stall = 0
+time = 1205000 , next_pc = 00000098 , instruction = 00271713, stall = 0
+time = 1215000 , next_pc = 00000098 , instruction = xxxxxxxx, stall = 0
+time = 1225000 , next_pc = 0000009c , instruction = xxxxxxxx, stall = 0
+time = 1235000 , next_pc = 0000009c , instruction = 00f707b3, stall = 0
+time = 1245000 , next_pc = 0000009c , instruction = xxxxxxxx, stall = 0
+time = 1255000 , next_pc = 000000a0 , instruction = xxxxxxxx, stall = 0
+time = 1265000 , next_pc = 000000a0 , instruction = 0007a703, stall = 0
+time = 1275000 , next_pc = 000000a0 , instruction = xxxxxxxx, stall = 0
+time = 1285000 , next_pc = 000000a4 , instruction = xxxxxxxx, stall = 0
+time = 1295000 , next_pc = 000000a4 , instruction = fe442683, stall = 0
+time = 1305000 , next_pc = 000000a4 , instruction = xxxxxxxx, stall = 0
+time = 1315000 , next_pc = 000000a8 , instruction = xxxxxxxx, stall = 0
+time = 1325000 , next_pc = 000000a8 , instruction = fd040793, stall = 0
+time = 1335000 , next_pc = 000000a8 , instruction = xxxxxxxx, stall = 0
+time = 1345000 , next_pc = 000000ac , instruction = xxxxxxxx, stall = 0
+time = 1355000 , next_pc = 000000ac , instruction = 00269693, stall = 0
+time = 1365000 , next_pc = 000000ac , instruction = xxxxxxxx, stall = 0
+time = 1375000 , next_pc = 000000b0 , instruction = xxxxxxxx, stall = 0
+time = 1385000 , next_pc = 000000b0 , instruction = 00f687b3, stall = 0
+time = 1395000 , next_pc = 000000b0 , instruction = xxxxxxxx, stall = 0
+time = 1405000 , next_pc = 000000b4 , instruction = xxxxxxxx, stall = 0
+time = 1415000 , next_pc = 000000b4 , instruction = 00e7a023, stall = 0
+time = 1425000 , next_pc = 000000b4 , instruction = xxxxxxxx, stall = 0
+time:              1435000 ,result = x, instruction = xxxxxxxx , stall = 0
+time = 1445000 , next_pc = 000000b8 , instruction = fe442783, stall = 0
+time = 1455000 , next_pc = 000000b8 , instruction = xxxxxxxx, stall = 0
+time = 1465000 , next_pc = 000000bc , instruction = xxxxxxxx, stall = 0
+time = 1475000 , next_pc = 000000bc , instruction = 00178713, stall = 0
+time = 1485000 , next_pc = 000000bc , instruction = xxxxxxxx, stall = 0
+time = 1495000 , next_pc = 000000c0 , instruction = xxxxxxxx, stall = 0
+time = 1505000 , next_pc = 000000c0 , instruction = fd040793, stall = 0
+time = 1515000 , next_pc = 000000c0 , instruction = xxxxxxxx, stall = 0
+time = 1525000 , next_pc = 000000c4 , instruction = xxxxxxxx, stall = 0
+time = 1535000 , next_pc = 000000c4 , instruction = 00271713, stall = 0
+time = 1545000 , next_pc = 000000c4 , instruction = xxxxxxxx, stall = 0
+time = 1555000 , next_pc = 000000c8 , instruction = xxxxxxxx, stall = 0
+time = 1565000 , next_pc = 000000c8 , instruction = 00f707b3, stall = 0
+time = 1575000 , next_pc = 000000c8 , instruction = xxxxxxxx, stall = 0
+time = 1585000 , next_pc = 000000cc , instruction = xxxxxxxx, stall = 0
+time = 1595000 , next_pc = 000000cc , instruction = fdc42703, stall = 0
+time = 1605000 , next_pc = 000000cc , instruction = xxxxxxxx, stall = 0
+time = 1615000 , next_pc = 000000d0 , instruction = xxxxxxxx, stall = 0
+time = 1625000 , next_pc = 000000d0 , instruction = 00e7a023, stall = 0
+time = 1635000 , next_pc = 000000d0 , instruction = xxxxxxxx, stall = 0
+time:              1645000 ,result = x, instruction = xxxxxxxx , stall = 0
+time = 1655000 , next_pc = 000000d4 , instruction = 00100793, stall = 0
+time = 1665000 , next_pc = 000000d4 , instruction = xxxxxxxx, stall = 0
+time = 1675000 , next_pc = 000000d8 , instruction = xxxxxxxx, stall = 0
+time = 1685000 , next_pc = 000000d8 , instruction = fef42623, stall = 0
+time = 1695000 , next_pc = 000000d8 , instruction = xxxxxxxx, stall = 0
+time:              1705000 ,result = x, instruction = xxxxxxxx , stall = 0
+time = 1715000 , next_pc = 000000dc , instruction = fe442783, stall = 0
+time = 1725000 , next_pc = 000000dc , instruction = xxxxxxxx, stall = 0
+time = 1735000 , next_pc = 000000e0 , instruction = xxxxxxxx, stall = 0
+time = 1745000 , next_pc = 000000e0 , instruction = 00178793, stall = 0
+time = 1755000 , next_pc = 000000e0 , instruction = xxxxxxxx, stall = 0
+time = 1765000 , next_pc = 000000e4 , instruction = xxxxxxxx, stall = 0
+time = 1775000 , next_pc = 000000e4 , instruction = fef42223, stall = 0
+time = 1785000 , next_pc = 000000e4 , instruction = xxxxxxxx, stall = 0
+time:              1795000 ,result = x, instruction = xxxxxxxx , stall = 0
+time = 1805000 , next_pc = 000000e8 , instruction = fe842783, stall = 0
+time = 1815000 , next_pc = 000000e8 , instruction = xxxxxxxx, stall = 0
+time = 1825000 , next_pc = 000000ec , instruction = xxxxxxxx, stall = 0
+time = 1835000 , next_pc = 000000ec , instruction = fff78793, stall = 0
+time = 1845000 , next_pc = 000000ec , instruction = xxxxxxxx, stall = 0
+time = 1855000 , next_pc = 000000f0 , instruction = xxxxxxxx, stall = 0
+time = 1865000 , next_pc = 000000f0 , instruction = fe442703, stall = 0
+time = 1875000 , next_pc = 000000f0 , instruction = xxxxxxxx, stall = 0
+time = 1885000 , next_pc = 000000f4 , instruction = xxxxxxxx, stall = 0
+time = 1895000 , next_pc = 000000f4 , instruction = f4f748e3, stall = 0
+time = 1905000 , next_pc = 000000f4 , instruction = xxxxxxxx, stall = 0
+time = 1915000 , next_pc = 000000f8 , instruction = xxxxxxxx, stall = 1
+time = 1925000 , next_pc = 000000f8 , instruction = xxxxxxxx, stall = 1
+time = 1935000 , next_pc = 000000f8 , instruction = xxxxxxxx, stall = 0
+time = 1945000 , next_pc = 000000f8 , instruction = xxxxxxxx, stall = 0
+time = 1955000 , next_pc = 000000fc , instruction = xxxxxxxx, stall = 0
+time = 1965000 , next_pc = 000000fc , instruction = fff78793, stall = 0
+time = 1975000 , next_pc = 000000fc , instruction = xxxxxxxx, stall = 0
+time = 1985000 , next_pc = 00000100 , instruction = xxxxxxxx, stall = 0
+time = 1995000 , next_pc = 00000100 , instruction = fef42423, stall = 0
+time = 2005000 , next_pc = 00000100 , instruction = xxxxxxxx, stall = 0
+time:              2015000 ,result = x, instruction = xxxxxxxx , stall = 0
+time = 2025000 , next_pc = 00000104 , instruction = fec42703, stall = 0
+time = 2035000 , next_pc = 00000104 , instruction = xxxxxxxx, stall = 0
+time = 2045000 , next_pc = 00000108 , instruction = xxxxxxxx, stall = 0
+time = 2055000 , next_pc = 00000108 , instruction = 00100793, stall = 0
+time = 2065000 , next_pc = 00000108 , instruction = xxxxxxxx, stall = 0
+time = 2075000 , next_pc = 0000010c , instruction = xxxxxxxx, stall = 0
+time = 2085000 , next_pc = 0000010c , instruction = f2f706e3, stall = 0
+time = 2095000 , next_pc = 0000010c , instruction = xxxxxxxx, stall = 0
+time = 2105000 , next_pc = 00000110 , instruction = xxxxxxxx, stall = 1
+time = 2115000 , next_pc = 00000110 , instruction = xxxxxxxx, stall = 1
+time = 2125000 , next_pc = 00000110 , instruction = xxxxxxxx, stall = 0
+time = 2135000 , next_pc = 00000110 , instruction = xxxxxxxx, stall = 0
+time = 2145000 , next_pc = 00000114 , instruction = xxxxxxxx, stall = 0
+time = 2155000 , next_pc = 00000114 , instruction = 00078513, stall = 0
+time = 2165000 , next_pc = 00000114 , instruction = xxxxxxxx, stall = 0
+time = 2175000 , next_pc = 00000118 , instruction = xxxxxxxx, stall = 0
+time = 2185000 , next_pc = 00000118 , instruction = 02c12083, stall = 0
+time = 2195000 , next_pc = 00000118 , instruction = xxxxxxxx, stall = 0
+time = 2205000 , next_pc = 0000011c , instruction = xxxxxxxx, stall = 0
+time = 2215000 , next_pc = 0000011c , instruction = 02812403, stall = 0
+time = 2225000 , next_pc = 0000011c , instruction = xxxxxxxx, stall = 0
+time = 2235000 , next_pc = 00000120 , instruction = xxxxxxxx, stall = 0
+time = 2245000 , next_pc = 00000120 , instruction = 03010113, stall = 0
+time = 2255000 , next_pc = 00000120 , instruction = xxxxxxxx, stall = 0
+time = 2265000 , next_pc = 00000124 , instruction = xxxxxxxx, stall = 0
+-------------------------------------------
+TIME: 2275000 | End of Program Reached! Number of cycles = 227 
+-------------------------------------------
+$finish called at time : 2275 ns : File "D:/3-Stage-Pipeline/Pipeline_via_terminal/modules/tb_pipeline.v" Line 145
+exit
+INFO: [Common 17-206] Exiting xsim at Tue Mar 17 19:44:17 2026...

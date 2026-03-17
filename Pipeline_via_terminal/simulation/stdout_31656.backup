@@ -1,0 +1,154 @@
+#-----------------------------------------------------------
+# xsim v2025.2 (64-bit)
+# SW Build 6299465 on Fri Nov 14 19:35:11 GMT 2025
+# IP Build 6300035 on Fri Nov 14 10:48:45 MST 2025
+# SharedData Build 6298862 on Thu Nov 13 04:50:51 MST 2025
+# Start of session at: Tue Mar 17 11:45:30 2026
+# Process ID         : 31656
+# Current directory  : D:/3-Stage-Pipeline/Pipeline_via_terminal/simulation
+# Command line       : xsim.exe -log stdout -mode tcl -source {xsim.dir/riscv_sim/xsim_script.tcl}
+# Log file           : D:/3-Stage-Pipeline/Pipeline_via_terminal/simulation/stdout
+# Journal file       : D:/3-Stage-Pipeline/Pipeline_via_terminal/simulation\xsim.jou
+# Running On         : LAPTOP-PEJA2QNK
+# Platform           : Windows Server 2016 or Windows 10
+# Operating System   : 26200
+# Processor Detail   : 13th Gen Intel(R) Core(TM) i5-13500H
+# CPU Frequency      : 3187 MHz
+# CPU Physical cores : 12
+# CPU Logical cores  : 16
+# Host memory        : 16890 MB
+# Swap memory        : 13421 MB
+# Total Virtual      : 30312 MB
+# Available Virtual  : 12756 MB
+#-----------------------------------------------------------
+source xsim.dir/riscv_sim/xsim_script.tcl
+# xsim {riscv_sim} -autoloadwcfg -runall
+Time resolution is 1 ps
+run -all
+time:                    0 ,result =          0
+next_pc = 00000000
+next_pc = 00000000
+next_pc = 00000000
+next_pc = 00000000
+next_pc = 00000000
+next_pc = 00000000
+next_pc = 00000000
+next_pc = 00000000
+next_pc = 00000000
+next_pc = 00000000
+next_pc = 00000000
+next_pc = 00000000
+next_pc = 00000004
+next_pc = 00000008
+next_pc = 0000000c
+time:               155000 ,result =          0
+next_pc = 00000010
+time:               165000 ,result =          0
+next_pc = 00000014
+next_pc = 00000018
+next_pc = 0000001c
+time:               195000 ,result =          5
+next_pc = 00000020
+time:               205000 ,result =          0
+next_pc = 00000024
+next_pc = 00000028
+time:               225000 ,result =          1
+next_pc = 0000002c
+next_pc = 00000030
+next_pc = 00000034
+next_pc = 0000003c
+next_pc = 00000040
+next_pc = 00000044
+time:               285000 ,result =          1
+next_pc = 00000048
+next_pc = 00000074
+next_pc = 00000078
+next_pc = 0000007c
+next_pc = 00000080
+next_pc = 00000048
+next_pc = 0000004c
+next_pc = 00000050
+next_pc = 00000054
+next_pc = 00000058
+time:               385000 ,result =          5
+next_pc = 0000005c
+next_pc = 00000060
+time:               405000 ,result =          1
+next_pc = 00000064
+next_pc = 00000068
+time:               425000 ,result =          5
+next_pc = 0000006c
+next_pc = 00000070
+next_pc = 00000074
+time:               455000 ,result =          2
+next_pc = 00000078
+next_pc = 0000007c
+next_pc = 00000080
+next_pc = 00000048
+next_pc = 0000004c
+next_pc = 00000050
+next_pc = 00000054
+next_pc = 00000058
+time:               535000 ,result =          3
+next_pc = 0000005c
+next_pc = 00000060
+time:               555000 ,result =          5
+next_pc = 00000064
+next_pc = 00000068
+time:               575000 ,result =          3
+next_pc = 0000006c
+next_pc = 00000070
+next_pc = 00000074
+time:               605000 ,result =          3
+next_pc = 00000078
+next_pc = 0000007c
+next_pc = 00000080
+next_pc = 00000048
+next_pc = 0000004c
+next_pc = 00000050
+next_pc = 00000054
+next_pc = 00000058
+time:               685000 ,result =          8
+next_pc = 0000005c
+next_pc = 00000060
+time:               705000 ,result =          3
+next_pc = 00000064
+next_pc = 00000068
+time:               725000 ,result =          8
+next_pc = 0000006c
+next_pc = 00000070
+next_pc = 00000074
+time:               755000 ,result =          4
+next_pc = 00000078
+next_pc = 0000007c
+next_pc = 00000080
+next_pc = 00000048
+next_pc = 0000004c
+next_pc = 00000050
+next_pc = 00000054
+next_pc = 00000058
+time:               835000 ,result =          7
+next_pc = 0000005c
+next_pc = 00000060
+time:               855000 ,result =          8
+next_pc = 00000064
+next_pc = 00000068
+time:               875000 ,result =          7
+next_pc = 0000006c
+next_pc = 00000070
+next_pc = 00000074
+time:               905000 ,result =          5
+next_pc = 00000078
+next_pc = 0000007c
+next_pc = 00000080
+next_pc = 00000048
+next_pc = 0000004c
+next_pc = 00000050
+next_pc = 00000054
+next_pc = 00000058
+time:               985000 ,result =         13
+next_pc = 0000005c
+next_pc = 00000060
+$finish called at time : 1 us : File "D:/3-Stage-Pipeline/Pipeline_via_terminal/modules/tb_pipeline.v" Line 112
+exit
+INFO: [Common 17-206] Exiting xsim at Tue Mar 17 11:45:33 2026...

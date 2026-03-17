@@ -1,0 +1,79 @@
+#-----------------------------------------------------------
+# xsim v2025.2 (64-bit)
+# SW Build 6299465 on Fri Nov 14 19:35:11 GMT 2025
+# IP Build 6300035 on Fri Nov 14 10:48:45 MST 2025
+# SharedData Build 6298862 on Thu Nov 13 04:50:51 MST 2025
+# Start of session at: Tue Mar 17 11:30:27 2026
+# Process ID         : 9608
+# Current directory  : D:/3-Stage-Pipeline/Pipeline_via_terminal/simulation
+# Command line       : xsim.exe -log stdout -mode tcl -source {xsim.dir/riscv_sim/xsim_script.tcl}
+# Log file           : D:/3-Stage-Pipeline/Pipeline_via_terminal/simulation/stdout
+# Journal file       : D:/3-Stage-Pipeline/Pipeline_via_terminal/simulation\xsim.jou
+# Running On         : LAPTOP-PEJA2QNK
+# Platform           : Windows Server 2016 or Windows 10
+# Operating System   : 26200
+# Processor Detail   : 13th Gen Intel(R) Core(TM) i5-13500H
+# CPU Frequency      : 3187 MHz
+# CPU Physical cores : 12
+# CPU Logical cores  : 16
+# Host memory        : 16890 MB
+# Swap memory        : 13421 MB
+# Total Virtual      : 30312 MB
+# Available Virtual  : 14368 MB
+#-----------------------------------------------------------
+source xsim.dir/riscv_sim/xsim_script.tcl
+# xsim {riscv_sim} -autoloadwcfg -runall
+Time resolution is 1 ps
+run -all
+time:                    0 ,result =          0
+next_pc = 00000000
+next_pc = 00000000
+next_pc = 00000000
+next_pc = 00000000
+next_pc = 00000000
+next_pc = 00000000
+next_pc = 00000000
+next_pc = 00000000
+next_pc = 00000000
+next_pc = 00000000
+next_pc = 00000000
+next_pc = 00000000
+next_pc = 0000000X
+next_pc = 0000000X
+next_pc = 0000000X
+time:               155000 ,result =          0
+next_pc = 000000XX
+time:               165000 ,result =          0
+next_pc = 0000001X
+next_pc = 0000001X
+next_pc = 0000001X
+time:               195000 ,result =        100
+next_pc = 000000XX
+next_pc = 0000002X
+time:               215000 ,result =          2
+next_pc = 0000002X
+next_pc = 0000002X
+next_pc = 000000XX
+next_pc = 0000003X
+time:               255000 ,result =        102
+next_pc = 0000003X
+next_pc = 0000003X
+next_pc = 000000XX
+next_pc = 0000004X
+next_pc = 0000004X
+next_pc = 0000004X
+next_pc = 000000XX
+next_pc = 0000000X
+next_pc = 0000000X
+next_pc = 0000000X
+time:               355000 ,result =          0
+next_pc = 000000XX
+time:               365000 ,result =          0
+next_pc = 0000001X
+next_pc = 0000001X
+next_pc = 0000001X
+time:               395000 ,result =        100
+next_pc = 000000XX
+$finish called at time : 400 ns : File "D:/3-Stage-Pipeline/Pipeline_via_terminal/modules/tb_pipeline.v" Line 112
+exit
+INFO: [Common 17-206] Exiting xsim at Tue Mar 17 11:30:29 2026...

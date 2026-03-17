@@ -1,0 +1,16 @@
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/3-Stage-Pipeline/Pipeline_via_terminal/modules/pipeline.v" into library work
+INFO: [VRFC 10-311] analyzing module IF_ID
+INFO: [VRFC 10-311] analyzing module id_ex_reg
+INFO: [VRFC 10-311] analyzing module execute
+INFO: [VRFC 10-311] analyzing module ex_mem_wb_reg
+INFO: [VRFC 10-311] analyzing module wb
+INFO: [VRFC 10-311] analyzing module instr_mem
+INFO: [VRFC 10-311] analyzing module data_mem
+INFO: [VRFC 10-311] analyzing module pipe
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/3-Stage-Pipeline/Pipeline_via_terminal/modules/tb_pipeline.v" into library work
+INFO: [VRFC 10-311] analyzing module tb_pipeline
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/3-Stage-Pipeline/Pipeline_via_terminal/modules/memory.v" into library work
+INFO: [VRFC 10-311] analyzing module instr_mem
+WARNING: [VRFC 10-3609] overwriting previous definition of module 'instr_mem' [../modules/memory.v:2]
+INFO: [VRFC 10-311] analyzing module data_mem
+WARNING: [VRFC 10-3609] overwriting previous definition of module 'data_mem' [../modules/memory.v:28]

@@ -5,19 +5,85 @@ code.elf:     file format elf32-littleriscv
 Disassembly of section .text:
 
 00000000 <main>:
-   0:	fe010113          	addi	sp,sp,-32
-   4:	00812e23          	sw	s0,28(sp)
-   8:	02010413          	addi	s0,sp,32
-   c:	06400793          	li	a5,100
-  10:	fef42623          	sw	a5,-20(s0)
-  14:	00200793          	li	a5,2
-  18:	fef42423          	sw	a5,-24(s0)
-  1c:	fec42703          	lw	a4,-20(s0)
-  20:	fe842783          	lw	a5,-24(s0)
-  24:	00f707b3          	add	a5,a4,a5
-  28:	fef42223          	sw	a5,-28(s0)
-  2c:	fe442783          	lw	a5,-28(s0)
-  30:	00078513          	mv	a0,a5
-  34:	01c12403          	lw	s0,28(sp)
-  38:	02010113          	addi	sp,sp,32
-  3c:	00008067          	ret
+   0:	fd010113          	addi	sp,sp,-48
+   4:	02112623          	sw	ra,44(sp)
+   8:	02812423          	sw	s0,40(sp)
+   c:	03010413          	addi	s0,sp,48
+  10:	00300793          	li	a5,3
+  14:	fef42423          	sw	a5,-24(s0)
+  18:	00600793          	li	a5,6
+  1c:	fcf42823          	sw	a5,-48(s0)
+  20:	00300793          	li	a5,3
+  24:	fcf42a23          	sw	a5,-44(s0)
+  28:	00900793          	li	a5,9
+  2c:	fcf42c23          	sw	a5,-40(s0)
+  30:	fe842783          	lw	a5,-24(s0)
+  34:	fef42023          	sw	a5,-32(s0)
+
+00000038 <.L5>:
+  38:	fe042623          	sw	zero,-20(s0)
+  3c:	fe042223          	sw	zero,-28(s0)
+  40:	0a80006f          	j	e8 <.L2>
+
+00000044 <.L4>:
+  44:	fe442703          	lw	a4,-28(s0)
+  48:	fd040793          	addi	a5,s0,-48
+  4c:	00271713          	slli	a4,a4,0x2
+  50:	00f707b3          	add	a5,a4,a5
+  54:	0007a703          	lw	a4,0(a5)
+  58:	fe442783          	lw	a5,-28(s0)
+  5c:	00178693          	addi	a3,a5,1
+  60:	fd040793          	addi	a5,s0,-48
+  64:	00269693          	slli	a3,a3,0x2
+  68:	00f687b3          	add	a5,a3,a5
+  6c:	0007a783          	lw	a5,0(a5)
+  70:	06e7d663          	bge	a5,a4,dc <.L3>
+  74:	fe442703          	lw	a4,-28(s0)
+  78:	fd040793          	addi	a5,s0,-48
+  7c:	00271713          	slli	a4,a4,0x2
+  80:	00f707b3          	add	a5,a4,a5
+  84:	0007a783          	lw	a5,0(a5)
+  88:	fcf42e23          	sw	a5,-36(s0)
+  8c:	fe442783          	lw	a5,-28(s0)
+  90:	00178713          	addi	a4,a5,1
+  94:	fd040793          	addi	a5,s0,-48
+  98:	00271713          	slli	a4,a4,0x2
+  9c:	00f707b3          	add	a5,a4,a5
+  a0:	0007a703          	lw	a4,0(a5)
+  a4:	fe442683          	lw	a3,-28(s0)
+  a8:	fd040793          	addi	a5,s0,-48
+  ac:	00269693          	slli	a3,a3,0x2
+  b0:	00f687b3          	add	a5,a3,a5
+  b4:	00e7a023          	sw	a4,0(a5)
+  b8:	fe442783          	lw	a5,-28(s0)
+  bc:	00178713          	addi	a4,a5,1
+  c0:	fd040793          	addi	a5,s0,-48
+  c4:	00271713          	slli	a4,a4,0x2
+  c8:	00f707b3          	add	a5,a4,a5
+  cc:	fdc42703          	lw	a4,-36(s0)
+  d0:	00e7a023          	sw	a4,0(a5)
+  d4:	00100793          	li	a5,1
+  d8:	fef42623          	sw	a5,-20(s0)
+
+000000dc <.L3>:
+  dc:	fe442783          	lw	a5,-28(s0)
+  e0:	00178793          	addi	a5,a5,1
+  e4:	fef42223          	sw	a5,-28(s0)
+
+000000e8 <.L2>:
+  e8:	fe842783          	lw	a5,-24(s0)
+  ec:	fff78793          	addi	a5,a5,-1
+  f0:	fe442703          	lw	a4,-28(s0)
+  f4:	f4f748e3          	blt	a4,a5,44 <.L4>
+  f8:	fe842783          	lw	a5,-24(s0)
+  fc:	fff78793          	addi	a5,a5,-1
+ 100:	fef42423          	sw	a5,-24(s0)
+ 104:	fec42703          	lw	a4,-20(s0)
+ 108:	00100793          	li	a5,1
+ 10c:	f2f706e3          	beq	a4,a5,38 <.L5>
+ 110:	fd042783          	lw	a5,-48(s0)
+ 114:	00078513          	mv	a0,a5
+ 118:	02c12083          	lw	ra,44(sp)
+ 11c:	02812403          	lw	s0,40(sp)
+ 120:	03010113          	addi	sp,sp,48
+ 124:	00008067          	ret

@@ -1,11 +1,11 @@
 #//////////////////////////////////////////////////////
 #/////////////////INCLUDING CROSS-COMPILER/////////////
 
-CC      = riscv-none-embed-gcc
-AR      = riscv-none-embed-ar
-OBJDUMP = riscv-none-embed-objdump
-OBJCOPY = riscv-none-embed-objcopy
-READELF = riscv-none-embed-readelf
+CC      = riscv-none-elf-gcc
+AR      = riscv-none-elf-ar
+OBJDUMP = riscv-none-elf-objdump
+OBJCOPY = riscv-none-elf-objcopy
+READELF = riscv-none-elf-readelf
 
 
 #///// flags for RV32i architecture///////////////////
@@ -16,6 +16,8 @@ CFLAGS  = -march=rv32i -mabi=ilp32
 SRC_ADDITION     = code_addition.c
 SRC_SORT     = code_sort.c
 SRC_NEGATIVE = code_negative.c
+SRC_FIB = fibonacci.c
+SRC_XOR = xor.c
 
 TARGET   = code.elf
 
@@ -46,6 +48,18 @@ negative: $(SRC_NEGATIVE)
 	$(OBJDUMP) -d $(TARGET) > ./imem_dmem/code.dis
 	cd imem_dmem && python bin2hex.py
 
+fib: $(SRC_FIB)
+	$(CC) -c  $(SRC_FIB) -o $(TARGET) $(CFLAGS)
+	$(OBJCOPY) -O binary $(TARGET) ./imem_dmem/imem.bin
+	$(OBJCOPY) -j .data -O binary $(TARGET) ./imem_dmem/dmem.bin
+	$(OBJDUMP) -d $(TARGET) > ./imem_dmem/code.dis
+	cd imem_dmem && python bin2hex.py
+xor: $(SRC_XOR)
+	$(CC) -c  $(SRC_XOR) -o $(TARGET) $(CFLAGS)
+	$(OBJCOPY) -O binary $(TARGET) ./imem_dmem/imem.bin
+	$(OBJCOPY) -j .data -O binary $(TARGET) ./imem_dmem/dmem.bin
+	$(OBJDUMP) -d $(TARGET) > ./imem_dmem/code.dis
+	cd imem_dmem && python bin2hex.py
 
 # /////clean function
 clean:

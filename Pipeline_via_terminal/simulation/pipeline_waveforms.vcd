@@ -1,0 +1,29313 @@
+$date
+   Tue Mar 17 19:55:42 2026
+$end
+
+$version
+  2025.2
+  $dumpfile ("pipeline_waveforms.vcd") 
+$end
+
+$timescale
+  1ps
+$end
+
+$scope module tb_pipeline $end
+$var reg 1 ! clk $end
+$var reg 1 " reset $end
+$var wire 32 # inst_mem_read_data [31:0] $end
+$var wire 1 $ inst_mem_is_valid $end
+$var wire 32 % inst_mem_address [31:0] $end
+$var wire 32 & inst_fetch_pc [31:0] $end
+$var wire 32 ' dmem_read_data [31:0] $end
+$var wire 1 ( dmem_write_valid $end
+$var wire 1 ) dmem_read_valid $end
+$var wire 1 * dmem_read_ready $end
+$var wire 32 + dmem_read_address [31:0] $end
+$var wire 1 , dmem_write_ready $end
+$var wire 32 - dmem_write_addr [31:0] $end
+$var wire 32 . dmem_write_data [31:0] $end
+$var wire 4 / dmem_write_byte [3:0] $end
+$var wire 1 0 branch_stall $end
+$var wire 1 1 exception $end
+$var wire 32 2 pc_out [31:0] $end
+$var reg 32 3 ctr [31:0] $end
+$scope module DUT $end
+$var wire 1 4 clk $end
+$var wire 1 5 reset $end
+$var wire 1 6 stall $end
+$var wire 1 1 exception $end
+$var wire 32 2 pc_out [31:0] $end
+$var wire 1 $ inst_mem_is_valid $end
+$var wire 32 # inst_mem_read_data [31:0] $end
+$var wire 32 ' dmem_read_data_temp [31:0] $end
+$var wire 1 ( dmem_write_valid $end
+$var wire 1 ) dmem_read_valid $end
+$var wire 32 % inst_mem_address [31:0] $end
+$var wire 32 & inst_fetch_pc [31:0] $end
+$var wire 1 * dmem_read_ready $end
+$var wire 32 + dmem_read_address [31:0] $end
+$var wire 1 , dmem_write_ready $end
+$var wire 32 - dmem_write_addr [31:0] $end
+$var wire 32 . dmem_write_data [31:0] $end
+$var wire 4 / dmem_write_byte [3:0] $end
+$var wire 1 0 branch_stall $end
+$var wire 32 7 dmem_read_data [31:0] $end
+$var wire 32 8 dmem_write_address [31:0] $end
+$var wire 2 9 dmem_read_offset [1:0] $end
+$var wire 1 : inst_mem_is_ready $end
+$var wire 1 ; dmem_read_valid_checker $end
+$var reg 32 < immediate [31:0] $end
+$var wire 1 = immediate_sel $end
+$var wire 5 > src1_select [4:0] $end
+$var wire 5 ? src2_select [4:0] $end
+$var wire 5 @ dest_reg_sel [4:0] $end
+$var wire 3 A alu_operation [2:0] $end
+$var wire 1 B arithsubtype $end
+$var wire 1 C mem_write $end
+$var wire 1 D mem_to_reg $end
+$var wire 1 E illegal_inst $end
+$var wire 32 F execute_immediate [31:0] $end
+$var wire 1 G alu $end
+$var wire 1 H lui $end
+$var wire 1 I jal $end
+$var wire 1 J jalr $end
+$var wire 1 K branch $end
+$var reg 1 L stall_read $end
+$var wire 32 M instruction [31:0] $end
+$var wire 32 N reg_rdata2 [31:0] $end
+$var wire 32 O reg_rdata1 [31:0] $end
+$var wire 32 P pc [31:0] $end
+$var reg 32 Q fetch_pc [31:0] $end
+$var wire 1 R wb_stall_first $end
+$var wire 1 S wb_stall_second $end
+$var wire 1 T wb_stall $end
+$var wire 32 U next_pc [31:0] $end
+$var wire 32 V write_address [31:0] $end
+$var wire 1 W branch_taken $end
+$var wire 32 X alu_operand1 [31:0] $end
+$var wire 32 Y alu_operand2 [31:0] $end
+$var wire 1 Z wb_alu_to_reg $end
+$var wire 32 [ wb_result [31:0] $end
+$var wire 3 \ wb_alu_operation [2:0] $end
+$var wire 1 ] wb_mem_write $end
+$var wire 1 ^ wb_mem_to_reg $end
+$var wire 5 _ wb_dest_reg_sel [4:0] $end
+$var wire 1 ` wb_branch $end
+$var wire 1 a wb_branch_nxt $end
+$var wire 32 b wb_write_address [31:0] $end
+$var wire 2 c wb_read_address [1:0] $end
+$var wire 4 d wb_write_byte [3:0] $end
+$var wire 32 e wb_write_data [31:0] $end
+$var wire 32 f wb_read_data [31:0] $end
+$var wire 32 g wb_pc [31:0] $end
+$var wire 32 h pc_from_exe [31:0] $end
+$var integer 32 i i [31:0] $end
+$scope module IF_ID_stage $end
+$var wire 1 4 clk $end
+$var wire 1 j reset $end
+$var wire 1 6 stall $end
+$var reg 1 k exception $end
+$var wire 1 T flush $end
+$var wire 1 $ inst_mem_is_valid $end
+$var wire 32 # inst_mem_read_data [31:0] $end
+$var wire 1 l stall_read_i $end
+$var wire 32 m inst_fetch_pc [31:0] $end
+$var wire 32 # instruction_i [31:0] $end
+$var wire 1 T wb_stall $end
+$var wire 1 Z wb_alu_to_reg $end
+$var wire 1 ^ wb_mem_to_reg $end
+$var wire 5 _ wb_dest_reg_sel [4:0] $end
+$var wire 32 [ wb_result [31:0] $end
+$var wire 32 f wb_read_data [31:0] $end
+$var wire 2 n inst_mem_offset [1:0] $end
+$var wire 32 F execute_immediate_w [31:0] $end
+$var wire 1 = immediate_sel_w $end
+$var wire 1 G alu_w $end
+$var wire 1 H lui_w $end
+$var wire 1 I jal_w $end
+$var wire 1 J jalr_w $end
+$var wire 1 K branch_w $end
+$var wire 1 C mem_write_w $end
+$var wire 1 D mem_to_reg_w $end
+$var wire 1 B arithsubtype_w $end
+$var wire 32 P pc_w [31:0] $end
+$var wire 5 > src1_select_w [4:0] $end
+$var wire 5 ? src2_select_w [4:0] $end
+$var wire 5 @ dest_reg_sel_w [4:0] $end
+$var wire 3 A alu_operation_w [2:0] $end
+$var wire 1 E illegal_inst_w $end
+$var wire 32 M instruction_o [31:0] $end
+$var reg 32 o next_pc [31:0] $end
+$var reg 32 p immediate [31:0] $end
+$var reg 1 q illegal_inst $end
+$scope module u_id_ex $end
+$var wire 1 4 clk $end
+$var wire 1 j reset_n $end
+$var wire 1 l stall_n $end
+$var wire 32 r immediate_i [31:0] $end
+$var wire 1 s immediate_sel_i $end
+$var wire 1 t alu_i $end
+$var wire 1 u lui_i $end
+$var wire 1 v jal_i $end
+$var wire 1 w jalr_i $end
+$var wire 1 x branch_i $end
+$var wire 1 y mem_write_i $end
+$var wire 1 z mem_to_reg_i $end
+$var wire 1 { arithsubtype_i $end
+$var wire 32 m pc_i [31:0] $end
+$var wire 5 | src1_sel_i [19:15] $end
+$var wire 5 } src2_sel_i [24:20] $end
+$var wire 5 ~ dest_reg_sel_i [11:7] $end
+$var wire 3 !! alu_op_i [14:12] $end
+$var wire 1 "! illegal_inst_i $end
+$var wire 1 T flush $end
+$var reg 32 #! execute_immediate_o [31:0] $end
+$var reg 1 $! immediate_sel_o $end
+$var reg 1 %! alu_o $end
+$var reg 1 &! lui_o $end
+$var reg 1 '! jal_o $end
+$var reg 1 (! jalr_o $end
+$var reg 1 )! branch_o $end
+$var reg 1 *! mem_write_o $end
+$var reg 1 +! mem_to_reg_o $end
+$var reg 1 ,! arithsubtype_o $end
+$var reg 32 -! pc_o [31:0] $end
+$var reg 5 .! src1_sel_o [4:0] $end
+$var reg 5 /! src2_sel_o [4:0] $end
+$var reg 5 0! dest_reg_sel_o [4:0] $end
+$var reg 3 1! alu_op_o [2:0] $end
+$var reg 1 2! illegal_inst_o $end
+$upscope $end
+$upscope $end
+$scope module execute $end
+$var wire 1 4 clk $end
+$var wire 1 j reset $end
+$var wire 32 O reg_rdata1 [31:0] $end
+$var wire 32 N reg_rdata2 [31:0] $end
+$var wire 32 F execute_imm [31:0] $end
+$var wire 32 P pc [31:0] $end
+$var wire 32 3! fetch_pc [31:0] $end
+$var wire 1 = immediate_sel $end
+$var wire 1 C mem_write $end
+$var wire 1 I jal $end
+$var wire 1 J jalr $end
+$var wire 1 H lui $end
+$var wire 1 G alu $end
+$var wire 1 K branch $end
+$var wire 1 B arithsubtype $end
+$var wire 1 D mem_to_reg $end
+$var wire 1 4! stall_read $end
+$var wire 5 @ dest_reg_sel [4:0] $end
+$var wire 3 A alu_op [2:0] $end
+$var wire 2 9 dmem_raddr [1:0] $end
+$var wire 1 ` wb_branch_i $end
+$var wire 1 a wb_branch_nxt_i $end
+$var wire 32 X alu_operand1 [31:0] $end
+$var wire 32 Y alu_operand2 [31:0] $end
+$var wire 32 V write_address [31:0] $end
+$var wire 1 0 branch_stall $end
+$var reg 32 5! next_pc [31:0] $end
+$var reg 1 6! branch_taken $end
+$var wire 32 [ wb_result [31:0] $end
+$var wire 1 ] wb_mem_write $end
+$var wire 1 Z wb_alu_to_reg $end
+$var wire 5 _ wb_dest_reg_sel [4:0] $end
+$var wire 1 ` wb_branch $end
+$var wire 1 a wb_branch_nxt $end
+$var wire 1 ^ wb_mem_to_reg $end
+$var wire 2 c wb_read_address [1:0] $end
+$var wire 3 \ mem_alu_operation [2:0] $end
+$var wire 32 h curr_pc_to_pipe [31:0] $end
+$var reg 32 7! ex_result [31:0] $end
+$var wire 33 8! ex_result_subs [32:0] $end
+$var wire 33 9! ex_result_subu [32:0] $end
+$scope module u_ex_mem_wb $end
+$var wire 1 4 clk $end
+$var wire 1 j reset_n $end
+$var wire 1 4! stall_n $end
+$var wire 32 :! ex_result [31:0] $end
+$var wire 32 5! curr_pc [31:0] $end
+$var reg 32 ;! curr_pc_w [31:0] $end
+$var wire 1 <! mem_write $end
+$var wire 1 =! alu_to_reg $end
+$var wire 5 @ dest_reg_sel [4:0] $end
+$var wire 1 6! branch_taken $end
+$var wire 1 D mem_to_reg $end
+$var wire 2 9 read_address [1:0] $end
+$var wire 3 A alu_operation [2:0] $end
+$var reg 32 >! ex_mem_result [31:0] $end
+$var reg 1 ?! ex_mem_mem_write $end
+$var reg 1 @! ex_mem_alu_to_reg $end
+$var reg 5 A! ex_mem_dest_reg_sel [4:0] $end
+$var reg 1 B! ex_mem_branch $end
+$var reg 1 C! ex_mem_branch_nxt $end
+$var reg 1 D! ex_mem_mem_to_reg $end
+$var reg 2 E! ex_mem_read_address [1:0] $end
+$var reg 3 F! ex_mem_alu_operation [2:0] $end
+$upscope $end
+$upscope $end
+$scope module wb_stage $end
+$var wire 1 4 clk $end
+$var wire 1 j reset $end
+$var wire 1 G! stall_read_i $end
+$var wire 32 h fetch_pc_i [31:0] $end
+$var wire 1 ` wb_branch_i $end
+$var wire 1 ^ wb_mem_to_reg_i $end
+$var wire 1 H! mem_write_i $end
+$var wire 32 V write_address_i [31:0] $end
+$var wire 32 Y alu_operand2_i [31:0] $end
+$var wire 3 A alu_operation_i [2:0] $end
+$var wire 3 \ wb_alu_operation_i [2:0] $end
+$var wire 2 c wb_read_address_i [1:0] $end
+$var wire 32 7 dmem_read_data_i [31:0] $end
+$var wire 1 ( dmem_write_valid_i $end
+$var wire 32 % inst_mem_address_o [31:0] $end
+$var wire 1 : inst_mem_is_ready_o $end
+$var wire 1 T wb_stall_o $end
+$var reg 32 I! wb_write_address_o [31:0] $end
+$var reg 32 J! wb_write_data_o [31:0] $end
+$var reg 4 K! wb_write_byte_o [3:0] $end
+$var reg 32 L! wb_read_data_o [31:0] $end
+$var reg 32 M! inst_fetch_pc_o [31:0] $end
+$var reg 1 N! wb_stall_first_o $end
+$var reg 1 O! wb_stall_second_o $end
+$upscope $end
+$upscope $end
+$scope module IMEM $end
+$var wire 1 P! clk $end
+$var wire 32 % pc [31:0] $end
+$var reg 32 Q! instr [31:0] $end
+$var wire 1 R! reset $end
+$upscope $end
+$scope module DMEM $end
+$var wire 1 S! clk $end
+$var wire 1 * re $end
+$var wire 32 + raddr [31:0] $end
+$var reg 32 T! rdata [31:0] $end
+$var wire 1 , we $end
+$var wire 32 - waddr [31:0] $end
+$var wire 32 . wdata [31:0] $end
+$var wire 4 / wstrb [3:0] $end
+$var wire 10 U! rindex [9:0] $end
+$var wire 10 V! windex [9:0] $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+
+#0
+$dumpvars
+0!
+bx !!
+1"
+x"!
+bx #
+b0 #!
+1$
+0$!
+b0 %
+0%!
+b0 &
+0&!
+bx '
+0'!
+1(
+0(!
+1)
+0)!
+0*
+0*!
+b0 +
+0+!
+0,
+0,!
+b0 -
+b0 -!
+b0 .
+b0 .!
+b0 /
+b0 /!
+00
+b0 0!
+01
+b0 1!
+b0 2
+02!
+b0 3
+b0 3!
+04
+14!
+15
+b100 5!
+06
+06!
+bx 7
+b0 7!
+bz 8
+b0 8!
+b0 9
+b0 9!
+0:
+b0 :!
+1;
+b0 ;!
+bx <
+0<!
+0=
+0=!
+b0 >
+b0 >!
+b0 ?
+0?!
+b0 @
+0@!
+b0 A
+b0 A!
+0B
+0B!
+0C
+0C!
+0D
+0D!
+0E
+b0 E!
+b0 F
+b0 F!
+0G
+1G!
+0H
+0H!
+0I
+b0 I!
+0J
+b0 J!
+0K
+b0 K!
+1L
+bx L!
+b10011 M
+b0 M!
+b0 N
+0N!
+b0 O
+0O!
+b0 P
+0P!
+b0 Q
+bx Q!
+0R
+zR!
+0S
+0S!
+0T
+bx T!
+bx U
+b0 U!
+b0 V
+b0 V!
+0W
+b0 X
+b0 Y
+0Z
+b0 [
+b0 \
+0]
+0^
+b0 _
+0`
+0a
+b0 b
+b0 c
+b0 d
+b0 e
+bx f
+b0 g
+b0 h
+bx i
+0j
+0k
+1l
+b0 m
+b0 n
+bx o
+bx p
+xq
+bx r
+xs
+xt
+xu
+xv
+xw
+xx
+xy
+xz
+x{
+bx |
+bx }
+bx ~
+$end
+
+#5000
+1!
+b0 !!
+0"!
+b11111101000000010000000100010011 #
+b1 3
+14
+1P!
+b11111101000000010000000100010011 Q!
+1S!
+b11111111111111111111111111010000 p
+0q
+b11111111111111111111111111010000 r
+1s
+1t
+0u
+0v
+0w
+0x
+0y
+0z
+0{
+b10 |
+b10000 }
+b10 ~
+
+#10000
+0!
+04
+0P!
+0S!
+
+#15000
+1!
+b10 3
+14
+1P!
+1S!
+
+#20000
+0!
+0"
+04
+05
+0P!
+0S!
+1j
+
+#25000
+1!
+b11 3
+14
+04!
+1:
+0G!
+0L
+b11111101000000010000000100010011 M
+1P!
+1S!
+b100 U
+0l
+b100 o
+
+#30000
+0!
+04
+0P!
+0S!
+
+#35000
+1!
+b11111111111111111111111111010000 #!
+1$!
+b100 %
+1%!
+b100 &
+b11111111111111111111111111010000 +
+b10 .!
+b10000 /!
+b10 0!
+b100 2
+b100 3
+b100 3!
+14
+b1000 5!
+06!
+b11111111111111111111111111010000 7!
+b110000 8!
+b100000000000000000000000000110000 9!
+b11111111111111111111111111010000 :!
+b100 ;!
+1=
+1=!
+b10 >
+b10000 ?
+b10 @
+b11111111111111111111111111010000 F
+1G
+1P!
+b100 Q
+1S!
+b1111110100 U!
+b11111111111111111111111111010000 V
+b11111111111111111111111111010000 Y
+b100 h
+b100 m
+
+#40000
+0!
+04
+0P!
+0S!
+
+#45000
+1!
+b10 !!
+b10000100010010011000100011 #
+b0xx00 %
+b11111111111111111111111110100000 +
+b100 -!
+b101 3
+14
+06!
+b11111111111111111111111110100000 7!
+b0 8!
+b0 9!
+b11111111111111111111111110100000 :!
+b1000 ;!
+b11111111111111111111111111010000 >!
+1@!
+b10 A!
+b10000100010010011000100011 M
+b100 M!
+b11111111111111111111111111010000 O
+b100 P
+1P!
+b10000100010010011000100011 Q!
+1S!
+b1000 U
+b1111101000 U!
+b11111111111111111111111110100000 V
+b11111111111111111111111111010000 X
+1Z
+b11111111111111111111111111010000 [
+b10 _
+b100 g
+b1000 h
+b1000 o
+b101100 p
+b101100 r
+0s
+0t
+1y
+b10 |
+b1 }
+b1100 ~
+
+#50000
+0!
+04
+0P!
+0S!
+
+#55000
+1!
+bx !!
+1"!
+bx #
+b101100 #!
+0$!
+b1000 %
+0%!
+b1000 &
+1*!
+b11111111111111111111111111001100 +
+b1 /!
+b1100 0!
+b10 1!
+b1000 2
+b110 3
+b1000 3!
+14
+b1100 5!
+06!
+b0 7!
+b111111111111111111111111110100000 8!
+b11111111111111111111111110100000 9!
+b0 :!
+1<!
+0=
+0=!
+b11111111111111111111111110100000 >!
+b1 ?
+b1100 @
+b10 A
+1C
+b101100 F
+0G
+1H!
+bx M
+b1000 M!
+b11111111111111111111111110100000 O
+1P!
+b1000 Q
+bx Q!
+1S!
+b1111110011 U!
+b11111111111111111111111111001100 V
+b11111111111111111111111110100000 X
+b0 Y
+b11111111111111111111111110100000 [
+b1000 g
+b1000 m
+b0 p
+1q
+b0 r
+xs
+xt
+xu
+xv
+xw
+xx
+xy
+xz
+x{
+bx |
+bx }
+bx ~
+
+#60000
+0!
+04
+0P!
+0S!
+
+#65000
+1!
+b10 !!
+0"!
+b10100000010010010000100011 #
+b0 #!
+x$!
+b1x00 %
+x%!
+x&!
+x'!
+x(!
+x)!
+x*
+x*!
+bx +
+x+!
+1,
+x,!
+b11111111111111111111111111001100 -
+b1000 -!
+bx .!
+b1111 /
+bx /!
+bx 0!
+11
+bx 1!
+12!
+b111 3
+14
+06!
+bx 8!
+bx 9
+bx 9!
+b1100 ;!
+x<!
+x=
+x=!
+bx >
+b0 >!
+bx ?
+1?!
+bx @
+0@!
+bx A
+b1100 A!
+xB
+xC
+xD
+1E
+b0 F
+b10 F!
+xG
+xH
+xH!
+xI
+b11111111111111111111111111001100 I!
+xJ
+xK
+b1111 K!
+b10100000010010010000100011 M
+bx N
+bx O
+b1000 P
+1P!
+b10100000010010010000100011 Q!
+1S!
+bx U!
+bx V
+b1111110011 V!
+bx X
+bx Y
+0Z
+b0 [
+b10 \
+1]
+b1100 _
+b11111111111111111111111111001100 b
+b1111 d
+b1100 h
+1k
+b101000 p
+0q
+b101000 r
+0s
+0t
+0u
+0v
+0w
+0x
+1y
+0z
+0{
+b10 |
+b1000 }
+b1000 ~
+
+#70000
+0!
+04
+0P!
+0S!
+
+#75000
+1!
+bx !!
+1"!
+bx #
+b101000 #!
+0$!
+0%!
+0&!
+0'!
+0(!
+0)!
+0*
+1*!
+0+!
+x,
+0,!
+b10 .!
+b1000 /!
+b1000 0!
+b10 1!
+02!
+b1000 3
+14
+06!
+bx 7!
+bx :!
+1<!
+0=
+0=!
+b10 >
+b1000 ?
+x?!
+b1000 @
+x@!
+b10 A
+bx A!
+0B
+1C
+0D
+xD!
+0E
+bx E!
+b101000 F
+bx F!
+0G
+0H
+1H!
+0I
+0J
+0K
+bx M
+b1100 M!
+1P!
+bx Q!
+1S!
+b1100 U
+xZ
+bx \
+x]
+x^
+bx _
+bx c
+b1100 g
+b1100 o
+b0 p
+1q
+b0 r
+xs
+xt
+xu
+xv
+xw
+xx
+xy
+xz
+x{
+bx |
+bx }
+bx ~
+
+#80000
+0!
+04
+0P!
+0S!
+
+#85000
+1!
+b0 #!
+x$!
+b1100 %
+x%!
+b1100 &
+x&!
+x'!
+x(!
+x)!
+x*
+x*!
+x+!
+1,
+x,!
+bx -
+bx .
+bx .!
+bx /!
+bx 0!
+bx 1!
+b1100 2
+12!
+b1001 3
+b1100 3!
+14
+b10000 5!
+06!
+b0 7!
+b0 :!
+x<!
+x=
+x=!
+bx >
+bx >!
+bx ?
+1?!
+bx @
+0@!
+bx A
+b1000 A!
+xB
+xC
+xD
+0D!
+1E
+b0 F
+b10 F!
+xG
+xH
+xH!
+xI
+bx I!
+xJ
+bx J!
+xK
+1P!
+b1100 Q
+1S!
+bx V!
+0Z
+bx [
+b10 \
+1]
+0^
+b1000 _
+bx b
+bx e
+b1100 m
+
+#90000
+0!
+04
+0P!
+0S!
+
+#95000
+1!
+b0 !!
+0"!
+b11000000010000010000010011 #
+b0xxx00 %
+x,
+b1100 -!
+b1010 3
+14
+06!
+b10000 ;!
+b0 >!
+x?!
+x@!
+bx A!
+xD!
+bx F!
+b11000000010000010000010011 M
+b1100 P
+1P!
+b11000000010000010000010011 Q!
+1S!
+xZ
+b0 [
+bx \
+x]
+x^
+bx _
+b10000 h
+b110000 p
+0q
+b110000 r
+1s
+1t
+0u
+0v
+0w
+0x
+0y
+0z
+0{
+b10 |
+b10000 }
+b1000 ~
+
+#100000
+0!
+04
+0P!
+0S!
+
+#105000
+1!
+bx !!
+1"!
+bx #
+b110000 #!
+1$!
+1%!
+0&!
+0'!
+0(!
+0)!
+0*
+0*!
+0+!
+0,!
+b10 .!
+b10000 /!
+b1000 0!
+b0 1!
+02!
+b1011 3
+14
+06!
+bx 7!
+bx :!
+0<!
+1=
+1=!
+b10 >
+b10000 ?
+b1000 @
+b0 A
+0B
+0C
+0D
+0E
+b110000 F
+1G
+0H
+0H!
+0I
+0J
+0K
+bx M
+b10000 M!
+1P!
+bx Q!
+1S!
+b10000 U
+b110000 Y
+b10000 g
+b10000 o
+b0 p
+1q
+b0 r
+xs
+xt
+xu
+xv
+xw
+xx
+xy
+xz
+x{
+bx |
+bx }
+bx ~
+
+#110000
+0!
+04
+0P!
+0S!
+
+#115000
+1!
+b0 #!
+x$!
+b10000 %
+x%!
+b10000 &
+x&!
+x'!
+x(!
+x)!
+x*
+x*!
+x+!
+0,
+x,!
+bx .!
+bx /!
+bx 0!
+bx 1!
+b10000 2
+12!
+b1100 3
+b10000 3!
+14
+b10100 5!
+06!
+b0 7!
+b0 :!
+x<!
+x=
+x=!
+bx >
+bx >!
+bx ?
+0?!
+bx @
+1@!
+bx A
+b1000 A!
+xB
+xC
+xD
+0D!
+1E
+b0 F
+b0 F!
+xG
+xH
+xH!
+xI
+xJ
+xK
+1P!
+b10000 Q
+1S!
+bx Y
+1Z
+bx [
+b0 \
+0]
+0^
+b1000 _
+b10000 m
+
+#120000
+0!
+04
+0P!
+0S!
+
+#125000
+1!
+b0 !!
+0"!
+b1100000000011110010011 #
+b10x00 %
+x,
+b10000 -!
+b1101 3
+14
+06!
+b10100 ;!
+b0 >!
+x?!
+x@!
+bx A!
+xD!
+bx F!
+b1100000000011110010011 M
+b10000 P
+1P!
+b1100000000011110010011 Q!
+1S!
+xZ
+b0 [
+bx \
+x]
+x^
+bx _
+b10100 h
+b11 p
+0q
+b11 r
+1s
+1t
+0u
+0v
+0w
+0x
+0y
+0z
+0{
+b0 |
+b11 }
+b1111 ~
+
+#130000
+0!
+04
+0P!
+0S!
+
+#135000
+1!
+bx !!
+1"!
+bx #
+b11 #!
+1$!
+1%!
+0&!
+0'!
+0(!
+0)!
+0*
+0*!
+b11 +
+0+!
+0,!
+b0 .!
+b11 /!
+b1111 0!
+b0 1!
+02!
+b1110 3
+14
+06!
+b11 7!
+b111111111111111111111111111111101 8!
+b11 9
+b111111111111111111111111111111101 9!
+b11 :!
+0<!
+1=
+1=!
+b0 >
+b11 ?
+b1111 @
+b0 A
+0B
+0C
+0D
+0E
+b11 F
+1G
+0H
+0H!
+0I
+0J
+0K
+bx M
+b10100 M!
+b0 O
+1P!
+bx Q!
+1S!
+b10100 U
+b0 U!
+b11 V
+b0 X
+b11 Y
+b10100 g
+b10100 o
+b0 p
+1q
+b0 r
+xs
+xt
+xu
+xv
+xw
+xx
+xy
+xz
+x{
+bx |
+bx }
+bx ~
+
+#140000
+0!
+04
+0P!
+0S!
+
+#145000
+1!
+b0 #!
+x$!
+b10100 %
+x%!
+b10100 &
+x&!
+x'!
+x(!
+x)!
+x*
+x*!
+bx +
+x+!
+0,
+x,!
+bx .!
+bx /!
+bx 0!
+bx 1!
+b10100 2
+12!
+b1111 3
+b10100 3!
+14
+b11000 5!
+06!
+b0 7!
+bx 8!
+bx 9
+bx 9!
+b0 :!
+x<!
+x=
+x=!
+bx >
+b11 >!
+bx ?
+0?!
+bx @
+1@!
+bx A
+b1111 A!
+xB
+xC
+xD
+0D!
+1E
+b11 E!
+b0 F
+b0 F!
+xG
+xH
+xH!
+xI
+xJ
+xK
+bx O
+1P!
+b10100 Q
+1S!
+bx U!
+bx V
+bx X
+bx Y
+1Z
+b11 [
+b0 \
+0]
+0^
+b1111 _
+b11 c
+b10100 m
+
+#150000
+0!
+04
+0P!
+0S!
+
+#155000
+1!
+b10 !!
+0"!
+b11111110111101000010010000100011 #
+b1xx00 %
+x,
+b10100 -!
+b10000 3
+14
+06!
+b11000 ;!
+b0 >!
+x?!
+x@!
+bx A!
+xD!
+bx E!
+bx F!
+b11111110111101000010010000100011 M
+b10100 P
+1P!
+b11111110111101000010010000100011 Q!
+1S!
+xZ
+b0 [
+bx \
+x]
+x^
+bx _
+bx c
+b11000 h
+b11111111111111111111111111101000 p
+0q
+b11111111111111111111111111101000 r
+0s
+0t
+0u
+0v
+0w
+0x
+1y
+0z
+1{
+b1000 |
+b1111 }
+b1000 ~
+
+#160000
+0!
+04
+0P!
+0S!
+
+#165000
+1!
+bx !!
+1"!
+bx #
+b11111111111111111111111111101000 #!
+0$!
+0%!
+0&!
+0'!
+0(!
+0)!
+0*
+1*!
+0+!
+1,!
+b1000 .!
+b1111 /!
+b1000 0!
+b10 1!
+02!
+b10001 3
+14
+06!
+bx 7!
+bx :!
+1<!
+0=
+0=!
+b1000 >
+b1111 ?
+b1000 @
+b10 A
+1B
+1C
+0D
+0E
+b11111111111111111111111111101000 F
+0G
+0H
+1H!
+0I
+0J
+0K
+bx M
+b11000 M!
+1P!
+bx Q!
+1S!
+b11000 U
+b11000 g
+b11000 o
+b0 p
+1q
+b0 r
+xs
+xt
+xu
+xv
+xw
+xx
+xy
+xz
+x{
+bx |
+bx }
+bx ~
+
+#170000
+0!
+04
+0P!
+0S!
+
+#175000
+1!
+b0 #!
+x$!
+b11000 %
+x%!
+b11000 &
+x&!
+x'!
+x(!
+x)!
+x*
+x*!
+x+!
+1,
+x,!
+bx .!
+bx /!
+bx 0!
+bx 1!
+b11000 2
+12!
+b10010 3
+b11000 3!
+14
+b11100 5!
+06!
+b0 7!
+b0 :!
+x<!
+x=
+x=!
+bx >
+bx >!
+bx ?
+1?!
+bx @
+0@!
+bx A
+b1000 A!
+xB
+xC
+xD
+0D!
+1E
+b0 F
+b10 F!
+xG
+xH
+xH!
+xI
+xJ
+xK
+1P!
+b11000 Q
+1S!
+0Z
+bx [
+b10 \
+1]
+0^
+b1000 _
+b11000 m
+
+#180000
+0!
+04
+0P!
+0S!
+
+#185000
+1!
+b0 !!
+0"!
+b11000000000011110010011 #
+b11x00 %
+x,
+b11000 -!
+b10011 3
+14
+06!
+b11100 ;!
+b0 >!
+x?!
+x@!
+bx A!
+xD!
+bx F!
+b11000000000011110010011 M
+b11000 P
+1P!
+b11000000000011110010011 Q!
+1S!
+xZ
+b0 [
+bx \
+x]
+x^
+bx _
+b11100 h
+b110 p
+0q
+b110 r
+1s
+1t
+0u
+0v
+0w
+0x
+0y
+0z
+0{
+b0 |
+b110 }
+b1111 ~
+
+#190000
+0!
+04
+0P!
+0S!
+
+#195000
+1!
+bx !!
+1"!
+bx #
+b110 #!
+1$!
+1%!
+0&!
+0'!
+0(!
+0)!
+0*
+0*!
+b110 +
+0+!
+0,!
+b0 .!
+b110 /!
+b1111 0!
+b0 1!
+02!
+b10100 3
+14
+06!
+b110 7!
+b111111111111111111111111111111010 8!
+b10 9
+b111111111111111111111111111111010 9!
+b110 :!
+0<!
+1=
+1=!
+b0 >
+b110 ?
+b1111 @
+b0 A
+0B
+0C
+0D
+0E
+b110 F
+1G
+0H
+0H!
+0I
+0J
+0K
+bx M
+b11100 M!
+b0 O
+1P!
+bx Q!
+1S!
+b11100 U
+b1 U!
+b110 V
+b0 X
+b110 Y
+b11100 g
+b11100 o
+b0 p
+1q
+b0 r
+xs
+xt
+xu
+xv
+xw
+xx
+xy
+xz
+x{
+bx |
+bx }
+bx ~
+
+#200000
+0!
+04
+0P!
+0S!
+
+#205000
+1!
+b0 #!
+x$!
+b11100 %
+x%!
+b11100 &
+x&!
+x'!
+x(!
+x)!
+x*
+x*!
+bx +
+x+!
+0,
+x,!
+bx .!
+bx /!
+bx 0!
+bx 1!
+b11100 2
+12!
+b10101 3
+b11100 3!
+14
+b100000 5!
+06!
+b0 7!
+bx 8!
+bx 9
+bx 9!
+b0 :!
+x<!
+x=
+x=!
+bx >
+b110 >!
+bx ?
+0?!
+bx @
+1@!
+bx A
+b1111 A!
+xB
+xC
+xD
+0D!
+1E
+b10 E!
+b0 F
+b0 F!
+xG
+xH
+xH!
+xI
+xJ
+xK
+bx O
+1P!
+b11100 Q
+1S!
+bx U!
+bx V
+bx X
+bx Y
+1Z
+b110 [
+b0 \
+0]
+0^
+b1111 _
+b10 c
+b11100 m
+
+#210000
+0!
+04
+0P!
+0S!
+
+#215000
+1!
+b10 !!
+0"!
+b11111100111101000010100000100011 #
+b0xxxx00 %
+x,
+b11100 -!
+b10110 3
+14
+06!
+b100000 ;!
+b0 >!
+x?!
+x@!
+bx A!
+xD!
+bx E!
+bx F!
+b11111100111101000010100000100011 M
+b11100 P
+1P!
+b11111100111101000010100000100011 Q!
+1S!
+xZ
+b0 [
+bx \
+x]
+x^
+bx _
+bx c
+b100000 h
+b11111111111111111111111111010000 p
+0q
+b11111111111111111111111111010000 r
+0s
+0t
+0u
+0v
+0w
+0x
+1y
+0z
+1{
+b1000 |
+b1111 }
+b10000 ~
+
+#220000
+0!
+04
+0P!
+0S!
+
+#225000
+1!
+bx !!
+1"!
+bx #
+b11111111111111111111111111010000 #!
+0$!
+0%!
+0&!
+0'!
+0(!
+0)!
+0*
+1*!
+0+!
+1,!
+b1000 .!
+b1111 /!
+b10000 0!
+b10 1!
+02!
+b10111 3
+14
+06!
+bx 7!
+bx :!
+1<!
+0=
+0=!
+b1000 >
+b1111 ?
+b10000 @
+b10 A
+1B
+1C
+0D
+0E
+b11111111111111111111111111010000 F
+0G
+0H
+1H!
+0I
+0J
+0K
+bx M
+b100000 M!
+1P!
+bx Q!
+1S!
+b100000 U
+b100000 g
+b100000 o
+b0 p
+1q
+b0 r
+xs
+xt
+xu
+xv
+xw
+xx
+xy
+xz
+x{
+bx |
+bx }
+bx ~
+
+#230000
+0!
+04
+0P!
+0S!
+
+#235000
+1!
+b0 #!
+x$!
+b100000 %
+x%!
+b100000 &
+x&!
+x'!
+x(!
+x)!
+x*
+x*!
+x+!
+1,
+x,!
+bx .!
+bx /!
+bx 0!
+bx 1!
+b100000 2
+12!
+b11000 3
+b100000 3!
+14
+b100100 5!
+06!
+b0 7!
+b0 :!
+x<!
+x=
+x=!
+bx >
+bx >!
+bx ?
+1?!
+bx @
+0@!
+bx A
+b10000 A!
+xB
+xC
+xD
+0D!
+1E
+b0 F
+b10 F!
+xG
+xH
+xH!
+xI
+xJ
+xK
+1P!
+b100000 Q
+1S!
+0Z
+bx [
+b10 \
+1]
+0^
+b10000 _
+b100000 m
+
+#240000
+0!
+04
+0P!
+0S!
+
+#245000
+1!
+b0 !!
+0"!
+b1100000000011110010011 #
+b100x00 %
+x,
+b100000 -!
+b11001 3
+14
+06!
+b100100 ;!
+b0 >!
+x?!
+x@!
+bx A!
+xD!
+bx F!
+b1100000000011110010011 M
+b100000 P
+1P!
+b1100000000011110010011 Q!
+1S!
+xZ
+b0 [
+bx \
+x]
+x^
+bx _
+b100100 h
+b11 p
+0q
+b11 r
+1s
+1t
+0u
+0v
+0w
+0x
+0y
+0z
+0{
+b0 |
+b11 }
+b1111 ~
+
+#250000
+0!
+04
+0P!
+0S!
+
+#255000
+1!
+bx !!
+1"!
+bx #
+b11 #!
+1$!
+1%!
+0&!
+0'!
+0(!
+0)!
+0*
+0*!
+b11 +
+0+!
+0,!
+b0 .!
+b11 /!
+b1111 0!
+b0 1!
+02!
+b11010 3
+14
+06!
+b11 7!
+b111111111111111111111111111111101 8!
+b11 9
+b111111111111111111111111111111101 9!
+b11 :!
+0<!
+1=
+1=!
+b0 >
+b11 ?
+b1111 @
+b0 A
+0B
+0C
+0D
+0E
+b11 F
+1G
+0H
+0H!
+0I
+0J
+0K
+bx M
+b100100 M!
+b0 O
+1P!
+bx Q!
+1S!
+b100100 U
+b0 U!
+b11 V
+b0 X
+b11 Y
+b100100 g
+b100100 o
+b0 p
+1q
+b0 r
+xs
+xt
+xu
+xv
+xw
+xx
+xy
+xz
+x{
+bx |
+bx }
+bx ~
+
+#260000
+0!
+04
+0P!
+0S!
+
+#265000
+1!
+b0 #!
+x$!
+b100100 %
+x%!
+b100100 &
+x&!
+x'!
+x(!
+x)!
+x*
+x*!
+bx +
+x+!
+0,
+x,!
+bx .!
+bx /!
+bx 0!
+bx 1!
+b100100 2
+12!
+b11011 3
+b100100 3!
+14
+b101000 5!
+06!
+b0 7!
+bx 8!
+bx 9
+bx 9!
+b0 :!
+x<!
+x=
+x=!
+bx >
+b11 >!
+bx ?
+0?!
+bx @
+1@!
+bx A
+b1111 A!
+xB
+xC
+xD
+0D!
+1E
+b11 E!
+b0 F
+b0 F!
+xG
+xH
+xH!
+xI
+xJ
+xK
+bx O
+1P!
+b100100 Q
+1S!
+bx U!
+bx V
+bx X
+bx Y
+1Z
+b11 [
+b0 \
+0]
+0^
+b1111 _
+b11 c
+b100100 m
+
+#270000
+0!
+04
+0P!
+0S!
+
+#275000
+1!
+b10 !!
+0"!
+b11111100111101000010101000100011 #
+b10xx00 %
+x,
+b100100 -!
+b11100 3
+14
+06!
+b101000 ;!
+b0 >!
+x?!
+x@!
+bx A!
+xD!
+bx E!
+bx F!
+b11111100111101000010101000100011 M
+b100100 P
+1P!
+b11111100111101000010101000100011 Q!
+1S!
+xZ
+b0 [
+bx \
+x]
+x^
+bx _
+bx c
+b101000 h
+b11111111111111111111111111010100 p
+0q
+b11111111111111111111111111010100 r
+0s
+0t
+0u
+0v
+0w
+0x
+1y
+0z
+1{
+b1000 |
+b1111 }
+b10100 ~
+
+#280000
+0!
+04
+0P!
+0S!
+
+#285000
+1!
+bx !!
+1"!
+bx #
+b11111111111111111111111111010100 #!
+0$!
+0%!
+0&!
+0'!
+0(!
+0)!
+0*
+1*!
+0+!
+1,!
+b1000 .!
+b1111 /!
+b10100 0!
+b10 1!
+02!
+b11101 3
+14
+06!
+bx 7!
+bx :!
+1<!
+0=
+0=!
+b1000 >
+b1111 ?
+b10100 @
+b10 A
+1B
+1C
+0D
+0E
+b11111111111111111111111111010100 F
+0G
+0H
+1H!
+0I
+0J
+0K
+bx M
+b101000 M!
+1P!
+bx Q!
+1S!
+b101000 U
+b101000 g
+b101000 o
+b0 p
+1q
+b0 r
+xs
+xt
+xu
+xv
+xw
+xx
+xy
+xz
+x{
+bx |
+bx }
+bx ~
+
+#290000
+0!
+04
+0P!
+0S!
+
+#295000
+1!
+b0 #!
+x$!
+b101000 %
+x%!
+b101000 &
+x&!
+x'!
+x(!
+x)!
+x*
+x*!
+x+!
+1,
+x,!
+bx .!
+bx /!
+bx 0!
+bx 1!
+b101000 2
+12!
+b11110 3
+b101000 3!
+14
+b101100 5!
+06!
+b0 7!
+b0 :!
+x<!
+x=
+x=!
+bx >
+bx >!
+bx ?
+1?!
+bx @
+0@!
+bx A
+b10100 A!
+xB
+xC
+xD
+0D!
+1E
+b0 F
+b10 F!
+xG
+xH
+xH!
+xI
+xJ
+xK
+1P!
+b101000 Q
+1S!
+0Z
+bx [
+b10 \
+1]
+0^
+b10100 _
+b101000 m
+
+#300000
+0!
+04
+0P!
+0S!
+
+#305000
+1!
+b0 !!
+0"!
+b100100000000011110010011 #
+b101x00 %
+x,
+b101000 -!
+b11111 3
+14
+06!
+b101100 ;!
+b0 >!
+x?!
+x@!
+bx A!
+xD!
+bx F!
+b100100000000011110010011 M
+b101000 P
+1P!
+b100100000000011110010011 Q!
+1S!
+xZ
+b0 [
+bx \
+x]
+x^
+bx _
+b101100 h
+b1001 p
+0q
+b1001 r
+1s
+1t
+0u
+0v
+0w
+0x
+0y
+0z
+0{
+b0 |
+b1001 }
+b1111 ~
+
+#310000
+0!
+04
+0P!
+0S!
+
+#315000
+1!
+bx !!
+1"!
+bx #
+b1001 #!
+1$!
+1%!
+0&!
+0'!
+0(!
+0)!
+0*
+0*!
+b1001 +
+0+!
+0,!
+b0 .!
+b1001 /!
+b1111 0!
+b0 1!
+02!
+b100000 3
+14
+06!
+b1001 7!
+b111111111111111111111111111110111 8!
+b1 9
+b111111111111111111111111111110111 9!
+b1001 :!
+0<!
+1=
+1=!
+b0 >
+b1001 ?
+b1111 @
+b0 A
+0B
+0C
+0D
+0E
+b1001 F
+1G
+0H
+0H!
+0I
+0J
+0K
+bx M
+b101100 M!
+b0 O
+1P!
+bx Q!
+1S!
+b101100 U
+b10 U!
+b1001 V
+b0 X
+b1001 Y
+b101100 g
+b101100 o
+b0 p
+1q
+b0 r
+xs
+xt
+xu
+xv
+xw
+xx
+xy
+xz
+x{
+bx |
+bx }
+bx ~
+
+#320000
+0!
+04
+0P!
+0S!
+
+#325000
+1!
+b0 #!
+x$!
+b101100 %
+x%!
+b101100 &
+x&!
+x'!
+x(!
+x)!
+x*
+x*!
+bx +
+x+!
+0,
+x,!
+bx .!
+bx /!
+bx 0!
+bx 1!
+b101100 2
+12!
+b100001 3
+b101100 3!
+14
+b110000 5!
+06!
+b0 7!
+bx 8!
+bx 9
+bx 9!
+b0 :!
+x<!
+x=
+x=!
+bx >
+b1001 >!
+bx ?
+0?!
+bx @
+1@!
+bx A
+b1111 A!
+xB
+xC
+xD
+0D!
+1E
+b1 E!
+b0 F
+b0 F!
+xG
+xH
+xH!
+xI
+xJ
+xK
+bx O
+1P!
+b101100 Q
+1S!
+bx U!
+bx V
+bx X
+bx Y
+1Z
+b1001 [
+b0 \
+0]
+0^
+b1111 _
+b1 c
+b101100 m
+
+#330000
+0!
+04
+0P!
+0S!
+
+#335000
+1!
+b10 !!
+0"!
+b11111100111101000010110000100011 #
+b1xxx00 %
+x,
+b101100 -!
+b100010 3
+14
+06!
+b110000 ;!
+b0 >!
+x?!
+x@!
+bx A!
+xD!
+bx E!
+bx F!
+b11111100111101000010110000100011 M
+b101100 P
+1P!
+b11111100111101000010110000100011 Q!
+1S!
+xZ
+b0 [
+bx \
+x]
+x^
+bx _
+bx c
+b110000 h
+b11111111111111111111111111011000 p
+0q
+b11111111111111111111111111011000 r
+0s
+0t
+0u
+0v
+0w
+0x
+1y
+0z
+1{
+b1000 |
+b1111 }
+b11000 ~
+
+#340000
+0!
+04
+0P!
+0S!
+
+#345000
+1!
+bx !!
+1"!
+bx #
+b11111111111111111111111111011000 #!
+0$!
+0%!
+0&!
+0'!
+0(!
+0)!
+0*
+1*!
+0+!
+1,!
+b1000 .!
+b1111 /!
+b11000 0!
+b10 1!
+02!
+b100011 3
+14
+06!
+bx 7!
+bx :!
+1<!
+0=
+0=!
+b1000 >
+b1111 ?
+b11000 @
+b10 A
+1B
+1C
+0D
+0E
+b11111111111111111111111111011000 F
+0G
+0H
+1H!
+0I
+0J
+0K
+bx M
+b110000 M!
+1P!
+bx Q!
+1S!
+b110000 U
+b110000 g
+b110000 o
+b0 p
+1q
+b0 r
+xs
+xt
+xu
+xv
+xw
+xx
+xy
+xz
+x{
+bx |
+bx }
+bx ~
+
+#350000
+0!
+04
+0P!
+0S!
+
+#355000
+1!
+b0 #!
+x$!
+b110000 %
+x%!
+b110000 &
+x&!
+x'!
+x(!
+x)!
+x*
+x*!
+x+!
+1,
+x,!
+bx .!
+bx /!
+bx 0!
+bx 1!
+b110000 2
+12!
+b100100 3
+b110000 3!
+14
+b110100 5!
+06!
+b0 7!
+b0 :!
+x<!
+x=
+x=!
+bx >
+bx >!
+bx ?
+1?!
+bx @
+0@!
+bx A
+b11000 A!
+xB
+xC
+xD
+0D!
+1E
+b0 F
+b10 F!
+xG
+xH
+xH!
+xI
+xJ
+xK
+1P!
+b110000 Q
+1S!
+0Z
+bx [
+b10 \
+1]
+0^
+b11000 _
+b110000 m
+
+#360000
+0!
+04
+0P!
+0S!
+
+#365000
+1!
+b10 !!
+0"!
+b11111110100001000010011110000011 #
+b110x00 %
+x,
+b110000 -!
+b100101 3
+14
+06!
+b110100 ;!
+b0 >!
+x?!
+x@!
+bx A!
+xD!
+bx F!
+b11111110100001000010011110000011 M
+b110000 P
+1P!
+b11111110100001000010011110000011 Q!
+1S!
+xZ
+b0 [
+bx \
+x]
+x^
+bx _
+b110100 h
+b11111111111111111111111111101000 p
+0q
+b11111111111111111111111111101000 r
+1s
+0t
+0u
+0v
+0w
+0x
+0y
+1z
+1{
+b1000 |
+b1000 }
+b1111 ~
+
+#370000
+0!
+04
+0P!
+0S!
+
+#375000
+1!
+bx !!
+1"!
+bx #
+b11111111111111111111111111101000 #!
+1$!
+0%!
+0&!
+0'!
+0(!
+0)!
+1*
+0*!
+1+!
+1,!
+b1000 .!
+b1000 /!
+b1111 0!
+b10 1!
+02!
+b100110 3
+14
+06!
+0<!
+1=
+1=!
+b1000 >
+b1000 ?
+b1111 @
+b10 A
+1B
+0C
+1D
+0E
+b11111111111111111111111111101000 F
+0G
+0H
+0H!
+0I
+0J
+0K
+bx M
+b110100 M!
+1P!
+bx Q!
+1S!
+b110100 U
+b11111111111111111111111111101000 Y
+b110100 g
+b110100 o
+b0 p
+1q
+b0 r
+xs
+xt
+xu
+xv
+xw
+xx
+xy
+xz
+x{
+bx |
+bx }
+bx ~
+
+#380000
+0!
+04
+0P!
+0S!
+
+#385000
+1!
+b0 #!
+x$!
+b110100 %
+x%!
+b110100 &
+x&!
+x'!
+x(!
+x)!
+x*
+x*!
+x+!
+0,
+x,!
+bx .!
+bx /!
+bx 0!
+bx 1!
+b110100 2
+12!
+b100111 3
+b110100 3!
+14
+b111000 5!
+06!
+x<!
+x=
+x=!
+bx >
+bx ?
+0?!
+bx @
+1@!
+bx A
+b1111 A!
+xB
+xC
+xD
+1D!
+1E
+b0 F
+b10 F!
+xG
+xH
+xH!
+xI
+xJ
+xK
+1P!
+b110100 Q
+1S!
+bx Y
+1Z
+b10 \
+0]
+1^
+b1111 _
+b110100 m
+
+#390000
+0!
+04
+0P!
+0S!
+
+#395000
+1!
+b10 !!
+0"!
+b11111110111101000010000000100011 #
+b11xx00 %
+x,
+b110100 -!
+b101000 3
+14
+06!
+b111000 ;!
+x?!
+x@!
+bx A!
+xD!
+bx F!
+b11111110111101000010000000100011 M
+b110100 P
+1P!
+b11111110111101000010000000100011 Q!
+1S!
+xZ
+bx \
+x]
+x^
+bx _
+b111000 h
+b11111111111111111111111111100000 p
+0q
+b11111111111111111111111111100000 r
+0s
+0t
+0u
+0v
+0w
+0x
+1y
+0z
+1{
+b1000 |
+b1111 }
+b0 ~
+
+#400000
+0!
+04
+0P!
+0S!
+
+#405000
+1!
+bx !!
+1"!
+bx #
+b11111111111111111111111111100000 #!
+0$!
+0%!
+0&!
+0'!
+0(!
+0)!
+0*
+1*!
+0+!
+1,!
+b1000 .!
+b1111 /!
+b0 0!
+b10 1!
+02!
+b101001 3
+14
+06!
+bx 7!
+bx :!
+1<!
+0=
+0=!
+b1000 >
+b1111 ?
+b0 @
+b10 A
+1B
+1C
+0D
+0E
+b11111111111111111111111111100000 F
+0G
+0H
+1H!
+0I
+0J
+0K
+bx M
+b111000 M!
+1P!
+bx Q!
+1S!
+b111000 U
+b111000 g
+b111000 o
+b0 p
+1q
+b0 r
+xs
+xt
+xu
+xv
+xw
+xx
+xy
+xz
+x{
+bx |
+bx }
+bx ~
+
+#410000
+0!
+04
+0P!
+0S!
+
+#415000
+1!
+b0 #!
+x$!
+b111000 %
+x%!
+b111000 &
+x&!
+x'!
+x(!
+x)!
+x*
+x*!
+x+!
+1,
+x,!
+bx .!
+bx /!
+bx 0!
+bx 1!
+b111000 2
+12!
+b101010 3
+b111000 3!
+14
+b111100 5!
+06!
+b0 7!
+b0 :!
+x<!
+x=
+x=!
+bx >
+bx >!
+bx ?
+1?!
+bx @
+0@!
+bx A
+b0 A!
+xB
+xC
+xD
+0D!
+1E
+b0 F
+b10 F!
+xG
+xH
+xH!
+xI
+xJ
+xK
+1P!
+b111000 Q
+1S!
+0Z
+bx [
+b10 \
+1]
+0^
+b0 _
+b111000 m
+
+#420000
+0!
+04
+0P!
+0S!
+
+#425000
+1!
+b10 !!
+0"!
+b11111110000001000010011000100011 #
+b111x00 %
+x,
+b111000 -!
+b101011 3
+14
+06!
+b111100 ;!
+b0 >!
+x?!
+x@!
+bx A!
+xD!
+bx F!
+b11111110000001000010011000100011 M
+b111000 P
+1P!
+b11111110000001000010011000100011 Q!
+1S!
+xZ
+b0 [
+bx \
+x]
+x^
+bx _
+b111100 h
+b11111111111111111111111111101100 p
+0q
+b11111111111111111111111111101100 r
+0s
+0t
+0u
+0v
+0w
+0x
+1y
+0z
+1{
+b1000 |
+b0 }
+b1100 ~
+
+#430000
+0!
+04
+0P!
+0S!
+
+#435000
+1!
+bx !!
+1"!
+bx #
+b11111111111111111111111111101100 #!
+0$!
+0%!
+0&!
+0'!
+0(!
+0)!
+0*
+1*!
+0+!
+1,!
+b1000 .!
+b0 /!
+b1100 0!
+b10 1!
+02!
+b101100 3
+14
+06!
+1<!
+0=
+0=!
+b1000 >
+b0 ?
+b1100 @
+b10 A
+1B
+1C
+0D
+0E
+b11111111111111111111111111101100 F
+0G
+0H
+1H!
+0I
+0J
+0K
+bx M
+b111100 M!
+b0 N
+1P!
+bx Q!
+1S!
+b111100 U
+b0 Y
+b111100 g
+b111100 o
+b0 p
+1q
+b0 r
+xs
+xt
+xu
+xv
+xw
+xx
+xy
+xz
+x{
+bx |
+bx }
+bx ~
+
+#440000
+0!
+04
+0P!
+0S!
+
+#445000
+1!
+b0 #!
+x$!
+b111100 %
+x%!
+b111100 &
+x&!
+x'!
+x(!
+x)!
+x*
+x*!
+x+!
+1,
+x,!
+b0 .
+bx .!
+bx /!
+bx 0!
+bx 1!
+b111100 2
+12!
+b101101 3
+b111100 3!
+14
+b1000000 5!
+06!
+x<!
+x=
+x=!
+bx >
+bx ?
+1?!
+bx @
+0@!
+bx A
+b1100 A!
+xB
+xC
+xD
+0D!
+1E
+b0 F
+b10 F!
+xG
+xH
+xH!
+xI
+xJ
+b0 J!
+xK
+bx N
+1P!
+b111100 Q
+1S!
+bx Y
+0Z
+b10 \
+1]
+0^
+b1100 _
+b0 e
+b111100 m
+
+#450000
+0!
+04
+0P!
+0S!
+
+#455000
+1!
+b10 !!
+0"!
+b11111110000001000010001000100011 #
+b0xxxxx00 %
+x,
+b111100 -!
+b101110 3
+14
+06!
+b1000000 ;!
+x?!
+x@!
+bx A!
+xD!
+bx F!
+b11111110000001000010001000100011 M
+b111100 P
+1P!
+b11111110000001000010001000100011 Q!
+1S!
+xZ
+bx \
+x]
+x^
+bx _
+b1000000 h
+b11111111111111111111111111100100 p
+0q
+b11111111111111111111111111100100 r
+0s
+0t
+0u
+0v
+0w
+0x
+1y
+0z
+1{
+b1000 |
+b0 }
+b100 ~
+
+#460000
+0!
+04
+0P!
+0S!
+
+#465000
+1!
+bx !!
+1"!
+bx #
+b11111111111111111111111111100100 #!
+0$!
+0%!
+0&!
+0'!
+0(!
+0)!
+0*
+1*!
+0+!
+1,!
+b1000 .!
+b0 /!
+b100 0!
+b10 1!
+02!
+b101111 3
+14
+06!
+1<!
+0=
+0=!
+b1000 >
+b0 ?
+b100 @
+b10 A
+1B
+1C
+0D
+0E
+b11111111111111111111111111100100 F
+0G
+0H
+1H!
+0I
+0J
+0K
+bx M
+b1000000 M!
+b0 N
+1P!
+bx Q!
+1S!
+b1000000 U
+b0 Y
+b1000000 g
+b1000000 o
+b0 p
+1q
+b0 r
+xs
+xt
+xu
+xv
+xw
+xx
+xy
+xz
+x{
+bx |
+bx }
+bx ~
+
+#470000
+0!
+04
+0P!
+0S!
+
+#475000
+1!
+b0 #!
+x$!
+b1000000 %
+x%!
+b1000000 &
+x&!
+x'!
+x(!
+x)!
+x*
+x*!
+x+!
+1,
+x,!
+bx .!
+bx /!
+bx 0!
+bx 1!
+b1000000 2
+12!
+b110000 3
+b1000000 3!
+14
+b1000100 5!
+06!
+x<!
+x=
+x=!
+bx >
+bx ?
+1?!
+bx @
+0@!
+bx A
+b100 A!
+xB
+xC
+xD
+0D!
+1E
+b0 F
+b10 F!
+xG
+xH
+xH!
+xI
+xJ
+xK
+bx N
+1P!
+b1000000 Q
+1S!
+bx Y
+0Z
+b10 \
+1]
+0^
+b100 _
+b1000000 m
+
+#480000
+0!
+04
+0P!
+0S!
+
+#485000
+1!
+b0 !!
+0"!
+b1010100000000000000001101111 #
+b1000x00 %
+x,
+b1000000 -!
+b110001 3
+14
+06!
+b1000100 ;!
+x?!
+x@!
+bx A!
+xD!
+bx F!
+b1010100000000000000001101111 M
+b1000000 P
+1P!
+b1010100000000000000001101111 Q!
+1S!
+xZ
+bx \
+x]
+x^
+bx _
+b1000100 h
+b10101000 p
+0q
+b10101000 r
+0s
+0t
+0u
+1v
+0w
+0x
+0y
+0z
+0{
+b0 |
+b1000 }
+b0 ~
+
+#490000
+0!
+04
+0P!
+0S!
+
+#495000
+1!
+bx !!
+1"!
+bx #
+b10101000 #!
+0$!
+0%!
+0&!
+1'!
+0(!
+0)!
+0*
+0*!
+b10101000 +
+0+!
+0,!
+b0 .!
+b1000 /!
+b0 0!
+b0 1!
+02!
+b110010 3
+14
+b11101000 5!
+16!
+b1000100 7!
+b0 9
+b1000100 :!
+0<!
+0=
+1=!
+b0 >
+b1000 ?
+b0 @
+b0 A
+0B
+0C
+0D
+0E
+b10101000 F
+0G
+0H
+0H!
+1I
+0J
+0K
+bx M
+b1000100 M!
+b0 O
+1P!
+bx Q!
+1S!
+b1000100 U
+b101010 U!
+b10101000 V
+1W
+b0 X
+b1000100 g
+b1000100 o
+b0 p
+1q
+b0 r
+xs
+xt
+xu
+xv
+xw
+xx
+xy
+xz
+x{
+bx |
+bx }
+bx ~
+
+#500000
+0!
+04
+0P!
+0S!
+
+#505000
+1!
+b0 #!
+x$!
+b0x1x0xx00 %
+x%!
+b1000100 &
+x&!
+x'!
+x(!
+x)!
+x*
+x*!
+bx +
+x+!
+0,
+x,!
+bx .!
+bx /!
+10
+bx 0!
+bx 1!
+b1000100 2
+12!
+b110011 3
+b1000100 3!
+14
+b1001000 5!
+06!
+b0 7!
+bx 9
+b0 :!
+b11101000 ;!
+0<!
+x=
+x=!
+bx >
+b1000100 >!
+bx ?
+0?!
+bx @
+1@!
+bx A
+b0 A!
+xB
+1B!
+xC
+xD
+0D!
+1E
+b0 E!
+b0 F
+b0 F!
+xG
+xH
+xH!
+xI
+xJ
+xK
+bx O
+1P!
+b1000100 Q
+1S!
+bx U!
+bx V
+0W
+bx X
+1Z
+b1000100 [
+b0 \
+0]
+0^
+b0 _
+1`
+b0 c
+b11101000 h
+b1000100 m
+
+#510000
+0!
+04
+0P!
+0S!
+
+#515000
+1!
+b100xx00 %
+b1000100 -!
+b110100 3
+14
+b1001000 ;!
+b0 >!
+x@!
+bx A!
+0B!
+1C!
+xD!
+bx E!
+bx F!
+0H!
+b11101000 M!
+1N!
+b1000100 P
+1P!
+1R
+1S!
+1T
+xZ
+b0 [
+bx \
+x^
+bx _
+0`
+1a
+bx c
+b11101000 g
+b1001000 h
+
+#520000
+0!
+04
+0P!
+0S!
+
+#525000
+1!
+0$!
+b0x1x01000 %
+0%!
+b11101000 &
+0&!
+0'!
+0(!
+0)!
+0*
+0*!
+b0 +
+0+!
+0,!
+b0 -!
+b0 .!
+b0 /!
+00
+b0 0!
+b0 1!
+b11101000 2
+02!
+b110101 3
+b11101000 3!
+14
+b11101100 5!
+06!
+b0 8!
+b0 9
+b0 9!
+0=
+0=!
+b0 >
+b0 ?
+b0 @
+b0 A
+0B
+0C
+0C!
+0D
+0E
+0G
+0H
+0I
+0J
+0K
+b1001000 M!
+b0 N
+0N!
+b0 O
+1O!
+b0 P
+1P!
+b11101000 Q
+0R
+1S
+1S!
+b0 U!
+b0 V
+b0 X
+b0 Y
+0a
+b1001000 g
+b11101000 m
+
+#530000
+0!
+04
+0P!
+0S!
+
+#535000
+1!
+b0x1x01x00 %
+b1001000 &
+b1001000 2
+b110110 3
+b1001000 3!
+14
+b1001100 5!
+06!
+b11101100 ;!
+0@!
+b0 A!
+0D!
+b0 E!
+b0 F!
+0O!
+1P!
+b1001000 Q
+0S
+1S!
+0T
+0Z
+b0 \
+0^
+b0 _
+b0 c
+b11101100 h
+b1001000 m
+
+#540000
+0!
+04
+0P!
+0S!
+
+#545000
+1!
+x$!
+b100x100 %
+x%!
+b1000100 &
+x&!
+x'!
+x(!
+x)!
+x*
+x*!
+bx +
+x+!
+x,!
+b1001000 -!
+bx .!
+bx /!
+bx 0!
+bx 1!
+b1000100 2
+12!
+b110111 3
+b1000100 3!
+14
+b1001000 5!
+06!
+bx 8!
+bx 9
+bx 9!
+b1001100 ;!
+x<!
+x=
+x=!
+bx >
+bx ?
+bx @
+bx A
+xB
+xC
+xD
+1E
+xG
+xH
+xH!
+xI
+xJ
+xK
+b11101100 M!
+bx N
+bx O
+b1001000 P
+1P!
+b1000100 Q
+1S!
+bx U!
+bx V
+bx X
+bx Y
+b11101100 g
+b1001100 h
+b1000100 m
+
+#550000
+0!
+04
+0P!
+0S!
+
+#555000
+1!
+b100xx00 %
+x,
+b1000100 -!
+b111000 3
+14
+06!
+b1001000 ;!
+x?!
+x@!
+bx A!
+xD!
+bx E!
+bx F!
+b1001100 M!
+b1000100 P
+1P!
+1S!
+xZ
+bx \
+x]
+x^
+bx _
+bx c
+b1001100 g
+b1001000 h
+
+#560000
+0!
+04
+0P!
+0S!
+
+#565000
+1!
+b111001 3
+14
+b1001000 M!
+1P!
+1S!
+b1001000 g
+
+#570000
+0!
+04
+0P!
+0S!
+
+#575000
+1!
+b111010 3
+14
+1P!
+1S!
+
+#580000
+0!
+04
+0P!
+0S!
+
+#585000
+1!
+b111011 3
+14
+1P!
+1S!
+
+#590000
+0!
+04
+0P!
+0S!
+
+#595000
+1!
+b111100 3
+14
+1P!
+1S!
+
+#600000
+0!
+04
+0P!
+0S!
+
+#605000
+1!
+b111101 3
+14
+1P!
+1S!
+
+#610000
+0!
+04
+0P!
+0S!
+
+#615000
+1!
+b111110 3
+14
+1P!
+1S!
+
+#620000
+0!
+04
+0P!
+0S!
+
+#625000
+1!
+b111111 3
+14
+1P!
+1S!
+
+#630000
+0!
+04
+0P!
+0S!
+
+#635000
+1!
+b1000000 3
+14
+1P!
+1S!
+
+#640000
+0!
+04
+0P!
+0S!
+
+#645000
+1!
+b1000001 3
+14
+1P!
+1S!
+
+#650000
+0!
+04
+0P!
+0S!
+
+#655000
+1!
+b1000010 3
+14
+1P!
+1S!
+
+#660000
+0!
+04
+0P!
+0S!
+
+#665000
+1!
+b1000011 3
+14
+1P!
+1S!
+
+#670000
+0!
+04
+0P!
+0S!
+
+#675000
+1!
+b1000100 3
+14
+1P!
+1S!
+
+#680000
+0!
+04
+0P!
+0S!
+
+#685000
+1!
+b1000101 3
+14
+1P!
+1S!
+
+#690000
+0!
+04
+0P!
+0S!
+
+#695000
+1!
+b1000110 3
+14
+1P!
+1S!
+
+#700000
+0!
+04
+0P!
+0S!
+
+#705000
+1!
+b1000111 3
+14
+1P!
+1S!
+
+#710000
+0!
+04
+0P!
+0S!
+
+#715000
+1!
+b1001000 3
+14
+1P!
+1S!
+
+#720000
+0!
+04
+0P!
+0S!
+
+#725000
+1!
+b1001001 3
+14
+1P!
+1S!
+
+#730000
+0!
+04
+0P!
+0S!
+
+#735000
+1!
+b1001010 3
+14
+1P!
+1S!
+
+#740000
+0!
+04
+0P!
+0S!
+
+#745000
+1!
+b1001011 3
+14
+1P!
+1S!
+
+#750000
+0!
+04
+0P!
+0S!
+
+#755000
+1!
+b1001100 3
+14
+1P!
+1S!
+
+#760000
+0!
+04
+0P!
+0S!
+
+#765000
+1!
+b1001101 3
+14
+1P!
+1S!
+
+#770000
+0!
+04
+0P!
+0S!
+
+#775000
+1!
+b1001110 3
+14
+1P!
+1S!
+
+#780000
+0!
+04
+0P!
+0S!
+
+#785000
+1!
+b1001111 3
+14
+1P!
+1S!
+
+#790000
+0!
+04
+0P!
+0S!
+
+#795000
+1!
+b1010000 3
+14
+1P!
+1S!
+
+#800000
+0!
+04
+0P!
+0S!
+
+#805000
+1!
+b1010001 3
+14
+1P!
+1S!
+
+#810000
+0!
+04
+0P!
+0S!
+
+#815000
+1!
+b1010010 3
+14
+1P!
+1S!
+
+#820000
+0!
+04
+0P!
+0S!
+
+#825000
+1!
+b1010011 3
+14
+1P!
+1S!
+
+#830000
+0!
+04
+0P!
+0S!
+
+#835000
+1!
+b1010100 3
+14
+1P!
+1S!
+
+#840000
+0!
+04
+0P!
+0S!
+
+#845000
+1!
+b1010101 3
+14
+1P!
+1S!
+
+#850000
+0!
+04
+0P!
+0S!
+
+#855000
+1!
+b1010110 3
+14
+1P!
+1S!
+
+#860000
+0!
+04
+0P!
+0S!
+
+#865000
+1!
+b1010111 3
+14
+1P!
+1S!
+
+#870000
+0!
+04
+0P!
+0S!
+
+#875000
+1!
+b1011000 3
+14
+1P!
+1S!
+
+#880000
+0!
+04
+0P!
+0S!
+
+#885000
+1!
+b1011001 3
+14
+1P!
+1S!
+
+#890000
+0!
+04
+0P!
+0S!
+
+#895000
+1!
+b1011010 3
+14
+1P!
+1S!
+
+#900000
+0!
+04
+0P!
+0S!
+
+#905000
+1!
+b1011011 3
+14
+1P!
+1S!
+
+#910000
+0!
+04
+0P!
+0S!
+
+#915000
+1!
+b1011100 3
+14
+1P!
+1S!
+
+#920000
+0!
+04
+0P!
+0S!
+
+#925000
+1!
+b1011101 3
+14
+1P!
+1S!
+
+#930000
+0!
+04
+0P!
+0S!
+
+#935000
+1!
+b1011110 3
+14
+1P!
+1S!
+
+#940000
+0!
+04
+0P!
+0S!
+
+#945000
+1!
+b1011111 3
+14
+1P!
+1S!
+
+#950000
+0!
+04
+0P!
+0S!
+
+#955000
+1!
+b1100000 3
+14
+1P!
+1S!
+
+#960000
+0!
+04
+0P!
+0S!
+
+#965000
+1!
+b1100001 3
+14
+1P!
+1S!
+
+#970000
+0!
+04
+0P!
+0S!
+
+#975000
+1!
+b1100010 3
+14
+1P!
+1S!
+
+#980000
+0!
+04
+0P!
+0S!
+
+#985000
+1!
+b1100011 3
+14
+1P!
+1S!
+
+#990000
+0!
+04
+0P!
+0S!
+
+#995000
+1!
+b1100100 3
+14
+1P!
+1S!
+
+#1000000
+0!
+04
+0P!
+0S!
+
+#1005000
+1!
+b1100101 3
+14
+1P!
+1S!
+
+#1010000
+0!
+04
+0P!
+0S!
+
+#1015000
+1!
+b1100110 3
+14
+1P!
+1S!
+
+#1020000
+0!
+04
+0P!
+0S!
+
+#1025000
+1!
+b1100111 3
+14
+1P!
+1S!
+
+#1030000
+0!
+04
+0P!
+0S!
+
+#1035000
+1!
+b1101000 3
+14
+1P!
+1S!
+
+#1040000
+0!
+04
+0P!
+0S!
+
+#1045000
+1!
+b1101001 3
+14
+1P!
+1S!
+
+#1050000
+0!
+04
+0P!
+0S!
+
+#1055000
+1!
+b1101010 3
+14
+1P!
+1S!
+
+#1060000
+0!
+04
+0P!
+0S!
+
+#1065000
+1!
+b1101011 3
+14
+1P!
+1S!
+
+#1070000
+0!
+04
+0P!
+0S!
+
+#1075000
+1!
+b1101100 3
+14
+1P!
+1S!
+
+#1080000
+0!
+04
+0P!
+0S!
+
+#1085000
+1!
+b1101101 3
+14
+1P!
+1S!
+
+#1090000
+0!
+04
+0P!
+0S!
+
+#1095000
+1!
+b1101110 3
+14
+1P!
+1S!
+
+#1100000
+0!
+04
+0P!
+0S!
+
+#1105000
+1!
+b1101111 3
+14
+1P!
+1S!
+
+#1110000
+0!
+04
+0P!
+0S!
+
+#1115000
+1!
+b1110000 3
+14
+1P!
+1S!
+
+#1120000
+0!
+04
+0P!
+0S!
+
+#1125000
+1!
+b1110001 3
+14
+1P!
+1S!
+
+#1130000
+0!
+04
+0P!
+0S!
+
+#1135000
+1!
+b1110010 3
+14
+1P!
+1S!
+
+#1140000
+0!
+04
+0P!
+0S!
+
+#1145000
+1!
+b1110011 3
+14
+1P!
+1S!
+
+#1150000
+0!
+04
+0P!
+0S!
+
+#1155000
+1!
+b1110100 3
+14
+1P!
+1S!
+
+#1160000
+0!
+04
+0P!
+0S!
+
+#1165000
+1!
+b1110101 3
+14
+1P!
+1S!
+
+#1170000
+0!
+04
+0P!
+0S!
+
+#1175000
+1!
+b1110110 3
+14
+1P!
+1S!
+
+#1180000
+0!
+04
+0P!
+0S!
+
+#1185000
+1!
+b1110111 3
+14
+1P!
+1S!
+
+#1190000
+0!
+04
+0P!
+0S!
+
+#1195000
+1!
+b1111000 3
+14
+1P!
+1S!
+
+#1200000
+0!
+04
+0P!
+0S!
+
+#1205000
+1!
+b1111001 3
+14
+1P!
+1S!
+
+#1210000
+0!
+04
+0P!
+0S!
+
+#1215000
+1!
+b1111010 3
+14
+1P!
+1S!
+
+#1220000
+0!
+04
+0P!
+0S!
+
+#1225000
+1!
+b1111011 3
+14
+1P!
+1S!
+
+#1230000
+0!
+04
+0P!
+0S!
+
+#1235000
+1!
+b1111100 3
+14
+1P!
+1S!
+
+#1240000
+0!
+04
+0P!
+0S!
+
+#1245000
+1!
+b1111101 3
+14
+1P!
+1S!
+
+#1250000
+0!
+04
+0P!
+0S!
+
+#1255000
+1!
+b1111110 3
+14
+1P!
+1S!
+
+#1260000
+0!
+04
+0P!
+0S!
+
+#1265000
+1!
+b1111111 3
+14
+1P!
+1S!
+
+#1270000
+0!
+04
+0P!
+0S!
+
+#1275000
+1!
+b10000000 3
+14
+1P!
+1S!
+
+#1280000
+0!
+04
+0P!
+0S!
+
+#1285000
+1!
+b10000001 3
+14
+1P!
+1S!
+
+#1290000
+0!
+04
+0P!
+0S!
+
+#1295000
+1!
+b10000010 3
+14
+1P!
+1S!
+
+#1300000
+0!
+04
+0P!
+0S!
+
+#1305000
+1!
+b10000011 3
+14
+1P!
+1S!
+
+#1310000
+0!
+04
+0P!
+0S!
+
+#1315000
+1!
+b10000100 3
+14
+1P!
+1S!
+
+#1320000
+0!
+04
+0P!
+0S!
+
+#1325000
+1!
+b10000101 3
+14
+1P!
+1S!
+
+#1330000
+0!
+04
+0P!
+0S!
+
+#1335000
+1!
+b10000110 3
+14
+1P!
+1S!
+
+#1340000
+0!
+04
+0P!
+0S!
+
+#1345000
+1!
+b10000111 3
+14
+1P!
+1S!
+
+#1350000
+0!
+04
+0P!
+0S!
+
+#1355000
+1!
+b10001000 3
+14
+1P!
+1S!
+
+#1360000
+0!
+04
+0P!
+0S!
+
+#1365000
+1!
+b10001001 3
+14
+1P!
+1S!
+
+#1370000
+0!
+04
+0P!
+0S!
+
+#1375000
+1!
+b10001010 3
+14
+1P!
+1S!
+
+#1380000
+0!
+04
+0P!
+0S!
+
+#1385000
+1!
+b10001011 3
+14
+1P!
+1S!
+
+#1390000
+0!
+04
+0P!
+0S!
+
+#1395000
+1!
+b10001100 3
+14
+1P!
+1S!
+
+#1400000
+0!
+04
+0P!
+0S!
+
+#1405000
+1!
+b10001101 3
+14
+1P!
+1S!
+
+#1410000
+0!
+04
+0P!
+0S!
+
+#1415000
+1!
+b10001110 3
+14
+1P!
+1S!
+
+#1420000
+0!
+04
+0P!
+0S!
+
+#1425000
+1!
+b10001111 3
+14
+1P!
+1S!
+
+#1430000
+0!
+04
+0P!
+0S!
+
+#1435000
+1!
+b10010000 3
+14
+1P!
+1S!
+
+#1440000
+0!
+04
+0P!
+0S!
+
+#1445000
+1!
+b10010001 3
+14
+1P!
+1S!
+
+#1450000
+0!
+04
+0P!
+0S!
+
+#1455000
+1!
+b10010010 3
+14
+1P!
+1S!
+
+#1460000
+0!
+04
+0P!
+0S!
+
+#1465000
+1!
+b10010011 3
+14
+1P!
+1S!
+
+#1470000
+0!
+04
+0P!
+0S!
+
+#1475000
+1!
+b10010100 3
+14
+1P!
+1S!
+
+#1480000
+0!
+04
+0P!
+0S!
+
+#1485000
+1!
+b10010101 3
+14
+1P!
+1S!
+
+#1490000
+0!
+04
+0P!
+0S!
+
+#1495000
+1!
+b10010110 3
+14
+1P!
+1S!
+
+#1500000
+0!
+04
+0P!
+0S!
+
+#1505000
+1!
+b10010111 3
+14
+1P!
+1S!
+
+#1510000
+0!
+04
+0P!
+0S!
+
+#1515000
+1!
+b10011000 3
+14
+1P!
+1S!
+
+#1520000
+0!
+04
+0P!
+0S!
+
+#1525000
+1!
+b10011001 3
+14
+1P!
+1S!
+
+#1530000
+0!
+04
+0P!
+0S!
+
+#1535000
+1!
+b10011010 3
+14
+1P!
+1S!
+
+#1540000
+0!
+04
+0P!
+0S!
+
+#1545000
+1!
+b10011011 3
+14
+1P!
+1S!
+
+#1550000
+0!
+04
+0P!
+0S!
+
+#1555000
+1!
+b10011100 3
+14
+1P!
+1S!
+
+#1560000
+0!
+04
+0P!
+0S!
+
+#1565000
+1!
+b10011101 3
+14
+1P!
+1S!
+
+#1570000
+0!
+04
+0P!
+0S!
+
+#1575000
+1!
+b10011110 3
+14
+1P!
+1S!
+
+#1580000
+0!
+04
+0P!
+0S!
+
+#1585000
+1!
+b10011111 3
+14
+1P!
+1S!
+
+#1590000
+0!
+04
+0P!
+0S!
+
+#1595000
+1!
+b10100000 3
+14
+1P!
+1S!
+
+#1600000
+0!
+04
+0P!
+0S!
+
+#1605000
+1!
+b10100001 3
+14
+1P!
+1S!
+
+#1610000
+0!
+04
+0P!
+0S!
+
+#1615000
+1!
+b10100010 3
+14
+1P!
+1S!
+
+#1620000
+0!
+04
+0P!
+0S!
+
+#1625000
+1!
+b10100011 3
+14
+1P!
+1S!
+
+#1630000
+0!
+04
+0P!
+0S!
+
+#1635000
+1!
+b10100100 3
+14
+1P!
+1S!
+
+#1640000
+0!
+04
+0P!
+0S!
+
+#1645000
+1!
+b10100101 3
+14
+1P!
+1S!
+
+#1650000
+0!
+04
+0P!
+0S!
+
+#1655000
+1!
+b10100110 3
+14
+1P!
+1S!
+
+#1660000
+0!
+04
+0P!
+0S!
+
+#1665000
+1!
+b10100111 3
+14
+1P!
+1S!
+
+#1670000
+0!
+04
+0P!
+0S!
+
+#1675000
+1!
+b10101000 3
+14
+1P!
+1S!
+
+#1680000
+0!
+04
+0P!
+0S!
+
+#1685000
+1!
+b10101001 3
+14
+1P!
+1S!
+
+#1690000
+0!
+04
+0P!
+0S!
+
+#1695000
+1!
+b10101010 3
+14
+1P!
+1S!
+
+#1700000
+0!
+04
+0P!
+0S!
+
+#1705000
+1!
+b10101011 3
+14
+1P!
+1S!
+
+#1710000
+0!
+04
+0P!
+0S!
+
+#1715000
+1!
+b10101100 3
+14
+1P!
+1S!
+
+#1720000
+0!
+04
+0P!
+0S!
+
+#1725000
+1!
+b10101101 3
+14
+1P!
+1S!
+
+#1730000
+0!
+04
+0P!
+0S!
+
+#1735000
+1!
+b10101110 3
+14
+1P!
+1S!
+
+#1740000
+0!
+04
+0P!
+0S!
+
+#1745000
+1!
+b10101111 3
+14
+1P!
+1S!
+
+#1750000
+0!
+04
+0P!
+0S!
+
+#1755000
+1!
+b10110000 3
+14
+1P!
+1S!
+
+#1760000
+0!
+04
+0P!
+0S!
+
+#1765000
+1!
+b10110001 3
+14
+1P!
+1S!
+
+#1770000
+0!
+04
+0P!
+0S!
+
+#1775000
+1!
+b10110010 3
+14
+1P!
+1S!
+
+#1780000
+0!
+04
+0P!
+0S!
+
+#1785000
+1!
+b10110011 3
+14
+1P!
+1S!
+
+#1790000
+0!
+04
+0P!
+0S!
+
+#1795000
+1!
+b10110100 3
+14
+1P!
+1S!
+
+#1800000
+0!
+04
+0P!
+0S!
+
+#1805000
+1!
+b10110101 3
+14
+1P!
+1S!
+
+#1810000
+0!
+04
+0P!
+0S!
+
+#1815000
+1!
+b10110110 3
+14
+1P!
+1S!
+
+#1820000
+0!
+04
+0P!
+0S!
+
+#1825000
+1!
+b10110111 3
+14
+1P!
+1S!
+
+#1830000
+0!
+04
+0P!
+0S!
+
+#1835000
+1!
+b10111000 3
+14
+1P!
+1S!
+
+#1840000
+0!
+04
+0P!
+0S!
+
+#1845000
+1!
+b10111001 3
+14
+1P!
+1S!
+
+#1850000
+0!
+04
+0P!
+0S!
+
+#1855000
+1!
+b10111010 3
+14
+1P!
+1S!
+
+#1860000
+0!
+04
+0P!
+0S!
+
+#1865000
+1!
+b10111011 3
+14
+1P!
+1S!
+
+#1870000
+0!
+04
+0P!
+0S!
+
+#1875000
+1!
+b10111100 3
+14
+1P!
+1S!
+
+#1880000
+0!
+04
+0P!
+0S!
+
+#1885000
+1!
+b10111101 3
+14
+1P!
+1S!
+
+#1890000
+0!
+04
+0P!
+0S!
+
+#1895000
+1!
+b10111110 3
+14
+1P!
+1S!
+
+#1900000
+0!
+04
+0P!
+0S!
+
+#1905000
+1!
+b10111111 3
+14
+1P!
+1S!
+
+#1910000
+0!
+04
+0P!
+0S!
+
+#1915000
+1!
+b11000000 3
+14
+1P!
+1S!
+
+#1920000
+0!
+04
+0P!
+0S!
+
+#1925000
+1!
+b11000001 3
+14
+1P!
+1S!
+
+#1930000
+0!
+04
+0P!
+0S!
+
+#1935000
+1!
+b11000010 3
+14
+1P!
+1S!
+
+#1940000
+0!
+04
+0P!
+0S!
+
+#1945000
+1!
+b11000011 3
+14
+1P!
+1S!
+
+#1950000
+0!
+04
+0P!
+0S!
+
+#1955000
+1!
+b11000100 3
+14
+1P!
+1S!
+
+#1960000
+0!
+04
+0P!
+0S!
+
+#1965000
+1!
+b11000101 3
+14
+1P!
+1S!
+
+#1970000
+0!
+04
+0P!
+0S!
+
+#1975000
+1!
+b11000110 3
+14
+1P!
+1S!
+
+#1980000
+0!
+04
+0P!
+0S!
+
+#1985000
+1!
+b11000111 3
+14
+1P!
+1S!
+
+#1990000
+0!
+04
+0P!
+0S!
+
+#1995000
+1!
+b11001000 3
+14
+1P!
+1S!
+
+#2000000
+0!
+04
+0P!
+0S!
+
+#2005000
+1!
+b11001001 3
+14
+1P!
+1S!
+
+#2010000
+0!
+04
+0P!
+0S!
+
+#2015000
+1!
+b11001010 3
+14
+1P!
+1S!
+
+#2020000
+0!
+04
+0P!
+0S!
+
+#2025000
+1!
+b11001011 3
+14
+1P!
+1S!
+
+#2030000
+0!
+04
+0P!
+0S!
+
+#2035000
+1!
+b11001100 3
+14
+1P!
+1S!
+
+#2040000
+0!
+04
+0P!
+0S!
+
+#2045000
+1!
+b11001101 3
+14
+1P!
+1S!
+
+#2050000
+0!
+04
+0P!
+0S!
+
+#2055000
+1!
+b11001110 3
+14
+1P!
+1S!
+
+#2060000
+0!
+04
+0P!
+0S!
+
+#2065000
+1!
+b11001111 3
+14
+1P!
+1S!
+
+#2070000
+0!
+04
+0P!
+0S!
+
+#2075000
+1!
+b11010000 3
+14
+1P!
+1S!
+
+#2080000
+0!
+04
+0P!
+0S!
+
+#2085000
+1!
+b11010001 3
+14
+1P!
+1S!
+
+#2090000
+0!
+04
+0P!
+0S!
+
+#2095000
+1!
+b11010010 3
+14
+1P!
+1S!
+
+#2100000
+0!
+04
+0P!
+0S!
+
+#2105000
+1!
+b11010011 3
+14
+1P!
+1S!
+
+#2110000
+0!
+04
+0P!
+0S!
+
+#2115000
+1!
+b11010100 3
+14
+1P!
+1S!
+
+#2120000
+0!
+04
+0P!
+0S!
+
+#2125000
+1!
+b11010101 3
+14
+1P!
+1S!
+
+#2130000
+0!
+04
+0P!
+0S!
+
+#2135000
+1!
+b11010110 3
+14
+1P!
+1S!
+
+#2140000
+0!
+04
+0P!
+0S!
+
+#2145000
+1!
+b11010111 3
+14
+1P!
+1S!
+
+#2150000
+0!
+04
+0P!
+0S!
+
+#2155000
+1!
+b11011000 3
+14
+1P!
+1S!
+
+#2160000
+0!
+04
+0P!
+0S!
+
+#2165000
+1!
+b11011001 3
+14
+1P!
+1S!
+
+#2170000
+0!
+04
+0P!
+0S!
+
+#2175000
+1!
+b11011010 3
+14
+1P!
+1S!
+
+#2180000
+0!
+04
+0P!
+0S!
+
+#2185000
+1!
+b11011011 3
+14
+1P!
+1S!
+
+#2190000
+0!
+04
+0P!
+0S!
+
+#2195000
+1!
+b11011100 3
+14
+1P!
+1S!
+
+#2200000
+0!
+04
+0P!
+0S!
+
+#2205000
+1!
+b11011101 3
+14
+1P!
+1S!
+
+#2210000
+0!
+04
+0P!
+0S!
+
+#2215000
+1!
+b11011110 3
+14
+1P!
+1S!
+
+#2220000
+0!
+04
+0P!
+0S!
+
+#2225000
+1!
+b11011111 3
+14
+1P!
+1S!
+
+#2230000
+0!
+04
+0P!
+0S!
+
+#2235000
+1!
+b11100000 3
+14
+1P!
+1S!
+
+#2240000
+0!
+04
+0P!
+0S!
+
+#2245000
+1!
+b11100001 3
+14
+1P!
+1S!
+
+#2250000
+0!
+04
+0P!
+0S!
+
+#2255000
+1!
+b11100010 3
+14
+1P!
+1S!
+
+#2260000
+0!
+04
+0P!
+0S!
+
+#2265000
+1!
+b11100011 3
+14
+1P!
+1S!
+
+#2270000
+0!
+04
+0P!
+0S!
+
+#2275000
+1!
+b11100100 3
+14
+1P!
+1S!
+
+#2280000
+0!
+04
+0P!
+0S!
+
+#2285000
+1!
+b11100101 3
+14
+1P!
+1S!
+
+#2290000
+0!
+04
+0P!
+0S!
+
+#2295000
+1!
+b11100110 3
+14
+1P!
+1S!
+
+#2300000
+0!
+04
+0P!
+0S!
+
+#2305000
+1!
+b11100111 3
+14
+1P!
+1S!
+
+#2310000
+0!
+04
+0P!
+0S!
+
+#2315000
+1!
+b11101000 3
+14
+1P!
+1S!
+
+#2320000
+0!
+04
+0P!
+0S!
+
+#2325000
+1!
+b11101001 3
+14
+1P!
+1S!
+
+#2330000
+0!
+04
+0P!
+0S!
+
+#2335000
+1!
+b11101010 3
+14
+1P!
+1S!
+
+#2340000
+0!
+04
+0P!
+0S!
+
+#2345000
+1!
+b11101011 3
+14
+1P!
+1S!
+
+#2350000
+0!
+04
+0P!
+0S!
+
+#2355000
+1!
+b11101100 3
+14
+1P!
+1S!
+
+#2360000
+0!
+04
+0P!
+0S!
+
+#2365000
+1!
+b11101101 3
+14
+1P!
+1S!
+
+#2370000
+0!
+04
+0P!
+0S!
+
+#2375000
+1!
+b11101110 3
+14
+1P!
+1S!
+
+#2380000
+0!
+04
+0P!
+0S!
+
+#2385000
+1!
+b11101111 3
+14
+1P!
+1S!
+
+#2390000
+0!
+04
+0P!
+0S!
+
+#2395000
+1!
+b11110000 3
+14
+1P!
+1S!
+
+#2400000
+0!
+04
+0P!
+0S!
+
+#2405000
+1!
+b11110001 3
+14
+1P!
+1S!
+
+#2410000
+0!
+04
+0P!
+0S!
+
+#2415000
+1!
+b11110010 3
+14
+1P!
+1S!
+
+#2420000
+0!
+04
+0P!
+0S!
+
+#2425000
+1!
+b11110011 3
+14
+1P!
+1S!
+
+#2430000
+0!
+04
+0P!
+0S!
+
+#2435000
+1!
+b11110100 3
+14
+1P!
+1S!
+
+#2440000
+0!
+04
+0P!
+0S!
+
+#2445000
+1!
+b11110101 3
+14
+1P!
+1S!
+
+#2450000
+0!
+04
+0P!
+0S!
+
+#2455000
+1!
+b11110110 3
+14
+1P!
+1S!
+
+#2460000
+0!
+04
+0P!
+0S!
+
+#2465000
+1!
+b11110111 3
+14
+1P!
+1S!
+
+#2470000
+0!
+04
+0P!
+0S!
+
+#2475000
+1!
+b11111000 3
+14
+1P!
+1S!
+
+#2480000
+0!
+04
+0P!
+0S!
+
+#2485000
+1!
+b11111001 3
+14
+1P!
+1S!
+
+#2490000
+0!
+04
+0P!
+0S!
+
+#2495000
+1!
+b11111010 3
+14
+1P!
+1S!
+
+#2500000
+0!
+04
+0P!
+0S!
+
+#2505000
+1!
+b11111011 3
+14
+1P!
+1S!
+
+#2510000
+0!
+04
+0P!
+0S!
+
+#2515000
+1!
+b11111100 3
+14
+1P!
+1S!
+
+#2520000
+0!
+04
+0P!
+0S!
+
+#2525000
+1!
+b11111101 3
+14
+1P!
+1S!
+
+#2530000
+0!
+04
+0P!
+0S!
+
+#2535000
+1!
+b11111110 3
+14
+1P!
+1S!
+
+#2540000
+0!
+04
+0P!
+0S!
+
+#2545000
+1!
+b11111111 3
+14
+1P!
+1S!
+
+#2550000
+0!
+04
+0P!
+0S!
+
+#2555000
+1!
+b100000000 3
+14
+1P!
+1S!
+
+#2560000
+0!
+04
+0P!
+0S!
+
+#2565000
+1!
+b100000001 3
+14
+1P!
+1S!
+
+#2570000
+0!
+04
+0P!
+0S!
+
+#2575000
+1!
+b100000010 3
+14
+1P!
+1S!
+
+#2580000
+0!
+04
+0P!
+0S!
+
+#2585000
+1!
+b100000011 3
+14
+1P!
+1S!
+
+#2590000
+0!
+04
+0P!
+0S!
+
+#2595000
+1!
+b100000100 3
+14
+1P!
+1S!
+
+#2600000
+0!
+04
+0P!
+0S!
+
+#2605000
+1!
+b100000101 3
+14
+1P!
+1S!
+
+#2610000
+0!
+04
+0P!
+0S!
+
+#2615000
+1!
+b100000110 3
+14
+1P!
+1S!
+
+#2620000
+0!
+04
+0P!
+0S!
+
+#2625000
+1!
+b100000111 3
+14
+1P!
+1S!
+
+#2630000
+0!
+04
+0P!
+0S!
+
+#2635000
+1!
+b100001000 3
+14
+1P!
+1S!
+
+#2640000
+0!
+04
+0P!
+0S!
+
+#2645000
+1!
+b100001001 3
+14
+1P!
+1S!
+
+#2650000
+0!
+04
+0P!
+0S!
+
+#2655000
+1!
+b100001010 3
+14
+1P!
+1S!
+
+#2660000
+0!
+04
+0P!
+0S!
+
+#2665000
+1!
+b100001011 3
+14
+1P!
+1S!
+
+#2670000
+0!
+04
+0P!
+0S!
+
+#2675000
+1!
+b100001100 3
+14
+1P!
+1S!
+
+#2680000
+0!
+04
+0P!
+0S!
+
+#2685000
+1!
+b100001101 3
+14
+1P!
+1S!
+
+#2690000
+0!
+04
+0P!
+0S!
+
+#2695000
+1!
+b100001110 3
+14
+1P!
+1S!
+
+#2700000
+0!
+04
+0P!
+0S!
+
+#2705000
+1!
+b100001111 3
+14
+1P!
+1S!
+
+#2710000
+0!
+04
+0P!
+0S!
+
+#2715000
+1!
+b100010000 3
+14
+1P!
+1S!
+
+#2720000
+0!
+04
+0P!
+0S!
+
+#2725000
+1!
+b100010001 3
+14
+1P!
+1S!
+
+#2730000
+0!
+04
+0P!
+0S!
+
+#2735000
+1!
+b100010010 3
+14
+1P!
+1S!
+
+#2740000
+0!
+04
+0P!
+0S!
+
+#2745000
+1!
+b100010011 3
+14
+1P!
+1S!
+
+#2750000
+0!
+04
+0P!
+0S!
+
+#2755000
+1!
+b100010100 3
+14
+1P!
+1S!
+
+#2760000
+0!
+04
+0P!
+0S!
+
+#2765000
+1!
+b100010101 3
+14
+1P!
+1S!
+
+#2770000
+0!
+04
+0P!
+0S!
+
+#2775000
+1!
+b100010110 3
+14
+1P!
+1S!
+
+#2780000
+0!
+04
+0P!
+0S!
+
+#2785000
+1!
+b100010111 3
+14
+1P!
+1S!
+
+#2790000
+0!
+04
+0P!
+0S!
+
+#2795000
+1!
+b100011000 3
+14
+1P!
+1S!
+
+#2800000
+0!
+04
+0P!
+0S!
+
+#2805000
+1!
+b100011001 3
+14
+1P!
+1S!
+
+#2810000
+0!
+04
+0P!
+0S!
+
+#2815000
+1!
+b100011010 3
+14
+1P!
+1S!
+
+#2820000
+0!
+04
+0P!
+0S!
+
+#2825000
+1!
+b100011011 3
+14
+1P!
+1S!
+
+#2830000
+0!
+04
+0P!
+0S!
+
+#2835000
+1!
+b100011100 3
+14
+1P!
+1S!
+
+#2840000
+0!
+04
+0P!
+0S!
+
+#2845000
+1!
+b100011101 3
+14
+1P!
+1S!
+
+#2850000
+0!
+04
+0P!
+0S!
+
+#2855000
+1!
+b100011110 3
+14
+1P!
+1S!
+
+#2860000
+0!
+04
+0P!
+0S!
+
+#2865000
+1!
+b100011111 3
+14
+1P!
+1S!
+
+#2870000
+0!
+04
+0P!
+0S!
+
+#2875000
+1!
+b100100000 3
+14
+1P!
+1S!
+
+#2880000
+0!
+04
+0P!
+0S!
+
+#2885000
+1!
+b100100001 3
+14
+1P!
+1S!
+
+#2890000
+0!
+04
+0P!
+0S!
+
+#2895000
+1!
+b100100010 3
+14
+1P!
+1S!
+
+#2900000
+0!
+04
+0P!
+0S!
+
+#2905000
+1!
+b100100011 3
+14
+1P!
+1S!
+
+#2910000
+0!
+04
+0P!
+0S!
+
+#2915000
+1!
+b100100100 3
+14
+1P!
+1S!
+
+#2920000
+0!
+04
+0P!
+0S!
+
+#2925000
+1!
+b100100101 3
+14
+1P!
+1S!
+
+#2930000
+0!
+04
+0P!
+0S!
+
+#2935000
+1!
+b100100110 3
+14
+1P!
+1S!
+
+#2940000
+0!
+04
+0P!
+0S!
+
+#2945000
+1!
+b100100111 3
+14
+1P!
+1S!
+
+#2950000
+0!
+04
+0P!
+0S!
+
+#2955000
+1!
+b100101000 3
+14
+1P!
+1S!
+
+#2960000
+0!
+04
+0P!
+0S!
+
+#2965000
+1!
+b100101001 3
+14
+1P!
+1S!
+
+#2970000
+0!
+04
+0P!
+0S!
+
+#2975000
+1!
+b100101010 3
+14
+1P!
+1S!
+
+#2980000
+0!
+04
+0P!
+0S!
+
+#2985000
+1!
+b100101011 3
+14
+1P!
+1S!
+
+#2990000
+0!
+04
+0P!
+0S!
+
+#2995000
+1!
+b100101100 3
+14
+1P!
+1S!
+
+#3000000
+0!
+04
+0P!
+0S!
+
+#3005000
+1!
+b100101101 3
+14
+1P!
+1S!
+
+#3010000
+0!
+04
+0P!
+0S!
+
+#3015000
+1!
+b100101110 3
+14
+1P!
+1S!
+
+#3020000
+0!
+04
+0P!
+0S!
+
+#3025000
+1!
+b100101111 3
+14
+1P!
+1S!
+
+#3030000
+0!
+04
+0P!
+0S!
+
+#3035000
+1!
+b100110000 3
+14
+1P!
+1S!
+
+#3040000
+0!
+04
+0P!
+0S!
+
+#3045000
+1!
+b100110001 3
+14
+1P!
+1S!
+
+#3050000
+0!
+04
+0P!
+0S!
+
+#3055000
+1!
+b100110010 3
+14
+1P!
+1S!
+
+#3060000
+0!
+04
+0P!
+0S!
+
+#3065000
+1!
+b100110011 3
+14
+1P!
+1S!
+
+#3070000
+0!
+04
+0P!
+0S!
+
+#3075000
+1!
+b100110100 3
+14
+1P!
+1S!
+
+#3080000
+0!
+04
+0P!
+0S!
+
+#3085000
+1!
+b100110101 3
+14
+1P!
+1S!
+
+#3090000
+0!
+04
+0P!
+0S!
+
+#3095000
+1!
+b100110110 3
+14
+1P!
+1S!
+
+#3100000
+0!
+04
+0P!
+0S!
+
+#3105000
+1!
+b100110111 3
+14
+1P!
+1S!
+
+#3110000
+0!
+04
+0P!
+0S!
+
+#3115000
+1!
+b100111000 3
+14
+1P!
+1S!
+
+#3120000
+0!
+04
+0P!
+0S!
+
+#3125000
+1!
+b100111001 3
+14
+1P!
+1S!
+
+#3130000
+0!
+04
+0P!
+0S!
+
+#3135000
+1!
+b100111010 3
+14
+1P!
+1S!
+
+#3140000
+0!
+04
+0P!
+0S!
+
+#3145000
+1!
+b100111011 3
+14
+1P!
+1S!
+
+#3150000
+0!
+04
+0P!
+0S!
+
+#3155000
+1!
+b100111100 3
+14
+1P!
+1S!
+
+#3160000
+0!
+04
+0P!
+0S!
+
+#3165000
+1!
+b100111101 3
+14
+1P!
+1S!
+
+#3170000
+0!
+04
+0P!
+0S!
+
+#3175000
+1!
+b100111110 3
+14
+1P!
+1S!
+
+#3180000
+0!
+04
+0P!
+0S!
+
+#3185000
+1!
+b100111111 3
+14
+1P!
+1S!
+
+#3190000
+0!
+04
+0P!
+0S!
+
+#3195000
+1!
+b101000000 3
+14
+1P!
+1S!
+
+#3200000
+0!
+04
+0P!
+0S!
+
+#3205000
+1!
+b101000001 3
+14
+1P!
+1S!
+
+#3210000
+0!
+04
+0P!
+0S!
+
+#3215000
+1!
+b101000010 3
+14
+1P!
+1S!
+
+#3220000
+0!
+04
+0P!
+0S!
+
+#3225000
+1!
+b101000011 3
+14
+1P!
+1S!
+
+#3230000
+0!
+04
+0P!
+0S!
+
+#3235000
+1!
+b101000100 3
+14
+1P!
+1S!
+
+#3240000
+0!
+04
+0P!
+0S!
+
+#3245000
+1!
+b101000101 3
+14
+1P!
+1S!
+
+#3250000
+0!
+04
+0P!
+0S!
+
+#3255000
+1!
+b101000110 3
+14
+1P!
+1S!
+
+#3260000
+0!
+04
+0P!
+0S!
+
+#3265000
+1!
+b101000111 3
+14
+1P!
+1S!
+
+#3270000
+0!
+04
+0P!
+0S!
+
+#3275000
+1!
+b101001000 3
+14
+1P!
+1S!
+
+#3280000
+0!
+04
+0P!
+0S!
+
+#3285000
+1!
+b101001001 3
+14
+1P!
+1S!
+
+#3290000
+0!
+04
+0P!
+0S!
+
+#3295000
+1!
+b101001010 3
+14
+1P!
+1S!
+
+#3300000
+0!
+04
+0P!
+0S!
+
+#3305000
+1!
+b101001011 3
+14
+1P!
+1S!
+
+#3310000
+0!
+04
+0P!
+0S!
+
+#3315000
+1!
+b101001100 3
+14
+1P!
+1S!
+
+#3320000
+0!
+04
+0P!
+0S!
+
+#3325000
+1!
+b101001101 3
+14
+1P!
+1S!
+
+#3330000
+0!
+04
+0P!
+0S!
+
+#3335000
+1!
+b101001110 3
+14
+1P!
+1S!
+
+#3340000
+0!
+04
+0P!
+0S!
+
+#3345000
+1!
+b101001111 3
+14
+1P!
+1S!
+
+#3350000
+0!
+04
+0P!
+0S!
+
+#3355000
+1!
+b101010000 3
+14
+1P!
+1S!
+
+#3360000
+0!
+04
+0P!
+0S!
+
+#3365000
+1!
+b101010001 3
+14
+1P!
+1S!
+
+#3370000
+0!
+04
+0P!
+0S!
+
+#3375000
+1!
+b101010010 3
+14
+1P!
+1S!
+
+#3380000
+0!
+04
+0P!
+0S!
+
+#3385000
+1!
+b101010011 3
+14
+1P!
+1S!
+
+#3390000
+0!
+04
+0P!
+0S!
+
+#3395000
+1!
+b101010100 3
+14
+1P!
+1S!
+
+#3400000
+0!
+04
+0P!
+0S!
+
+#3405000
+1!
+b101010101 3
+14
+1P!
+1S!
+
+#3410000
+0!
+04
+0P!
+0S!
+
+#3415000
+1!
+b101010110 3
+14
+1P!
+1S!
+
+#3420000
+0!
+04
+0P!
+0S!
+
+#3425000
+1!
+b101010111 3
+14
+1P!
+1S!
+
+#3430000
+0!
+04
+0P!
+0S!
+
+#3435000
+1!
+b101011000 3
+14
+1P!
+1S!
+
+#3440000
+0!
+04
+0P!
+0S!
+
+#3445000
+1!
+b101011001 3
+14
+1P!
+1S!
+
+#3450000
+0!
+04
+0P!
+0S!
+
+#3455000
+1!
+b101011010 3
+14
+1P!
+1S!
+
+#3460000
+0!
+04
+0P!
+0S!
+
+#3465000
+1!
+b101011011 3
+14
+1P!
+1S!
+
+#3470000
+0!
+04
+0P!
+0S!
+
+#3475000
+1!
+b101011100 3
+14
+1P!
+1S!
+
+#3480000
+0!
+04
+0P!
+0S!
+
+#3485000
+1!
+b101011101 3
+14
+1P!
+1S!
+
+#3490000
+0!
+04
+0P!
+0S!
+
+#3495000
+1!
+b101011110 3
+14
+1P!
+1S!
+
+#3500000
+0!
+04
+0P!
+0S!
+
+#3505000
+1!
+b101011111 3
+14
+1P!
+1S!
+
+#3510000
+0!
+04
+0P!
+0S!
+
+#3515000
+1!
+b101100000 3
+14
+1P!
+1S!
+
+#3520000
+0!
+04
+0P!
+0S!
+
+#3525000
+1!
+b101100001 3
+14
+1P!
+1S!
+
+#3530000
+0!
+04
+0P!
+0S!
+
+#3535000
+1!
+b101100010 3
+14
+1P!
+1S!
+
+#3540000
+0!
+04
+0P!
+0S!
+
+#3545000
+1!
+b101100011 3
+14
+1P!
+1S!
+
+#3550000
+0!
+04
+0P!
+0S!
+
+#3555000
+1!
+b101100100 3
+14
+1P!
+1S!
+
+#3560000
+0!
+04
+0P!
+0S!
+
+#3565000
+1!
+b101100101 3
+14
+1P!
+1S!
+
+#3570000
+0!
+04
+0P!
+0S!
+
+#3575000
+1!
+b101100110 3
+14
+1P!
+1S!
+
+#3580000
+0!
+04
+0P!
+0S!
+
+#3585000
+1!
+b101100111 3
+14
+1P!
+1S!
+
+#3590000
+0!
+04
+0P!
+0S!
+
+#3595000
+1!
+b101101000 3
+14
+1P!
+1S!
+
+#3600000
+0!
+04
+0P!
+0S!
+
+#3605000
+1!
+b101101001 3
+14
+1P!
+1S!
+
+#3610000
+0!
+04
+0P!
+0S!
+
+#3615000
+1!
+b101101010 3
+14
+1P!
+1S!
+
+#3620000
+0!
+04
+0P!
+0S!
+
+#3625000
+1!
+b101101011 3
+14
+1P!
+1S!
+
+#3630000
+0!
+04
+0P!
+0S!
+
+#3635000
+1!
+b101101100 3
+14
+1P!
+1S!
+
+#3640000
+0!
+04
+0P!
+0S!
+
+#3645000
+1!
+b101101101 3
+14
+1P!
+1S!
+
+#3650000
+0!
+04
+0P!
+0S!
+
+#3655000
+1!
+b101101110 3
+14
+1P!
+1S!
+
+#3660000
+0!
+04
+0P!
+0S!
+
+#3665000
+1!
+b101101111 3
+14
+1P!
+1S!
+
+#3670000
+0!
+04
+0P!
+0S!
+
+#3675000
+1!
+b101110000 3
+14
+1P!
+1S!
+
+#3680000
+0!
+04
+0P!
+0S!
+
+#3685000
+1!
+b101110001 3
+14
+1P!
+1S!
+
+#3690000
+0!
+04
+0P!
+0S!
+
+#3695000
+1!
+b101110010 3
+14
+1P!
+1S!
+
+#3700000
+0!
+04
+0P!
+0S!
+
+#3705000
+1!
+b101110011 3
+14
+1P!
+1S!
+
+#3710000
+0!
+04
+0P!
+0S!
+
+#3715000
+1!
+b101110100 3
+14
+1P!
+1S!
+
+#3720000
+0!
+04
+0P!
+0S!
+
+#3725000
+1!
+b101110101 3
+14
+1P!
+1S!
+
+#3730000
+0!
+04
+0P!
+0S!
+
+#3735000
+1!
+b101110110 3
+14
+1P!
+1S!
+
+#3740000
+0!
+04
+0P!
+0S!
+
+#3745000
+1!
+b101110111 3
+14
+1P!
+1S!
+
+#3750000
+0!
+04
+0P!
+0S!
+
+#3755000
+1!
+b101111000 3
+14
+1P!
+1S!
+
+#3760000
+0!
+04
+0P!
+0S!
+
+#3765000
+1!
+b101111001 3
+14
+1P!
+1S!
+
+#3770000
+0!
+04
+0P!
+0S!
+
+#3775000
+1!
+b101111010 3
+14
+1P!
+1S!
+
+#3780000
+0!
+04
+0P!
+0S!
+
+#3785000
+1!
+b101111011 3
+14
+1P!
+1S!
+
+#3790000
+0!
+04
+0P!
+0S!
+
+#3795000
+1!
+b101111100 3
+14
+1P!
+1S!
+
+#3800000
+0!
+04
+0P!
+0S!
+
+#3805000
+1!
+b101111101 3
+14
+1P!
+1S!
+
+#3810000
+0!
+04
+0P!
+0S!
+
+#3815000
+1!
+b101111110 3
+14
+1P!
+1S!
+
+#3820000
+0!
+04
+0P!
+0S!
+
+#3825000
+1!
+b101111111 3
+14
+1P!
+1S!
+
+#3830000
+0!
+04
+0P!
+0S!
+
+#3835000
+1!
+b110000000 3
+14
+1P!
+1S!
+
+#3840000
+0!
+04
+0P!
+0S!
+
+#3845000
+1!
+b110000001 3
+14
+1P!
+1S!
+
+#3850000
+0!
+04
+0P!
+0S!
+
+#3855000
+1!
+b110000010 3
+14
+1P!
+1S!
+
+#3860000
+0!
+04
+0P!
+0S!
+
+#3865000
+1!
+b110000011 3
+14
+1P!
+1S!
+
+#3870000
+0!
+04
+0P!
+0S!
+
+#3875000
+1!
+b110000100 3
+14
+1P!
+1S!
+
+#3880000
+0!
+04
+0P!
+0S!
+
+#3885000
+1!
+b110000101 3
+14
+1P!
+1S!
+
+#3890000
+0!
+04
+0P!
+0S!
+
+#3895000
+1!
+b110000110 3
+14
+1P!
+1S!
+
+#3900000
+0!
+04
+0P!
+0S!
+
+#3905000
+1!
+b110000111 3
+14
+1P!
+1S!
+
+#3910000
+0!
+04
+0P!
+0S!
+
+#3915000
+1!
+b110001000 3
+14
+1P!
+1S!
+
+#3920000
+0!
+04
+0P!
+0S!
+
+#3925000
+1!
+b110001001 3
+14
+1P!
+1S!
+
+#3930000
+0!
+04
+0P!
+0S!
+
+#3935000
+1!
+b110001010 3
+14
+1P!
+1S!
+
+#3940000
+0!
+04
+0P!
+0S!
+
+#3945000
+1!
+b110001011 3
+14
+1P!
+1S!
+
+#3950000
+0!
+04
+0P!
+0S!
+
+#3955000
+1!
+b110001100 3
+14
+1P!
+1S!
+
+#3960000
+0!
+04
+0P!
+0S!
+
+#3965000
+1!
+b110001101 3
+14
+1P!
+1S!
+
+#3970000
+0!
+04
+0P!
+0S!
+
+#3975000
+1!
+b110001110 3
+14
+1P!
+1S!
+
+#3980000
+0!
+04
+0P!
+0S!
+
+#3985000
+1!
+b110001111 3
+14
+1P!
+1S!
+
+#3990000
+0!
+04
+0P!
+0S!
+
+#3995000
+1!
+b110010000 3
+14
+1P!
+1S!
+
+#4000000
+0!
+04
+0P!
+0S!
+
+#4005000
+1!
+b110010001 3
+14
+1P!
+1S!
+
+#4010000
+0!
+04
+0P!
+0S!
+
+#4015000
+1!
+b110010010 3
+14
+1P!
+1S!
+
+#4020000
+0!
+04
+0P!
+0S!
+
+#4025000
+1!
+b110010011 3
+14
+1P!
+1S!
+
+#4030000
+0!
+04
+0P!
+0S!
+
+#4035000
+1!
+b110010100 3
+14
+1P!
+1S!
+
+#4040000
+0!
+04
+0P!
+0S!
+
+#4045000
+1!
+b110010101 3
+14
+1P!
+1S!
+
+#4050000
+0!
+04
+0P!
+0S!
+
+#4055000
+1!
+b110010110 3
+14
+1P!
+1S!
+
+#4060000
+0!
+04
+0P!
+0S!
+
+#4065000
+1!
+b110010111 3
+14
+1P!
+1S!
+
+#4070000
+0!
+04
+0P!
+0S!
+
+#4075000
+1!
+b110011000 3
+14
+1P!
+1S!
+
+#4080000
+0!
+04
+0P!
+0S!
+
+#4085000
+1!
+b110011001 3
+14
+1P!
+1S!
+
+#4090000
+0!
+04
+0P!
+0S!
+
+#4095000
+1!
+b110011010 3
+14
+1P!
+1S!
+
+#4100000
+0!
+04
+0P!
+0S!
+
+#4105000
+1!
+b110011011 3
+14
+1P!
+1S!
+
+#4110000
+0!
+04
+0P!
+0S!
+
+#4115000
+1!
+b110011100 3
+14
+1P!
+1S!
+
+#4120000
+0!
+04
+0P!
+0S!
+
+#4125000
+1!
+b110011101 3
+14
+1P!
+1S!
+
+#4130000
+0!
+04
+0P!
+0S!
+
+#4135000
+1!
+b110011110 3
+14
+1P!
+1S!
+
+#4140000
+0!
+04
+0P!
+0S!
+
+#4145000
+1!
+b110011111 3
+14
+1P!
+1S!
+
+#4150000
+0!
+04
+0P!
+0S!
+
+#4155000
+1!
+b110100000 3
+14
+1P!
+1S!
+
+#4160000
+0!
+04
+0P!
+0S!
+
+#4165000
+1!
+b110100001 3
+14
+1P!
+1S!
+
+#4170000
+0!
+04
+0P!
+0S!
+
+#4175000
+1!
+b110100010 3
+14
+1P!
+1S!
+
+#4180000
+0!
+04
+0P!
+0S!
+
+#4185000
+1!
+b110100011 3
+14
+1P!
+1S!
+
+#4190000
+0!
+04
+0P!
+0S!
+
+#4195000
+1!
+b110100100 3
+14
+1P!
+1S!
+
+#4200000
+0!
+04
+0P!
+0S!
+
+#4205000
+1!
+b110100101 3
+14
+1P!
+1S!
+
+#4210000
+0!
+04
+0P!
+0S!
+
+#4215000
+1!
+b110100110 3
+14
+1P!
+1S!
+
+#4220000
+0!
+04
+0P!
+0S!
+
+#4225000
+1!
+b110100111 3
+14
+1P!
+1S!
+
+#4230000
+0!
+04
+0P!
+0S!
+
+#4235000
+1!
+b110101000 3
+14
+1P!
+1S!
+
+#4240000
+0!
+04
+0P!
+0S!
+
+#4245000
+1!
+b110101001 3
+14
+1P!
+1S!
+
+#4250000
+0!
+04
+0P!
+0S!
+
+#4255000
+1!
+b110101010 3
+14
+1P!
+1S!
+
+#4260000
+0!
+04
+0P!
+0S!
+
+#4265000
+1!
+b110101011 3
+14
+1P!
+1S!
+
+#4270000
+0!
+04
+0P!
+0S!
+
+#4275000
+1!
+b110101100 3
+14
+1P!
+1S!
+
+#4280000
+0!
+04
+0P!
+0S!
+
+#4285000
+1!
+b110101101 3
+14
+1P!
+1S!
+
+#4290000
+0!
+04
+0P!
+0S!
+
+#4295000
+1!
+b110101110 3
+14
+1P!
+1S!
+
+#4300000
+0!
+04
+0P!
+0S!
+
+#4305000
+1!
+b110101111 3
+14
+1P!
+1S!
+
+#4310000
+0!
+04
+0P!
+0S!
+
+#4315000
+1!
+b110110000 3
+14
+1P!
+1S!
+
+#4320000
+0!
+04
+0P!
+0S!
+
+#4325000
+1!
+b110110001 3
+14
+1P!
+1S!
+
+#4330000
+0!
+04
+0P!
+0S!
+
+#4335000
+1!
+b110110010 3
+14
+1P!
+1S!
+
+#4340000
+0!
+04
+0P!
+0S!
+
+#4345000
+1!
+b110110011 3
+14
+1P!
+1S!
+
+#4350000
+0!
+04
+0P!
+0S!
+
+#4355000
+1!
+b110110100 3
+14
+1P!
+1S!
+
+#4360000
+0!
+04
+0P!
+0S!
+
+#4365000
+1!
+b110110101 3
+14
+1P!
+1S!
+
+#4370000
+0!
+04
+0P!
+0S!
+
+#4375000
+1!
+b110110110 3
+14
+1P!
+1S!
+
+#4380000
+0!
+04
+0P!
+0S!
+
+#4385000
+1!
+b110110111 3
+14
+1P!
+1S!
+
+#4390000
+0!
+04
+0P!
+0S!
+
+#4395000
+1!
+b110111000 3
+14
+1P!
+1S!
+
+#4400000
+0!
+04
+0P!
+0S!
+
+#4405000
+1!
+b110111001 3
+14
+1P!
+1S!
+
+#4410000
+0!
+04
+0P!
+0S!
+
+#4415000
+1!
+b110111010 3
+14
+1P!
+1S!
+
+#4420000
+0!
+04
+0P!
+0S!
+
+#4425000
+1!
+b110111011 3
+14
+1P!
+1S!
+
+#4430000
+0!
+04
+0P!
+0S!
+
+#4435000
+1!
+b110111100 3
+14
+1P!
+1S!
+
+#4440000
+0!
+04
+0P!
+0S!
+
+#4445000
+1!
+b110111101 3
+14
+1P!
+1S!
+
+#4450000
+0!
+04
+0P!
+0S!
+
+#4455000
+1!
+b110111110 3
+14
+1P!
+1S!
+
+#4460000
+0!
+04
+0P!
+0S!
+
+#4465000
+1!
+b110111111 3
+14
+1P!
+1S!
+
+#4470000
+0!
+04
+0P!
+0S!
+
+#4475000
+1!
+b111000000 3
+14
+1P!
+1S!
+
+#4480000
+0!
+04
+0P!
+0S!
+
+#4485000
+1!
+b111000001 3
+14
+1P!
+1S!
+
+#4490000
+0!
+04
+0P!
+0S!
+
+#4495000
+1!
+b111000010 3
+14
+1P!
+1S!
+
+#4500000
+0!
+04
+0P!
+0S!
+
+#4505000
+1!
+b111000011 3
+14
+1P!
+1S!
+
+#4510000
+0!
+04
+0P!
+0S!
+
+#4515000
+1!
+b111000100 3
+14
+1P!
+1S!
+
+#4520000
+0!
+04
+0P!
+0S!
+
+#4525000
+1!
+b111000101 3
+14
+1P!
+1S!
+
+#4530000
+0!
+04
+0P!
+0S!
+
+#4535000
+1!
+b111000110 3
+14
+1P!
+1S!
+
+#4540000
+0!
+04
+0P!
+0S!
+
+#4545000
+1!
+b111000111 3
+14
+1P!
+1S!
+
+#4550000
+0!
+04
+0P!
+0S!
+
+#4555000
+1!
+b111001000 3
+14
+1P!
+1S!
+
+#4560000
+0!
+04
+0P!
+0S!
+
+#4565000
+1!
+b111001001 3
+14
+1P!
+1S!
+
+#4570000
+0!
+04
+0P!
+0S!
+
+#4575000
+1!
+b111001010 3
+14
+1P!
+1S!
+
+#4580000
+0!
+04
+0P!
+0S!
+
+#4585000
+1!
+b111001011 3
+14
+1P!
+1S!
+
+#4590000
+0!
+04
+0P!
+0S!
+
+#4595000
+1!
+b111001100 3
+14
+1P!
+1S!
+
+#4600000
+0!
+04
+0P!
+0S!
+
+#4605000
+1!
+b111001101 3
+14
+1P!
+1S!
+
+#4610000
+0!
+04
+0P!
+0S!
+
+#4615000
+1!
+b111001110 3
+14
+1P!
+1S!
+
+#4620000
+0!
+04
+0P!
+0S!
+
+#4625000
+1!
+b111001111 3
+14
+1P!
+1S!
+
+#4630000
+0!
+04
+0P!
+0S!
+
+#4635000
+1!
+b111010000 3
+14
+1P!
+1S!
+
+#4640000
+0!
+04
+0P!
+0S!
+
+#4645000
+1!
+b111010001 3
+14
+1P!
+1S!
+
+#4650000
+0!
+04
+0P!
+0S!
+
+#4655000
+1!
+b111010010 3
+14
+1P!
+1S!
+
+#4660000
+0!
+04
+0P!
+0S!
+
+#4665000
+1!
+b111010011 3
+14
+1P!
+1S!
+
+#4670000
+0!
+04
+0P!
+0S!
+
+#4675000
+1!
+b111010100 3
+14
+1P!
+1S!
+
+#4680000
+0!
+04
+0P!
+0S!
+
+#4685000
+1!
+b111010101 3
+14
+1P!
+1S!
+
+#4690000
+0!
+04
+0P!
+0S!
+
+#4695000
+1!
+b111010110 3
+14
+1P!
+1S!
+
+#4700000
+0!
+04
+0P!
+0S!
+
+#4705000
+1!
+b111010111 3
+14
+1P!
+1S!
+
+#4710000
+0!
+04
+0P!
+0S!
+
+#4715000
+1!
+b111011000 3
+14
+1P!
+1S!
+
+#4720000
+0!
+04
+0P!
+0S!
+
+#4725000
+1!
+b111011001 3
+14
+1P!
+1S!
+
+#4730000
+0!
+04
+0P!
+0S!
+
+#4735000
+1!
+b111011010 3
+14
+1P!
+1S!
+
+#4740000
+0!
+04
+0P!
+0S!
+
+#4745000
+1!
+b111011011 3
+14
+1P!
+1S!
+
+#4750000
+0!
+04
+0P!
+0S!
+
+#4755000
+1!
+b111011100 3
+14
+1P!
+1S!
+
+#4760000
+0!
+04
+0P!
+0S!
+
+#4765000
+1!
+b111011101 3
+14
+1P!
+1S!
+
+#4770000
+0!
+04
+0P!
+0S!
+
+#4775000
+1!
+b111011110 3
+14
+1P!
+1S!
+
+#4780000
+0!
+04
+0P!
+0S!
+
+#4785000
+1!
+b111011111 3
+14
+1P!
+1S!
+
+#4790000
+0!
+04
+0P!
+0S!
+
+#4795000
+1!
+b111100000 3
+14
+1P!
+1S!
+
+#4800000
+0!
+04
+0P!
+0S!
+
+#4805000
+1!
+b111100001 3
+14
+1P!
+1S!
+
+#4810000
+0!
+04
+0P!
+0S!
+
+#4815000
+1!
+b111100010 3
+14
+1P!
+1S!
+
+#4820000
+0!
+04
+0P!
+0S!
+
+#4825000
+1!
+b111100011 3
+14
+1P!
+1S!
+
+#4830000
+0!
+04
+0P!
+0S!
+
+#4835000
+1!
+b111100100 3
+14
+1P!
+1S!
+
+#4840000
+0!
+04
+0P!
+0S!
+
+#4845000
+1!
+b111100101 3
+14
+1P!
+1S!
+
+#4850000
+0!
+04
+0P!
+0S!
+
+#4855000
+1!
+b111100110 3
+14
+1P!
+1S!
+
+#4860000
+0!
+04
+0P!
+0S!
+
+#4865000
+1!
+b111100111 3
+14
+1P!
+1S!
+
+#4870000
+0!
+04
+0P!
+0S!
+
+#4875000
+1!
+b111101000 3
+14
+1P!
+1S!
+
+#4880000
+0!
+04
+0P!
+0S!
+
+#4885000
+1!
+b111101001 3
+14
+1P!
+1S!
+
+#4890000
+0!
+04
+0P!
+0S!
+
+#4895000
+1!
+b111101010 3
+14
+1P!
+1S!
+
+#4900000
+0!
+04
+0P!
+0S!
+
+#4905000
+1!
+b111101011 3
+14
+1P!
+1S!
+
+#4910000
+0!
+04
+0P!
+0S!
+
+#4915000
+1!
+b111101100 3
+14
+1P!
+1S!
+
+#4920000
+0!
+04
+0P!
+0S!
+
+#4925000
+1!
+b111101101 3
+14
+1P!
+1S!
+
+#4930000
+0!
+04
+0P!
+0S!
+
+#4935000
+1!
+b111101110 3
+14
+1P!
+1S!
+
+#4940000
+0!
+04
+0P!
+0S!
+
+#4945000
+1!
+b111101111 3
+14
+1P!
+1S!
+
+#4950000
+0!
+04
+0P!
+0S!
+
+#4955000
+1!
+b111110000 3
+14
+1P!
+1S!
+
+#4960000
+0!
+04
+0P!
+0S!
+
+#4965000
+1!
+b111110001 3
+14
+1P!
+1S!
+
+#4970000
+0!
+04
+0P!
+0S!
+
+#4975000
+1!
+b111110010 3
+14
+1P!
+1S!
+
+#4980000
+0!
+04
+0P!
+0S!
+
+#4985000
+1!
+b111110011 3
+14
+1P!
+1S!
+
+#4990000
+0!
+04
+0P!
+0S!
+
+#4995000
+1!
+b111110100 3
+14
+1P!
+1S!
+
+#5000000
+0!
+04
+0P!
+0S!
+
+#5005000
+1!
+b111110101 3
+14
+1P!
+1S!
+
+#5010000
+0!
+04
+0P!
+0S!
+
+#5015000
+1!
+b111110110 3
+14
+1P!
+1S!
+
+#5020000
+0!
+04
+0P!
+0S!
+
+#5025000
+1!
+b111110111 3
+14
+1P!
+1S!
+
+#5030000
+0!
+04
+0P!
+0S!
+
+#5035000
+1!
+b111111000 3
+14
+1P!
+1S!
+
+#5040000
+0!
+04
+0P!
+0S!
+
+#5045000
+1!
+b111111001 3
+14
+1P!
+1S!
+
+#5050000
+0!
+04
+0P!
+0S!
+
+#5055000
+1!
+b111111010 3
+14
+1P!
+1S!
+
+#5060000
+0!
+04
+0P!
+0S!
+
+#5065000
+1!
+b111111011 3
+14
+1P!
+1S!
+
+#5070000
+0!
+04
+0P!
+0S!
+
+#5075000
+1!
+b111111100 3
+14
+1P!
+1S!
+
+#5080000
+0!
+04
+0P!
+0S!
+
+#5085000
+1!
+b111111101 3
+14
+1P!
+1S!
+
+#5090000
+0!
+04
+0P!
+0S!
+
+#5095000
+1!
+b111111110 3
+14
+1P!
+1S!
+
+#5100000
+0!
+04
+0P!
+0S!
+
+#5105000
+1!
+b111111111 3
+14
+1P!
+1S!
+
+#5110000
+0!
+04
+0P!
+0S!
+
+#5115000
+1!
+b1000000000 3
+14
+1P!
+1S!
+
+#5120000
+0!
+04
+0P!
+0S!
+
+#5125000
+1!
+b1000000001 3
+14
+1P!
+1S!
+
+#5130000
+0!
+04
+0P!
+0S!
+
+#5135000
+1!
+b1000000010 3
+14
+1P!
+1S!
+
+#5140000
+0!
+04
+0P!
+0S!
+
+#5145000
+1!
+b1000000011 3
+14
+1P!
+1S!
+
+#5150000
+0!
+04
+0P!
+0S!
+
+#5155000
+1!
+b1000000100 3
+14
+1P!
+1S!
+
+#5160000
+0!
+04
+0P!
+0S!
+
+#5165000
+1!
+b1000000101 3
+14
+1P!
+1S!
+
+#5170000
+0!
+04
+0P!
+0S!
+
+#5175000
+1!
+b1000000110 3
+14
+1P!
+1S!
+
+#5180000
+0!
+04
+0P!
+0S!
+
+#5185000
+1!
+b1000000111 3
+14
+1P!
+1S!
+
+#5190000
+0!
+04
+0P!
+0S!
+
+#5195000
+1!
+b1000001000 3
+14
+1P!
+1S!
+
+#5200000
+0!
+04
+0P!
+0S!
+
+#5205000
+1!
+b1000001001 3
+14
+1P!
+1S!
+
+#5210000
+0!
+04
+0P!
+0S!
+
+#5215000
+1!
+b1000001010 3
+14
+1P!
+1S!
+
+#5220000
+0!
+04
+0P!
+0S!
+
+#5225000
+1!
+b1000001011 3
+14
+1P!
+1S!
+
+#5230000
+0!
+04
+0P!
+0S!
+
+#5235000
+1!
+b1000001100 3
+14
+1P!
+1S!
+
+#5240000
+0!
+04
+0P!
+0S!
+
+#5245000
+1!
+b1000001101 3
+14
+1P!
+1S!
+
+#5250000
+0!
+04
+0P!
+0S!
+
+#5255000
+1!
+b1000001110 3
+14
+1P!
+1S!
+
+#5260000
+0!
+04
+0P!
+0S!
+
+#5265000
+1!
+b1000001111 3
+14
+1P!
+1S!
+
+#5270000
+0!
+04
+0P!
+0S!
+
+#5275000
+1!
+b1000010000 3
+14
+1P!
+1S!
+
+#5280000
+0!
+04
+0P!
+0S!
+
+#5285000
+1!
+b1000010001 3
+14
+1P!
+1S!
+
+#5290000
+0!
+04
+0P!
+0S!
+
+#5295000
+1!
+b1000010010 3
+14
+1P!
+1S!
+
+#5300000
+0!
+04
+0P!
+0S!
+
+#5305000
+1!
+b1000010011 3
+14
+1P!
+1S!
+
+#5310000
+0!
+04
+0P!
+0S!
+
+#5315000
+1!
+b1000010100 3
+14
+1P!
+1S!
+
+#5320000
+0!
+04
+0P!
+0S!
+
+#5325000
+1!
+b1000010101 3
+14
+1P!
+1S!
+
+#5330000
+0!
+04
+0P!
+0S!
+
+#5335000
+1!
+b1000010110 3
+14
+1P!
+1S!
+
+#5340000
+0!
+04
+0P!
+0S!
+
+#5345000
+1!
+b1000010111 3
+14
+1P!
+1S!
+
+#5350000
+0!
+04
+0P!
+0S!
+
+#5355000
+1!
+b1000011000 3
+14
+1P!
+1S!
+
+#5360000
+0!
+04
+0P!
+0S!
+
+#5365000
+1!
+b1000011001 3
+14
+1P!
+1S!
+
+#5370000
+0!
+04
+0P!
+0S!
+
+#5375000
+1!
+b1000011010 3
+14
+1P!
+1S!
+
+#5380000
+0!
+04
+0P!
+0S!
+
+#5385000
+1!
+b1000011011 3
+14
+1P!
+1S!
+
+#5390000
+0!
+04
+0P!
+0S!
+
+#5395000
+1!
+b1000011100 3
+14
+1P!
+1S!
+
+#5400000
+0!
+04
+0P!
+0S!
+
+#5405000
+1!
+b1000011101 3
+14
+1P!
+1S!
+
+#5410000
+0!
+04
+0P!
+0S!
+
+#5415000
+1!
+b1000011110 3
+14
+1P!
+1S!
+
+#5420000
+0!
+04
+0P!
+0S!
+
+#5425000
+1!
+b1000011111 3
+14
+1P!
+1S!
+
+#5430000
+0!
+04
+0P!
+0S!
+
+#5435000
+1!
+b1000100000 3
+14
+1P!
+1S!
+
+#5440000
+0!
+04
+0P!
+0S!
+
+#5445000
+1!
+b1000100001 3
+14
+1P!
+1S!
+
+#5450000
+0!
+04
+0P!
+0S!
+
+#5455000
+1!
+b1000100010 3
+14
+1P!
+1S!
+
+#5460000
+0!
+04
+0P!
+0S!
+
+#5465000
+1!
+b1000100011 3
+14
+1P!
+1S!
+
+#5470000
+0!
+04
+0P!
+0S!
+
+#5475000
+1!
+b1000100100 3
+14
+1P!
+1S!
+
+#5480000
+0!
+04
+0P!
+0S!
+
+#5485000
+1!
+b1000100101 3
+14
+1P!
+1S!
+
+#5490000
+0!
+04
+0P!
+0S!
+
+#5495000
+1!
+b1000100110 3
+14
+1P!
+1S!
+
+#5500000
+0!
+04
+0P!
+0S!
+
+#5505000
+1!
+b1000100111 3
+14
+1P!
+1S!
+
+#5510000
+0!
+04
+0P!
+0S!
+
+#5515000
+1!
+b1000101000 3
+14
+1P!
+1S!
+
+#5520000
+0!
+04
+0P!
+0S!
+
+#5525000
+1!
+b1000101001 3
+14
+1P!
+1S!
+
+#5530000
+0!
+04
+0P!
+0S!
+
+#5535000
+1!
+b1000101010 3
+14
+1P!
+1S!
+
+#5540000
+0!
+04
+0P!
+0S!
+
+#5545000
+1!
+b1000101011 3
+14
+1P!
+1S!
+
+#5550000
+0!
+04
+0P!
+0S!
+
+#5555000
+1!
+b1000101100 3
+14
+1P!
+1S!
+
+#5560000
+0!
+04
+0P!
+0S!
+
+#5565000
+1!
+b1000101101 3
+14
+1P!
+1S!
+
+#5570000
+0!
+04
+0P!
+0S!
+
+#5575000
+1!
+b1000101110 3
+14
+1P!
+1S!
+
+#5580000
+0!
+04
+0P!
+0S!
+
+#5585000
+1!
+b1000101111 3
+14
+1P!
+1S!
+
+#5590000
+0!
+04
+0P!
+0S!
+
+#5595000
+1!
+b1000110000 3
+14
+1P!
+1S!
+
+#5600000
+0!
+04
+0P!
+0S!
+
+#5605000
+1!
+b1000110001 3
+14
+1P!
+1S!
+
+#5610000
+0!
+04
+0P!
+0S!
+
+#5615000
+1!
+b1000110010 3
+14
+1P!
+1S!
+
+#5620000
+0!
+04
+0P!
+0S!
+
+#5625000
+1!
+b1000110011 3
+14
+1P!
+1S!
+
+#5630000
+0!
+04
+0P!
+0S!
+
+#5635000
+1!
+b1000110100 3
+14
+1P!
+1S!
+
+#5640000
+0!
+04
+0P!
+0S!
+
+#5645000
+1!
+b1000110101 3
+14
+1P!
+1S!
+
+#5650000
+0!
+04
+0P!
+0S!
+
+#5655000
+1!
+b1000110110 3
+14
+1P!
+1S!
+
+#5660000
+0!
+04
+0P!
+0S!
+
+#5665000
+1!
+b1000110111 3
+14
+1P!
+1S!
+
+#5670000
+0!
+04
+0P!
+0S!
+
+#5675000
+1!
+b1000111000 3
+14
+1P!
+1S!
+
+#5680000
+0!
+04
+0P!
+0S!
+
+#5685000
+1!
+b1000111001 3
+14
+1P!
+1S!
+
+#5690000
+0!
+04
+0P!
+0S!
+
+#5695000
+1!
+b1000111010 3
+14
+1P!
+1S!
+
+#5700000
+0!
+04
+0P!
+0S!
+
+#5705000
+1!
+b1000111011 3
+14
+1P!
+1S!
+
+#5710000
+0!
+04
+0P!
+0S!
+
+#5715000
+1!
+b1000111100 3
+14
+1P!
+1S!
+
+#5720000
+0!
+04
+0P!
+0S!
+
+#5725000
+1!
+b1000111101 3
+14
+1P!
+1S!
+
+#5730000
+0!
+04
+0P!
+0S!
+
+#5735000
+1!
+b1000111110 3
+14
+1P!
+1S!
+
+#5740000
+0!
+04
+0P!
+0S!
+
+#5745000
+1!
+b1000111111 3
+14
+1P!
+1S!
+
+#5750000
+0!
+04
+0P!
+0S!
+
+#5755000
+1!
+b1001000000 3
+14
+1P!
+1S!
+
+#5760000
+0!
+04
+0P!
+0S!
+
+#5765000
+1!
+b1001000001 3
+14
+1P!
+1S!
+
+#5770000
+0!
+04
+0P!
+0S!
+
+#5775000
+1!
+b1001000010 3
+14
+1P!
+1S!
+
+#5780000
+0!
+04
+0P!
+0S!
+
+#5785000
+1!
+b1001000011 3
+14
+1P!
+1S!
+
+#5790000
+0!
+04
+0P!
+0S!
+
+#5795000
+1!
+b1001000100 3
+14
+1P!
+1S!
+
+#5800000
+0!
+04
+0P!
+0S!
+
+#5805000
+1!
+b1001000101 3
+14
+1P!
+1S!
+
+#5810000
+0!
+04
+0P!
+0S!
+
+#5815000
+1!
+b1001000110 3
+14
+1P!
+1S!
+
+#5820000
+0!
+04
+0P!
+0S!
+
+#5825000
+1!
+b1001000111 3
+14
+1P!
+1S!
+
+#5830000
+0!
+04
+0P!
+0S!
+
+#5835000
+1!
+b1001001000 3
+14
+1P!
+1S!
+
+#5840000
+0!
+04
+0P!
+0S!
+
+#5845000
+1!
+b1001001001 3
+14
+1P!
+1S!
+
+#5850000
+0!
+04
+0P!
+0S!
+
+#5855000
+1!
+b1001001010 3
+14
+1P!
+1S!
+
+#5860000
+0!
+04
+0P!
+0S!
+
+#5865000
+1!
+b1001001011 3
+14
+1P!
+1S!
+
+#5870000
+0!
+04
+0P!
+0S!
+
+#5875000
+1!
+b1001001100 3
+14
+1P!
+1S!
+
+#5880000
+0!
+04
+0P!
+0S!
+
+#5885000
+1!
+b1001001101 3
+14
+1P!
+1S!
+
+#5890000
+0!
+04
+0P!
+0S!
+
+#5895000
+1!
+b1001001110 3
+14
+1P!
+1S!
+
+#5900000
+0!
+04
+0P!
+0S!
+
+#5905000
+1!
+b1001001111 3
+14
+1P!
+1S!
+
+#5910000
+0!
+04
+0P!
+0S!
+
+#5915000
+1!
+b1001010000 3
+14
+1P!
+1S!
+
+#5920000
+0!
+04
+0P!
+0S!
+
+#5925000
+1!
+b1001010001 3
+14
+1P!
+1S!
+
+#5930000
+0!
+04
+0P!
+0S!
+
+#5935000
+1!
+b1001010010 3
+14
+1P!
+1S!
+
+#5940000
+0!
+04
+0P!
+0S!
+
+#5945000
+1!
+b1001010011 3
+14
+1P!
+1S!
+
+#5950000
+0!
+04
+0P!
+0S!
+
+#5955000
+1!
+b1001010100 3
+14
+1P!
+1S!
+
+#5960000
+0!
+04
+0P!
+0S!
+
+#5965000
+1!
+b1001010101 3
+14
+1P!
+1S!
+
+#5970000
+0!
+04
+0P!
+0S!
+
+#5975000
+1!
+b1001010110 3
+14
+1P!
+1S!
+
+#5980000
+0!
+04
+0P!
+0S!
+
+#5985000
+1!
+b1001010111 3
+14
+1P!
+1S!
+
+#5990000
+0!
+04
+0P!
+0S!
+
+#5995000
+1!
+b1001011000 3
+14
+1P!
+1S!
+
+#6000000
+0!
+04
+0P!
+0S!
+
+#6005000
+1!
+b1001011001 3
+14
+1P!
+1S!
+
+#6010000
+0!
+04
+0P!
+0S!
+
+#6015000
+1!
+b1001011010 3
+14
+1P!
+1S!
+
+#6020000
+0!
+04
+0P!
+0S!
+
+#6025000
+1!
+b1001011011 3
+14
+1P!
+1S!
+
+#6030000
+0!
+04
+0P!
+0S!
+
+#6035000
+1!
+b1001011100 3
+14
+1P!
+1S!
+
+#6040000
+0!
+04
+0P!
+0S!
+
+#6045000
+1!
+b1001011101 3
+14
+1P!
+1S!
+
+#6050000
+0!
+04
+0P!
+0S!
+
+#6055000
+1!
+b1001011110 3
+14
+1P!
+1S!
+
+#6060000
+0!
+04
+0P!
+0S!
+
+#6065000
+1!
+b1001011111 3
+14
+1P!
+1S!
+
+#6070000
+0!
+04
+0P!
+0S!
+
+#6075000
+1!
+b1001100000 3
+14
+1P!
+1S!
+
+#6080000
+0!
+04
+0P!
+0S!
+
+#6085000
+1!
+b1001100001 3
+14
+1P!
+1S!
+
+#6090000
+0!
+04
+0P!
+0S!
+
+#6095000
+1!
+b1001100010 3
+14
+1P!
+1S!
+
+#6100000
+0!
+04
+0P!
+0S!
+
+#6105000
+1!
+b1001100011 3
+14
+1P!
+1S!
+
+#6110000
+0!
+04
+0P!
+0S!
+
+#6115000
+1!
+b1001100100 3
+14
+1P!
+1S!
+
+#6120000
+0!
+04
+0P!
+0S!
+
+#6125000
+1!
+b1001100101 3
+14
+1P!
+1S!
+
+#6130000
+0!
+04
+0P!
+0S!
+
+#6135000
+1!
+b1001100110 3
+14
+1P!
+1S!
+
+#6140000
+0!
+04
+0P!
+0S!
+
+#6145000
+1!
+b1001100111 3
+14
+1P!
+1S!
+
+#6150000
+0!
+04
+0P!
+0S!
+
+#6155000
+1!
+b1001101000 3
+14
+1P!
+1S!
+
+#6160000
+0!
+04
+0P!
+0S!
+
+#6165000
+1!
+b1001101001 3
+14
+1P!
+1S!
+
+#6170000
+0!
+04
+0P!
+0S!
+
+#6175000
+1!
+b1001101010 3
+14
+1P!
+1S!
+
+#6180000
+0!
+04
+0P!
+0S!
+
+#6185000
+1!
+b1001101011 3
+14
+1P!
+1S!
+
+#6190000
+0!
+04
+0P!
+0S!
+
+#6195000
+1!
+b1001101100 3
+14
+1P!
+1S!
+
+#6200000
+0!
+04
+0P!
+0S!
+
+#6205000
+1!
+b1001101101 3
+14
+1P!
+1S!
+
+#6210000
+0!
+04
+0P!
+0S!
+
+#6215000
+1!
+b1001101110 3
+14
+1P!
+1S!
+
+#6220000
+0!
+04
+0P!
+0S!
+
+#6225000
+1!
+b1001101111 3
+14
+1P!
+1S!
+
+#6230000
+0!
+04
+0P!
+0S!
+
+#6235000
+1!
+b1001110000 3
+14
+1P!
+1S!
+
+#6240000
+0!
+04
+0P!
+0S!
+
+#6245000
+1!
+b1001110001 3
+14
+1P!
+1S!
+
+#6250000
+0!
+04
+0P!
+0S!
+
+#6255000
+1!
+b1001110010 3
+14
+1P!
+1S!
+
+#6260000
+0!
+04
+0P!
+0S!
+
+#6265000
+1!
+b1001110011 3
+14
+1P!
+1S!
+
+#6270000
+0!
+04
+0P!
+0S!
+
+#6275000
+1!
+b1001110100 3
+14
+1P!
+1S!
+
+#6280000
+0!
+04
+0P!
+0S!
+
+#6285000
+1!
+b1001110101 3
+14
+1P!
+1S!
+
+#6290000
+0!
+04
+0P!
+0S!
+
+#6295000
+1!
+b1001110110 3
+14
+1P!
+1S!
+
+#6300000
+0!
+04
+0P!
+0S!
+
+#6305000
+1!
+b1001110111 3
+14
+1P!
+1S!
+
+#6310000
+0!
+04
+0P!
+0S!
+
+#6315000
+1!
+b1001111000 3
+14
+1P!
+1S!
+
+#6320000
+0!
+04
+0P!
+0S!
+
+#6325000
+1!
+b1001111001 3
+14
+1P!
+1S!
+
+#6330000
+0!
+04
+0P!
+0S!
+
+#6335000
+1!
+b1001111010 3
+14
+1P!
+1S!
+
+#6340000
+0!
+04
+0P!
+0S!
+
+#6345000
+1!
+b1001111011 3
+14
+1P!
+1S!
+
+#6350000
+0!
+04
+0P!
+0S!
+
+#6355000
+1!
+b1001111100 3
+14
+1P!
+1S!
+
+#6360000
+0!
+04
+0P!
+0S!
+
+#6365000
+1!
+b1001111101 3
+14
+1P!
+1S!
+
+#6370000
+0!
+04
+0P!
+0S!
+
+#6375000
+1!
+b1001111110 3
+14
+1P!
+1S!
+
+#6380000
+0!
+04
+0P!
+0S!
+
+#6385000
+1!
+b1001111111 3
+14
+1P!
+1S!
+
+#6390000
+0!
+04
+0P!
+0S!
+
+#6395000
+1!
+b1010000000 3
+14
+1P!
+1S!
+
+#6400000
+0!
+04
+0P!
+0S!
+
+#6405000
+1!
+b1010000001 3
+14
+1P!
+1S!
+
+#6410000
+0!
+04
+0P!
+0S!
+
+#6415000
+1!
+b1010000010 3
+14
+1P!
+1S!
+
+#6420000
+0!
+04
+0P!
+0S!
+
+#6425000
+1!
+b1010000011 3
+14
+1P!
+1S!
+
+#6430000
+0!
+04
+0P!
+0S!
+
+#6435000
+1!
+b1010000100 3
+14
+1P!
+1S!
+
+#6440000
+0!
+04
+0P!
+0S!
+
+#6445000
+1!
+b1010000101 3
+14
+1P!
+1S!
+
+#6450000
+0!
+04
+0P!
+0S!
+
+#6455000
+1!
+b1010000110 3
+14
+1P!
+1S!
+
+#6460000
+0!
+04
+0P!
+0S!
+
+#6465000
+1!
+b1010000111 3
+14
+1P!
+1S!
+
+#6470000
+0!
+04
+0P!
+0S!
+
+#6475000
+1!
+b1010001000 3
+14
+1P!
+1S!
+
+#6480000
+0!
+04
+0P!
+0S!
+
+#6485000
+1!
+b1010001001 3
+14
+1P!
+1S!
+
+#6490000
+0!
+04
+0P!
+0S!
+
+#6495000
+1!
+b1010001010 3
+14
+1P!
+1S!
+
+#6500000
+0!
+04
+0P!
+0S!
+
+#6505000
+1!
+b1010001011 3
+14
+1P!
+1S!
+
+#6510000
+0!
+04
+0P!
+0S!
+
+#6515000
+1!
+b1010001100 3
+14
+1P!
+1S!
+
+#6520000
+0!
+04
+0P!
+0S!
+
+#6525000
+1!
+b1010001101 3
+14
+1P!
+1S!
+
+#6530000
+0!
+04
+0P!
+0S!
+
+#6535000
+1!
+b1010001110 3
+14
+1P!
+1S!
+
+#6540000
+0!
+04
+0P!
+0S!
+
+#6545000
+1!
+b1010001111 3
+14
+1P!
+1S!
+
+#6550000
+0!
+04
+0P!
+0S!
+
+#6555000
+1!
+b1010010000 3
+14
+1P!
+1S!
+
+#6560000
+0!
+04
+0P!
+0S!
+
+#6565000
+1!
+b1010010001 3
+14
+1P!
+1S!
+
+#6570000
+0!
+04
+0P!
+0S!
+
+#6575000
+1!
+b1010010010 3
+14
+1P!
+1S!
+
+#6580000
+0!
+04
+0P!
+0S!
+
+#6585000
+1!
+b1010010011 3
+14
+1P!
+1S!
+
+#6590000
+0!
+04
+0P!
+0S!
+
+#6595000
+1!
+b1010010100 3
+14
+1P!
+1S!
+
+#6600000
+0!
+04
+0P!
+0S!
+
+#6605000
+1!
+b1010010101 3
+14
+1P!
+1S!
+
+#6610000
+0!
+04
+0P!
+0S!
+
+#6615000
+1!
+b1010010110 3
+14
+1P!
+1S!
+
+#6620000
+0!
+04
+0P!
+0S!
+
+#6625000
+1!
+b1010010111 3
+14
+1P!
+1S!
+
+#6630000
+0!
+04
+0P!
+0S!
+
+#6635000
+1!
+b1010011000 3
+14
+1P!
+1S!
+
+#6640000
+0!
+04
+0P!
+0S!
+
+#6645000
+1!
+b1010011001 3
+14
+1P!
+1S!
+
+#6650000
+0!
+04
+0P!
+0S!
+
+#6655000
+1!
+b1010011010 3
+14
+1P!
+1S!
+
+#6660000
+0!
+04
+0P!
+0S!
+
+#6665000
+1!
+b1010011011 3
+14
+1P!
+1S!
+
+#6670000
+0!
+04
+0P!
+0S!
+
+#6675000
+1!
+b1010011100 3
+14
+1P!
+1S!
+
+#6680000
+0!
+04
+0P!
+0S!
+
+#6685000
+1!
+b1010011101 3
+14
+1P!
+1S!
+
+#6690000
+0!
+04
+0P!
+0S!
+
+#6695000
+1!
+b1010011110 3
+14
+1P!
+1S!
+
+#6700000
+0!
+04
+0P!
+0S!
+
+#6705000
+1!
+b1010011111 3
+14
+1P!
+1S!
+
+#6710000
+0!
+04
+0P!
+0S!
+
+#6715000
+1!
+b1010100000 3
+14
+1P!
+1S!
+
+#6720000
+0!
+04
+0P!
+0S!
+
+#6725000
+1!
+b1010100001 3
+14
+1P!
+1S!
+
+#6730000
+0!
+04
+0P!
+0S!
+
+#6735000
+1!
+b1010100010 3
+14
+1P!
+1S!
+
+#6740000
+0!
+04
+0P!
+0S!
+
+#6745000
+1!
+b1010100011 3
+14
+1P!
+1S!
+
+#6750000
+0!
+04
+0P!
+0S!
+
+#6755000
+1!
+b1010100100 3
+14
+1P!
+1S!
+
+#6760000
+0!
+04
+0P!
+0S!
+
+#6765000
+1!
+b1010100101 3
+14
+1P!
+1S!
+
+#6770000
+0!
+04
+0P!
+0S!
+
+#6775000
+1!
+b1010100110 3
+14
+1P!
+1S!
+
+#6780000
+0!
+04
+0P!
+0S!
+
+#6785000
+1!
+b1010100111 3
+14
+1P!
+1S!
+
+#6790000
+0!
+04
+0P!
+0S!
+
+#6795000
+1!
+b1010101000 3
+14
+1P!
+1S!
+
+#6800000
+0!
+04
+0P!
+0S!
+
+#6805000
+1!
+b1010101001 3
+14
+1P!
+1S!
+
+#6810000
+0!
+04
+0P!
+0S!
+
+#6815000
+1!
+b1010101010 3
+14
+1P!
+1S!
+
+#6820000
+0!
+04
+0P!
+0S!
+
+#6825000
+1!
+b1010101011 3
+14
+1P!
+1S!
+
+#6830000
+0!
+04
+0P!
+0S!
+
+#6835000
+1!
+b1010101100 3
+14
+1P!
+1S!
+
+#6840000
+0!
+04
+0P!
+0S!
+
+#6845000
+1!
+b1010101101 3
+14
+1P!
+1S!
+
+#6850000
+0!
+04
+0P!
+0S!
+
+#6855000
+1!
+b1010101110 3
+14
+1P!
+1S!
+
+#6860000
+0!
+04
+0P!
+0S!
+
+#6865000
+1!
+b1010101111 3
+14
+1P!
+1S!
+
+#6870000
+0!
+04
+0P!
+0S!
+
+#6875000
+1!
+b1010110000 3
+14
+1P!
+1S!
+
+#6880000
+0!
+04
+0P!
+0S!
+
+#6885000
+1!
+b1010110001 3
+14
+1P!
+1S!
+
+#6890000
+0!
+04
+0P!
+0S!
+
+#6895000
+1!
+b1010110010 3
+14
+1P!
+1S!
+
+#6900000
+0!
+04
+0P!
+0S!
+
+#6905000
+1!
+b1010110011 3
+14
+1P!
+1S!
+
+#6910000
+0!
+04
+0P!
+0S!
+
+#6915000
+1!
+b1010110100 3
+14
+1P!
+1S!
+
+#6920000
+0!
+04
+0P!
+0S!
+
+#6925000
+1!
+b1010110101 3
+14
+1P!
+1S!
+
+#6930000
+0!
+04
+0P!
+0S!
+
+#6935000
+1!
+b1010110110 3
+14
+1P!
+1S!
+
+#6940000
+0!
+04
+0P!
+0S!
+
+#6945000
+1!
+b1010110111 3
+14
+1P!
+1S!
+
+#6950000
+0!
+04
+0P!
+0S!
+
+#6955000
+1!
+b1010111000 3
+14
+1P!
+1S!
+
+#6960000
+0!
+04
+0P!
+0S!
+
+#6965000
+1!
+b1010111001 3
+14
+1P!
+1S!
+
+#6970000
+0!
+04
+0P!
+0S!
+
+#6975000
+1!
+b1010111010 3
+14
+1P!
+1S!
+
+#6980000
+0!
+04
+0P!
+0S!
+
+#6985000
+1!
+b1010111011 3
+14
+1P!
+1S!
+
+#6990000
+0!
+04
+0P!
+0S!
+
+#6995000
+1!
+b1010111100 3
+14
+1P!
+1S!
+
+#7000000
+0!
+04
+0P!
+0S!
+
+#7005000
+1!
+b1010111101 3
+14
+1P!
+1S!
+
+#7010000
+0!
+04
+0P!
+0S!
+
+#7015000
+1!
+b1010111110 3
+14
+1P!
+1S!
+
+#7020000
+0!
+04
+0P!
+0S!
+
+#7025000
+1!
+b1010111111 3
+14
+1P!
+1S!
+
+#7030000
+0!
+04
+0P!
+0S!
+
+#7035000
+1!
+b1011000000 3
+14
+1P!
+1S!
+
+#7040000
+0!
+04
+0P!
+0S!
+
+#7045000
+1!
+b1011000001 3
+14
+1P!
+1S!
+
+#7050000
+0!
+04
+0P!
+0S!
+
+#7055000
+1!
+b1011000010 3
+14
+1P!
+1S!
+
+#7060000
+0!
+04
+0P!
+0S!
+
+#7065000
+1!
+b1011000011 3
+14
+1P!
+1S!
+
+#7070000
+0!
+04
+0P!
+0S!
+
+#7075000
+1!
+b1011000100 3
+14
+1P!
+1S!
+
+#7080000
+0!
+04
+0P!
+0S!
+
+#7085000
+1!
+b1011000101 3
+14
+1P!
+1S!
+
+#7090000
+0!
+04
+0P!
+0S!
+
+#7095000
+1!
+b1011000110 3
+14
+1P!
+1S!
+
+#7100000
+0!
+04
+0P!
+0S!
+
+#7105000
+1!
+b1011000111 3
+14
+1P!
+1S!
+
+#7110000
+0!
+04
+0P!
+0S!
+
+#7115000
+1!
+b1011001000 3
+14
+1P!
+1S!
+
+#7120000
+0!
+04
+0P!
+0S!
+
+#7125000
+1!
+b1011001001 3
+14
+1P!
+1S!
+
+#7130000
+0!
+04
+0P!
+0S!
+
+#7135000
+1!
+b1011001010 3
+14
+1P!
+1S!
+
+#7140000
+0!
+04
+0P!
+0S!
+
+#7145000
+1!
+b1011001011 3
+14
+1P!
+1S!
+
+#7150000
+0!
+04
+0P!
+0S!
+
+#7155000
+1!
+b1011001100 3
+14
+1P!
+1S!
+
+#7160000
+0!
+04
+0P!
+0S!
+
+#7165000
+1!
+b1011001101 3
+14
+1P!
+1S!
+
+#7170000
+0!
+04
+0P!
+0S!
+
+#7175000
+1!
+b1011001110 3
+14
+1P!
+1S!
+
+#7180000
+0!
+04
+0P!
+0S!
+
+#7185000
+1!
+b1011001111 3
+14
+1P!
+1S!
+
+#7190000
+0!
+04
+0P!
+0S!
+
+#7195000
+1!
+b1011010000 3
+14
+1P!
+1S!
+
+#7200000
+0!
+04
+0P!
+0S!
+
+#7205000
+1!
+b1011010001 3
+14
+1P!
+1S!
+
+#7210000
+0!
+04
+0P!
+0S!
+
+#7215000
+1!
+b1011010010 3
+14
+1P!
+1S!
+
+#7220000
+0!
+04
+0P!
+0S!
+
+#7225000
+1!
+b1011010011 3
+14
+1P!
+1S!
+
+#7230000
+0!
+04
+0P!
+0S!
+
+#7235000
+1!
+b1011010100 3
+14
+1P!
+1S!
+
+#7240000
+0!
+04
+0P!
+0S!
+
+#7245000
+1!
+b1011010101 3
+14
+1P!
+1S!
+
+#7250000
+0!
+04
+0P!
+0S!
+
+#7255000
+1!
+b1011010110 3
+14
+1P!
+1S!
+
+#7260000
+0!
+04
+0P!
+0S!
+
+#7265000
+1!
+b1011010111 3
+14
+1P!
+1S!
+
+#7270000
+0!
+04
+0P!
+0S!
+
+#7275000
+1!
+b1011011000 3
+14
+1P!
+1S!
+
+#7280000
+0!
+04
+0P!
+0S!
+
+#7285000
+1!
+b1011011001 3
+14
+1P!
+1S!
+
+#7290000
+0!
+04
+0P!
+0S!
+
+#7295000
+1!
+b1011011010 3
+14
+1P!
+1S!
+
+#7300000
+0!
+04
+0P!
+0S!
+
+#7305000
+1!
+b1011011011 3
+14
+1P!
+1S!
+
+#7310000
+0!
+04
+0P!
+0S!
+
+#7315000
+1!
+b1011011100 3
+14
+1P!
+1S!
+
+#7320000
+0!
+04
+0P!
+0S!
+
+#7325000
+1!
+b1011011101 3
+14
+1P!
+1S!
+
+#7330000
+0!
+04
+0P!
+0S!
+
+#7335000
+1!
+b1011011110 3
+14
+1P!
+1S!
+
+#7340000
+0!
+04
+0P!
+0S!
+
+#7345000
+1!
+b1011011111 3
+14
+1P!
+1S!
+
+#7350000
+0!
+04
+0P!
+0S!
+
+#7355000
+1!
+b1011100000 3
+14
+1P!
+1S!
+
+#7360000
+0!
+04
+0P!
+0S!
+
+#7365000
+1!
+b1011100001 3
+14
+1P!
+1S!
+
+#7370000
+0!
+04
+0P!
+0S!
+
+#7375000
+1!
+b1011100010 3
+14
+1P!
+1S!
+
+#7380000
+0!
+04
+0P!
+0S!
+
+#7385000
+1!
+b1011100011 3
+14
+1P!
+1S!
+
+#7390000
+0!
+04
+0P!
+0S!
+
+#7395000
+1!
+b1011100100 3
+14
+1P!
+1S!
+
+#7400000
+0!
+04
+0P!
+0S!
+
+#7405000
+1!
+b1011100101 3
+14
+1P!
+1S!
+
+#7410000
+0!
+04
+0P!
+0S!
+
+#7415000
+1!
+b1011100110 3
+14
+1P!
+1S!
+
+#7420000
+0!
+04
+0P!
+0S!
+
+#7425000
+1!
+b1011100111 3
+14
+1P!
+1S!
+
+#7430000
+0!
+04
+0P!
+0S!
+
+#7435000
+1!
+b1011101000 3
+14
+1P!
+1S!
+
+#7440000
+0!
+04
+0P!
+0S!
+
+#7445000
+1!
+b1011101001 3
+14
+1P!
+1S!
+
+#7450000
+0!
+04
+0P!
+0S!
+
+#7455000
+1!
+b1011101010 3
+14
+1P!
+1S!
+
+#7460000
+0!
+04
+0P!
+0S!
+
+#7465000
+1!
+b1011101011 3
+14
+1P!
+1S!
+
+#7470000
+0!
+04
+0P!
+0S!
+
+#7475000
+1!
+b1011101100 3
+14
+1P!
+1S!
+
+#7480000
+0!
+04
+0P!
+0S!
+
+#7485000
+1!
+b1011101101 3
+14
+1P!
+1S!
+
+#7490000
+0!
+04
+0P!
+0S!
+
+#7495000
+1!
+b1011101110 3
+14
+1P!
+1S!
+
+#7500000
+0!
+04
+0P!
+0S!
+
+#7505000
+1!
+b1011101111 3
+14
+1P!
+1S!
+
+#7510000
+0!
+04
+0P!
+0S!
+
+#7515000
+1!
+b1011110000 3
+14
+1P!
+1S!
+
+#7520000
+0!
+04
+0P!
+0S!
+
+#7525000
+1!
+b1011110001 3
+14
+1P!
+1S!
+
+#7530000
+0!
+04
+0P!
+0S!
+
+#7535000
+1!
+b1011110010 3
+14
+1P!
+1S!
+
+#7540000
+0!
+04
+0P!
+0S!
+
+#7545000
+1!
+b1011110011 3
+14
+1P!
+1S!
+
+#7550000
+0!
+04
+0P!
+0S!
+
+#7555000
+1!
+b1011110100 3
+14
+1P!
+1S!
+
+#7560000
+0!
+04
+0P!
+0S!
+
+#7565000
+1!
+b1011110101 3
+14
+1P!
+1S!
+
+#7570000
+0!
+04
+0P!
+0S!
+
+#7575000
+1!
+b1011110110 3
+14
+1P!
+1S!
+
+#7580000
+0!
+04
+0P!
+0S!
+
+#7585000
+1!
+b1011110111 3
+14
+1P!
+1S!
+
+#7590000
+0!
+04
+0P!
+0S!
+
+#7595000
+1!
+b1011111000 3
+14
+1P!
+1S!
+
+#7600000
+0!
+04
+0P!
+0S!
+
+#7605000
+1!
+b1011111001 3
+14
+1P!
+1S!
+
+#7610000
+0!
+04
+0P!
+0S!
+
+#7615000
+1!
+b1011111010 3
+14
+1P!
+1S!
+
+#7620000
+0!
+04
+0P!
+0S!
+
+#7625000
+1!
+b1011111011 3
+14
+1P!
+1S!
+
+#7630000
+0!
+04
+0P!
+0S!
+
+#7635000
+1!
+b1011111100 3
+14
+1P!
+1S!
+
+#7640000
+0!
+04
+0P!
+0S!
+
+#7645000
+1!
+b1011111101 3
+14
+1P!
+1S!
+
+#7650000
+0!
+04
+0P!
+0S!
+
+#7655000
+1!
+b1011111110 3
+14
+1P!
+1S!
+
+#7660000
+0!
+04
+0P!
+0S!
+
+#7665000
+1!
+b1011111111 3
+14
+1P!
+1S!
+
+#7670000
+0!
+04
+0P!
+0S!
+
+#7675000
+1!
+b1100000000 3
+14
+1P!
+1S!
+
+#7680000
+0!
+04
+0P!
+0S!
+
+#7685000
+1!
+b1100000001 3
+14
+1P!
+1S!
+
+#7690000
+0!
+04
+0P!
+0S!
+
+#7695000
+1!
+b1100000010 3
+14
+1P!
+1S!
+
+#7700000
+0!
+04
+0P!
+0S!
+
+#7705000
+1!
+b1100000011 3
+14
+1P!
+1S!
+
+#7710000
+0!
+04
+0P!
+0S!
+
+#7715000
+1!
+b1100000100 3
+14
+1P!
+1S!
+
+#7720000
+0!
+04
+0P!
+0S!
+
+#7725000
+1!
+b1100000101 3
+14
+1P!
+1S!
+
+#7730000
+0!
+04
+0P!
+0S!
+
+#7735000
+1!
+b1100000110 3
+14
+1P!
+1S!
+
+#7740000
+0!
+04
+0P!
+0S!
+
+#7745000
+1!
+b1100000111 3
+14
+1P!
+1S!
+
+#7750000
+0!
+04
+0P!
+0S!
+
+#7755000
+1!
+b1100001000 3
+14
+1P!
+1S!
+
+#7760000
+0!
+04
+0P!
+0S!
+
+#7765000
+1!
+b1100001001 3
+14
+1P!
+1S!
+
+#7770000
+0!
+04
+0P!
+0S!
+
+#7775000
+1!
+b1100001010 3
+14
+1P!
+1S!
+
+#7780000
+0!
+04
+0P!
+0S!
+
+#7785000
+1!
+b1100001011 3
+14
+1P!
+1S!
+
+#7790000
+0!
+04
+0P!
+0S!
+
+#7795000
+1!
+b1100001100 3
+14
+1P!
+1S!
+
+#7800000
+0!
+04
+0P!
+0S!
+
+#7805000
+1!
+b1100001101 3
+14
+1P!
+1S!
+
+#7810000
+0!
+04
+0P!
+0S!
+
+#7815000
+1!
+b1100001110 3
+14
+1P!
+1S!
+
+#7820000
+0!
+04
+0P!
+0S!
+
+#7825000
+1!
+b1100001111 3
+14
+1P!
+1S!
+
+#7830000
+0!
+04
+0P!
+0S!
+
+#7835000
+1!
+b1100010000 3
+14
+1P!
+1S!
+
+#7840000
+0!
+04
+0P!
+0S!
+
+#7845000
+1!
+b1100010001 3
+14
+1P!
+1S!
+
+#7850000
+0!
+04
+0P!
+0S!
+
+#7855000
+1!
+b1100010010 3
+14
+1P!
+1S!
+
+#7860000
+0!
+04
+0P!
+0S!
+
+#7865000
+1!
+b1100010011 3
+14
+1P!
+1S!
+
+#7870000
+0!
+04
+0P!
+0S!
+
+#7875000
+1!
+b1100010100 3
+14
+1P!
+1S!
+
+#7880000
+0!
+04
+0P!
+0S!
+
+#7885000
+1!
+b1100010101 3
+14
+1P!
+1S!
+
+#7890000
+0!
+04
+0P!
+0S!
+
+#7895000
+1!
+b1100010110 3
+14
+1P!
+1S!
+
+#7900000
+0!
+04
+0P!
+0S!
+
+#7905000
+1!
+b1100010111 3
+14
+1P!
+1S!
+
+#7910000
+0!
+04
+0P!
+0S!
+
+#7915000
+1!
+b1100011000 3
+14
+1P!
+1S!
+
+#7920000
+0!
+04
+0P!
+0S!
+
+#7925000
+1!
+b1100011001 3
+14
+1P!
+1S!
+
+#7930000
+0!
+04
+0P!
+0S!
+
+#7935000
+1!
+b1100011010 3
+14
+1P!
+1S!
+
+#7940000
+0!
+04
+0P!
+0S!
+
+#7945000
+1!
+b1100011011 3
+14
+1P!
+1S!
+
+#7950000
+0!
+04
+0P!
+0S!
+
+#7955000
+1!
+b1100011100 3
+14
+1P!
+1S!
+
+#7960000
+0!
+04
+0P!
+0S!
+
+#7965000
+1!
+b1100011101 3
+14
+1P!
+1S!
+
+#7970000
+0!
+04
+0P!
+0S!
+
+#7975000
+1!
+b1100011110 3
+14
+1P!
+1S!
+
+#7980000
+0!
+04
+0P!
+0S!
+
+#7985000
+1!
+b1100011111 3
+14
+1P!
+1S!
+
+#7990000
+0!
+04
+0P!
+0S!
+
+#7995000
+1!
+b1100100000 3
+14
+1P!
+1S!
+
+#8000000
+0!
+04
+0P!
+0S!
+
+#8005000
+1!
+b1100100001 3
+14
+1P!
+1S!
+
+#8010000
+0!
+04
+0P!
+0S!
+
+#8015000
+1!
+b1100100010 3
+14
+1P!
+1S!
+
+#8020000
+0!
+04
+0P!
+0S!
+
+#8025000
+1!
+b1100100011 3
+14
+1P!
+1S!
+
+#8030000
+0!
+04
+0P!
+0S!
+
+#8035000
+1!
+b1100100100 3
+14
+1P!
+1S!
+
+#8040000
+0!
+04
+0P!
+0S!
+
+#8045000
+1!
+b1100100101 3
+14
+1P!
+1S!
+
+#8050000
+0!
+04
+0P!
+0S!
+
+#8055000
+1!
+b1100100110 3
+14
+1P!
+1S!
+
+#8060000
+0!
+04
+0P!
+0S!
+
+#8065000
+1!
+b1100100111 3
+14
+1P!
+1S!
+
+#8070000
+0!
+04
+0P!
+0S!
+
+#8075000
+1!
+b1100101000 3
+14
+1P!
+1S!
+
+#8080000
+0!
+04
+0P!
+0S!
+
+#8085000
+1!
+b1100101001 3
+14
+1P!
+1S!
+
+#8090000
+0!
+04
+0P!
+0S!
+
+#8095000
+1!
+b1100101010 3
+14
+1P!
+1S!
+
+#8100000
+0!
+04
+0P!
+0S!
+
+#8105000
+1!
+b1100101011 3
+14
+1P!
+1S!
+
+#8110000
+0!
+04
+0P!
+0S!
+
+#8115000
+1!
+b1100101100 3
+14
+1P!
+1S!
+
+#8120000
+0!
+04
+0P!
+0S!
+
+#8125000
+1!
+b1100101101 3
+14
+1P!
+1S!
+
+#8130000
+0!
+04
+0P!
+0S!
+
+#8135000
+1!
+b1100101110 3
+14
+1P!
+1S!
+
+#8140000
+0!
+04
+0P!
+0S!
+
+#8145000
+1!
+b1100101111 3
+14
+1P!
+1S!
+
+#8150000
+0!
+04
+0P!
+0S!
+
+#8155000
+1!
+b1100110000 3
+14
+1P!
+1S!
+
+#8160000
+0!
+04
+0P!
+0S!
+
+#8165000
+1!
+b1100110001 3
+14
+1P!
+1S!
+
+#8170000
+0!
+04
+0P!
+0S!
+
+#8175000
+1!
+b1100110010 3
+14
+1P!
+1S!
+
+#8180000
+0!
+04
+0P!
+0S!
+
+#8185000
+1!
+b1100110011 3
+14
+1P!
+1S!
+
+#8190000
+0!
+04
+0P!
+0S!
+
+#8195000
+1!
+b1100110100 3
+14
+1P!
+1S!
+
+#8200000
+0!
+04
+0P!
+0S!
+
+#8205000
+1!
+b1100110101 3
+14
+1P!
+1S!
+
+#8210000
+0!
+04
+0P!
+0S!
+
+#8215000
+1!
+b1100110110 3
+14
+1P!
+1S!
+
+#8220000
+0!
+04
+0P!
+0S!
+
+#8225000
+1!
+b1100110111 3
+14
+1P!
+1S!
+
+#8230000
+0!
+04
+0P!
+0S!
+
+#8235000
+1!
+b1100111000 3
+14
+1P!
+1S!
+
+#8240000
+0!
+04
+0P!
+0S!
+
+#8245000
+1!
+b1100111001 3
+14
+1P!
+1S!
+
+#8250000
+0!
+04
+0P!
+0S!
+
+#8255000
+1!
+b1100111010 3
+14
+1P!
+1S!
+
+#8260000
+0!
+04
+0P!
+0S!
+
+#8265000
+1!
+b1100111011 3
+14
+1P!
+1S!
+
+#8270000
+0!
+04
+0P!
+0S!
+
+#8275000
+1!
+b1100111100 3
+14
+1P!
+1S!
+
+#8280000
+0!
+04
+0P!
+0S!
+
+#8285000
+1!
+b1100111101 3
+14
+1P!
+1S!
+
+#8290000
+0!
+04
+0P!
+0S!
+
+#8295000
+1!
+b1100111110 3
+14
+1P!
+1S!
+
+#8300000
+0!
+04
+0P!
+0S!
+
+#8305000
+1!
+b1100111111 3
+14
+1P!
+1S!
+
+#8310000
+0!
+04
+0P!
+0S!
+
+#8315000
+1!
+b1101000000 3
+14
+1P!
+1S!
+
+#8320000
+0!
+04
+0P!
+0S!
+
+#8325000
+1!
+b1101000001 3
+14
+1P!
+1S!
+
+#8330000
+0!
+04
+0P!
+0S!
+
+#8335000
+1!
+b1101000010 3
+14
+1P!
+1S!
+
+#8340000
+0!
+04
+0P!
+0S!
+
+#8345000
+1!
+b1101000011 3
+14
+1P!
+1S!
+
+#8350000
+0!
+04
+0P!
+0S!
+
+#8355000
+1!
+b1101000100 3
+14
+1P!
+1S!
+
+#8360000
+0!
+04
+0P!
+0S!
+
+#8365000
+1!
+b1101000101 3
+14
+1P!
+1S!
+
+#8370000
+0!
+04
+0P!
+0S!
+
+#8375000
+1!
+b1101000110 3
+14
+1P!
+1S!
+
+#8380000
+0!
+04
+0P!
+0S!
+
+#8385000
+1!
+b1101000111 3
+14
+1P!
+1S!
+
+#8390000
+0!
+04
+0P!
+0S!
+
+#8395000
+1!
+b1101001000 3
+14
+1P!
+1S!
+
+#8400000
+0!
+04
+0P!
+0S!
+
+#8405000
+1!
+b1101001001 3
+14
+1P!
+1S!
+
+#8410000
+0!
+04
+0P!
+0S!
+
+#8415000
+1!
+b1101001010 3
+14
+1P!
+1S!
+
+#8420000
+0!
+04
+0P!
+0S!
+
+#8425000
+1!
+b1101001011 3
+14
+1P!
+1S!
+
+#8430000
+0!
+04
+0P!
+0S!
+
+#8435000
+1!
+b1101001100 3
+14
+1P!
+1S!
+
+#8440000
+0!
+04
+0P!
+0S!
+
+#8445000
+1!
+b1101001101 3
+14
+1P!
+1S!
+
+#8450000
+0!
+04
+0P!
+0S!
+
+#8455000
+1!
+b1101001110 3
+14
+1P!
+1S!
+
+#8460000
+0!
+04
+0P!
+0S!
+
+#8465000
+1!
+b1101001111 3
+14
+1P!
+1S!
+
+#8470000
+0!
+04
+0P!
+0S!
+
+#8475000
+1!
+b1101010000 3
+14
+1P!
+1S!
+
+#8480000
+0!
+04
+0P!
+0S!
+
+#8485000
+1!
+b1101010001 3
+14
+1P!
+1S!
+
+#8490000
+0!
+04
+0P!
+0S!
+
+#8495000
+1!
+b1101010010 3
+14
+1P!
+1S!
+
+#8500000
+0!
+04
+0P!
+0S!
+
+#8505000
+1!
+b1101010011 3
+14
+1P!
+1S!
+
+#8510000
+0!
+04
+0P!
+0S!
+
+#8515000
+1!
+b1101010100 3
+14
+1P!
+1S!
+
+#8520000
+0!
+04
+0P!
+0S!
+
+#8525000
+1!
+b1101010101 3
+14
+1P!
+1S!
+
+#8530000
+0!
+04
+0P!
+0S!
+
+#8535000
+1!
+b1101010110 3
+14
+1P!
+1S!
+
+#8540000
+0!
+04
+0P!
+0S!
+
+#8545000
+1!
+b1101010111 3
+14
+1P!
+1S!
+
+#8550000
+0!
+04
+0P!
+0S!
+
+#8555000
+1!
+b1101011000 3
+14
+1P!
+1S!
+
+#8560000
+0!
+04
+0P!
+0S!
+
+#8565000
+1!
+b1101011001 3
+14
+1P!
+1S!
+
+#8570000
+0!
+04
+0P!
+0S!
+
+#8575000
+1!
+b1101011010 3
+14
+1P!
+1S!
+
+#8580000
+0!
+04
+0P!
+0S!
+
+#8585000
+1!
+b1101011011 3
+14
+1P!
+1S!
+
+#8590000
+0!
+04
+0P!
+0S!
+
+#8595000
+1!
+b1101011100 3
+14
+1P!
+1S!
+
+#8600000
+0!
+04
+0P!
+0S!
+
+#8605000
+1!
+b1101011101 3
+14
+1P!
+1S!
+
+#8610000
+0!
+04
+0P!
+0S!
+
+#8615000
+1!
+b1101011110 3
+14
+1P!
+1S!
+
+#8620000
+0!
+04
+0P!
+0S!
+
+#8625000
+1!
+b1101011111 3
+14
+1P!
+1S!
+
+#8630000
+0!
+04
+0P!
+0S!
+
+#8635000
+1!
+b1101100000 3
+14
+1P!
+1S!
+
+#8640000
+0!
+04
+0P!
+0S!
+
+#8645000
+1!
+b1101100001 3
+14
+1P!
+1S!
+
+#8650000
+0!
+04
+0P!
+0S!
+
+#8655000
+1!
+b1101100010 3
+14
+1P!
+1S!
+
+#8660000
+0!
+04
+0P!
+0S!
+
+#8665000
+1!
+b1101100011 3
+14
+1P!
+1S!
+
+#8670000
+0!
+04
+0P!
+0S!
+
+#8675000
+1!
+b1101100100 3
+14
+1P!
+1S!
+
+#8680000
+0!
+04
+0P!
+0S!
+
+#8685000
+1!
+b1101100101 3
+14
+1P!
+1S!
+
+#8690000
+0!
+04
+0P!
+0S!
+
+#8695000
+1!
+b1101100110 3
+14
+1P!
+1S!
+
+#8700000
+0!
+04
+0P!
+0S!
+
+#8705000
+1!
+b1101100111 3
+14
+1P!
+1S!
+
+#8710000
+0!
+04
+0P!
+0S!
+
+#8715000
+1!
+b1101101000 3
+14
+1P!
+1S!
+
+#8720000
+0!
+04
+0P!
+0S!
+
+#8725000
+1!
+b1101101001 3
+14
+1P!
+1S!
+
+#8730000
+0!
+04
+0P!
+0S!
+
+#8735000
+1!
+b1101101010 3
+14
+1P!
+1S!
+
+#8740000
+0!
+04
+0P!
+0S!
+
+#8745000
+1!
+b1101101011 3
+14
+1P!
+1S!
+
+#8750000
+0!
+04
+0P!
+0S!
+
+#8755000
+1!
+b1101101100 3
+14
+1P!
+1S!
+
+#8760000
+0!
+04
+0P!
+0S!
+
+#8765000
+1!
+b1101101101 3
+14
+1P!
+1S!
+
+#8770000
+0!
+04
+0P!
+0S!
+
+#8775000
+1!
+b1101101110 3
+14
+1P!
+1S!
+
+#8780000
+0!
+04
+0P!
+0S!
+
+#8785000
+1!
+b1101101111 3
+14
+1P!
+1S!
+
+#8790000
+0!
+04
+0P!
+0S!
+
+#8795000
+1!
+b1101110000 3
+14
+1P!
+1S!
+
+#8800000
+0!
+04
+0P!
+0S!
+
+#8805000
+1!
+b1101110001 3
+14
+1P!
+1S!
+
+#8810000
+0!
+04
+0P!
+0S!
+
+#8815000
+1!
+b1101110010 3
+14
+1P!
+1S!
+
+#8820000
+0!
+04
+0P!
+0S!
+
+#8825000
+1!
+b1101110011 3
+14
+1P!
+1S!
+
+#8830000
+0!
+04
+0P!
+0S!
+
+#8835000
+1!
+b1101110100 3
+14
+1P!
+1S!
+
+#8840000
+0!
+04
+0P!
+0S!
+
+#8845000
+1!
+b1101110101 3
+14
+1P!
+1S!
+
+#8850000
+0!
+04
+0P!
+0S!
+
+#8855000
+1!
+b1101110110 3
+14
+1P!
+1S!
+
+#8860000
+0!
+04
+0P!
+0S!
+
+#8865000
+1!
+b1101110111 3
+14
+1P!
+1S!
+
+#8870000
+0!
+04
+0P!
+0S!
+
+#8875000
+1!
+b1101111000 3
+14
+1P!
+1S!
+
+#8880000
+0!
+04
+0P!
+0S!
+
+#8885000
+1!
+b1101111001 3
+14
+1P!
+1S!
+
+#8890000
+0!
+04
+0P!
+0S!
+
+#8895000
+1!
+b1101111010 3
+14
+1P!
+1S!
+
+#8900000
+0!
+04
+0P!
+0S!
+
+#8905000
+1!
+b1101111011 3
+14
+1P!
+1S!
+
+#8910000
+0!
+04
+0P!
+0S!
+
+#8915000
+1!
+b1101111100 3
+14
+1P!
+1S!
+
+#8920000
+0!
+04
+0P!
+0S!
+
+#8925000
+1!
+b1101111101 3
+14
+1P!
+1S!
+
+#8930000
+0!
+04
+0P!
+0S!
+
+#8935000
+1!
+b1101111110 3
+14
+1P!
+1S!
+
+#8940000
+0!
+04
+0P!
+0S!
+
+#8945000
+1!
+b1101111111 3
+14
+1P!
+1S!
+
+#8950000
+0!
+04
+0P!
+0S!
+
+#8955000
+1!
+b1110000000 3
+14
+1P!
+1S!
+
+#8960000
+0!
+04
+0P!
+0S!
+
+#8965000
+1!
+b1110000001 3
+14
+1P!
+1S!
+
+#8970000
+0!
+04
+0P!
+0S!
+
+#8975000
+1!
+b1110000010 3
+14
+1P!
+1S!
+
+#8980000
+0!
+04
+0P!
+0S!
+
+#8985000
+1!
+b1110000011 3
+14
+1P!
+1S!
+
+#8990000
+0!
+04
+0P!
+0S!
+
+#8995000
+1!
+b1110000100 3
+14
+1P!
+1S!
+
+#9000000
+0!
+04
+0P!
+0S!
+
+#9005000
+1!
+b1110000101 3
+14
+1P!
+1S!
+
+#9010000
+0!
+04
+0P!
+0S!
+
+#9015000
+1!
+b1110000110 3
+14
+1P!
+1S!
+
+#9020000
+0!
+04
+0P!
+0S!
+
+#9025000
+1!
+b1110000111 3
+14
+1P!
+1S!
+
+#9030000
+0!
+04
+0P!
+0S!
+
+#9035000
+1!
+b1110001000 3
+14
+1P!
+1S!
+
+#9040000
+0!
+04
+0P!
+0S!
+
+#9045000
+1!
+b1110001001 3
+14
+1P!
+1S!
+
+#9050000
+0!
+04
+0P!
+0S!
+
+#9055000
+1!
+b1110001010 3
+14
+1P!
+1S!
+
+#9060000
+0!
+04
+0P!
+0S!
+
+#9065000
+1!
+b1110001011 3
+14
+1P!
+1S!
+
+#9070000
+0!
+04
+0P!
+0S!
+
+#9075000
+1!
+b1110001100 3
+14
+1P!
+1S!
+
+#9080000
+0!
+04
+0P!
+0S!
+
+#9085000
+1!
+b1110001101 3
+14
+1P!
+1S!
+
+#9090000
+0!
+04
+0P!
+0S!
+
+#9095000
+1!
+b1110001110 3
+14
+1P!
+1S!
+
+#9100000
+0!
+04
+0P!
+0S!
+
+#9105000
+1!
+b1110001111 3
+14
+1P!
+1S!
+
+#9110000
+0!
+04
+0P!
+0S!
+
+#9115000
+1!
+b1110010000 3
+14
+1P!
+1S!
+
+#9120000
+0!
+04
+0P!
+0S!
+
+#9125000
+1!
+b1110010001 3
+14
+1P!
+1S!
+
+#9130000
+0!
+04
+0P!
+0S!
+
+#9135000
+1!
+b1110010010 3
+14
+1P!
+1S!
+
+#9140000
+0!
+04
+0P!
+0S!
+
+#9145000
+1!
+b1110010011 3
+14
+1P!
+1S!
+
+#9150000
+0!
+04
+0P!
+0S!
+
+#9155000
+1!
+b1110010100 3
+14
+1P!
+1S!
+
+#9160000
+0!
+04
+0P!
+0S!
+
+#9165000
+1!
+b1110010101 3
+14
+1P!
+1S!
+
+#9170000
+0!
+04
+0P!
+0S!
+
+#9175000
+1!
+b1110010110 3
+14
+1P!
+1S!
+
+#9180000
+0!
+04
+0P!
+0S!
+
+#9185000
+1!
+b1110010111 3
+14
+1P!
+1S!
+
+#9190000
+0!
+04
+0P!
+0S!
+
+#9195000
+1!
+b1110011000 3
+14
+1P!
+1S!
+
+#9200000
+0!
+04
+0P!
+0S!
+
+#9205000
+1!
+b1110011001 3
+14
+1P!
+1S!
+
+#9210000
+0!
+04
+0P!
+0S!
+
+#9215000
+1!
+b1110011010 3
+14
+1P!
+1S!
+
+#9220000
+0!
+04
+0P!
+0S!
+
+#9225000
+1!
+b1110011011 3
+14
+1P!
+1S!
+
+#9230000
+0!
+04
+0P!
+0S!
+
+#9235000
+1!
+b1110011100 3
+14
+1P!
+1S!
+
+#9240000
+0!
+04
+0P!
+0S!
+
+#9245000
+1!
+b1110011101 3
+14
+1P!
+1S!
+
+#9250000
+0!
+04
+0P!
+0S!
+
+#9255000
+1!
+b1110011110 3
+14
+1P!
+1S!
+
+#9260000
+0!
+04
+0P!
+0S!
+
+#9265000
+1!
+b1110011111 3
+14
+1P!
+1S!
+
+#9270000
+0!
+04
+0P!
+0S!
+
+#9275000
+1!
+b1110100000 3
+14
+1P!
+1S!
+
+#9280000
+0!
+04
+0P!
+0S!
+
+#9285000
+1!
+b1110100001 3
+14
+1P!
+1S!
+
+#9290000
+0!
+04
+0P!
+0S!
+
+#9295000
+1!
+b1110100010 3
+14
+1P!
+1S!
+
+#9300000
+0!
+04
+0P!
+0S!
+
+#9305000
+1!
+b1110100011 3
+14
+1P!
+1S!
+
+#9310000
+0!
+04
+0P!
+0S!
+
+#9315000
+1!
+b1110100100 3
+14
+1P!
+1S!
+
+#9320000
+0!
+04
+0P!
+0S!
+
+#9325000
+1!
+b1110100101 3
+14
+1P!
+1S!
+
+#9330000
+0!
+04
+0P!
+0S!
+
+#9335000
+1!
+b1110100110 3
+14
+1P!
+1S!
+
+#9340000
+0!
+04
+0P!
+0S!
+
+#9345000
+1!
+b1110100111 3
+14
+1P!
+1S!
+
+#9350000
+0!
+04
+0P!
+0S!
+
+#9355000
+1!
+b1110101000 3
+14
+1P!
+1S!
+
+#9360000
+0!
+04
+0P!
+0S!
+
+#9365000
+1!
+b1110101001 3
+14
+1P!
+1S!
+
+#9370000
+0!
+04
+0P!
+0S!
+
+#9375000
+1!
+b1110101010 3
+14
+1P!
+1S!
+
+#9380000
+0!
+04
+0P!
+0S!
+
+#9385000
+1!
+b1110101011 3
+14
+1P!
+1S!
+
+#9390000
+0!
+04
+0P!
+0S!
+
+#9395000
+1!
+b1110101100 3
+14
+1P!
+1S!
+
+#9400000
+0!
+04
+0P!
+0S!
+
+#9405000
+1!
+b1110101101 3
+14
+1P!
+1S!
+
+#9410000
+0!
+04
+0P!
+0S!
+
+#9415000
+1!
+b1110101110 3
+14
+1P!
+1S!
+
+#9420000
+0!
+04
+0P!
+0S!
+
+#9425000
+1!
+b1110101111 3
+14
+1P!
+1S!
+
+#9430000
+0!
+04
+0P!
+0S!
+
+#9435000
+1!
+b1110110000 3
+14
+1P!
+1S!
+
+#9440000
+0!
+04
+0P!
+0S!
+
+#9445000
+1!
+b1110110001 3
+14
+1P!
+1S!
+
+#9450000
+0!
+04
+0P!
+0S!
+
+#9455000
+1!
+b1110110010 3
+14
+1P!
+1S!
+
+#9460000
+0!
+04
+0P!
+0S!
+
+#9465000
+1!
+b1110110011 3
+14
+1P!
+1S!
+
+#9470000
+0!
+04
+0P!
+0S!
+
+#9475000
+1!
+b1110110100 3
+14
+1P!
+1S!
+
+#9480000
+0!
+04
+0P!
+0S!
+
+#9485000
+1!
+b1110110101 3
+14
+1P!
+1S!
+
+#9490000
+0!
+04
+0P!
+0S!
+
+#9495000
+1!
+b1110110110 3
+14
+1P!
+1S!
+
+#9500000
+0!
+04
+0P!
+0S!
+
+#9505000
+1!
+b1110110111 3
+14
+1P!
+1S!
+
+#9510000
+0!
+04
+0P!
+0S!
+
+#9515000
+1!
+b1110111000 3
+14
+1P!
+1S!
+
+#9520000
+0!
+04
+0P!
+0S!
+
+#9525000
+1!
+b1110111001 3
+14
+1P!
+1S!
+
+#9530000
+0!
+04
+0P!
+0S!
+
+#9535000
+1!
+b1110111010 3
+14
+1P!
+1S!
+
+#9540000
+0!
+04
+0P!
+0S!
+
+#9545000
+1!
+b1110111011 3
+14
+1P!
+1S!
+
+#9550000
+0!
+04
+0P!
+0S!
+
+#9555000
+1!
+b1110111100 3
+14
+1P!
+1S!
+
+#9560000
+0!
+04
+0P!
+0S!
+
+#9565000
+1!
+b1110111101 3
+14
+1P!
+1S!
+
+#9570000
+0!
+04
+0P!
+0S!
+
+#9575000
+1!
+b1110111110 3
+14
+1P!
+1S!
+
+#9580000
+0!
+04
+0P!
+0S!
+
+#9585000
+1!
+b1110111111 3
+14
+1P!
+1S!
+
+#9590000
+0!
+04
+0P!
+0S!
+
+#9595000
+1!
+b1111000000 3
+14
+1P!
+1S!
+
+#9600000
+0!
+04
+0P!
+0S!
+
+#9605000
+1!
+b1111000001 3
+14
+1P!
+1S!
+
+#9610000
+0!
+04
+0P!
+0S!
+
+#9615000
+1!
+b1111000010 3
+14
+1P!
+1S!
+
+#9620000
+0!
+04
+0P!
+0S!
+
+#9625000
+1!
+b1111000011 3
+14
+1P!
+1S!
+
+#9630000
+0!
+04
+0P!
+0S!
+
+#9635000
+1!
+b1111000100 3
+14
+1P!
+1S!
+
+#9640000
+0!
+04
+0P!
+0S!
+
+#9645000
+1!
+b1111000101 3
+14
+1P!
+1S!
+
+#9650000
+0!
+04
+0P!
+0S!
+
+#9655000
+1!
+b1111000110 3
+14
+1P!
+1S!
+
+#9660000
+0!
+04
+0P!
+0S!
+
+#9665000
+1!
+b1111000111 3
+14
+1P!
+1S!
+
+#9670000
+0!
+04
+0P!
+0S!
+
+#9675000
+1!
+b1111001000 3
+14
+1P!
+1S!
+
+#9680000
+0!
+04
+0P!
+0S!
+
+#9685000
+1!
+b1111001001 3
+14
+1P!
+1S!
+
+#9690000
+0!
+04
+0P!
+0S!
+
+#9695000
+1!
+b1111001010 3
+14
+1P!
+1S!
+
+#9700000
+0!
+04
+0P!
+0S!
+
+#9705000
+1!
+b1111001011 3
+14
+1P!
+1S!
+
+#9710000
+0!
+04
+0P!
+0S!
+
+#9715000
+1!
+b1111001100 3
+14
+1P!
+1S!
+
+#9720000
+0!
+04
+0P!
+0S!
+
+#9725000
+1!
+b1111001101 3
+14
+1P!
+1S!
+
+#9730000
+0!
+04
+0P!
+0S!
+
+#9735000
+1!
+b1111001110 3
+14
+1P!
+1S!
+
+#9740000
+0!
+04
+0P!
+0S!
+
+#9745000
+1!
+b1111001111 3
+14
+1P!
+1S!
+
+#9750000
+0!
+04
+0P!
+0S!
+
+#9755000
+1!
+b1111010000 3
+14
+1P!
+1S!
+
+#9760000
+0!
+04
+0P!
+0S!
+
+#9765000
+1!
+b1111010001 3
+14
+1P!
+1S!
+
+#9770000
+0!
+04
+0P!
+0S!
+
+#9775000
+1!
+b1111010010 3
+14
+1P!
+1S!
+
+#9780000
+0!
+04
+0P!
+0S!
+
+#9785000
+1!
+b1111010011 3
+14
+1P!
+1S!
+
+#9790000
+0!
+04
+0P!
+0S!
+
+#9795000
+1!
+b1111010100 3
+14
+1P!
+1S!
+
+#9800000
+0!
+04
+0P!
+0S!
+
+#9805000
+1!
+b1111010101 3
+14
+1P!
+1S!
+
+#9810000
+0!
+04
+0P!
+0S!
+
+#9815000
+1!
+b1111010110 3
+14
+1P!
+1S!
+
+#9820000
+0!
+04
+0P!
+0S!
+
+#9825000
+1!
+b1111010111 3
+14
+1P!
+1S!
+
+#9830000
+0!
+04
+0P!
+0S!
+
+#9835000
+1!
+b1111011000 3
+14
+1P!
+1S!
+
+#9840000
+0!
+04
+0P!
+0S!
+
+#9845000
+1!
+b1111011001 3
+14
+1P!
+1S!
+
+#9850000
+0!
+04
+0P!
+0S!
+
+#9855000
+1!
+b1111011010 3
+14
+1P!
+1S!
+
+#9860000
+0!
+04
+0P!
+0S!
+
+#9865000
+1!
+b1111011011 3
+14
+1P!
+1S!
+
+#9870000
+0!
+04
+0P!
+0S!
+
+#9875000
+1!
+b1111011100 3
+14
+1P!
+1S!
+
+#9880000
+0!
+04
+0P!
+0S!
+
+#9885000
+1!
+b1111011101 3
+14
+1P!
+1S!
+
+#9890000
+0!
+04
+0P!
+0S!
+
+#9895000
+1!
+b1111011110 3
+14
+1P!
+1S!
+
+#9900000
+0!
+04
+0P!
+0S!
+
+#9905000
+1!
+b1111011111 3
+14
+1P!
+1S!
+
+#9910000
+0!
+04
+0P!
+0S!
+
+#9915000
+1!
+b1111100000 3
+14
+1P!
+1S!
+
+#9920000
+0!
+04
+0P!
+0S!
+
+#9925000
+1!
+b1111100001 3
+14
+1P!
+1S!
+
+#9930000
+0!
+04
+0P!
+0S!
+
+#9935000
+1!
+b1111100010 3
+14
+1P!
+1S!
+
+#9940000
+0!
+04
+0P!
+0S!
+
+#9945000
+1!
+b1111100011 3
+14
+1P!
+1S!
+
+#9950000
+0!
+04
+0P!
+0S!
+
+#9955000
+1!
+b1111100100 3
+14
+1P!
+1S!
+
+#9960000
+0!
+04
+0P!
+0S!
+
+#9965000
+1!
+b1111100101 3
+14
+1P!
+1S!
+
+#9970000
+0!
+04
+0P!
+0S!
+
+#9975000
+1!
+b1111100110 3
+14
+1P!
+1S!
+
+#9980000
+0!
+04
+0P!
+0S!
+
+#9985000
+1!
+b1111100111 3
+14
+1P!
+1S!
+
+#9990000
+0!
+04
+0P!
+0S!
+
+#9995000
+1!
+b1111101000 3
+14
+1P!
+1S!
+
+#10000000
+0!
+04
+0P!
+0S!
+
+#10005000
+1!
+b1111101001 3
+14
+1P!
+1S!
+
+#10010000
+0!
+04
+0P!
+0S!
+
+#10015000
+1!
+b1111101010 3
+14
+1P!
+1S!
+
+#10020000
+0!
+04
+0P!
+0S!
+
+#10025000
+1!
+b1111101011 3
+14
+1P!
+1S!
+
+#10030000
+0!
+04
+0P!
+0S!
+
+#10035000
+1!
+b1111101100 3
+14
+1P!
+1S!
+
+#10040000
+0!
+04
+0P!
+0S!
+
+#10045000
+1!
+b1111101101 3
+14
+1P!
+1S!
+
+#10050000
+0!
+04
+0P!
+0S!
+
+#10055000
+1!
+b1111101110 3
+14
+1P!
+1S!
+
+#10060000
+0!
+04
+0P!
+0S!
+
+#10065000
+1!
+b1111101111 3
+14
+1P!
+1S!
+
+#10070000
+0!
+04
+0P!
+0S!
+
+#10075000
+1!
+b1111110000 3
+14
+1P!
+1S!
+
+#10080000
+0!
+04
+0P!
+0S!
+
+#10085000
+1!
+b1111110001 3
+14
+1P!
+1S!
+
+#10090000
+0!
+04
+0P!
+0S!
+
+#10095000
+1!
+b1111110010 3
+14
+1P!
+1S!
+
+#10100000
+0!
+04
+0P!
+0S!
+
+#10105000
+1!
+b1111110011 3
+14
+1P!
+1S!
+
+#10110000
+0!
+04
+0P!
+0S!
+
+#10115000
+1!
+b1111110100 3
+14
+1P!
+1S!
+
+#10120000
+0!
+04
+0P!
+0S!
+
+#10125000
+1!
+b1111110101 3
+14
+1P!
+1S!
+
+#10130000
+0!
+04
+0P!
+0S!
+
+#10135000
+1!
+b1111110110 3
+14
+1P!
+1S!
+
+#10140000
+0!
+04
+0P!
+0S!
+
+#10145000
+1!
+b1111110111 3
+14
+1P!
+1S!
+
+#10150000
+0!
+04
+0P!
+0S!
+
+#10155000
+1!
+b1111111000 3
+14
+1P!
+1S!
+
+#10160000
+0!
+04
+0P!
+0S!
+
+#10165000
+1!
+b1111111001 3
+14
+1P!
+1S!
+
+#10170000
+0!
+04
+0P!
+0S!
+
+#10175000
+1!
+b1111111010 3
+14
+1P!
+1S!
+
+#10180000
+0!
+04
+0P!
+0S!
+
+#10185000
+1!
+b1111111011 3
+14
+1P!
+1S!
+
+#10190000
+0!
+04
+0P!
+0S!
+
+#10195000
+1!
+b1111111100 3
+14
+1P!
+1S!
+
+#10200000
+0!
+04
+0P!
+0S!
+
+#10205000
+1!
+b1111111101 3
+14
+1P!
+1S!
+
+#10210000
+0!
+04
+0P!
+0S!
+
+#10215000
+1!
+b1111111110 3
+14
+1P!
+1S!
+
+#10220000
+0!
+04
+0P!
+0S!
+
+#10225000
+1!
+b1111111111 3
+14
+1P!
+1S!
+
+#10230000
+0!
+04
+0P!
+0S!
+
+#10235000
+1!
+b10000000000 3
+14
+1P!
+1S!
+
+#10240000
+0!
+04
+0P!
+0S!
+
+#10245000
+1!
+b10000000001 3
+14
+1P!
+1S!
+
+#10250000
+0!
+04
+0P!
+0S!
+
+#10255000
+1!
+b10000000010 3
+14
+1P!
+1S!
+
+#10260000
+0!
+04
+0P!
+0S!
+
+#10265000
+1!
+b10000000011 3
+14
+1P!
+1S!
+
+#10270000
+0!
+04
+0P!
+0S!
+
+#10275000
+1!
+b10000000100 3
+14
+1P!
+1S!
+
+#10280000
+0!
+04
+0P!
+0S!
+
+#10285000
+1!
+b10000000101 3
+14
+1P!
+1S!
+
+#10290000
+0!
+04
+0P!
+0S!
+
+#10295000
+1!
+b10000000110 3
+14
+1P!
+1S!
+
+#10300000
+0!
+04
+0P!
+0S!
+
+#10305000
+1!
+b10000000111 3
+14
+1P!
+1S!
+
+#10310000
+0!
+04
+0P!
+0S!
+
+#10315000
+1!
+b10000001000 3
+14
+1P!
+1S!
+
+#10320000
+0!
+04
+0P!
+0S!
+
+#10325000
+1!
+b10000001001 3
+14
+1P!
+1S!
+
+#10330000
+0!
+04
+0P!
+0S!
+
+#10335000
+1!
+b10000001010 3
+14
+1P!
+1S!
+
+#10340000
+0!
+04
+0P!
+0S!
+
+#10345000
+1!
+b10000001011 3
+14
+1P!
+1S!
+
+#10350000
+0!
+04
+0P!
+0S!
+
+#10355000
+1!
+b10000001100 3
+14
+1P!
+1S!
+
+#10360000
+0!
+04
+0P!
+0S!
+
+#10365000
+1!
+b10000001101 3
+14
+1P!
+1S!
+
+#10370000
+0!
+04
+0P!
+0S!
+
+#10375000
+1!
+b10000001110 3
+14
+1P!
+1S!
+
+#10380000
+0!
+04
+0P!
+0S!
+
+#10385000
+1!
+b10000001111 3
+14
+1P!
+1S!
+
+#10390000
+0!
+04
+0P!
+0S!
+
+#10395000
+1!
+b10000010000 3
+14
+1P!
+1S!
+
+#10400000
+0!
+04
+0P!
+0S!
+
+#10405000
+1!
+b10000010001 3
+14
+1P!
+1S!
+
+#10410000
+0!
+04
+0P!
+0S!
+
+#10415000
+1!
+b10000010010 3
+14
+1P!
+1S!
+
+#10420000
+0!
+04
+0P!
+0S!
+
+#10425000
+1!
+b10000010011 3
+14
+1P!
+1S!
+
+#10430000
+0!
+04
+0P!
+0S!
+
+#10435000
+1!
+b10000010100 3
+14
+1P!
+1S!
+
+#10440000
+0!
+04
+0P!
+0S!
+
+#10445000
+1!
+b10000010101 3
+14
+1P!
+1S!
+
+#10450000
+0!
+04
+0P!
+0S!
+
+#10455000
+1!
+b10000010110 3
+14
+1P!
+1S!
+
+#10460000
+0!
+04
+0P!
+0S!
+
+#10465000
+1!
+b10000010111 3
+14
+1P!
+1S!
+
+#10470000
+0!
+04
+0P!
+0S!
+
+#10475000
+1!
+b10000011000 3
+14
+1P!
+1S!
+
+#10480000
+0!
+04
+0P!
+0S!
+
+#10485000
+1!
+b10000011001 3
+14
+1P!
+1S!
+
+#10490000
+0!
+04
+0P!
+0S!
+
+#10495000
+1!
+b10000011010 3
+14
+1P!
+1S!
+
+#10500000
+0!
+04
+0P!
+0S!
+
+#10505000
+1!
+b10000011011 3
+14
+1P!
+1S!
+
+#10510000
+0!
+04
+0P!
+0S!
+
+#10515000
+1!
+b10000011100 3
+14
+1P!
+1S!
+
+#10520000
+0!
+04
+0P!
+0S!
+
+#10525000
+1!
+b10000011101 3
+14
+1P!
+1S!
+
+#10530000
+0!
+04
+0P!
+0S!
+
+#10535000
+1!
+b10000011110 3
+14
+1P!
+1S!
+
+#10540000
+0!
+04
+0P!
+0S!
+
+#10545000
+1!
+b10000011111 3
+14
+1P!
+1S!
+
+#10550000
+0!
+04
+0P!
+0S!
+
+#10555000
+1!
+b10000100000 3
+14
+1P!
+1S!
+
+#10560000
+0!
+04
+0P!
+0S!
+
+#10565000
+1!
+b10000100001 3
+14
+1P!
+1S!
+
+#10570000
+0!
+04
+0P!
+0S!
+
+#10575000
+1!
+b10000100010 3
+14
+1P!
+1S!
+
+#10580000
+0!
+04
+0P!
+0S!
+
+#10585000
+1!
+b10000100011 3
+14
+1P!
+1S!
+
+#10590000
+0!
+04
+0P!
+0S!
+
+#10595000
+1!
+b10000100100 3
+14
+1P!
+1S!
+
+#10600000
+0!
+04
+0P!
+0S!
+
+#10605000
+1!
+b10000100101 3
+14
+1P!
+1S!
+
+#10610000
+0!
+04
+0P!
+0S!
+
+#10615000
+1!
+b10000100110 3
+14
+1P!
+1S!
+
+#10620000
+0!
+04
+0P!
+0S!
+
+#10625000
+1!
+b10000100111 3
+14
+1P!
+1S!
+
+#10630000
+0!
+04
+0P!
+0S!
+
+#10635000
+1!
+b10000101000 3
+14
+1P!
+1S!
+
+#10640000
+0!
+04
+0P!
+0S!
+
+#10645000
+1!
+b10000101001 3
+14
+1P!
+1S!
+
+#10650000
+0!
+04
+0P!
+0S!
+
+#10655000
+1!
+b10000101010 3
+14
+1P!
+1S!
+
+#10660000
+0!
+04
+0P!
+0S!
+
+#10665000
+1!
+b10000101011 3
+14
+1P!
+1S!
+
+#10670000
+0!
+04
+0P!
+0S!
+
+#10675000
+1!
+b10000101100 3
+14
+1P!
+1S!
+
+#10680000
+0!
+04
+0P!
+0S!
+
+#10685000
+1!
+b10000101101 3
+14
+1P!
+1S!
+
+#10690000
+0!
+04
+0P!
+0S!
+
+#10695000
+1!
+b10000101110 3
+14
+1P!
+1S!
+
+#10700000
+0!
+04
+0P!
+0S!
+
+#10705000
+1!
+b10000101111 3
+14
+1P!
+1S!
+
+#10710000
+0!
+04
+0P!
+0S!
+
+#10715000
+1!
+b10000110000 3
+14
+1P!
+1S!
+
+#10720000
+0!
+04
+0P!
+0S!
+
+#10725000
+1!
+b10000110001 3
+14
+1P!
+1S!
+
+#10730000
+0!
+04
+0P!
+0S!
+
+#10735000
+1!
+b10000110010 3
+14
+1P!
+1S!
+
+#10740000
+0!
+04
+0P!
+0S!
+
+#10745000
+1!
+b10000110011 3
+14
+1P!
+1S!
+
+#10750000
+0!
+04
+0P!
+0S!
+
+#10755000
+1!
+b10000110100 3
+14
+1P!
+1S!
+
+#10760000
+0!
+04
+0P!
+0S!
+
+#10765000
+1!
+b10000110101 3
+14
+1P!
+1S!
+
+#10770000
+0!
+04
+0P!
+0S!
+
+#10775000
+1!
+b10000110110 3
+14
+1P!
+1S!
+
+#10780000
+0!
+04
+0P!
+0S!
+
+#10785000
+1!
+b10000110111 3
+14
+1P!
+1S!
+
+#10790000
+0!
+04
+0P!
+0S!
+
+#10795000
+1!
+b10000111000 3
+14
+1P!
+1S!
+
+#10800000
+0!
+04
+0P!
+0S!
+
+#10805000
+1!
+b10000111001 3
+14
+1P!
+1S!
+
+#10810000
+0!
+04
+0P!
+0S!
+
+#10815000
+1!
+b10000111010 3
+14
+1P!
+1S!
+
+#10820000
+0!
+04
+0P!
+0S!
+
+#10825000
+1!
+b10000111011 3
+14
+1P!
+1S!
+
+#10830000
+0!
+04
+0P!
+0S!
+
+#10835000
+1!
+b10000111100 3
+14
+1P!
+1S!
+
+#10840000
+0!
+04
+0P!
+0S!
+
+#10845000
+1!
+b10000111101 3
+14
+1P!
+1S!
+
+#10850000
+0!
+04
+0P!
+0S!
+
+#10855000
+1!
+b10000111110 3
+14
+1P!
+1S!
+
+#10860000
+0!
+04
+0P!
+0S!
+
+#10865000
+1!
+b10000111111 3
+14
+1P!
+1S!
+
+#10870000
+0!
+04
+0P!
+0S!
+
+#10875000
+1!
+b10001000000 3
+14
+1P!
+1S!
+
+#10880000
+0!
+04
+0P!
+0S!
+
+#10885000
+1!
+b10001000001 3
+14
+1P!
+1S!
+
+#10890000
+0!
+04
+0P!
+0S!
+
+#10895000
+1!
+b10001000010 3
+14
+1P!
+1S!
+
+#10900000
+0!
+04
+0P!
+0S!
+
+#10905000
+1!
+b10001000011 3
+14
+1P!
+1S!
+
+#10910000
+0!
+04
+0P!
+0S!
+
+#10915000
+1!
+b10001000100 3
+14
+1P!
+1S!
+
+#10920000
+0!
+04
+0P!
+0S!
+
+#10925000
+1!
+b10001000101 3
+14
+1P!
+1S!
+
+#10930000
+0!
+04
+0P!
+0S!
+
+#10935000
+1!
+b10001000110 3
+14
+1P!
+1S!
+
+#10940000
+0!
+04
+0P!
+0S!
+
+#10945000
+1!
+b10001000111 3
+14
+1P!
+1S!
+
+#10950000
+0!
+04
+0P!
+0S!
+
+#10955000
+1!
+b10001001000 3
+14
+1P!
+1S!
+
+#10960000
+0!
+04
+0P!
+0S!
+
+#10965000
+1!
+b10001001001 3
+14
+1P!
+1S!
+
+#10970000
+0!
+04
+0P!
+0S!
+
+#10975000
+1!
+b10001001010 3
+14
+1P!
+1S!
+
+#10980000
+0!
+04
+0P!
+0S!
+
+#10985000
+1!
+b10001001011 3
+14
+1P!
+1S!
+
+#10990000
+0!
+04
+0P!
+0S!
+
+#10995000
+1!
+b10001001100 3
+14
+1P!
+1S!
+
+#11000000
+0!
+04
+0P!
+0S!
+
+#11005000
+1!
+b10001001101 3
+14
+1P!
+1S!
+
+#11010000
+0!
+04
+0P!
+0S!
+
+#11015000
+1!
+b10001001110 3
+14
+1P!
+1S!
+
+#11020000
+0!
+04
+0P!
+0S!
+
+#11025000
+1!
+b10001001111 3
+14
+1P!
+1S!
+
+#11030000
+0!
+04
+0P!
+0S!
+
+#11035000
+1!
+b10001010000 3
+14
+1P!
+1S!
+
+#11040000
+0!
+04
+0P!
+0S!
+
+#11045000
+1!
+b10001010001 3
+14
+1P!
+1S!
+
+#11050000
+0!
+04
+0P!
+0S!
+
+#11055000
+1!
+b10001010010 3
+14
+1P!
+1S!
+
+#11060000
+0!
+04
+0P!
+0S!
+
+#11065000
+1!
+b10001010011 3
+14
+1P!
+1S!
+
+#11070000
+0!
+04
+0P!
+0S!
+
+#11075000
+1!
+b10001010100 3
+14
+1P!
+1S!
+
+#11080000
+0!
+04
+0P!
+0S!
+
+#11085000
+1!
+b10001010101 3
+14
+1P!
+1S!
+
+#11090000
+0!
+04
+0P!
+0S!
+
+#11095000
+1!
+b10001010110 3
+14
+1P!
+1S!
+
+#11100000
+0!
+04
+0P!
+0S!
+
+#11105000
+1!
+b10001010111 3
+14
+1P!
+1S!
+
+#11110000
+0!
+04
+0P!
+0S!
+
+#11115000
+1!
+b10001011000 3
+14
+1P!
+1S!
+
+#11120000
+0!
+04
+0P!
+0S!
+
+#11125000
+1!
+b10001011001 3
+14
+1P!
+1S!
+
+#11130000
+0!
+04
+0P!
+0S!
+
+#11135000
+1!
+b10001011010 3
+14
+1P!
+1S!
+
+#11140000
+0!
+04
+0P!
+0S!
+
+#11145000
+1!
+b10001011011 3
+14
+1P!
+1S!
+
+#11150000
+0!
+04
+0P!
+0S!
+
+#11155000
+1!
+b10001011100 3
+14
+1P!
+1S!
+
+#11160000
+0!
+04
+0P!
+0S!
+
+#11165000
+1!
+b10001011101 3
+14
+1P!
+1S!
+
+#11170000
+0!
+04
+0P!
+0S!
+
+#11175000
+1!
+b10001011110 3
+14
+1P!
+1S!
+
+#11180000
+0!
+04
+0P!
+0S!
+
+#11185000
+1!
+b10001011111 3
+14
+1P!
+1S!
+
+#11190000
+0!
+04
+0P!
+0S!
+
+#11195000
+1!
+b10001100000 3
+14
+1P!
+1S!
+
+#11200000
+0!
+04
+0P!
+0S!
+
+#11205000
+1!
+b10001100001 3
+14
+1P!
+1S!
+
+#11210000
+0!
+04
+0P!
+0S!
+
+#11215000
+1!
+b10001100010 3
+14
+1P!
+1S!
+
+#11220000
+0!
+04
+0P!
+0S!
+
+#11225000
+1!
+b10001100011 3
+14
+1P!
+1S!
+
+#11230000
+0!
+04
+0P!
+0S!
+
+#11235000
+1!
+b10001100100 3
+14
+1P!
+1S!
+
+#11240000
+0!
+04
+0P!
+0S!
+
+#11245000
+1!
+b10001100101 3
+14
+1P!
+1S!
+
+#11250000
+0!
+04
+0P!
+0S!
+
+#11255000
+1!
+b10001100110 3
+14
+1P!
+1S!
+
+#11260000
+0!
+04
+0P!
+0S!
+
+#11265000
+1!
+b10001100111 3
+14
+1P!
+1S!
+
+#11270000
+0!
+04
+0P!
+0S!
+
+#11275000
+1!
+b10001101000 3
+14
+1P!
+1S!
+
+#11280000
+0!
+04
+0P!
+0S!
+
+#11285000
+1!
+b10001101001 3
+14
+1P!
+1S!
+
+#11290000
+0!
+04
+0P!
+0S!
+
+#11295000
+1!
+b10001101010 3
+14
+1P!
+1S!
+
+#11300000
+0!
+04
+0P!
+0S!
+
+#11305000
+1!
+b10001101011 3
+14
+1P!
+1S!
+
+#11310000
+0!
+04
+0P!
+0S!
+
+#11315000
+1!
+b10001101100 3
+14
+1P!
+1S!
+
+#11320000
+0!
+04
+0P!
+0S!
+
+#11325000
+1!
+b10001101101 3
+14
+1P!
+1S!
+
+#11330000
+0!
+04
+0P!
+0S!
+
+#11335000
+1!
+b10001101110 3
+14
+1P!
+1S!
+
+#11340000
+0!
+04
+0P!
+0S!
+
+#11345000
+1!
+b10001101111 3
+14
+1P!
+1S!
+
+#11350000
+0!
+04
+0P!
+0S!
+
+#11355000
+1!
+b10001110000 3
+14
+1P!
+1S!
+
+#11360000
+0!
+04
+0P!
+0S!
+
+#11365000
+1!
+b10001110001 3
+14
+1P!
+1S!
+
+#11370000
+0!
+04
+0P!
+0S!
+
+#11375000
+1!
+b10001110010 3
+14
+1P!
+1S!
+
+#11380000
+0!
+04
+0P!
+0S!
+
+#11385000
+1!
+b10001110011 3
+14
+1P!
+1S!
+
+#11390000
+0!
+04
+0P!
+0S!
+
+#11395000
+1!
+b10001110100 3
+14
+1P!
+1S!
+
+#11400000
+0!
+04
+0P!
+0S!
+
+#11405000
+1!
+b10001110101 3
+14
+1P!
+1S!
+
+#11410000
+0!
+04
+0P!
+0S!
+
+#11415000
+1!
+b10001110110 3
+14
+1P!
+1S!
+
+#11420000
+0!
+04
+0P!
+0S!
+
+#11425000
+1!
+b10001110111 3
+14
+1P!
+1S!
+
+#11430000
+0!
+04
+0P!
+0S!
+
+#11435000
+1!
+b10001111000 3
+14
+1P!
+1S!
+
+#11440000
+0!
+04
+0P!
+0S!
+
+#11445000
+1!
+b10001111001 3
+14
+1P!
+1S!
+
+#11450000
+0!
+04
+0P!
+0S!
+
+#11455000
+1!
+b10001111010 3
+14
+1P!
+1S!
+
+#11460000
+0!
+04
+0P!
+0S!
+
+#11465000
+1!
+b10001111011 3
+14
+1P!
+1S!
+
+#11470000
+0!
+04
+0P!
+0S!
+
+#11475000
+1!
+b10001111100 3
+14
+1P!
+1S!
+
+#11480000
+0!
+04
+0P!
+0S!
+
+#11485000
+1!
+b10001111101 3
+14
+1P!
+1S!
+
+#11490000
+0!
+04
+0P!
+0S!
+
+#11495000
+1!
+b10001111110 3
+14
+1P!
+1S!
+
+#11500000
+0!
+04
+0P!
+0S!
+
+#11505000
+1!
+b10001111111 3
+14
+1P!
+1S!
+
+#11510000
+0!
+04
+0P!
+0S!
+
+#11515000
+1!
+b10010000000 3
+14
+1P!
+1S!
+
+#11520000
+0!
+04
+0P!
+0S!
+
+#11525000
+1!
+b10010000001 3
+14
+1P!
+1S!
+
+#11530000
+0!
+04
+0P!
+0S!
+
+#11535000
+1!
+b10010000010 3
+14
+1P!
+1S!
+
+#11540000
+0!
+04
+0P!
+0S!
+
+#11545000
+1!
+b10010000011 3
+14
+1P!
+1S!
+
+#11550000
+0!
+04
+0P!
+0S!
+
+#11555000
+1!
+b10010000100 3
+14
+1P!
+1S!
+
+#11560000
+0!
+04
+0P!
+0S!
+
+#11565000
+1!
+b10010000101 3
+14
+1P!
+1S!
+
+#11570000
+0!
+04
+0P!
+0S!
+
+#11575000
+1!
+b10010000110 3
+14
+1P!
+1S!
+
+#11580000
+0!
+04
+0P!
+0S!
+
+#11585000
+1!
+b10010000111 3
+14
+1P!
+1S!
+
+#11590000
+0!
+04
+0P!
+0S!
+
+#11595000
+1!
+b10010001000 3
+14
+1P!
+1S!
+
+#11600000
+0!
+04
+0P!
+0S!
+
+#11605000
+1!
+b10010001001 3
+14
+1P!
+1S!
+
+#11610000
+0!
+04
+0P!
+0S!
+
+#11615000
+1!
+b10010001010 3
+14
+1P!
+1S!
+
+#11620000
+0!
+04
+0P!
+0S!
+
+#11625000
+1!
+b10010001011 3
+14
+1P!
+1S!
+
+#11630000
+0!
+04
+0P!
+0S!
+
+#11635000
+1!
+b10010001100 3
+14
+1P!
+1S!
+
+#11640000
+0!
+04
+0P!
+0S!
+
+#11645000
+1!
+b10010001101 3
+14
+1P!
+1S!
+
+#11650000
+0!
+04
+0P!
+0S!
+
+#11655000
+1!
+b10010001110 3
+14
+1P!
+1S!
+
+#11660000
+0!
+04
+0P!
+0S!
+
+#11665000
+1!
+b10010001111 3
+14
+1P!
+1S!
+
+#11670000
+0!
+04
+0P!
+0S!
+
+#11675000
+1!
+b10010010000 3
+14
+1P!
+1S!
+
+#11680000
+0!
+04
+0P!
+0S!
+
+#11685000
+1!
+b10010010001 3
+14
+1P!
+1S!
+
+#11690000
+0!
+04
+0P!
+0S!
+
+#11695000
+1!
+b10010010010 3
+14
+1P!
+1S!
+
+#11700000
+0!
+04
+0P!
+0S!
+
+#11705000
+1!
+b10010010011 3
+14
+1P!
+1S!
+
+#11710000
+0!
+04
+0P!
+0S!
+
+#11715000
+1!
+b10010010100 3
+14
+1P!
+1S!
+
+#11720000
+0!
+04
+0P!
+0S!
+
+#11725000
+1!
+b10010010101 3
+14
+1P!
+1S!
+
+#11730000
+0!
+04
+0P!
+0S!
+
+#11735000
+1!
+b10010010110 3
+14
+1P!
+1S!
+
+#11740000
+0!
+04
+0P!
+0S!
+
+#11745000
+1!
+b10010010111 3
+14
+1P!
+1S!
+
+#11750000
+0!
+04
+0P!
+0S!
+
+#11755000
+1!
+b10010011000 3
+14
+1P!
+1S!
+
+#11760000
+0!
+04
+0P!
+0S!
+
+#11765000
+1!
+b10010011001 3
+14
+1P!
+1S!
+
+#11770000
+0!
+04
+0P!
+0S!
+
+#11775000
+1!
+b10010011010 3
+14
+1P!
+1S!
+
+#11780000
+0!
+04
+0P!
+0S!
+
+#11785000
+1!
+b10010011011 3
+14
+1P!
+1S!
+
+#11790000
+0!
+04
+0P!
+0S!
+
+#11795000
+1!
+b10010011100 3
+14
+1P!
+1S!
+
+#11800000
+0!
+04
+0P!
+0S!
+
+#11805000
+1!
+b10010011101 3
+14
+1P!
+1S!
+
+#11810000
+0!
+04
+0P!
+0S!
+
+#11815000
+1!
+b10010011110 3
+14
+1P!
+1S!
+
+#11820000
+0!
+04
+0P!
+0S!
+
+#11825000
+1!
+b10010011111 3
+14
+1P!
+1S!
+
+#11830000
+0!
+04
+0P!
+0S!
+
+#11835000
+1!
+b10010100000 3
+14
+1P!
+1S!
+
+#11840000
+0!
+04
+0P!
+0S!
+
+#11845000
+1!
+b10010100001 3
+14
+1P!
+1S!
+
+#11850000
+0!
+04
+0P!
+0S!
+
+#11855000
+1!
+b10010100010 3
+14
+1P!
+1S!
+
+#11860000
+0!
+04
+0P!
+0S!
+
+#11865000
+1!
+b10010100011 3
+14
+1P!
+1S!
+
+#11870000
+0!
+04
+0P!
+0S!
+
+#11875000
+1!
+b10010100100 3
+14
+1P!
+1S!
+
+#11880000
+0!
+04
+0P!
+0S!
+
+#11885000
+1!
+b10010100101 3
+14
+1P!
+1S!
+
+#11890000
+0!
+04
+0P!
+0S!
+
+#11895000
+1!
+b10010100110 3
+14
+1P!
+1S!
+
+#11900000
+0!
+04
+0P!
+0S!
+
+#11905000
+1!
+b10010100111 3
+14
+1P!
+1S!
+
+#11910000
+0!
+04
+0P!
+0S!
+
+#11915000
+1!
+b10010101000 3
+14
+1P!
+1S!
+
+#11920000
+0!
+04
+0P!
+0S!
+
+#11925000
+1!
+b10010101001 3
+14
+1P!
+1S!
+
+#11930000
+0!
+04
+0P!
+0S!
+
+#11935000
+1!
+b10010101010 3
+14
+1P!
+1S!
+
+#11940000
+0!
+04
+0P!
+0S!
+
+#11945000
+1!
+b10010101011 3
+14
+1P!
+1S!
+
+#11950000
+0!
+04
+0P!
+0S!
+
+#11955000
+1!
+b10010101100 3
+14
+1P!
+1S!
+
+#11960000
+0!
+04
+0P!
+0S!
+
+#11965000
+1!
+b10010101101 3
+14
+1P!
+1S!
+
+#11970000
+0!
+04
+0P!
+0S!
+
+#11975000
+1!
+b10010101110 3
+14
+1P!
+1S!
+
+#11980000
+0!
+04
+0P!
+0S!
+
+#11985000
+1!
+b10010101111 3
+14
+1P!
+1S!
+
+#11990000
+0!
+04
+0P!
+0S!
+
+#11995000
+1!
+b10010110000 3
+14
+1P!
+1S!
+
+#12000000
+0!
+04
+0P!
+0S!
+
+#12005000
+1!
+b10010110001 3
+14
+1P!
+1S!
+
+#12010000
+0!
+04
+0P!
+0S!
+
+#12015000
+1!
+b10010110010 3
+14
+1P!
+1S!
+
+#12020000
+0!
+04
+0P!
+0S!
+
+#12025000
+1!
+b10010110011 3
+14
+1P!
+1S!
+
+#12030000
+0!
+04
+0P!
+0S!
+
+#12035000
+1!
+b10010110100 3
+14
+1P!
+1S!
+
+#12040000
+0!
+04
+0P!
+0S!
+
+#12045000
+1!
+b10010110101 3
+14
+1P!
+1S!
+
+#12050000
+0!
+04
+0P!
+0S!
+
+#12055000
+1!
+b10010110110 3
+14
+1P!
+1S!
+
+#12060000
+0!
+04
+0P!
+0S!
+
+#12065000
+1!
+b10010110111 3
+14
+1P!
+1S!
+
+#12070000
+0!
+04
+0P!
+0S!
+
+#12075000
+1!
+b10010111000 3
+14
+1P!
+1S!
+
+#12080000
+0!
+04
+0P!
+0S!
+
+#12085000
+1!
+b10010111001 3
+14
+1P!
+1S!
+
+#12090000
+0!
+04
+0P!
+0S!
+
+#12095000
+1!
+b10010111010 3
+14
+1P!
+1S!
+
+#12100000
+0!
+04
+0P!
+0S!
+
+#12105000
+1!
+b10010111011 3
+14
+1P!
+1S!
+
+#12110000
+0!
+04
+0P!
+0S!
+
+#12115000
+1!
+b10010111100 3
+14
+1P!
+1S!
+
+#12120000
+0!
+04
+0P!
+0S!
+
+#12125000
+1!
+b10010111101 3
+14
+1P!
+1S!
+
+#12130000
+0!
+04
+0P!
+0S!
+
+#12135000
+1!
+b10010111110 3
+14
+1P!
+1S!
+
+#12140000
+0!
+04
+0P!
+0S!
+
+#12145000
+1!
+b10010111111 3
+14
+1P!
+1S!
+
+#12150000
+0!
+04
+0P!
+0S!
+
+#12155000
+1!
+b10011000000 3
+14
+1P!
+1S!
+
+#12160000
+0!
+04
+0P!
+0S!
+
+#12165000
+1!
+b10011000001 3
+14
+1P!
+1S!
+
+#12170000
+0!
+04
+0P!
+0S!
+
+#12175000
+1!
+b10011000010 3
+14
+1P!
+1S!
+
+#12180000
+0!
+04
+0P!
+0S!
+
+#12185000
+1!
+b10011000011 3
+14
+1P!
+1S!
+
+#12190000
+0!
+04
+0P!
+0S!
+
+#12195000
+1!
+b10011000100 3
+14
+1P!
+1S!
+
+#12200000
+0!
+04
+0P!
+0S!
+
+#12205000
+1!
+b10011000101 3
+14
+1P!
+1S!
+
+#12210000
+0!
+04
+0P!
+0S!
+
+#12215000
+1!
+b10011000110 3
+14
+1P!
+1S!
+
+#12220000
+0!
+04
+0P!
+0S!
+
+#12225000
+1!
+b10011000111 3
+14
+1P!
+1S!
+
+#12230000
+0!
+04
+0P!
+0S!
+
+#12235000
+1!
+b10011001000 3
+14
+1P!
+1S!
+
+#12240000
+0!
+04
+0P!
+0S!
+
+#12245000
+1!
+b10011001001 3
+14
+1P!
+1S!
+
+#12250000
+0!
+04
+0P!
+0S!
+
+#12255000
+1!
+b10011001010 3
+14
+1P!
+1S!
+
+#12260000
+0!
+04
+0P!
+0S!
+
+#12265000
+1!
+b10011001011 3
+14
+1P!
+1S!
+
+#12270000
+0!
+04
+0P!
+0S!
+
+#12275000
+1!
+b10011001100 3
+14
+1P!
+1S!
+
+#12280000
+0!
+04
+0P!
+0S!
+
+#12285000
+1!
+b10011001101 3
+14
+1P!
+1S!
+
+#12290000
+0!
+04
+0P!
+0S!
+
+#12295000
+1!
+b10011001110 3
+14
+1P!
+1S!
+
+#12300000
+0!
+04
+0P!
+0S!
+
+#12305000
+1!
+b10011001111 3
+14
+1P!
+1S!
+
+#12310000
+0!
+04
+0P!
+0S!
+
+#12315000
+1!
+b10011010000 3
+14
+1P!
+1S!
+
+#12320000
+0!
+04
+0P!
+0S!
+
+#12325000
+1!
+b10011010001 3
+14
+1P!
+1S!
+
+#12330000
+0!
+04
+0P!
+0S!
+
+#12335000
+1!
+b10011010010 3
+14
+1P!
+1S!
+
+#12340000
+0!
+04
+0P!
+0S!
+
+#12345000
+1!
+b10011010011 3
+14
+1P!
+1S!
+
+#12350000
+0!
+04
+0P!
+0S!
+
+#12355000
+1!
+b10011010100 3
+14
+1P!
+1S!
+
+#12360000
+0!
+04
+0P!
+0S!
+
+#12365000
+1!
+b10011010101 3
+14
+1P!
+1S!
+
+#12370000
+0!
+04
+0P!
+0S!
+
+#12375000
+1!
+b10011010110 3
+14
+1P!
+1S!
+
+#12380000
+0!
+04
+0P!
+0S!
+
+#12385000
+1!
+b10011010111 3
+14
+1P!
+1S!
+
+#12390000
+0!
+04
+0P!
+0S!
+
+#12395000
+1!
+b10011011000 3
+14
+1P!
+1S!
+
+#12400000
+0!
+04
+0P!
+0S!
+
+#12405000
+1!
+b10011011001 3
+14
+1P!
+1S!
+
+#12410000
+0!
+04
+0P!
+0S!
+
+#12415000
+1!
+b10011011010 3
+14
+1P!
+1S!
+
+#12420000
+0!
+04
+0P!
+0S!
+
+#12425000
+1!
+b10011011011 3
+14
+1P!
+1S!
+
+#12430000
+0!
+04
+0P!
+0S!
+
+#12435000
+1!
+b10011011100 3
+14
+1P!
+1S!
+
+#12440000
+0!
+04
+0P!
+0S!
+
+#12445000
+1!
+b10011011101 3
+14
+1P!
+1S!
+
+#12450000
+0!
+04
+0P!
+0S!
+
+#12455000
+1!
+b10011011110 3
+14
+1P!
+1S!
+
+#12460000
+0!
+04
+0P!
+0S!
+
+#12465000
+1!
+b10011011111 3
+14
+1P!
+1S!
+
+#12470000
+0!
+04
+0P!
+0S!
+
+#12475000
+1!
+b10011100000 3
+14
+1P!
+1S!
+
+#12480000
+0!
+04
+0P!
+0S!
+
+#12485000
+1!
+b10011100001 3
+14
+1P!
+1S!
+
+#12490000
+0!
+04
+0P!
+0S!
+
+#12495000
+1!
+b10011100010 3
+14
+1P!
+1S!
+
+#12500000
+0!
+04
+0P!
+0S!
+
+#12505000
+1!
+b10011100011 3
+14
+1P!
+1S!
+
+#12510000
+0!
+04
+0P!
+0S!
+
+#12515000
+1!
+b10011100100 3
+14
+1P!
+1S!
+
+#12520000
+0!
+04
+0P!
+0S!
+
+#12525000
+1!
+b10011100101 3
+14
+1P!
+1S!
+
+#12530000
+0!
+04
+0P!
+0S!
+
+#12535000
+1!
+b10011100110 3
+14
+1P!
+1S!
+
+#12540000
+0!
+04
+0P!
+0S!
+
+#12545000
+1!
+b10011100111 3
+14
+1P!
+1S!
+
+#12550000
+0!
+04
+0P!
+0S!
+
+#12555000
+1!
+b10011101000 3
+14
+1P!
+1S!
+
+#12560000
+0!
+04
+0P!
+0S!
+
+#12565000
+1!
+b10011101001 3
+14
+1P!
+1S!
+
+#12570000
+0!
+04
+0P!
+0S!
+
+#12575000
+1!
+b10011101010 3
+14
+1P!
+1S!
+
+#12580000
+0!
+04
+0P!
+0S!
+
+#12585000
+1!
+b10011101011 3
+14
+1P!
+1S!
+
+#12590000
+0!
+04
+0P!
+0S!
+
+#12595000
+1!
+b10011101100 3
+14
+1P!
+1S!
+
+#12600000
+0!
+04
+0P!
+0S!
+
+#12605000
+1!
+b10011101101 3
+14
+1P!
+1S!
+
+#12610000
+0!
+04
+0P!
+0S!
+
+#12615000
+1!
+b10011101110 3
+14
+1P!
+1S!
+
+#12620000
+0!
+04
+0P!
+0S!
+
+#12625000
+1!
+b10011101111 3
+14
+1P!
+1S!
+
+#12630000
+0!
+04
+0P!
+0S!
+
+#12635000
+1!
+b10011110000 3
+14
+1P!
+1S!
+
+#12640000
+0!
+04
+0P!
+0S!
+
+#12645000
+1!
+b10011110001 3
+14
+1P!
+1S!
+
+#12650000
+0!
+04
+0P!
+0S!
+
+#12655000
+1!
+b10011110010 3
+14
+1P!
+1S!
+
+#12660000
+0!
+04
+0P!
+0S!
+
+#12665000
+1!
+b10011110011 3
+14
+1P!
+1S!
+
+#12670000
+0!
+04
+0P!
+0S!
+
+#12675000
+1!
+b10011110100 3
+14
+1P!
+1S!
+
+#12680000
+0!
+04
+0P!
+0S!
+
+#12685000
+1!
+b10011110101 3
+14
+1P!
+1S!
+
+#12690000
+0!
+04
+0P!
+0S!
+
+#12695000
+1!
+b10011110110 3
+14
+1P!
+1S!
+
+#12700000
+0!
+04
+0P!
+0S!
+
+#12705000
+1!
+b10011110111 3
+14
+1P!
+1S!
+
+#12710000
+0!
+04
+0P!
+0S!
+
+#12715000
+1!
+b10011111000 3
+14
+1P!
+1S!
+
+#12720000
+0!
+04
+0P!
+0S!
+
+#12725000
+1!
+b10011111001 3
+14
+1P!
+1S!
+
+#12730000
+0!
+04
+0P!
+0S!
+
+#12735000
+1!
+b10011111010 3
+14
+1P!
+1S!
+
+#12740000
+0!
+04
+0P!
+0S!
+
+#12745000
+1!
+b10011111011 3
+14
+1P!
+1S!
+
+#12750000
+0!
+04
+0P!
+0S!
+
+#12755000
+1!
+b10011111100 3
+14
+1P!
+1S!
+
+#12760000
+0!
+04
+0P!
+0S!
+
+#12765000
+1!
+b10011111101 3
+14
+1P!
+1S!
+
+#12770000
+0!
+04
+0P!
+0S!
+
+#12775000
+1!
+b10011111110 3
+14
+1P!
+1S!
+
+#12780000
+0!
+04
+0P!
+0S!
+
+#12785000
+1!
+b10011111111 3
+14
+1P!
+1S!
+
+#12790000
+0!
+04
+0P!
+0S!
+
+#12795000
+1!
+b10100000000 3
+14
+1P!
+1S!
+
+#12800000
+0!
+04
+0P!
+0S!
+
+#12805000
+1!
+b10100000001 3
+14
+1P!
+1S!
+
+#12810000
+0!
+04
+0P!
+0S!
+
+#12815000
+1!
+b10100000010 3
+14
+1P!
+1S!
+
+#12820000
+0!
+04
+0P!
+0S!
+
+#12825000
+1!
+b10100000011 3
+14
+1P!
+1S!
+
+#12830000
+0!
+04
+0P!
+0S!
+
+#12835000
+1!
+b10100000100 3
+14
+1P!
+1S!
+
+#12840000
+0!
+04
+0P!
+0S!
+
+#12845000
+1!
+b10100000101 3
+14
+1P!
+1S!
+
+#12850000
+0!
+04
+0P!
+0S!
+
+#12855000
+1!
+b10100000110 3
+14
+1P!
+1S!
+
+#12860000
+0!
+04
+0P!
+0S!
+
+#12865000
+1!
+b10100000111 3
+14
+1P!
+1S!
+
+#12870000
+0!
+04
+0P!
+0S!
+
+#12875000
+1!
+b10100001000 3
+14
+1P!
+1S!
+
+#12880000
+0!
+04
+0P!
+0S!
+
+#12885000
+1!
+b10100001001 3
+14
+1P!
+1S!
+
+#12890000
+0!
+04
+0P!
+0S!
+
+#12895000
+1!
+b10100001010 3
+14
+1P!
+1S!
+
+#12900000
+0!
+04
+0P!
+0S!
+
+#12905000
+1!
+b10100001011 3
+14
+1P!
+1S!
+
+#12910000
+0!
+04
+0P!
+0S!
+
+#12915000
+1!
+b10100001100 3
+14
+1P!
+1S!
+
+#12920000
+0!
+04
+0P!
+0S!
+
+#12925000
+1!
+b10100001101 3
+14
+1P!
+1S!
+
+#12930000
+0!
+04
+0P!
+0S!
+
+#12935000
+1!
+b10100001110 3
+14
+1P!
+1S!
+
+#12940000
+0!
+04
+0P!
+0S!
+
+#12945000
+1!
+b10100001111 3
+14
+1P!
+1S!
+
+#12950000
+0!
+04
+0P!
+0S!
+
+#12955000
+1!
+b10100010000 3
+14
+1P!
+1S!
+
+#12960000
+0!
+04
+0P!
+0S!
+
+#12965000
+1!
+b10100010001 3
+14
+1P!
+1S!
+
+#12970000
+0!
+04
+0P!
+0S!
+
+#12975000
+1!
+b10100010010 3
+14
+1P!
+1S!
+
+#12980000
+0!
+04
+0P!
+0S!
+
+#12985000
+1!
+b10100010011 3
+14
+1P!
+1S!
+
+#12990000
+0!
+04
+0P!
+0S!
+
+#12995000
+1!
+b10100010100 3
+14
+1P!
+1S!
+
+#13000000
+0!
+04
+0P!
+0S!
+
+#13005000
+1!
+b10100010101 3
+14
+1P!
+1S!
+
+#13010000
+0!
+04
+0P!
+0S!
+
+#13015000
+1!
+b10100010110 3
+14
+1P!
+1S!
+
+#13020000
+0!
+04
+0P!
+0S!
+
+#13025000
+1!
+b10100010111 3
+14
+1P!
+1S!
+
+#13030000
+0!
+04
+0P!
+0S!
+
+#13035000
+1!
+b10100011000 3
+14
+1P!
+1S!
+
+#13040000
+0!
+04
+0P!
+0S!
+
+#13045000
+1!
+b10100011001 3
+14
+1P!
+1S!
+
+#13050000
+0!
+04
+0P!
+0S!
+
+#13055000
+1!
+b10100011010 3
+14
+1P!
+1S!
+
+#13060000
+0!
+04
+0P!
+0S!
+
+#13065000
+1!
+b10100011011 3
+14
+1P!
+1S!
+
+#13070000
+0!
+04
+0P!
+0S!
+
+#13075000
+1!
+b10100011100 3
+14
+1P!
+1S!
+
+#13080000
+0!
+04
+0P!
+0S!
+
+#13085000
+1!
+b10100011101 3
+14
+1P!
+1S!
+
+#13090000
+0!
+04
+0P!
+0S!
+
+#13095000
+1!
+b10100011110 3
+14
+1P!
+1S!
+
+#13100000
+0!
+04
+0P!
+0S!
+
+#13105000
+1!
+b10100011111 3
+14
+1P!
+1S!
+
+#13110000
+0!
+04
+0P!
+0S!
+
+#13115000
+1!
+b10100100000 3
+14
+1P!
+1S!
+
+#13120000
+0!
+04
+0P!
+0S!
+
+#13125000
+1!
+b10100100001 3
+14
+1P!
+1S!
+
+#13130000
+0!
+04
+0P!
+0S!
+
+#13135000
+1!
+b10100100010 3
+14
+1P!
+1S!
+
+#13140000
+0!
+04
+0P!
+0S!
+
+#13145000
+1!
+b10100100011 3
+14
+1P!
+1S!
+
+#13150000
+0!
+04
+0P!
+0S!
+
+#13155000
+1!
+b10100100100 3
+14
+1P!
+1S!
+
+#13160000
+0!
+04
+0P!
+0S!
+
+#13165000
+1!
+b10100100101 3
+14
+1P!
+1S!
+
+#13170000
+0!
+04
+0P!
+0S!
+
+#13175000
+1!
+b10100100110 3
+14
+1P!
+1S!
+
+#13180000
+0!
+04
+0P!
+0S!
+
+#13185000
+1!
+b10100100111 3
+14
+1P!
+1S!
+
+#13190000
+0!
+04
+0P!
+0S!
+
+#13195000
+1!
+b10100101000 3
+14
+1P!
+1S!
+
+#13200000
+0!
+04
+0P!
+0S!
+
+#13205000
+1!
+b10100101001 3
+14
+1P!
+1S!
+
+#13210000
+0!
+04
+0P!
+0S!
+
+#13215000
+1!
+b10100101010 3
+14
+1P!
+1S!
+
+#13220000
+0!
+04
+0P!
+0S!
+
+#13225000
+1!
+b10100101011 3
+14
+1P!
+1S!
+
+#13230000
+0!
+04
+0P!
+0S!
+
+#13235000
+1!
+b10100101100 3
+14
+1P!
+1S!
+
+#13240000
+0!
+04
+0P!
+0S!
+
+#13245000
+1!
+b10100101101 3
+14
+1P!
+1S!
+
+#13250000
+0!
+04
+0P!
+0S!
+
+#13255000
+1!
+b10100101110 3
+14
+1P!
+1S!
+
+#13260000
+0!
+04
+0P!
+0S!
+
+#13265000
+1!
+b10100101111 3
+14
+1P!
+1S!
+
+#13270000
+0!
+04
+0P!
+0S!
+
+#13275000
+1!
+b10100110000 3
+14
+1P!
+1S!
+
+#13280000
+0!
+04
+0P!
+0S!
+
+#13285000
+1!
+b10100110001 3
+14
+1P!
+1S!
+
+#13290000
+0!
+04
+0P!
+0S!
+
+#13295000
+1!
+b10100110010 3
+14
+1P!
+1S!
+
+#13300000
+0!
+04
+0P!
+0S!
+
+#13305000
+1!
+b10100110011 3
+14
+1P!
+1S!
+
+#13310000
+0!
+04
+0P!
+0S!
+
+#13315000
+1!
+b10100110100 3
+14
+1P!
+1S!
+
+#13320000
+0!
+04
+0P!
+0S!
+
+#13325000
+1!
+b10100110101 3
+14
+1P!
+1S!
+
+#13330000
+0!
+04
+0P!
+0S!
+
+#13335000
+1!
+b10100110110 3
+14
+1P!
+1S!
+
+#13340000
+0!
+04
+0P!
+0S!
+
+#13345000
+1!
+b10100110111 3
+14
+1P!
+1S!
+
+#13350000
+0!
+04
+0P!
+0S!
+
+#13355000
+1!
+b10100111000 3
+14
+1P!
+1S!
+
+#13360000
+0!
+04
+0P!
+0S!
+
+#13365000
+1!
+b10100111001 3
+14
+1P!
+1S!
+
+#13370000
+0!
+04
+0P!
+0S!
+
+#13375000
+1!
+b10100111010 3
+14
+1P!
+1S!
+
+#13380000
+0!
+04
+0P!
+0S!
+
+#13385000
+1!
+b10100111011 3
+14
+1P!
+1S!
+
+#13390000
+0!
+04
+0P!
+0S!
+
+#13395000
+1!
+b10100111100 3
+14
+1P!
+1S!
+
+#13400000
+0!
+04
+0P!
+0S!
+
+#13405000
+1!
+b10100111101 3
+14
+1P!
+1S!
+
+#13410000
+0!
+04
+0P!
+0S!
+
+#13415000
+1!
+b10100111110 3
+14
+1P!
+1S!
+
+#13420000
+0!
+04
+0P!
+0S!
+
+#13425000
+1!
+b10100111111 3
+14
+1P!
+1S!
+
+#13430000
+0!
+04
+0P!
+0S!
+
+#13435000
+1!
+b10101000000 3
+14
+1P!
+1S!
+
+#13440000
+0!
+04
+0P!
+0S!
+
+#13445000
+1!
+b10101000001 3
+14
+1P!
+1S!
+
+#13450000
+0!
+04
+0P!
+0S!
+
+#13455000
+1!
+b10101000010 3
+14
+1P!
+1S!
+
+#13460000
+0!
+04
+0P!
+0S!
+
+#13465000
+1!
+b10101000011 3
+14
+1P!
+1S!
+
+#13470000
+0!
+04
+0P!
+0S!
+
+#13475000
+1!
+b10101000100 3
+14
+1P!
+1S!
+
+#13480000
+0!
+04
+0P!
+0S!
+
+#13485000
+1!
+b10101000101 3
+14
+1P!
+1S!
+
+#13490000
+0!
+04
+0P!
+0S!
+
+#13495000
+1!
+b10101000110 3
+14
+1P!
+1S!
+
+#13500000
+0!
+04
+0P!
+0S!
+
+#13505000
+1!
+b10101000111 3
+14
+1P!
+1S!
+
+#13510000
+0!
+04
+0P!
+0S!
+
+#13515000
+1!
+b10101001000 3
+14
+1P!
+1S!
+
+#13520000
+0!
+04
+0P!
+0S!
+
+#13525000
+1!
+b10101001001 3
+14
+1P!
+1S!
+
+#13530000
+0!
+04
+0P!
+0S!
+
+#13535000
+1!
+b10101001010 3
+14
+1P!
+1S!
+
+#13540000
+0!
+04
+0P!
+0S!
+
+#13545000
+1!
+b10101001011 3
+14
+1P!
+1S!
+
+#13550000
+0!
+04
+0P!
+0S!
+
+#13555000
+1!
+b10101001100 3
+14
+1P!
+1S!
+
+#13560000
+0!
+04
+0P!
+0S!
+
+#13565000
+1!
+b10101001101 3
+14
+1P!
+1S!
+
+#13570000
+0!
+04
+0P!
+0S!
+
+#13575000
+1!
+b10101001110 3
+14
+1P!
+1S!
+
+#13580000
+0!
+04
+0P!
+0S!
+
+#13585000
+1!
+b10101001111 3
+14
+1P!
+1S!
+
+#13590000
+0!
+04
+0P!
+0S!
+
+#13595000
+1!
+b10101010000 3
+14
+1P!
+1S!
+
+#13600000
+0!
+04
+0P!
+0S!
+
+#13605000
+1!
+b10101010001 3
+14
+1P!
+1S!
+
+#13610000
+0!
+04
+0P!
+0S!
+
+#13615000
+1!
+b10101010010 3
+14
+1P!
+1S!
+
+#13620000
+0!
+04
+0P!
+0S!
+
+#13625000
+1!
+b10101010011 3
+14
+1P!
+1S!
+
+#13630000
+0!
+04
+0P!
+0S!
+
+#13635000
+1!
+b10101010100 3
+14
+1P!
+1S!
+
+#13640000
+0!
+04
+0P!
+0S!
+
+#13645000
+1!
+b10101010101 3
+14
+1P!
+1S!
+
+#13650000
+0!
+04
+0P!
+0S!
+
+#13655000
+1!
+b10101010110 3
+14
+1P!
+1S!
+
+#13660000
+0!
+04
+0P!
+0S!
+
+#13665000
+1!
+b10101010111 3
+14
+1P!
+1S!
+
+#13670000
+0!
+04
+0P!
+0S!
+
+#13675000
+1!
+b10101011000 3
+14
+1P!
+1S!
+
+#13680000
+0!
+04
+0P!
+0S!
+
+#13685000
+1!
+b10101011001 3
+14
+1P!
+1S!
+
+#13690000
+0!
+04
+0P!
+0S!
+
+#13695000
+1!
+b10101011010 3
+14
+1P!
+1S!
+
+#13700000
+0!
+04
+0P!
+0S!
+
+#13705000
+1!
+b10101011011 3
+14
+1P!
+1S!
+
+#13710000
+0!
+04
+0P!
+0S!
+
+#13715000
+1!
+b10101011100 3
+14
+1P!
+1S!
+
+#13720000
+0!
+04
+0P!
+0S!
+
+#13725000
+1!
+b10101011101 3
+14
+1P!
+1S!
+
+#13730000
+0!
+04
+0P!
+0S!
+
+#13735000
+1!
+b10101011110 3
+14
+1P!
+1S!
+
+#13740000
+0!
+04
+0P!
+0S!
+
+#13745000
+1!
+b10101011111 3
+14
+1P!
+1S!
+
+#13750000
+0!
+04
+0P!
+0S!
+
+#13755000
+1!
+b10101100000 3
+14
+1P!
+1S!
+
+#13760000
+0!
+04
+0P!
+0S!
+
+#13765000
+1!
+b10101100001 3
+14
+1P!
+1S!
+
+#13770000
+0!
+04
+0P!
+0S!
+
+#13775000
+1!
+b10101100010 3
+14
+1P!
+1S!
+
+#13780000
+0!
+04
+0P!
+0S!
+
+#13785000
+1!
+b10101100011 3
+14
+1P!
+1S!
+
+#13790000
+0!
+04
+0P!
+0S!
+
+#13795000
+1!
+b10101100100 3
+14
+1P!
+1S!
+
+#13800000
+0!
+04
+0P!
+0S!
+
+#13805000
+1!
+b10101100101 3
+14
+1P!
+1S!
+
+#13810000
+0!
+04
+0P!
+0S!
+
+#13815000
+1!
+b10101100110 3
+14
+1P!
+1S!
+
+#13820000
+0!
+04
+0P!
+0S!
+
+#13825000
+1!
+b10101100111 3
+14
+1P!
+1S!
+
+#13830000
+0!
+04
+0P!
+0S!
+
+#13835000
+1!
+b10101101000 3
+14
+1P!
+1S!
+
+#13840000
+0!
+04
+0P!
+0S!
+
+#13845000
+1!
+b10101101001 3
+14
+1P!
+1S!
+
+#13850000
+0!
+04
+0P!
+0S!
+
+#13855000
+1!
+b10101101010 3
+14
+1P!
+1S!
+
+#13860000
+0!
+04
+0P!
+0S!
+
+#13865000
+1!
+b10101101011 3
+14
+1P!
+1S!
+
+#13870000
+0!
+04
+0P!
+0S!
+
+#13875000
+1!
+b10101101100 3
+14
+1P!
+1S!
+
+#13880000
+0!
+04
+0P!
+0S!
+
+#13885000
+1!
+b10101101101 3
+14
+1P!
+1S!
+
+#13890000
+0!
+04
+0P!
+0S!
+
+#13895000
+1!
+b10101101110 3
+14
+1P!
+1S!
+
+#13900000
+0!
+04
+0P!
+0S!
+
+#13905000
+1!
+b10101101111 3
+14
+1P!
+1S!
+
+#13910000
+0!
+04
+0P!
+0S!
+
+#13915000
+1!
+b10101110000 3
+14
+1P!
+1S!
+
+#13920000
+0!
+04
+0P!
+0S!
+
+#13925000
+1!
+b10101110001 3
+14
+1P!
+1S!
+
+#13930000
+0!
+04
+0P!
+0S!
+
+#13935000
+1!
+b10101110010 3
+14
+1P!
+1S!
+
+#13940000
+0!
+04
+0P!
+0S!
+
+#13945000
+1!
+b10101110011 3
+14
+1P!
+1S!
+
+#13950000
+0!
+04
+0P!
+0S!
+
+#13955000
+1!
+b10101110100 3
+14
+1P!
+1S!
+
+#13960000
+0!
+04
+0P!
+0S!
+
+#13965000
+1!
+b10101110101 3
+14
+1P!
+1S!
+
+#13970000
+0!
+04
+0P!
+0S!
+
+#13975000
+1!
+b10101110110 3
+14
+1P!
+1S!
+
+#13980000
+0!
+04
+0P!
+0S!
+
+#13985000
+1!
+b10101110111 3
+14
+1P!
+1S!
+
+#13990000
+0!
+04
+0P!
+0S!
+
+#13995000
+1!
+b10101111000 3
+14
+1P!
+1S!
+
+#14000000
+0!
+04
+0P!
+0S!
+
+#14005000
+1!
+b10101111001 3
+14
+1P!
+1S!
+
+#14010000
+0!
+04
+0P!
+0S!
+
+#14015000
+1!
+b10101111010 3
+14
+1P!
+1S!
+
+#14020000
+0!
+04
+0P!
+0S!
+
+#14025000
+1!
+b10101111011 3
+14
+1P!
+1S!
+
+#14030000
+0!
+04
+0P!
+0S!
+
+#14035000
+1!
+b10101111100 3
+14
+1P!
+1S!
+
+#14040000
+0!
+04
+0P!
+0S!
+
+#14045000
+1!
+b10101111101 3
+14
+1P!
+1S!
+
+#14050000
+0!
+04
+0P!
+0S!
+
+#14055000
+1!
+b10101111110 3
+14
+1P!
+1S!
+
+#14060000
+0!
+04
+0P!
+0S!
+
+#14065000
+1!
+b10101111111 3
+14
+1P!
+1S!
+
+#14070000
+0!
+04
+0P!
+0S!
+
+#14075000
+1!
+b10110000000 3
+14
+1P!
+1S!
+
+#14080000
+0!
+04
+0P!
+0S!
+
+#14085000
+1!
+b10110000001 3
+14
+1P!
+1S!
+
+#14090000
+0!
+04
+0P!
+0S!
+
+#14095000
+1!
+b10110000010 3
+14
+1P!
+1S!
+
+#14100000
+0!
+04
+0P!
+0S!
+
+#14105000
+1!
+b10110000011 3
+14
+1P!
+1S!
+
+#14110000
+0!
+04
+0P!
+0S!
+
+#14115000
+1!
+b10110000100 3
+14
+1P!
+1S!
+
+#14120000
+0!
+04
+0P!
+0S!
+
+#14125000
+1!
+b10110000101 3
+14
+1P!
+1S!
+
+#14130000
+0!
+04
+0P!
+0S!
+
+#14135000
+1!
+b10110000110 3
+14
+1P!
+1S!
+
+#14140000
+0!
+04
+0P!
+0S!
+
+#14145000
+1!
+b10110000111 3
+14
+1P!
+1S!
+
+#14150000
+0!
+04
+0P!
+0S!
+
+#14155000
+1!
+b10110001000 3
+14
+1P!
+1S!
+
+#14160000
+0!
+04
+0P!
+0S!
+
+#14165000
+1!
+b10110001001 3
+14
+1P!
+1S!
+
+#14170000
+0!
+04
+0P!
+0S!
+
+#14175000
+1!
+b10110001010 3
+14
+1P!
+1S!
+
+#14180000
+0!
+04
+0P!
+0S!
+
+#14185000
+1!
+b10110001011 3
+14
+1P!
+1S!
+
+#14190000
+0!
+04
+0P!
+0S!
+
+#14195000
+1!
+b10110001100 3
+14
+1P!
+1S!
+
+#14200000
+0!
+04
+0P!
+0S!
+
+#14205000
+1!
+b10110001101 3
+14
+1P!
+1S!
+
+#14210000
+0!
+04
+0P!
+0S!
+
+#14215000
+1!
+b10110001110 3
+14
+1P!
+1S!
+
+#14220000
+0!
+04
+0P!
+0S!
+
+#14225000
+1!
+b10110001111 3
+14
+1P!
+1S!
+
+#14230000
+0!
+04
+0P!
+0S!
+
+#14235000
+1!
+b10110010000 3
+14
+1P!
+1S!
+
+#14240000
+0!
+04
+0P!
+0S!
+
+#14245000
+1!
+b10110010001 3
+14
+1P!
+1S!
+
+#14250000
+0!
+04
+0P!
+0S!
+
+#14255000
+1!
+b10110010010 3
+14
+1P!
+1S!
+
+#14260000
+0!
+04
+0P!
+0S!
+
+#14265000
+1!
+b10110010011 3
+14
+1P!
+1S!
+
+#14270000
+0!
+04
+0P!
+0S!
+
+#14275000
+1!
+b10110010100 3
+14
+1P!
+1S!
+
+#14280000
+0!
+04
+0P!
+0S!
+
+#14285000
+1!
+b10110010101 3
+14
+1P!
+1S!
+
+#14290000
+0!
+04
+0P!
+0S!
+
+#14295000
+1!
+b10110010110 3
+14
+1P!
+1S!
+
+#14300000
+0!
+04
+0P!
+0S!
+
+#14305000
+1!
+b10110010111 3
+14
+1P!
+1S!
+
+#14310000
+0!
+04
+0P!
+0S!
+
+#14315000
+1!
+b10110011000 3
+14
+1P!
+1S!
+
+#14320000
+0!
+04
+0P!
+0S!
+
+#14325000
+1!
+b10110011001 3
+14
+1P!
+1S!
+
+#14330000
+0!
+04
+0P!
+0S!
+
+#14335000
+1!
+b10110011010 3
+14
+1P!
+1S!
+
+#14340000
+0!
+04
+0P!
+0S!
+
+#14345000
+1!
+b10110011011 3
+14
+1P!
+1S!
+
+#14350000
+0!
+04
+0P!
+0S!
+
+#14355000
+1!
+b10110011100 3
+14
+1P!
+1S!
+
+#14360000
+0!
+04
+0P!
+0S!
+
+#14365000
+1!
+b10110011101 3
+14
+1P!
+1S!
+
+#14370000
+0!
+04
+0P!
+0S!
+
+#14375000
+1!
+b10110011110 3
+14
+1P!
+1S!
+
+#14380000
+0!
+04
+0P!
+0S!
+
+#14385000
+1!
+b10110011111 3
+14
+1P!
+1S!
+
+#14390000
+0!
+04
+0P!
+0S!
+
+#14395000
+1!
+b10110100000 3
+14
+1P!
+1S!
+
+#14400000
+0!
+04
+0P!
+0S!
+
+#14405000
+1!
+b10110100001 3
+14
+1P!
+1S!
+
+#14410000
+0!
+04
+0P!
+0S!
+
+#14415000
+1!
+b10110100010 3
+14
+1P!
+1S!
+
+#14420000
+0!
+04
+0P!
+0S!
+
+#14425000
+1!
+b10110100011 3
+14
+1P!
+1S!
+
+#14430000
+0!
+04
+0P!
+0S!
+
+#14435000
+1!
+b10110100100 3
+14
+1P!
+1S!
+
+#14440000
+0!
+04
+0P!
+0S!
+
+#14445000
+1!
+b10110100101 3
+14
+1P!
+1S!
+
+#14450000
+0!
+04
+0P!
+0S!
+
+#14455000
+1!
+b10110100110 3
+14
+1P!
+1S!
+
+#14460000
+0!
+04
+0P!
+0S!
+
+#14465000
+1!
+b10110100111 3
+14
+1P!
+1S!
+
+#14470000
+0!
+04
+0P!
+0S!
+
+#14475000
+1!
+b10110101000 3
+14
+1P!
+1S!
+
+#14480000
+0!
+04
+0P!
+0S!
+
+#14485000
+1!
+b10110101001 3
+14
+1P!
+1S!
+
+#14490000
+0!
+04
+0P!
+0S!
+
+#14495000
+1!
+b10110101010 3
+14
+1P!
+1S!
+
+#14500000
+0!
+04
+0P!
+0S!
+
+#14505000
+1!
+b10110101011 3
+14
+1P!
+1S!
+
+#14510000
+0!
+04
+0P!
+0S!
+
+#14515000
+1!
+b10110101100 3
+14
+1P!
+1S!
+
+#14520000
+0!
+04
+0P!
+0S!
+
+#14525000
+1!
+b10110101101 3
+14
+1P!
+1S!
+
+#14530000
+0!
+04
+0P!
+0S!
+
+#14535000
+1!
+b10110101110 3
+14
+1P!
+1S!
+
+#14540000
+0!
+04
+0P!
+0S!
+
+#14545000
+1!
+b10110101111 3
+14
+1P!
+1S!
+
+#14550000
+0!
+04
+0P!
+0S!
+
+#14555000
+1!
+b10110110000 3
+14
+1P!
+1S!
+
+#14560000
+0!
+04
+0P!
+0S!
+
+#14565000
+1!
+b10110110001 3
+14
+1P!
+1S!
+
+#14570000
+0!
+04
+0P!
+0S!
+
+#14575000
+1!
+b10110110010 3
+14
+1P!
+1S!
+
+#14580000
+0!
+04
+0P!
+0S!
+
+#14585000
+1!
+b10110110011 3
+14
+1P!
+1S!
+
+#14590000
+0!
+04
+0P!
+0S!
+
+#14595000
+1!
+b10110110100 3
+14
+1P!
+1S!
+
+#14600000
+0!
+04
+0P!
+0S!
+
+#14605000
+1!
+b10110110101 3
+14
+1P!
+1S!
+
+#14610000
+0!
+04
+0P!
+0S!
+
+#14615000
+1!
+b10110110110 3
+14
+1P!
+1S!
+
+#14620000
+0!
+04
+0P!
+0S!
+
+#14625000
+1!
+b10110110111 3
+14
+1P!
+1S!
+
+#14630000
+0!
+04
+0P!
+0S!
+
+#14635000
+1!
+b10110111000 3
+14
+1P!
+1S!
+
+#14640000
+0!
+04
+0P!
+0S!
+
+#14645000
+1!
+b10110111001 3
+14
+1P!
+1S!
+
+#14650000
+0!
+04
+0P!
+0S!
+
+#14655000
+1!
+b10110111010 3
+14
+1P!
+1S!
+
+#14660000
+0!
+04
+0P!
+0S!
+
+#14665000
+1!
+b10110111011 3
+14
+1P!
+1S!
+
+#14670000
+0!
+04
+0P!
+0S!
+
+#14675000
+1!
+b10110111100 3
+14
+1P!
+1S!
+
+#14680000
+0!
+04
+0P!
+0S!
+
+#14685000
+1!
+b10110111101 3
+14
+1P!
+1S!
+
+#14690000
+0!
+04
+0P!
+0S!
+
+#14695000
+1!
+b10110111110 3
+14
+1P!
+1S!
+
+#14700000
+0!
+04
+0P!
+0S!
+
+#14705000
+1!
+b10110111111 3
+14
+1P!
+1S!
+
+#14710000
+0!
+04
+0P!
+0S!
+
+#14715000
+1!
+b10111000000 3
+14
+1P!
+1S!
+
+#14720000
+0!
+04
+0P!
+0S!
+
+#14725000
+1!
+b10111000001 3
+14
+1P!
+1S!
+
+#14730000
+0!
+04
+0P!
+0S!
+
+#14735000
+1!
+b10111000010 3
+14
+1P!
+1S!
+
+#14740000
+0!
+04
+0P!
+0S!
+
+#14745000
+1!
+b10111000011 3
+14
+1P!
+1S!
+
+#14750000
+0!
+04
+0P!
+0S!
+
+#14755000
+1!
+b10111000100 3
+14
+1P!
+1S!
+
+#14760000
+0!
+04
+0P!
+0S!
+
+#14765000
+1!
+b10111000101 3
+14
+1P!
+1S!
+
+#14770000
+0!
+04
+0P!
+0S!
+
+#14775000
+1!
+b10111000110 3
+14
+1P!
+1S!
+
+#14780000
+0!
+04
+0P!
+0S!
+
+#14785000
+1!
+b10111000111 3
+14
+1P!
+1S!
+
+#14790000
+0!
+04
+0P!
+0S!
+
+#14795000
+1!
+b10111001000 3
+14
+1P!
+1S!
+
+#14800000
+0!
+04
+0P!
+0S!
+
+#14805000
+1!
+b10111001001 3
+14
+1P!
+1S!
+
+#14810000
+0!
+04
+0P!
+0S!
+
+#14815000
+1!
+b10111001010 3
+14
+1P!
+1S!
+
+#14820000
+0!
+04
+0P!
+0S!
+
+#14825000
+1!
+b10111001011 3
+14
+1P!
+1S!
+
+#14830000
+0!
+04
+0P!
+0S!
+
+#14835000
+1!
+b10111001100 3
+14
+1P!
+1S!
+
+#14840000
+0!
+04
+0P!
+0S!
+
+#14845000
+1!
+b10111001101 3
+14
+1P!
+1S!
+
+#14850000
+0!
+04
+0P!
+0S!
+
+#14855000
+1!
+b10111001110 3
+14
+1P!
+1S!
+
+#14860000
+0!
+04
+0P!
+0S!
+
+#14865000
+1!
+b10111001111 3
+14
+1P!
+1S!
+
+#14870000
+0!
+04
+0P!
+0S!
+
+#14875000
+1!
+b10111010000 3
+14
+1P!
+1S!
+
+#14880000
+0!
+04
+0P!
+0S!
+
+#14885000
+1!
+b10111010001 3
+14
+1P!
+1S!
+
+#14890000
+0!
+04
+0P!
+0S!
+
+#14895000
+1!
+b10111010010 3
+14
+1P!
+1S!
+
+#14900000
+0!
+04
+0P!
+0S!
+
+#14905000
+1!
+b10111010011 3
+14
+1P!
+1S!
+
+#14910000
+0!
+04
+0P!
+0S!
+
+#14915000
+1!
+b10111010100 3
+14
+1P!
+1S!
+
+#14920000
+0!
+04
+0P!
+0S!
+
+#14925000
+1!
+b10111010101 3
+14
+1P!
+1S!
+
+#14930000
+0!
+04
+0P!
+0S!
+
+#14935000
+1!
+b10111010110 3
+14
+1P!
+1S!
+
+#14940000
+0!
+04
+0P!
+0S!
+
+#14945000
+1!
+b10111010111 3
+14
+1P!
+1S!
+
+#14950000
+0!
+04
+0P!
+0S!
+
+#14955000
+1!
+b10111011000 3
+14
+1P!
+1S!
+
+#14960000
+0!
+04
+0P!
+0S!
+
+#14965000
+1!
+b10111011001 3
+14
+1P!
+1S!
+
+#14970000
+0!
+04
+0P!
+0S!
+
+#14975000
+1!
+b10111011010 3
+14
+1P!
+1S!
+
+#14980000
+0!
+04
+0P!
+0S!
+
+#14985000
+1!
+b10111011011 3
+14
+1P!
+1S!
+
+#14990000
+0!
+04
+0P!
+0S!
+
+#14995000
+1!
+b10111011100 3
+14
+1P!
+1S!
+
+#15000000
+0!
+04
+0P!
+0S!
+
+#15005000
+1!
+b10111011101 3
+14
+1P!
+1S!
+
+#15010000
+0!
+04
+0P!
+0S!
+
+#15015000
+1!
+b10111011110 3
+14
+1P!
+1S!
+
+#15020000
+0!
+04
+0P!
+0S!
+
+#15025000
+1!
+b10111011111 3
+14
+1P!
+1S!
+
+#15030000
+0!
+04
+0P!
+0S!
+
+#15035000
+1!
+b10111100000 3
+14
+1P!
+1S!
+
+#15040000
+0!
+04
+0P!
+0S!
+
+#15045000
+1!
+b10111100001 3
+14
+1P!
+1S!
+
+#15050000
+0!
+04
+0P!
+0S!
+
+#15055000
+1!
+b10111100010 3
+14
+1P!
+1S!
+
+#15060000
+0!
+04
+0P!
+0S!
+
+#15065000
+1!
+b10111100011 3
+14
+1P!
+1S!
+
+#15070000
+0!
+04
+0P!
+0S!
+
+#15075000
+1!
+b10111100100 3
+14
+1P!
+1S!
+
+#15080000
+0!
+04
+0P!
+0S!
+
+#15085000
+1!
+b10111100101 3
+14
+1P!
+1S!
+
+#15090000
+0!
+04
+0P!
+0S!
+
+#15095000
+1!
+b10111100110 3
+14
+1P!
+1S!
+
+#15100000
+0!
+04
+0P!
+0S!
+
+#15105000
+1!
+b10111100111 3
+14
+1P!
+1S!
+
+#15110000
+0!
+04
+0P!
+0S!
+
+#15115000
+1!
+b10111101000 3
+14
+1P!
+1S!
+
+#15120000
+0!
+04
+0P!
+0S!
+
+#15125000
+1!
+b10111101001 3
+14
+1P!
+1S!
+
+#15130000
+0!
+04
+0P!
+0S!
+
+#15135000
+1!
+b10111101010 3
+14
+1P!
+1S!
+
+#15140000
+0!
+04
+0P!
+0S!
+
+#15145000
+1!
+b10111101011 3
+14
+1P!
+1S!
+
+#15150000
+0!
+04
+0P!
+0S!
+
+#15155000
+1!
+b10111101100 3
+14
+1P!
+1S!
+
+#15160000
+0!
+04
+0P!
+0S!
+
+#15165000
+1!
+b10111101101 3
+14
+1P!
+1S!
+
+#15170000
+0!
+04
+0P!
+0S!
+
+#15175000
+1!
+b10111101110 3
+14
+1P!
+1S!
+
+#15180000
+0!
+04
+0P!
+0S!
+
+#15185000
+1!
+b10111101111 3
+14
+1P!
+1S!
+
+#15190000
+0!
+04
+0P!
+0S!
+
+#15195000
+1!
+b10111110000 3
+14
+1P!
+1S!
+
+#15200000
+0!
+04
+0P!
+0S!
+
+#15205000
+1!
+b10111110001 3
+14
+1P!
+1S!
+
+#15210000
+0!
+04
+0P!
+0S!
+
+#15215000
+1!
+b10111110010 3
+14
+1P!
+1S!
+
+#15220000
+0!
+04
+0P!
+0S!
+
+#15225000
+1!
+b10111110011 3
+14
+1P!
+1S!
+
+#15230000
+0!
+04
+0P!
+0S!
+
+#15235000
+1!
+b10111110100 3
+14
+1P!
+1S!
+
+#15240000
+0!
+04
+0P!
+0S!
+
+#15245000
+1!
+b10111110101 3
+14
+1P!
+1S!
+
+#15250000
+0!
+04
+0P!
+0S!
+
+#15255000
+1!
+b10111110110 3
+14
+1P!
+1S!
+
+#15260000
+0!
+04
+0P!
+0S!
+
+#15265000
+1!
+b10111110111 3
+14
+1P!
+1S!
+
+#15270000
+0!
+04
+0P!
+0S!
+
+#15275000
+1!
+b10111111000 3
+14
+1P!
+1S!
+
+#15280000
+0!
+04
+0P!
+0S!
+
+#15285000
+1!
+b10111111001 3
+14
+1P!
+1S!
+
+#15290000
+0!
+04
+0P!
+0S!
+
+#15295000
+1!
+b10111111010 3
+14
+1P!
+1S!
+
+#15300000
+0!
+04
+0P!
+0S!
+
+#15305000
+1!
+b10111111011 3
+14
+1P!
+1S!
+
+#15310000
+0!
+04
+0P!
+0S!
+
+#15315000
+1!
+b10111111100 3
+14
+1P!
+1S!
+
+#15320000
+0!
+04
+0P!
+0S!
+
+#15325000
+1!
+b10111111101 3
+14
+1P!
+1S!
+
+#15330000
+0!
+04
+0P!
+0S!
+
+#15335000
+1!
+b10111111110 3
+14
+1P!
+1S!
+
+#15340000
+0!
+04
+0P!
+0S!
+
+#15345000
+1!
+b10111111111 3
+14
+1P!
+1S!
+
+#15350000
+0!
+04
+0P!
+0S!
+
+#15355000
+1!
+b11000000000 3
+14
+1P!
+1S!
+
+#15360000
+0!
+04
+0P!
+0S!
+
+#15365000
+1!
+b11000000001 3
+14
+1P!
+1S!
+
+#15370000
+0!
+04
+0P!
+0S!
+
+#15375000
+1!
+b11000000010 3
+14
+1P!
+1S!
+
+#15380000
+0!
+04
+0P!
+0S!
+
+#15385000
+1!
+b11000000011 3
+14
+1P!
+1S!
+
+#15390000
+0!
+04
+0P!
+0S!
+
+#15395000
+1!
+b11000000100 3
+14
+1P!
+1S!
+
+#15400000
+0!
+04
+0P!
+0S!
+
+#15405000
+1!
+b11000000101 3
+14
+1P!
+1S!
+
+#15410000
+0!
+04
+0P!
+0S!
+
+#15415000
+1!
+b11000000110 3
+14
+1P!
+1S!
+
+#15420000
+0!
+04
+0P!
+0S!
+
+#15425000
+1!
+b11000000111 3
+14
+1P!
+1S!
+
+#15430000
+0!
+04
+0P!
+0S!
+
+#15435000
+1!
+b11000001000 3
+14
+1P!
+1S!
+
+#15440000
+0!
+04
+0P!
+0S!
+
+#15445000
+1!
+b11000001001 3
+14
+1P!
+1S!
+
+#15450000
+0!
+04
+0P!
+0S!
+
+#15455000
+1!
+b11000001010 3
+14
+1P!
+1S!
+
+#15460000
+0!
+04
+0P!
+0S!
+
+#15465000
+1!
+b11000001011 3
+14
+1P!
+1S!
+
+#15470000
+0!
+04
+0P!
+0S!
+
+#15475000
+1!
+b11000001100 3
+14
+1P!
+1S!
+
+#15480000
+0!
+04
+0P!
+0S!
+
+#15485000
+1!
+b11000001101 3
+14
+1P!
+1S!
+
+#15490000
+0!
+04
+0P!
+0S!
+
+#15495000
+1!
+b11000001110 3
+14
+1P!
+1S!
+
+#15500000
+0!
+04
+0P!
+0S!
+
+#15505000
+1!
+b11000001111 3
+14
+1P!
+1S!
+
+#15510000
+0!
+04
+0P!
+0S!
+
+#15515000
+1!
+b11000010000 3
+14
+1P!
+1S!
+
+#15520000
+0!
+04
+0P!
+0S!
+
+#15525000
+1!
+b11000010001 3
+14
+1P!
+1S!
+
+#15530000
+0!
+04
+0P!
+0S!
+
+#15535000
+1!
+b11000010010 3
+14
+1P!
+1S!
+
+#15540000
+0!
+04
+0P!
+0S!
+
+#15545000
+1!
+b11000010011 3
+14
+1P!
+1S!
+
+#15550000
+0!
+04
+0P!
+0S!
+
+#15555000
+1!
+b11000010100 3
+14
+1P!
+1S!
+
+#15560000
+0!
+04
+0P!
+0S!
+
+#15565000
+1!
+b11000010101 3
+14
+1P!
+1S!
+
+#15570000
+0!
+04
+0P!
+0S!
+
+#15575000
+1!
+b11000010110 3
+14
+1P!
+1S!
+
+#15580000
+0!
+04
+0P!
+0S!
+
+#15585000
+1!
+b11000010111 3
+14
+1P!
+1S!
+
+#15590000
+0!
+04
+0P!
+0S!
+
+#15595000
+1!
+b11000011000 3
+14
+1P!
+1S!
+
+#15600000
+0!
+04
+0P!
+0S!
+
+#15605000
+1!
+b11000011001 3
+14
+1P!
+1S!
+
+#15610000
+0!
+04
+0P!
+0S!
+
+#15615000
+1!
+b11000011010 3
+14
+1P!
+1S!
+
+#15620000
+0!
+04
+0P!
+0S!
+
+#15625000
+1!
+b11000011011 3
+14
+1P!
+1S!
+
+#15630000
+0!
+04
+0P!
+0S!
+
+#15635000
+1!
+b11000011100 3
+14
+1P!
+1S!
+
+#15640000
+0!
+04
+0P!
+0S!
+
+#15645000
+1!
+b11000011101 3
+14
+1P!
+1S!
+
+#15650000
+0!
+04
+0P!
+0S!
+
+#15655000
+1!
+b11000011110 3
+14
+1P!
+1S!
+
+#15660000
+0!
+04
+0P!
+0S!
+
+#15665000
+1!
+b11000011111 3
+14
+1P!
+1S!
+
+#15670000
+0!
+04
+0P!
+0S!
+
+#15675000
+1!
+b11000100000 3
+14
+1P!
+1S!
+
+#15680000
+0!
+04
+0P!
+0S!
+
+#15685000
+1!
+b11000100001 3
+14
+1P!
+1S!
+
+#15690000
+0!
+04
+0P!
+0S!
+
+#15695000
+1!
+b11000100010 3
+14
+1P!
+1S!
+
+#15700000
+0!
+04
+0P!
+0S!
+
+#15705000
+1!
+b11000100011 3
+14
+1P!
+1S!
+
+#15710000
+0!
+04
+0P!
+0S!
+
+#15715000
+1!
+b11000100100 3
+14
+1P!
+1S!
+
+#15720000
+0!
+04
+0P!
+0S!
+
+#15725000
+1!
+b11000100101 3
+14
+1P!
+1S!
+
+#15730000
+0!
+04
+0P!
+0S!
+
+#15735000
+1!
+b11000100110 3
+14
+1P!
+1S!
+
+#15740000
+0!
+04
+0P!
+0S!
+
+#15745000
+1!
+b11000100111 3
+14
+1P!
+1S!
+
+#15750000
+0!
+04
+0P!
+0S!
+
+#15755000
+1!
+b11000101000 3
+14
+1P!
+1S!
+
+#15760000
+0!
+04
+0P!
+0S!
+
+#15765000
+1!
+b11000101001 3
+14
+1P!
+1S!
+
+#15770000
+0!
+04
+0P!
+0S!
+
+#15775000
+1!
+b11000101010 3
+14
+1P!
+1S!
+
+#15780000
+0!
+04
+0P!
+0S!
+
+#15785000
+1!
+b11000101011 3
+14
+1P!
+1S!
+
+#15790000
+0!
+04
+0P!
+0S!
+
+#15795000
+1!
+b11000101100 3
+14
+1P!
+1S!
+
+#15800000
+0!
+04
+0P!
+0S!
+
+#15805000
+1!
+b11000101101 3
+14
+1P!
+1S!
+
+#15810000
+0!
+04
+0P!
+0S!
+
+#15815000
+1!
+b11000101110 3
+14
+1P!
+1S!
+
+#15820000
+0!
+04
+0P!
+0S!
+
+#15825000
+1!
+b11000101111 3
+14
+1P!
+1S!
+
+#15830000
+0!
+04
+0P!
+0S!
+
+#15835000
+1!
+b11000110000 3
+14
+1P!
+1S!
+
+#15840000
+0!
+04
+0P!
+0S!
+
+#15845000
+1!
+b11000110001 3
+14
+1P!
+1S!
+
+#15850000
+0!
+04
+0P!
+0S!
+
+#15855000
+1!
+b11000110010 3
+14
+1P!
+1S!
+
+#15860000
+0!
+04
+0P!
+0S!
+
+#15865000
+1!
+b11000110011 3
+14
+1P!
+1S!
+
+#15870000
+0!
+04
+0P!
+0S!
+
+#15875000
+1!
+b11000110100 3
+14
+1P!
+1S!
+
+#15880000
+0!
+04
+0P!
+0S!
+
+#15885000
+1!
+b11000110101 3
+14
+1P!
+1S!
+
+#15890000
+0!
+04
+0P!
+0S!
+
+#15895000
+1!
+b11000110110 3
+14
+1P!
+1S!
+
+#15900000
+0!
+04
+0P!
+0S!
+
+#15905000
+1!
+b11000110111 3
+14
+1P!
+1S!
+
+#15910000
+0!
+04
+0P!
+0S!
+
+#15915000
+1!
+b11000111000 3
+14
+1P!
+1S!
+
+#15920000
+0!
+04
+0P!
+0S!
+
+#15925000
+1!
+b11000111001 3
+14
+1P!
+1S!
+
+#15930000
+0!
+04
+0P!
+0S!
+
+#15935000
+1!
+b11000111010 3
+14
+1P!
+1S!
+
+#15940000
+0!
+04
+0P!
+0S!
+
+#15945000
+1!
+b11000111011 3
+14
+1P!
+1S!
+
+#15950000
+0!
+04
+0P!
+0S!
+
+#15955000
+1!
+b11000111100 3
+14
+1P!
+1S!
+
+#15960000
+0!
+04
+0P!
+0S!
+
+#15965000
+1!
+b11000111101 3
+14
+1P!
+1S!
+
+#15970000
+0!
+04
+0P!
+0S!
+
+#15975000
+1!
+b11000111110 3
+14
+1P!
+1S!
+
+#15980000
+0!
+04
+0P!
+0S!
+
+#15985000
+1!
+b11000111111 3
+14
+1P!
+1S!
+
+#15990000
+0!
+04
+0P!
+0S!
+
+#15995000
+1!
+b11001000000 3
+14
+1P!
+1S!
+
+#16000000
+0!
+04
+0P!
+0S!
+
+#16005000
+1!
+b11001000001 3
+14
+1P!
+1S!
+
+#16010000
+0!
+04
+0P!
+0S!
+
+#16015000
+1!
+b11001000010 3
+14
+1P!
+1S!
+
+#16020000
+0!
+04
+0P!
+0S!
+
+#16025000
+1!
+b11001000011 3
+14
+1P!
+1S!
+
+#16030000
+0!
+04
+0P!
+0S!
+
+#16035000
+1!
+b11001000100 3
+14
+1P!
+1S!
+
+#16040000
+0!
+04
+0P!
+0S!
+
+#16045000
+1!
+b11001000101 3
+14
+1P!
+1S!
+
+#16050000
+0!
+04
+0P!
+0S!
+
+#16055000
+1!
+b11001000110 3
+14
+1P!
+1S!
+
+#16060000
+0!
+04
+0P!
+0S!
+
+#16065000
+1!
+b11001000111 3
+14
+1P!
+1S!
+
+#16070000
+0!
+04
+0P!
+0S!
+
+#16075000
+1!
+b11001001000 3
+14
+1P!
+1S!
+
+#16080000
+0!
+04
+0P!
+0S!
+
+#16085000
+1!
+b11001001001 3
+14
+1P!
+1S!
+
+#16090000
+0!
+04
+0P!
+0S!
+
+#16095000
+1!
+b11001001010 3
+14
+1P!
+1S!
+
+#16100000
+0!
+04
+0P!
+0S!
+
+#16105000
+1!
+b11001001011 3
+14
+1P!
+1S!
+
+#16110000
+0!
+04
+0P!
+0S!
+
+#16115000
+1!
+b11001001100 3
+14
+1P!
+1S!
+
+#16120000
+0!
+04
+0P!
+0S!
+
+#16125000
+1!
+b11001001101 3
+14
+1P!
+1S!
+
+#16130000
+0!
+04
+0P!
+0S!
+
+#16135000
+1!
+b11001001110 3
+14
+1P!
+1S!
+
+#16140000
+0!
+04
+0P!
+0S!
+
+#16145000
+1!
+b11001001111 3
+14
+1P!
+1S!
+
+#16150000
+0!
+04
+0P!
+0S!
+
+#16155000
+1!
+b11001010000 3
+14
+1P!
+1S!
+
+#16160000
+0!
+04
+0P!
+0S!
+
+#16165000
+1!
+b11001010001 3
+14
+1P!
+1S!
+
+#16170000
+0!
+04
+0P!
+0S!
+
+#16175000
+1!
+b11001010010 3
+14
+1P!
+1S!
+
+#16180000
+0!
+04
+0P!
+0S!
+
+#16185000
+1!
+b11001010011 3
+14
+1P!
+1S!
+
+#16190000
+0!
+04
+0P!
+0S!
+
+#16195000
+1!
+b11001010100 3
+14
+1P!
+1S!
+
+#16200000
+0!
+04
+0P!
+0S!
+
+#16205000
+1!
+b11001010101 3
+14
+1P!
+1S!
+
+#16210000
+0!
+04
+0P!
+0S!
+
+#16215000
+1!
+b11001010110 3
+14
+1P!
+1S!
+
+#16220000
+0!
+04
+0P!
+0S!
+
+#16225000
+1!
+b11001010111 3
+14
+1P!
+1S!
+
+#16230000
+0!
+04
+0P!
+0S!
+
+#16235000
+1!
+b11001011000 3
+14
+1P!
+1S!
+
+#16240000
+0!
+04
+0P!
+0S!
+
+#16245000
+1!
+b11001011001 3
+14
+1P!
+1S!
+
+#16250000
+0!
+04
+0P!
+0S!
+
+#16255000
+1!
+b11001011010 3
+14
+1P!
+1S!
+
+#16260000
+0!
+04
+0P!
+0S!
+
+#16265000
+1!
+b11001011011 3
+14
+1P!
+1S!
+
+#16270000
+0!
+04
+0P!
+0S!
+
+#16275000
+1!
+b11001011100 3
+14
+1P!
+1S!
+
+#16280000
+0!
+04
+0P!
+0S!
+
+#16285000
+1!
+b11001011101 3
+14
+1P!
+1S!
+
+#16290000
+0!
+04
+0P!
+0S!
+
+#16295000
+1!
+b11001011110 3
+14
+1P!
+1S!
+
+#16300000
+0!
+04
+0P!
+0S!
+
+#16305000
+1!
+b11001011111 3
+14
+1P!
+1S!
+
+#16310000
+0!
+04
+0P!
+0S!
+
+#16315000
+1!
+b11001100000 3
+14
+1P!
+1S!
+
+#16320000
+0!
+04
+0P!
+0S!
+
+#16325000
+1!
+b11001100001 3
+14
+1P!
+1S!
+
+#16330000
+0!
+04
+0P!
+0S!
+
+#16335000
+1!
+b11001100010 3
+14
+1P!
+1S!
+
+#16340000
+0!
+04
+0P!
+0S!
+
+#16345000
+1!
+b11001100011 3
+14
+1P!
+1S!
+
+#16350000
+0!
+04
+0P!
+0S!
+
+#16355000
+1!
+b11001100100 3
+14
+1P!
+1S!
+
+#16360000
+0!
+04
+0P!
+0S!
+
+#16365000
+1!
+b11001100101 3
+14
+1P!
+1S!
+
+#16370000
+0!
+04
+0P!
+0S!
+
+#16375000
+1!
+b11001100110 3
+14
+1P!
+1S!
+
+#16380000
+0!
+04
+0P!
+0S!
+
+#16385000
+1!
+b11001100111 3
+14
+1P!
+1S!
+
+#16390000
+0!
+04
+0P!
+0S!
+
+#16395000
+1!
+b11001101000 3
+14
+1P!
+1S!
+
+#16400000
+0!
+04
+0P!
+0S!
+
+#16405000
+1!
+b11001101001 3
+14
+1P!
+1S!
+
+#16410000
+0!
+04
+0P!
+0S!
+
+#16415000
+1!
+b11001101010 3
+14
+1P!
+1S!
+
+#16420000
+0!
+04
+0P!
+0S!
+
+#16425000
+1!
+b11001101011 3
+14
+1P!
+1S!
+
+#16430000
+0!
+04
+0P!
+0S!
+
+#16435000
+1!
+b11001101100 3
+14
+1P!
+1S!
+
+#16440000
+0!
+04
+0P!
+0S!
+
+#16445000
+1!
+b11001101101 3
+14
+1P!
+1S!
+
+#16450000
+0!
+04
+0P!
+0S!
+
+#16455000
+1!
+b11001101110 3
+14
+1P!
+1S!
+
+#16460000
+0!
+04
+0P!
+0S!
+
+#16465000
+1!
+b11001101111 3
+14
+1P!
+1S!
+
+#16470000
+0!
+04
+0P!
+0S!
+
+#16475000
+1!
+b11001110000 3
+14
+1P!
+1S!
+
+#16480000
+0!
+04
+0P!
+0S!
+
+#16485000
+1!
+b11001110001 3
+14
+1P!
+1S!
+
+#16490000
+0!
+04
+0P!
+0S!
+
+#16495000
+1!
+b11001110010 3
+14
+1P!
+1S!
+
+#16500000
+0!
+04
+0P!
+0S!
+
+#16505000
+1!
+b11001110011 3
+14
+1P!
+1S!
+
+#16510000
+0!
+04
+0P!
+0S!
+
+#16515000
+1!
+b11001110100 3
+14
+1P!
+1S!
+
+#16520000
+0!
+04
+0P!
+0S!
+
+#16525000
+1!
+b11001110101 3
+14
+1P!
+1S!
+
+#16530000
+0!
+04
+0P!
+0S!
+
+#16535000
+1!
+b11001110110 3
+14
+1P!
+1S!
+
+#16540000
+0!
+04
+0P!
+0S!
+
+#16545000
+1!
+b11001110111 3
+14
+1P!
+1S!
+
+#16550000
+0!
+04
+0P!
+0S!
+
+#16555000
+1!
+b11001111000 3
+14
+1P!
+1S!
+
+#16560000
+0!
+04
+0P!
+0S!
+
+#16565000
+1!
+b11001111001 3
+14
+1P!
+1S!
+
+#16570000
+0!
+04
+0P!
+0S!
+
+#16575000
+1!
+b11001111010 3
+14
+1P!
+1S!
+
+#16580000
+0!
+04
+0P!
+0S!
+
+#16585000
+1!
+b11001111011 3
+14
+1P!
+1S!
+
+#16590000
+0!
+04
+0P!
+0S!
+
+#16595000
+1!
+b11001111100 3
+14
+1P!
+1S!
+
+#16600000
+0!
+04
+0P!
+0S!
+
+#16605000
+1!
+b11001111101 3
+14
+1P!
+1S!
+
+#16610000
+0!
+04
+0P!
+0S!
+
+#16615000
+1!
+b11001111110 3
+14
+1P!
+1S!
+
+#16620000
+0!
+04
+0P!
+0S!
+
+#16625000
+1!
+b11001111111 3
+14
+1P!
+1S!
+
+#16630000
+0!
+04
+0P!
+0S!
+
+#16635000
+1!
+b11010000000 3
+14
+1P!
+1S!
+
+#16640000
+0!
+04
+0P!
+0S!
+
+#16645000
+1!
+b11010000001 3
+14
+1P!
+1S!
+
+#16650000
+0!
+04
+0P!
+0S!
+
+#16655000
+1!
+b11010000010 3
+14
+1P!
+1S!
+
+#16660000
+0!
+04
+0P!
+0S!
+
+#16665000
+1!
+b11010000011 3
+14
+1P!
+1S!
+
+#16670000
+0!
+04
+0P!
+0S!
+
+#16675000
+1!
+b11010000100 3
+14
+1P!
+1S!
+
+#16680000
+0!
+04
+0P!
+0S!
+
+#16685000
+1!
+b11010000101 3
+14
+1P!
+1S!
+
+#16690000
+0!
+04
+0P!
+0S!
+
+#16695000
+1!
+b11010000110 3
+14
+1P!
+1S!
+
+#16700000
+0!
+04
+0P!
+0S!
+
+#16705000
+1!
+b11010000111 3
+14
+1P!
+1S!
+
+#16710000
+0!
+04
+0P!
+0S!
+
+#16715000
+1!
+b11010001000 3
+14
+1P!
+1S!
+
+#16720000
+0!
+04
+0P!
+0S!
+
+#16725000
+1!
+b11010001001 3
+14
+1P!
+1S!
+
+#16730000
+0!
+04
+0P!
+0S!
+
+#16735000
+1!
+b11010001010 3
+14
+1P!
+1S!
+
+#16740000
+0!
+04
+0P!
+0S!
+
+#16745000
+1!
+b11010001011 3
+14
+1P!
+1S!
+
+#16750000
+0!
+04
+0P!
+0S!
+
+#16755000
+1!
+b11010001100 3
+14
+1P!
+1S!
+
+#16760000
+0!
+04
+0P!
+0S!
+
+#16765000
+1!
+b11010001101 3
+14
+1P!
+1S!
+
+#16770000
+0!
+04
+0P!
+0S!
+
+#16775000
+1!
+b11010001110 3
+14
+1P!
+1S!
+
+#16780000
+0!
+04
+0P!
+0S!
+
+#16785000
+1!
+b11010001111 3
+14
+1P!
+1S!
+
+#16790000
+0!
+04
+0P!
+0S!
+
+#16795000
+1!
+b11010010000 3
+14
+1P!
+1S!
+
+#16800000
+0!
+04
+0P!
+0S!
+
+#16805000
+1!
+b11010010001 3
+14
+1P!
+1S!
+
+#16810000
+0!
+04
+0P!
+0S!
+
+#16815000
+1!
+b11010010010 3
+14
+1P!
+1S!
+
+#16820000
+0!
+04
+0P!
+0S!
+
+#16825000
+1!
+b11010010011 3
+14
+1P!
+1S!
+
+#16830000
+0!
+04
+0P!
+0S!
+
+#16835000
+1!
+b11010010100 3
+14
+1P!
+1S!
+
+#16840000
+0!
+04
+0P!
+0S!
+
+#16845000
+1!
+b11010010101 3
+14
+1P!
+1S!
+
+#16850000
+0!
+04
+0P!
+0S!
+
+#16855000
+1!
+b11010010110 3
+14
+1P!
+1S!
+
+#16860000
+0!
+04
+0P!
+0S!
+
+#16865000
+1!
+b11010010111 3
+14
+1P!
+1S!
+
+#16870000
+0!
+04
+0P!
+0S!
+
+#16875000
+1!
+b11010011000 3
+14
+1P!
+1S!
+
+#16880000
+0!
+04
+0P!
+0S!
+
+#16885000
+1!
+b11010011001 3
+14
+1P!
+1S!
+
+#16890000
+0!
+04
+0P!
+0S!
+
+#16895000
+1!
+b11010011010 3
+14
+1P!
+1S!
+
+#16900000
+0!
+04
+0P!
+0S!
+
+#16905000
+1!
+b11010011011 3
+14
+1P!
+1S!
+
+#16910000
+0!
+04
+0P!
+0S!
+
+#16915000
+1!
+b11010011100 3
+14
+1P!
+1S!
+
+#16920000
+0!
+04
+0P!
+0S!
+
+#16925000
+1!
+b11010011101 3
+14
+1P!
+1S!
+
+#16930000
+0!
+04
+0P!
+0S!
+
+#16935000
+1!
+b11010011110 3
+14
+1P!
+1S!
+
+#16940000
+0!
+04
+0P!
+0S!
+
+#16945000
+1!
+b11010011111 3
+14
+1P!
+1S!
+
+#16950000
+0!
+04
+0P!
+0S!
+
+#16955000
+1!
+b11010100000 3
+14
+1P!
+1S!
+
+#16960000
+0!
+04
+0P!
+0S!
+
+#16965000
+1!
+b11010100001 3
+14
+1P!
+1S!
+
+#16970000
+0!
+04
+0P!
+0S!
+
+#16975000
+1!
+b11010100010 3
+14
+1P!
+1S!
+
+#16980000
+0!
+04
+0P!
+0S!
+
+#16985000
+1!
+b11010100011 3
+14
+1P!
+1S!
+
+#16990000
+0!
+04
+0P!
+0S!
+
+#16995000
+1!
+b11010100100 3
+14
+1P!
+1S!
+
+#17000000
+0!
+04
+0P!
+0S!
+
+#17005000
+1!
+b11010100101 3
+14
+1P!
+1S!
+
+#17010000
+0!
+04
+0P!
+0S!
+
+#17015000
+1!
+b11010100110 3
+14
+1P!
+1S!
+
+#17020000
+0!
+04
+0P!
+0S!
+
+#17025000
+1!
+b11010100111 3
+14
+1P!
+1S!
+
+#17030000
+0!
+04
+0P!
+0S!
+
+#17035000
+1!
+b11010101000 3
+14
+1P!
+1S!
+
+#17040000
+0!
+04
+0P!
+0S!
+
+#17045000
+1!
+b11010101001 3
+14
+1P!
+1S!
+
+#17050000
+0!
+04
+0P!
+0S!
+
+#17055000
+1!
+b11010101010 3
+14
+1P!
+1S!
+
+#17060000
+0!
+04
+0P!
+0S!
+
+#17065000
+1!
+b11010101011 3
+14
+1P!
+1S!
+
+#17070000
+0!
+04
+0P!
+0S!
+
+#17075000
+1!
+b11010101100 3
+14
+1P!
+1S!
+
+#17080000
+0!
+04
+0P!
+0S!
+
+#17085000
+1!
+b11010101101 3
+14
+1P!
+1S!
+
+#17090000
+0!
+04
+0P!
+0S!
+
+#17095000
+1!
+b11010101110 3
+14
+1P!
+1S!
+
+#17100000
+0!
+04
+0P!
+0S!
+
+#17105000
+1!
+b11010101111 3
+14
+1P!
+1S!
+
+#17110000
+0!
+04
+0P!
+0S!
+
+#17115000
+1!
+b11010110000 3
+14
+1P!
+1S!
+
+#17120000
+0!
+04
+0P!
+0S!
+
+#17125000
+1!
+b11010110001 3
+14
+1P!
+1S!
+
+#17130000
+0!
+04
+0P!
+0S!
+
+#17135000
+1!
+b11010110010 3
+14
+1P!
+1S!
+
+#17140000
+0!
+04
+0P!
+0S!
+
+#17145000
+1!
+b11010110011 3
+14
+1P!
+1S!
+
+#17150000
+0!
+04
+0P!
+0S!
+
+#17155000
+1!
+b11010110100 3
+14
+1P!
+1S!
+
+#17160000
+0!
+04
+0P!
+0S!
+
+#17165000
+1!
+b11010110101 3
+14
+1P!
+1S!
+
+#17170000
+0!
+04
+0P!
+0S!
+
+#17175000
+1!
+b11010110110 3
+14
+1P!
+1S!
+
+#17180000
+0!
+04
+0P!
+0S!
+
+#17185000
+1!
+b11010110111 3
+14
+1P!
+1S!
+
+#17190000
+0!
+04
+0P!
+0S!
+
+#17195000
+1!
+b11010111000 3
+14
+1P!
+1S!
+
+#17200000
+0!
+04
+0P!
+0S!
+
+#17205000
+1!
+b11010111001 3
+14
+1P!
+1S!
+
+#17210000
+0!
+04
+0P!
+0S!
+
+#17215000
+1!
+b11010111010 3
+14
+1P!
+1S!
+
+#17220000
+0!
+04
+0P!
+0S!
+
+#17225000
+1!
+b11010111011 3
+14
+1P!
+1S!
+
+#17230000
+0!
+04
+0P!
+0S!
+
+#17235000
+1!
+b11010111100 3
+14
+1P!
+1S!
+
+#17240000
+0!
+04
+0P!
+0S!
+
+#17245000
+1!
+b11010111101 3
+14
+1P!
+1S!
+
+#17250000
+0!
+04
+0P!
+0S!
+
+#17255000
+1!
+b11010111110 3
+14
+1P!
+1S!
+
+#17260000
+0!
+04
+0P!
+0S!
+
+#17265000
+1!
+b11010111111 3
+14
+1P!
+1S!
+
+#17270000
+0!
+04
+0P!
+0S!
+
+#17275000
+1!
+b11011000000 3
+14
+1P!
+1S!
+
+#17280000
+0!
+04
+0P!
+0S!
+
+#17285000
+1!
+b11011000001 3
+14
+1P!
+1S!
+
+#17290000
+0!
+04
+0P!
+0S!
+
+#17295000
+1!
+b11011000010 3
+14
+1P!
+1S!
+
+#17300000
+0!
+04
+0P!
+0S!
+
+#17305000
+1!
+b11011000011 3
+14
+1P!
+1S!
+
+#17310000
+0!
+04
+0P!
+0S!
+
+#17315000
+1!
+b11011000100 3
+14
+1P!
+1S!
+
+#17320000
+0!
+04
+0P!
+0S!
+
+#17325000
+1!
+b11011000101 3
+14
+1P!
+1S!
+
+#17330000
+0!
+04
+0P!
+0S!
+
+#17335000
+1!
+b11011000110 3
+14
+1P!
+1S!
+
+#17340000
+0!
+04
+0P!
+0S!
+
+#17345000
+1!
+b11011000111 3
+14
+1P!
+1S!
+
+#17350000
+0!
+04
+0P!
+0S!
+
+#17355000
+1!
+b11011001000 3
+14
+1P!
+1S!
+
+#17360000
+0!
+04
+0P!
+0S!
+
+#17365000
+1!
+b11011001001 3
+14
+1P!
+1S!
+
+#17370000
+0!
+04
+0P!
+0S!
+
+#17375000
+1!
+b11011001010 3
+14
+1P!
+1S!
+
+#17380000
+0!
+04
+0P!
+0S!
+
+#17385000
+1!
+b11011001011 3
+14
+1P!
+1S!
+
+#17390000
+0!
+04
+0P!
+0S!
+
+#17395000
+1!
+b11011001100 3
+14
+1P!
+1S!
+
+#17400000
+0!
+04
+0P!
+0S!
+
+#17405000
+1!
+b11011001101 3
+14
+1P!
+1S!
+
+#17410000
+0!
+04
+0P!
+0S!
+
+#17415000
+1!
+b11011001110 3
+14
+1P!
+1S!
+
+#17420000
+0!
+04
+0P!
+0S!
+
+#17425000
+1!
+b11011001111 3
+14
+1P!
+1S!
+
+#17430000
+0!
+04
+0P!
+0S!
+
+#17435000
+1!
+b11011010000 3
+14
+1P!
+1S!
+
+#17440000
+0!
+04
+0P!
+0S!
+
+#17445000
+1!
+b11011010001 3
+14
+1P!
+1S!
+
+#17450000
+0!
+04
+0P!
+0S!
+
+#17455000
+1!
+b11011010010 3
+14
+1P!
+1S!
+
+#17460000
+0!
+04
+0P!
+0S!
+
+#17465000
+1!
+b11011010011 3
+14
+1P!
+1S!
+
+#17470000
+0!
+04
+0P!
+0S!
+
+#17475000
+1!
+b11011010100 3
+14
+1P!
+1S!
+
+#17480000
+0!
+04
+0P!
+0S!
+
+#17485000
+1!
+b11011010101 3
+14
+1P!
+1S!
+
+#17490000
+0!
+04
+0P!
+0S!
+
+#17495000
+1!
+b11011010110 3
+14
+1P!
+1S!
+
+#17500000
+0!
+04
+0P!
+0S!
+
+#17505000
+1!
+b11011010111 3
+14
+1P!
+1S!
+
+#17510000
+0!
+04
+0P!
+0S!
+
+#17515000
+1!
+b11011011000 3
+14
+1P!
+1S!
+
+#17520000
+0!
+04
+0P!
+0S!
+
+#17525000
+1!
+b11011011001 3
+14
+1P!
+1S!
+
+#17530000
+0!
+04
+0P!
+0S!
+
+#17535000
+1!
+b11011011010 3
+14
+1P!
+1S!
+
+#17540000
+0!
+04
+0P!
+0S!
+
+#17545000
+1!
+b11011011011 3
+14
+1P!
+1S!
+
+#17550000
+0!
+04
+0P!
+0S!
+
+#17555000
+1!
+b11011011100 3
+14
+1P!
+1S!
+
+#17560000
+0!
+04
+0P!
+0S!
+
+#17565000
+1!
+b11011011101 3
+14
+1P!
+1S!
+
+#17570000
+0!
+04
+0P!
+0S!
+
+#17575000
+1!
+b11011011110 3
+14
+1P!
+1S!
+
+#17580000
+0!
+04
+0P!
+0S!
+
+#17585000
+1!
+b11011011111 3
+14
+1P!
+1S!
+
+#17590000
+0!
+04
+0P!
+0S!
+
+#17595000
+1!
+b11011100000 3
+14
+1P!
+1S!
+
+#17600000
+0!
+04
+0P!
+0S!
+
+#17605000
+1!
+b11011100001 3
+14
+1P!
+1S!
+
+#17610000
+0!
+04
+0P!
+0S!
+
+#17615000
+1!
+b11011100010 3
+14
+1P!
+1S!
+
+#17620000
+0!
+04
+0P!
+0S!
+
+#17625000
+1!
+b11011100011 3
+14
+1P!
+1S!
+
+#17630000
+0!
+04
+0P!
+0S!
+
+#17635000
+1!
+b11011100100 3
+14
+1P!
+1S!
+
+#17640000
+0!
+04
+0P!
+0S!
+
+#17645000
+1!
+b11011100101 3
+14
+1P!
+1S!
+
+#17650000
+0!
+04
+0P!
+0S!
+
+#17655000
+1!
+b11011100110 3
+14
+1P!
+1S!
+
+#17660000
+0!
+04
+0P!
+0S!
+
+#17665000
+1!
+b11011100111 3
+14
+1P!
+1S!
+
+#17670000
+0!
+04
+0P!
+0S!
+
+#17675000
+1!
+b11011101000 3
+14
+1P!
+1S!
+
+#17680000
+0!
+04
+0P!
+0S!
+
+#17685000
+1!
+b11011101001 3
+14
+1P!
+1S!
+
+#17690000
+0!
+04
+0P!
+0S!
+
+#17695000
+1!
+b11011101010 3
+14
+1P!
+1S!
+
+#17700000
+0!
+04
+0P!
+0S!
+
+#17705000
+1!
+b11011101011 3
+14
+1P!
+1S!
+
+#17710000
+0!
+04
+0P!
+0S!
+
+#17715000
+1!
+b11011101100 3
+14
+1P!
+1S!
+
+#17720000
+0!
+04
+0P!
+0S!
+
+#17725000
+1!
+b11011101101 3
+14
+1P!
+1S!
+
+#17730000
+0!
+04
+0P!
+0S!
+
+#17735000
+1!
+b11011101110 3
+14
+1P!
+1S!
+
+#17740000
+0!
+04
+0P!
+0S!
+
+#17745000
+1!
+b11011101111 3
+14
+1P!
+1S!
+
+#17750000
+0!
+04
+0P!
+0S!
+
+#17755000
+1!
+b11011110000 3
+14
+1P!
+1S!
+
+#17760000
+0!
+04
+0P!
+0S!
+
+#17765000
+1!
+b11011110001 3
+14
+1P!
+1S!
+
+#17770000
+0!
+04
+0P!
+0S!
+
+#17775000
+1!
+b11011110010 3
+14
+1P!
+1S!
+
+#17780000
+0!
+04
+0P!
+0S!
+
+#17785000
+1!
+b11011110011 3
+14
+1P!
+1S!
+
+#17790000
+0!
+04
+0P!
+0S!
+
+#17795000
+1!
+b11011110100 3
+14
+1P!
+1S!
+
+#17800000
+0!
+04
+0P!
+0S!
+
+#17805000
+1!
+b11011110101 3
+14
+1P!
+1S!
+
+#17810000
+0!
+04
+0P!
+0S!
+
+#17815000
+1!
+b11011110110 3
+14
+1P!
+1S!
+
+#17820000
+0!
+04
+0P!
+0S!
+
+#17825000
+1!
+b11011110111 3
+14
+1P!
+1S!
+
+#17830000
+0!
+04
+0P!
+0S!
+
+#17835000
+1!
+b11011111000 3
+14
+1P!
+1S!
+
+#17840000
+0!
+04
+0P!
+0S!
+
+#17845000
+1!
+b11011111001 3
+14
+1P!
+1S!
+
+#17850000
+0!
+04
+0P!
+0S!
+
+#17855000
+1!
+b11011111010 3
+14
+1P!
+1S!
+
+#17860000
+0!
+04
+0P!
+0S!
+
+#17865000
+1!
+b11011111011 3
+14
+1P!
+1S!
+
+#17870000
+0!
+04
+0P!
+0S!
+
+#17875000
+1!
+b11011111100 3
+14
+1P!
+1S!
+
+#17880000
+0!
+04
+0P!
+0S!
+
+#17885000
+1!
+b11011111101 3
+14
+1P!
+1S!
+
+#17890000
+0!
+04
+0P!
+0S!
+
+#17895000
+1!
+b11011111110 3
+14
+1P!
+1S!
+
+#17900000
+0!
+04
+0P!
+0S!
+
+#17905000
+1!
+b11011111111 3
+14
+1P!
+1S!
+
+#17910000
+0!
+04
+0P!
+0S!
+
+#17915000
+1!
+b11100000000 3
+14
+1P!
+1S!
+
+#17920000
+0!
+04
+0P!
+0S!
+
+#17925000
+1!
+b11100000001 3
+14
+1P!
+1S!
+
+#17930000
+0!
+04
+0P!
+0S!
+
+#17935000
+1!
+b11100000010 3
+14
+1P!
+1S!
+
+#17940000
+0!
+04
+0P!
+0S!
+
+#17945000
+1!
+b11100000011 3
+14
+1P!
+1S!
+
+#17950000
+0!
+04
+0P!
+0S!
+
+#17955000
+1!
+b11100000100 3
+14
+1P!
+1S!
+
+#17960000
+0!
+04
+0P!
+0S!
+
+#17965000
+1!
+b11100000101 3
+14
+1P!
+1S!
+
+#17970000
+0!
+04
+0P!
+0S!
+
+#17975000
+1!
+b11100000110 3
+14
+1P!
+1S!
+
+#17980000
+0!
+04
+0P!
+0S!
+
+#17985000
+1!
+b11100000111 3
+14
+1P!
+1S!
+
+#17990000
+0!
+04
+0P!
+0S!
+
+#17995000
+1!
+b11100001000 3
+14
+1P!
+1S!
+
+#18000000
+0!
+04
+0P!
+0S!
+
+#18005000
+1!
+b11100001001 3
+14
+1P!
+1S!
+
+#18010000
+0!
+04
+0P!
+0S!
+
+#18015000
+1!
+b11100001010 3
+14
+1P!
+1S!
+
+#18020000
+0!
+04
+0P!
+0S!
+
+#18025000
+1!
+b11100001011 3
+14
+1P!
+1S!
+
+#18030000
+0!
+04
+0P!
+0S!
+
+#18035000
+1!
+b11100001100 3
+14
+1P!
+1S!
+
+#18040000
+0!
+04
+0P!
+0S!
+
+#18045000
+1!
+b11100001101 3
+14
+1P!
+1S!
+
+#18050000
+0!
+04
+0P!
+0S!
+
+#18055000
+1!
+b11100001110 3
+14
+1P!
+1S!
+
+#18060000
+0!
+04
+0P!
+0S!
+
+#18065000
+1!
+b11100001111 3
+14
+1P!
+1S!
+
+#18070000
+0!
+04
+0P!
+0S!
+
+#18075000
+1!
+b11100010000 3
+14
+1P!
+1S!
+
+#18080000
+0!
+04
+0P!
+0S!
+
+#18085000
+1!
+b11100010001 3
+14
+1P!
+1S!
+
+#18090000
+0!
+04
+0P!
+0S!
+
+#18095000
+1!
+b11100010010 3
+14
+1P!
+1S!
+
+#18100000
+0!
+04
+0P!
+0S!
+
+#18105000
+1!
+b11100010011 3
+14
+1P!
+1S!
+
+#18110000
+0!
+04
+0P!
+0S!
+
+#18115000
+1!
+b11100010100 3
+14
+1P!
+1S!
+
+#18120000
+0!
+04
+0P!
+0S!
+
+#18125000
+1!
+b11100010101 3
+14
+1P!
+1S!
+
+#18130000
+0!
+04
+0P!
+0S!
+
+#18135000
+1!
+b11100010110 3
+14
+1P!
+1S!
+
+#18140000
+0!
+04
+0P!
+0S!
+
+#18145000
+1!
+b11100010111 3
+14
+1P!
+1S!
+
+#18150000
+0!
+04
+0P!
+0S!
+
+#18155000
+1!
+b11100011000 3
+14
+1P!
+1S!
+
+#18160000
+0!
+04
+0P!
+0S!
+
+#18165000
+1!
+b11100011001 3
+14
+1P!
+1S!
+
+#18170000
+0!
+04
+0P!
+0S!
+
+#18175000
+1!
+b11100011010 3
+14
+1P!
+1S!
+
+#18180000
+0!
+04
+0P!
+0S!
+
+#18185000
+1!
+b11100011011 3
+14
+1P!
+1S!
+
+#18190000
+0!
+04
+0P!
+0S!
+
+#18195000
+1!
+b11100011100 3
+14
+1P!
+1S!
+
+#18200000
+0!
+04
+0P!
+0S!
+
+#18205000
+1!
+b11100011101 3
+14
+1P!
+1S!
+
+#18210000
+0!
+04
+0P!
+0S!
+
+#18215000
+1!
+b11100011110 3
+14
+1P!
+1S!
+
+#18220000
+0!
+04
+0P!
+0S!
+
+#18225000
+1!
+b11100011111 3
+14
+1P!
+1S!
+
+#18230000
+0!
+04
+0P!
+0S!
+
+#18235000
+1!
+b11100100000 3
+14
+1P!
+1S!
+
+#18240000
+0!
+04
+0P!
+0S!
+
+#18245000
+1!
+b11100100001 3
+14
+1P!
+1S!
+
+#18250000
+0!
+04
+0P!
+0S!
+
+#18255000
+1!
+b11100100010 3
+14
+1P!
+1S!
+
+#18260000
+0!
+04
+0P!
+0S!
+
+#18265000
+1!
+b11100100011 3
+14
+1P!
+1S!
+
+#18270000
+0!
+04
+0P!
+0S!
+
+#18275000
+1!
+b11100100100 3
+14
+1P!
+1S!
+
+#18280000
+0!
+04
+0P!
+0S!
+
+#18285000
+1!
+b11100100101 3
+14
+1P!
+1S!
+
+#18290000
+0!
+04
+0P!
+0S!
+
+#18295000
+1!
+b11100100110 3
+14
+1P!
+1S!
+
+#18300000
+0!
+04
+0P!
+0S!
+
+#18305000
+1!
+b11100100111 3
+14
+1P!
+1S!
+
+#18310000
+0!
+04
+0P!
+0S!
+
+#18315000
+1!
+b11100101000 3
+14
+1P!
+1S!
+
+#18320000
+0!
+04
+0P!
+0S!
+
+#18325000
+1!
+b11100101001 3
+14
+1P!
+1S!
+
+#18330000
+0!
+04
+0P!
+0S!
+
+#18335000
+1!
+b11100101010 3
+14
+1P!
+1S!
+
+#18340000
+0!
+04
+0P!
+0S!
+
+#18345000
+1!
+b11100101011 3
+14
+1P!
+1S!
+
+#18350000
+0!
+04
+0P!
+0S!
+
+#18355000
+1!
+b11100101100 3
+14
+1P!
+1S!
+
+#18360000
+0!
+04
+0P!
+0S!
+
+#18365000
+1!
+b11100101101 3
+14
+1P!
+1S!
+
+#18370000
+0!
+04
+0P!
+0S!
+
+#18375000
+1!
+b11100101110 3
+14
+1P!
+1S!
+
+#18380000
+0!
+04
+0P!
+0S!
+
+#18385000
+1!
+b11100101111 3
+14
+1P!
+1S!
+
+#18390000
+0!
+04
+0P!
+0S!
+
+#18395000
+1!
+b11100110000 3
+14
+1P!
+1S!
+
+#18400000
+0!
+04
+0P!
+0S!
+
+#18405000
+1!
+b11100110001 3
+14
+1P!
+1S!
+
+#18410000
+0!
+04
+0P!
+0S!
+
+#18415000
+1!
+b11100110010 3
+14
+1P!
+1S!
+
+#18420000
+0!
+04
+0P!
+0S!
+
+#18425000
+1!
+b11100110011 3
+14
+1P!
+1S!
+
+#18430000
+0!
+04
+0P!
+0S!
+
+#18435000
+1!
+b11100110100 3
+14
+1P!
+1S!
+
+#18440000
+0!
+04
+0P!
+0S!
+
+#18445000
+1!
+b11100110101 3
+14
+1P!
+1S!
+
+#18450000
+0!
+04
+0P!
+0S!
+
+#18455000
+1!
+b11100110110 3
+14
+1P!
+1S!
+
+#18460000
+0!
+04
+0P!
+0S!
+
+#18465000
+1!
+b11100110111 3
+14
+1P!
+1S!
+
+#18470000
+0!
+04
+0P!
+0S!
+
+#18475000
+1!
+b11100111000 3
+14
+1P!
+1S!
+
+#18480000
+0!
+04
+0P!
+0S!
+
+#18485000
+1!
+b11100111001 3
+14
+1P!
+1S!
+
+#18490000
+0!
+04
+0P!
+0S!
+
+#18495000
+1!
+b11100111010 3
+14
+1P!
+1S!
+
+#18500000
+0!
+04
+0P!
+0S!
+
+#18505000
+1!
+b11100111011 3
+14
+1P!
+1S!
+
+#18510000
+0!
+04
+0P!
+0S!
+
+#18515000
+1!
+b11100111100 3
+14
+1P!
+1S!
+
+#18520000
+0!
+04
+0P!
+0S!
+
+#18525000
+1!
+b11100111101 3
+14
+1P!
+1S!
+
+#18530000
+0!
+04
+0P!
+0S!
+
+#18535000
+1!
+b11100111110 3
+14
+1P!
+1S!
+
+#18540000
+0!
+04
+0P!
+0S!
+
+#18545000
+1!
+b11100111111 3
+14
+1P!
+1S!
+
+#18550000
+0!
+04
+0P!
+0S!
+
+#18555000
+1!
+b11101000000 3
+14
+1P!
+1S!
+
+#18560000
+0!
+04
+0P!
+0S!
+
+#18565000
+1!
+b11101000001 3
+14
+1P!
+1S!
+
+#18570000
+0!
+04
+0P!
+0S!
+
+#18575000
+1!
+b11101000010 3
+14
+1P!
+1S!
+
+#18580000
+0!
+04
+0P!
+0S!
+
+#18585000
+1!
+b11101000011 3
+14
+1P!
+1S!
+
+#18590000
+0!
+04
+0P!
+0S!
+
+#18595000
+1!
+b11101000100 3
+14
+1P!
+1S!
+
+#18600000
+0!
+04
+0P!
+0S!
+
+#18605000
+1!
+b11101000101 3
+14
+1P!
+1S!
+
+#18610000
+0!
+04
+0P!
+0S!
+
+#18615000
+1!
+b11101000110 3
+14
+1P!
+1S!
+
+#18620000
+0!
+04
+0P!
+0S!
+
+#18625000
+1!
+b11101000111 3
+14
+1P!
+1S!
+
+#18630000
+0!
+04
+0P!
+0S!
+
+#18635000
+1!
+b11101001000 3
+14
+1P!
+1S!
+
+#18640000
+0!
+04
+0P!
+0S!
+
+#18645000
+1!
+b11101001001 3
+14
+1P!
+1S!
+
+#18650000
+0!
+04
+0P!
+0S!
+
+#18655000
+1!
+b11101001010 3
+14
+1P!
+1S!
+
+#18660000
+0!
+04
+0P!
+0S!
+
+#18665000
+1!
+b11101001011 3
+14
+1P!
+1S!
+
+#18670000
+0!
+04
+0P!
+0S!
+
+#18675000
+1!
+b11101001100 3
+14
+1P!
+1S!
+
+#18680000
+0!
+04
+0P!
+0S!
+
+#18685000
+1!
+b11101001101 3
+14
+1P!
+1S!
+
+#18690000
+0!
+04
+0P!
+0S!
+
+#18695000
+1!
+b11101001110 3
+14
+1P!
+1S!
+
+#18700000
+0!
+04
+0P!
+0S!
+
+#18705000
+1!
+b11101001111 3
+14
+1P!
+1S!
+
+#18710000
+0!
+04
+0P!
+0S!
+
+#18715000
+1!
+b11101010000 3
+14
+1P!
+1S!
+
+#18720000
+0!
+04
+0P!
+0S!
+
+#18725000
+1!
+b11101010001 3
+14
+1P!
+1S!
+
+#18730000
+0!
+04
+0P!
+0S!
+
+#18735000
+1!
+b11101010010 3
+14
+1P!
+1S!
+
+#18740000
+0!
+04
+0P!
+0S!
+
+#18745000
+1!
+b11101010011 3
+14
+1P!
+1S!
+
+#18750000
+0!
+04
+0P!
+0S!
+
+#18755000
+1!
+b11101010100 3
+14
+1P!
+1S!
+
+#18760000
+0!
+04
+0P!
+0S!
+
+#18765000
+1!
+b11101010101 3
+14
+1P!
+1S!
+
+#18770000
+0!
+04
+0P!
+0S!
+
+#18775000
+1!
+b11101010110 3
+14
+1P!
+1S!
+
+#18780000
+0!
+04
+0P!
+0S!
+
+#18785000
+1!
+b11101010111 3
+14
+1P!
+1S!
+
+#18790000
+0!
+04
+0P!
+0S!
+
+#18795000
+1!
+b11101011000 3
+14
+1P!
+1S!
+
+#18800000
+0!
+04
+0P!
+0S!
+
+#18805000
+1!
+b11101011001 3
+14
+1P!
+1S!
+
+#18810000
+0!
+04
+0P!
+0S!
+
+#18815000
+1!
+b11101011010 3
+14
+1P!
+1S!
+
+#18820000
+0!
+04
+0P!
+0S!
+
+#18825000
+1!
+b11101011011 3
+14
+1P!
+1S!
+
+#18830000
+0!
+04
+0P!
+0S!
+
+#18835000
+1!
+b11101011100 3
+14
+1P!
+1S!
+
+#18840000
+0!
+04
+0P!
+0S!
+
+#18845000
+1!
+b11101011101 3
+14
+1P!
+1S!
+
+#18850000
+0!
+04
+0P!
+0S!
+
+#18855000
+1!
+b11101011110 3
+14
+1P!
+1S!
+
+#18860000
+0!
+04
+0P!
+0S!
+
+#18865000
+1!
+b11101011111 3
+14
+1P!
+1S!
+
+#18870000
+0!
+04
+0P!
+0S!
+
+#18875000
+1!
+b11101100000 3
+14
+1P!
+1S!
+
+#18880000
+0!
+04
+0P!
+0S!
+
+#18885000
+1!
+b11101100001 3
+14
+1P!
+1S!
+
+#18890000
+0!
+04
+0P!
+0S!
+
+#18895000
+1!
+b11101100010 3
+14
+1P!
+1S!
+
+#18900000
+0!
+04
+0P!
+0S!
+
+#18905000
+1!
+b11101100011 3
+14
+1P!
+1S!
+
+#18910000
+0!
+04
+0P!
+0S!
+
+#18915000
+1!
+b11101100100 3
+14
+1P!
+1S!
+
+#18920000
+0!
+04
+0P!
+0S!
+
+#18925000
+1!
+b11101100101 3
+14
+1P!
+1S!
+
+#18930000
+0!
+04
+0P!
+0S!
+
+#18935000
+1!
+b11101100110 3
+14
+1P!
+1S!
+
+#18940000
+0!
+04
+0P!
+0S!
+
+#18945000
+1!
+b11101100111 3
+14
+1P!
+1S!
+
+#18950000
+0!
+04
+0P!
+0S!
+
+#18955000
+1!
+b11101101000 3
+14
+1P!
+1S!
+
+#18960000
+0!
+04
+0P!
+0S!
+
+#18965000
+1!
+b11101101001 3
+14
+1P!
+1S!
+
+#18970000
+0!
+04
+0P!
+0S!
+
+#18975000
+1!
+b11101101010 3
+14
+1P!
+1S!
+
+#18980000
+0!
+04
+0P!
+0S!
+
+#18985000
+1!
+b11101101011 3
+14
+1P!
+1S!
+
+#18990000
+0!
+04
+0P!
+0S!
+
+#18995000
+1!
+b11101101100 3
+14
+1P!
+1S!
+
+#19000000
+0!
+04
+0P!
+0S!
+
+#19005000
+1!
+b11101101101 3
+14
+1P!
+1S!
+
+#19010000
+0!
+04
+0P!
+0S!
+
+#19015000
+1!
+b11101101110 3
+14
+1P!
+1S!
+
+#19020000
+0!
+04
+0P!
+0S!
+
+#19025000
+1!
+b11101101111 3
+14
+1P!
+1S!
+
+#19030000
+0!
+04
+0P!
+0S!
+
+#19035000
+1!
+b11101110000 3
+14
+1P!
+1S!
+
+#19040000
+0!
+04
+0P!
+0S!
+
+#19045000
+1!
+b11101110001 3
+14
+1P!
+1S!
+
+#19050000
+0!
+04
+0P!
+0S!
+
+#19055000
+1!
+b11101110010 3
+14
+1P!
+1S!
+
+#19060000
+0!
+04
+0P!
+0S!
+
+#19065000
+1!
+b11101110011 3
+14
+1P!
+1S!
+
+#19070000
+0!
+04
+0P!
+0S!
+
+#19075000
+1!
+b11101110100 3
+14
+1P!
+1S!
+
+#19080000
+0!
+04
+0P!
+0S!
+
+#19085000
+1!
+b11101110101 3
+14
+1P!
+1S!
+
+#19090000
+0!
+04
+0P!
+0S!
+
+#19095000
+1!
+b11101110110 3
+14
+1P!
+1S!
+
+#19100000
+0!
+04
+0P!
+0S!
+
+#19105000
+1!
+b11101110111 3
+14
+1P!
+1S!
+
+#19110000
+0!
+04
+0P!
+0S!
+
+#19115000
+1!
+b11101111000 3
+14
+1P!
+1S!
+
+#19120000
+0!
+04
+0P!
+0S!
+
+#19125000
+1!
+b11101111001 3
+14
+1P!
+1S!
+
+#19130000
+0!
+04
+0P!
+0S!
+
+#19135000
+1!
+b11101111010 3
+14
+1P!
+1S!
+
+#19140000
+0!
+04
+0P!
+0S!
+
+#19145000
+1!
+b11101111011 3
+14
+1P!
+1S!
+
+#19150000
+0!
+04
+0P!
+0S!
+
+#19155000
+1!
+b11101111100 3
+14
+1P!
+1S!
+
+#19160000
+0!
+04
+0P!
+0S!
+
+#19165000
+1!
+b11101111101 3
+14
+1P!
+1S!
+
+#19170000
+0!
+04
+0P!
+0S!
+
+#19175000
+1!
+b11101111110 3
+14
+1P!
+1S!
+
+#19180000
+0!
+04
+0P!
+0S!
+
+#19185000
+1!
+b11101111111 3
+14
+1P!
+1S!
+
+#19190000
+0!
+04
+0P!
+0S!
+
+#19195000
+1!
+b11110000000 3
+14
+1P!
+1S!
+
+#19200000
+0!
+04
+0P!
+0S!
+
+#19205000
+1!
+b11110000001 3
+14
+1P!
+1S!
+
+#19210000
+0!
+04
+0P!
+0S!
+
+#19215000
+1!
+b11110000010 3
+14
+1P!
+1S!
+
+#19220000
+0!
+04
+0P!
+0S!
+
+#19225000
+1!
+b11110000011 3
+14
+1P!
+1S!
+
+#19230000
+0!
+04
+0P!
+0S!
+
+#19235000
+1!
+b11110000100 3
+14
+1P!
+1S!
+
+#19240000
+0!
+04
+0P!
+0S!
+
+#19245000
+1!
+b11110000101 3
+14
+1P!
+1S!
+
+#19250000
+0!
+04
+0P!
+0S!
+
+#19255000
+1!
+b11110000110 3
+14
+1P!
+1S!
+
+#19260000
+0!
+04
+0P!
+0S!
+
+#19265000
+1!
+b11110000111 3
+14
+1P!
+1S!
+
+#19270000
+0!
+04
+0P!
+0S!
+
+#19275000
+1!
+b11110001000 3
+14
+1P!
+1S!
+
+#19280000
+0!
+04
+0P!
+0S!
+
+#19285000
+1!
+b11110001001 3
+14
+1P!
+1S!
+
+#19290000
+0!
+04
+0P!
+0S!
+
+#19295000
+1!
+b11110001010 3
+14
+1P!
+1S!
+
+#19300000
+0!
+04
+0P!
+0S!
+
+#19305000
+1!
+b11110001011 3
+14
+1P!
+1S!
+
+#19310000
+0!
+04
+0P!
+0S!
+
+#19315000
+1!
+b11110001100 3
+14
+1P!
+1S!
+
+#19320000
+0!
+04
+0P!
+0S!
+
+#19325000
+1!
+b11110001101 3
+14
+1P!
+1S!
+
+#19330000
+0!
+04
+0P!
+0S!
+
+#19335000
+1!
+b11110001110 3
+14
+1P!
+1S!
+
+#19340000
+0!
+04
+0P!
+0S!
+
+#19345000
+1!
+b11110001111 3
+14
+1P!
+1S!
+
+#19350000
+0!
+04
+0P!
+0S!
+
+#19355000
+1!
+b11110010000 3
+14
+1P!
+1S!
+
+#19360000
+0!
+04
+0P!
+0S!
+
+#19365000
+1!
+b11110010001 3
+14
+1P!
+1S!
+
+#19370000
+0!
+04
+0P!
+0S!
+
+#19375000
+1!
+b11110010010 3
+14
+1P!
+1S!
+
+#19380000
+0!
+04
+0P!
+0S!
+
+#19385000
+1!
+b11110010011 3
+14
+1P!
+1S!
+
+#19390000
+0!
+04
+0P!
+0S!
+
+#19395000
+1!
+b11110010100 3
+14
+1P!
+1S!
+
+#19400000
+0!
+04
+0P!
+0S!
+
+#19405000
+1!
+b11110010101 3
+14
+1P!
+1S!
+
+#19410000
+0!
+04
+0P!
+0S!
+
+#19415000
+1!
+b11110010110 3
+14
+1P!
+1S!
+
+#19420000
+0!
+04
+0P!
+0S!
+
+#19425000
+1!
+b11110010111 3
+14
+1P!
+1S!
+
+#19430000
+0!
+04
+0P!
+0S!
+
+#19435000
+1!
+b11110011000 3
+14
+1P!
+1S!
+
+#19440000
+0!
+04
+0P!
+0S!
+
+#19445000
+1!
+b11110011001 3
+14
+1P!
+1S!
+
+#19450000
+0!
+04
+0P!
+0S!
+
+#19455000
+1!
+b11110011010 3
+14
+1P!
+1S!
+
+#19460000
+0!
+04
+0P!
+0S!
+
+#19465000
+1!
+b11110011011 3
+14
+1P!
+1S!
+
+#19470000
+0!
+04
+0P!
+0S!
+
+#19475000
+1!
+b11110011100 3
+14
+1P!
+1S!
+
+#19480000
+0!
+04
+0P!
+0S!
+
+#19485000
+1!
+b11110011101 3
+14
+1P!
+1S!
+
+#19490000
+0!
+04
+0P!
+0S!
+
+#19495000
+1!
+b11110011110 3
+14
+1P!
+1S!
+
+#19500000
+0!
+04
+0P!
+0S!
+
+#19505000
+1!
+b11110011111 3
+14
+1P!
+1S!
+
+#19510000
+0!
+04
+0P!
+0S!
+
+#19515000
+1!
+b11110100000 3
+14
+1P!
+1S!
+
+#19520000
+0!
+04
+0P!
+0S!
+
+#19525000
+1!
+b11110100001 3
+14
+1P!
+1S!
+
+#19530000
+0!
+04
+0P!
+0S!
+
+#19535000
+1!
+b11110100010 3
+14
+1P!
+1S!
+
+#19540000
+0!
+04
+0P!
+0S!
+
+#19545000
+1!
+b11110100011 3
+14
+1P!
+1S!
+
+#19550000
+0!
+04
+0P!
+0S!
+
+#19555000
+1!
+b11110100100 3
+14
+1P!
+1S!
+
+#19560000
+0!
+04
+0P!
+0S!
+
+#19565000
+1!
+b11110100101 3
+14
+1P!
+1S!
+
+#19570000
+0!
+04
+0P!
+0S!
+
+#19575000
+1!
+b11110100110 3
+14
+1P!
+1S!
+
+#19580000
+0!
+04
+0P!
+0S!
+
+#19585000
+1!
+b11110100111 3
+14
+1P!
+1S!
+
+#19590000
+0!
+04
+0P!
+0S!
+
+#19595000
+1!
+b11110101000 3
+14
+1P!
+1S!
+
+#19600000
+0!
+04
+0P!
+0S!
+
+#19605000
+1!
+b11110101001 3
+14
+1P!
+1S!
+
+#19610000
+0!
+04
+0P!
+0S!
+
+#19615000
+1!
+b11110101010 3
+14
+1P!
+1S!
+
+#19620000
+0!
+04
+0P!
+0S!
+
+#19625000
+1!
+b11110101011 3
+14
+1P!
+1S!
+
+#19630000
+0!
+04
+0P!
+0S!
+
+#19635000
+1!
+b11110101100 3
+14
+1P!
+1S!
+
+#19640000
+0!
+04
+0P!
+0S!
+
+#19645000
+1!
+b11110101101 3
+14
+1P!
+1S!
+
+#19650000
+0!
+04
+0P!
+0S!
+
+#19655000
+1!
+b11110101110 3
+14
+1P!
+1S!
+
+#19660000
+0!
+04
+0P!
+0S!
+
+#19665000
+1!
+b11110101111 3
+14
+1P!
+1S!
+
+#19670000
+0!
+04
+0P!
+0S!
+
+#19675000
+1!
+b11110110000 3
+14
+1P!
+1S!
+
+#19680000
+0!
+04
+0P!
+0S!
+
+#19685000
+1!
+b11110110001 3
+14
+1P!
+1S!
+
+#19690000
+0!
+04
+0P!
+0S!
+
+#19695000
+1!
+b11110110010 3
+14
+1P!
+1S!
+
+#19700000
+0!
+04
+0P!
+0S!
+
+#19705000
+1!
+b11110110011 3
+14
+1P!
+1S!
+
+#19710000
+0!
+04
+0P!
+0S!
+
+#19715000
+1!
+b11110110100 3
+14
+1P!
+1S!
+
+#19720000
+0!
+04
+0P!
+0S!
+
+#19725000
+1!
+b11110110101 3
+14
+1P!
+1S!
+
+#19730000
+0!
+04
+0P!
+0S!
+
+#19735000
+1!
+b11110110110 3
+14
+1P!
+1S!
+
+#19740000
+0!
+04
+0P!
+0S!
+
+#19745000
+1!
+b11110110111 3
+14
+1P!
+1S!
+
+#19750000
+0!
+04
+0P!
+0S!
+
+#19755000
+1!
+b11110111000 3
+14
+1P!
+1S!
+
+#19760000
+0!
+04
+0P!
+0S!
+
+#19765000
+1!
+b11110111001 3
+14
+1P!
+1S!
+
+#19770000
+0!
+04
+0P!
+0S!
+
+#19775000
+1!
+b11110111010 3
+14
+1P!
+1S!
+
+#19780000
+0!
+04
+0P!
+0S!
+
+#19785000
+1!
+b11110111011 3
+14
+1P!
+1S!
+
+#19790000
+0!
+04
+0P!
+0S!
+
+#19795000
+1!
+b11110111100 3
+14
+1P!
+1S!
+
+#19800000
+0!
+04
+0P!
+0S!
+
+#19805000
+1!
+b11110111101 3
+14
+1P!
+1S!
+
+#19810000
+0!
+04
+0P!
+0S!
+
+#19815000
+1!
+b11110111110 3
+14
+1P!
+1S!
+
+#19820000
+0!
+04
+0P!
+0S!
+
+#19825000
+1!
+b11110111111 3
+14
+1P!
+1S!
+
+#19830000
+0!
+04
+0P!
+0S!
+
+#19835000
+1!
+b11111000000 3
+14
+1P!
+1S!
+
+#19840000
+0!
+04
+0P!
+0S!
+
+#19845000
+1!
+b11111000001 3
+14
+1P!
+1S!
+
+#19850000
+0!
+04
+0P!
+0S!
+
+#19855000
+1!
+b11111000010 3
+14
+1P!
+1S!
+
+#19860000
+0!
+04
+0P!
+0S!
+
+#19865000
+1!
+b11111000011 3
+14
+1P!
+1S!
+
+#19870000
+0!
+04
+0P!
+0S!
+
+#19875000
+1!
+b11111000100 3
+14
+1P!
+1S!
+
+#19880000
+0!
+04
+0P!
+0S!
+
+#19885000
+1!
+b11111000101 3
+14
+1P!
+1S!
+
+#19890000
+0!
+04
+0P!
+0S!
+
+#19895000
+1!
+b11111000110 3
+14
+1P!
+1S!
+
+#19900000
+0!
+04
+0P!
+0S!
+
+#19905000
+1!
+b11111000111 3
+14
+1P!
+1S!
+
+#19910000
+0!
+04
+0P!
+0S!
+
+#19915000
+1!
+b11111001000 3
+14
+1P!
+1S!
+
+#19920000
+0!
+04
+0P!
+0S!
+
+#19925000
+1!
+b11111001001 3
+14
+1P!
+1S!
+
+#19930000
+0!
+04
+0P!
+0S!
+
+#19935000
+1!
+b11111001010 3
+14
+1P!
+1S!
+
+#19940000
+0!
+04
+0P!
+0S!
+
+#19945000
+1!
+b11111001011 3
+14
+1P!
+1S!
+
+#19950000
+0!
+04
+0P!
+0S!
+
+#19955000
+1!
+b11111001100 3
+14
+1P!
+1S!
+
+#19960000
+0!
+04
+0P!
+0S!
+
+#19965000
+1!
+b11111001101 3
+14
+1P!
+1S!
+
+#19970000
+0!
+04
+0P!
+0S!
+
+#19975000
+1!
+b11111001110 3
+14
+1P!
+1S!
+
+#19980000
+0!
+04
+0P!
+0S!
+
+#19985000
+1!
+b11111001111 3
+14
+1P!
+1S!
+
+#19990000
+0!
+04
+0P!
+0S!
+
+#19995000
+1!
+b11111010000 3
+14
+1P!
+1S!

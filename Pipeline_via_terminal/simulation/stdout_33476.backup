@@ -1,0 +1,2523 @@
+#-----------------------------------------------------------
+# xsim v2025.2 (64-bit)
+# SW Build 6299465 on Fri Nov 14 19:35:11 GMT 2025
+# IP Build 6300035 on Fri Nov 14 10:48:45 MST 2025
+# SharedData Build 6298862 on Thu Nov 13 04:50:51 MST 2025
+# Start of session at: Tue Mar 17 11:56:08 2026
+# Process ID         : 33476
+# Current directory  : D:/3-Stage-Pipeline/Pipeline_via_terminal/simulation
+# Command line       : xsim.exe -log stdout -mode tcl -source {xsim.dir/riscv_sim/xsim_script.tcl}
+# Log file           : D:/3-Stage-Pipeline/Pipeline_via_terminal/simulation/stdout
+# Journal file       : D:/3-Stage-Pipeline/Pipeline_via_terminal/simulation\xsim.jou
+# Running On         : LAPTOP-PEJA2QNK
+# Platform           : Windows Server 2016 or Windows 10
+# Operating System   : 26200
+# Processor Detail   : 13th Gen Intel(R) Core(TM) i5-13500H
+# CPU Frequency      : 3187 MHz
+# CPU Physical cores : 12
+# CPU Logical cores  : 16
+# Host memory        : 16890 MB
+# Swap memory        : 13421 MB
+# Total Virtual      : 30312 MB
+# Available Virtual  : 13028 MB
+#-----------------------------------------------------------
+source xsim.dir/riscv_sim/xsim_script.tcl
+# xsim {riscv_sim} -autoloadwcfg -runall
+Time resolution is 1 ps
+run -all
+time:                    0 ,result =          0
+next_pc = 00000000
+next_pc = 00000000
+next_pc = 00000000
+next_pc = 00000000
+next_pc = 00000000
+next_pc = 00000000
+next_pc = 00000000
+next_pc = 00000000
+next_pc = 00000000
+next_pc = 00000000
+next_pc = 00000000
+next_pc = 00000000
+next_pc = 00000004
+next_pc = 00000008
+next_pc = 0000000c
+time:               155000 ,result = 0, instruction = 03010413
+next_pc = 00000010
+time:               165000 ,result = 0, instruction = 00300793
+next_pc = 00000014
+next_pc = 00000018
+next_pc = 0000001c
+time:               195000 ,result = 3, instruction = 00100793
+next_pc = 00000020
+time:               205000 ,result = 0, instruction = fef42423
+next_pc = 00000024
+next_pc = 00000028
+time:               225000 ,result = 1, instruction = 00100793
+next_pc = 0000002c
+next_pc = 00000030
+next_pc = 00000034
+next_pc = 0000003c
+next_pc = 00000040
+next_pc = 00000044
+time:               285000 ,result = 1, instruction = fe842703
+next_pc = 00000048
+next_pc = 00000074
+next_pc = 00000078
+next_pc = 0000007c
+next_pc = 00000080
+next_pc = 00000048
+next_pc = 0000004c
+next_pc = 00000050
+next_pc = 00000054
+next_pc = 00000058
+time:               385000 ,result = 3, instruction = fef42623
+next_pc = 0000005c
+next_pc = 00000060
+time:               405000 ,result = 1, instruction = fef42423
+next_pc = 00000064
+next_pc = 00000068
+time:               425000 ,result = 3, instruction = 00178793
+next_pc = 0000006c
+next_pc = 00000070
+next_pc = 00000074
+time:               455000 ,result = 2, instruction = fe042783
+next_pc = 00000078
+next_pc = 0000007c
+next_pc = 00000080
+next_pc = 00000048
+next_pc = 0000004c
+next_pc = 00000050
+next_pc = 00000054
+next_pc = 00000058
+time:               535000 ,result = 3, instruction = fef42623
+next_pc = 0000005c
+next_pc = 00000060
+time:               555000 ,result = 3, instruction = fef42423
+next_pc = 00000064
+next_pc = 00000068
+time:               575000 ,result = 3, instruction = 00178793
+next_pc = 0000006c
+next_pc = 00000070
+next_pc = 00000074
+time:               605000 ,result = 3, instruction = fe042783
+next_pc = 00000078
+next_pc = 0000007c
+next_pc = 00000080
+next_pc = 00000048
+next_pc = 0000004c
+next_pc = 00000050
+next_pc = 00000054
+next_pc = 00000058
+time:               685000 ,result = 6, instruction = fef42623
+next_pc = 0000005c
+next_pc = 00000060
+time:               705000 ,result = 3, instruction = fef42423
+next_pc = 00000064
+next_pc = 00000068
+time:               725000 ,result = 6, instruction = 00178793
+next_pc = 0000006c
+next_pc = 00000070
+next_pc = 00000074
+time:               755000 ,result = 4, instruction = fe042783
+next_pc = 00000078
+next_pc = 0000007c
+next_pc = 00000080
+next_pc = 00000084
+next_pc = 00000088
+next_pc = 0000008c
+next_pc = 00000090
+next_pc = 00000094
+next_pc = 00000098
+next_pc = 00000000
+next_pc = 00000004
+next_pc = 00000008
+next_pc = 0000000c
+time:               885000 ,result = 0, instruction = 03010413
+next_pc = 00000010
+time:               895000 ,result = 0, instruction = 00300793
+next_pc = 00000014
+next_pc = 00000018
+next_pc = 0000001c
+time:               925000 ,result = 3, instruction = 00100793
+next_pc = 00000020
+time:               935000 ,result = 0, instruction = fef42423
+next_pc = 00000024
+next_pc = 00000028
+time:               955000 ,result = 1, instruction = 00100793
+next_pc = 0000002c
+next_pc = 00000030
+next_pc = 00000034
+next_pc = 0000003c
+next_pc = 00000040
+next_pc = 00000044
+time:              1015000 ,result = 1, instruction = fe842703
+next_pc = 00000048
+next_pc = 00000074
+next_pc = 00000078
+next_pc = 0000007c
+next_pc = 00000080
+next_pc = 00000048
+next_pc = 0000004c
+next_pc = 00000050
+next_pc = 00000054
+next_pc = 00000058
+time:              1115000 ,result = 3, instruction = fef42623
+next_pc = 0000005c
+next_pc = 00000060
+time:              1135000 ,result = 1, instruction = fef42423
+next_pc = 00000064
+next_pc = 00000068
+time:              1155000 ,result = 3, instruction = 00178793
+next_pc = 0000006c
+next_pc = 00000070
+next_pc = 00000074
+time:              1185000 ,result = 2, instruction = fe042783
+next_pc = 00000078
+next_pc = 0000007c
+next_pc = 00000080
+next_pc = 00000048
+next_pc = 0000004c
+next_pc = 00000050
+next_pc = 00000054
+next_pc = 00000058
+time:              1265000 ,result = 3, instruction = fef42623
+next_pc = 0000005c
+next_pc = 00000060
+time:              1285000 ,result = 3, instruction = fef42423
+next_pc = 00000064
+next_pc = 00000068
+time:              1305000 ,result = 3, instruction = 00178793
+next_pc = 0000006c
+next_pc = 00000070
+next_pc = 00000074
+time:              1335000 ,result = 3, instruction = fe042783
+next_pc = 00000078
+next_pc = 0000007c
+next_pc = 00000080
+next_pc = 00000048
+next_pc = 0000004c
+next_pc = 00000050
+next_pc = 00000054
+next_pc = 00000058
+time:              1415000 ,result = 6, instruction = fef42623
+next_pc = 0000005c
+next_pc = 00000060
+time:              1435000 ,result = 3, instruction = fef42423
+next_pc = 00000064
+next_pc = 00000068
+time:              1455000 ,result = 6, instruction = 00178793
+next_pc = 0000006c
+next_pc = 00000070
+next_pc = 00000074
+time:              1485000 ,result = 4, instruction = fe042783
+next_pc = 00000078
+next_pc = 0000007c
+next_pc = 00000080
+next_pc = 00000084
+next_pc = 00000088
+next_pc = 0000008c
+next_pc = 00000090
+next_pc = 00000094
+next_pc = 00000098
+next_pc = 00000000
+next_pc = 00000004
+next_pc = 00000008
+next_pc = 0000000c
+time:              1615000 ,result = 0, instruction = 03010413
+next_pc = 00000010
+time:              1625000 ,result = 0, instruction = 00300793
+next_pc = 00000014
+next_pc = 00000018
+next_pc = 0000001c
+time:              1655000 ,result = 3, instruction = 00100793
+next_pc = 00000020
+time:              1665000 ,result = 0, instruction = fef42423
+next_pc = 00000024
+next_pc = 00000028
+time:              1685000 ,result = 1, instruction = 00100793
+next_pc = 0000002c
+next_pc = 00000030
+next_pc = 00000034
+next_pc = 0000003c
+next_pc = 00000040
+next_pc = 00000044
+time:              1745000 ,result = 1, instruction = fe842703
+next_pc = 00000048
+next_pc = 00000074
+next_pc = 00000078
+next_pc = 0000007c
+next_pc = 00000080
+next_pc = 00000048
+next_pc = 0000004c
+next_pc = 00000050
+next_pc = 00000054
+next_pc = 00000058
+time:              1845000 ,result = 3, instruction = fef42623
+next_pc = 0000005c
+next_pc = 00000060
+time:              1865000 ,result = 1, instruction = fef42423
+next_pc = 00000064
+next_pc = 00000068
+time:              1885000 ,result = 3, instruction = 00178793
+next_pc = 0000006c
+next_pc = 00000070
+next_pc = 00000074
+time:              1915000 ,result = 2, instruction = fe042783
+next_pc = 00000078
+next_pc = 0000007c
+next_pc = 00000080
+next_pc = 00000048
+next_pc = 0000004c
+next_pc = 00000050
+next_pc = 00000054
+next_pc = 00000058
+time:              1995000 ,result = 3, instruction = fef42623
+next_pc = 0000005c
+next_pc = 00000060
+time:              2015000 ,result = 3, instruction = fef42423
+next_pc = 00000064
+next_pc = 00000068
+time:              2035000 ,result = 3, instruction = 00178793
+next_pc = 0000006c
+next_pc = 00000070
+next_pc = 00000074
+time:              2065000 ,result = 3, instruction = fe042783
+next_pc = 00000078
+next_pc = 0000007c
+next_pc = 00000080
+next_pc = 00000048
+next_pc = 0000004c
+next_pc = 00000050
+next_pc = 00000054
+next_pc = 00000058
+time:              2145000 ,result = 6, instruction = fef42623
+next_pc = 0000005c
+next_pc = 00000060
+time:              2165000 ,result = 3, instruction = fef42423
+next_pc = 00000064
+next_pc = 00000068
+time:              2185000 ,result = 6, instruction = 00178793
+next_pc = 0000006c
+next_pc = 00000070
+next_pc = 00000074
+time:              2215000 ,result = 4, instruction = fe042783
+next_pc = 00000078
+next_pc = 0000007c
+next_pc = 00000080
+next_pc = 00000084
+next_pc = 00000088
+next_pc = 0000008c
+next_pc = 00000090
+next_pc = 00000094
+next_pc = 00000098
+next_pc = 00000000
+next_pc = 00000004
+next_pc = 00000008
+next_pc = 0000000c
+time:              2345000 ,result = 0, instruction = 03010413
+next_pc = 00000010
+time:              2355000 ,result = 0, instruction = 00300793
+next_pc = 00000014
+next_pc = 00000018
+next_pc = 0000001c
+time:              2385000 ,result = 3, instruction = 00100793
+next_pc = 00000020
+time:              2395000 ,result = 0, instruction = fef42423
+next_pc = 00000024
+next_pc = 00000028
+time:              2415000 ,result = 1, instruction = 00100793
+next_pc = 0000002c
+next_pc = 00000030
+next_pc = 00000034
+next_pc = 0000003c
+next_pc = 00000040
+next_pc = 00000044
+time:              2475000 ,result = 1, instruction = fe842703
+next_pc = 00000048
+next_pc = 00000074
+next_pc = 00000078
+next_pc = 0000007c
+next_pc = 00000080
+next_pc = 00000048
+next_pc = 0000004c
+next_pc = 00000050
+next_pc = 00000054
+next_pc = 00000058
+time:              2575000 ,result = 3, instruction = fef42623
+next_pc = 0000005c
+next_pc = 00000060
+time:              2595000 ,result = 1, instruction = fef42423
+next_pc = 00000064
+next_pc = 00000068
+time:              2615000 ,result = 3, instruction = 00178793
+next_pc = 0000006c
+next_pc = 00000070
+next_pc = 00000074
+time:              2645000 ,result = 2, instruction = fe042783
+next_pc = 00000078
+next_pc = 0000007c
+next_pc = 00000080
+next_pc = 00000048
+next_pc = 0000004c
+next_pc = 00000050
+next_pc = 00000054
+next_pc = 00000058
+time:              2725000 ,result = 3, instruction = fef42623
+next_pc = 0000005c
+next_pc = 00000060
+time:              2745000 ,result = 3, instruction = fef42423
+next_pc = 00000064
+next_pc = 00000068
+time:              2765000 ,result = 3, instruction = 00178793
+next_pc = 0000006c
+next_pc = 00000070
+next_pc = 00000074
+time:              2795000 ,result = 3, instruction = fe042783
+next_pc = 00000078
+next_pc = 0000007c
+next_pc = 00000080
+next_pc = 00000048
+next_pc = 0000004c
+next_pc = 00000050
+next_pc = 00000054
+next_pc = 00000058
+time:              2875000 ,result = 6, instruction = fef42623
+next_pc = 0000005c
+next_pc = 00000060
+time:              2895000 ,result = 3, instruction = fef42423
+next_pc = 00000064
+next_pc = 00000068
+time:              2915000 ,result = 6, instruction = 00178793
+next_pc = 0000006c
+next_pc = 00000070
+next_pc = 00000074
+time:              2945000 ,result = 4, instruction = fe042783
+next_pc = 00000078
+next_pc = 0000007c
+next_pc = 00000080
+next_pc = 00000084
+next_pc = 00000088
+next_pc = 0000008c
+next_pc = 00000090
+next_pc = 00000094
+next_pc = 00000098
+next_pc = 00000000
+next_pc = 00000004
+next_pc = 00000008
+next_pc = 0000000c
+time:              3075000 ,result = 0, instruction = 03010413
+next_pc = 00000010
+time:              3085000 ,result = 0, instruction = 00300793
+next_pc = 00000014
+next_pc = 00000018
+next_pc = 0000001c
+time:              3115000 ,result = 3, instruction = 00100793
+next_pc = 00000020
+time:              3125000 ,result = 0, instruction = fef42423
+next_pc = 00000024
+next_pc = 00000028
+time:              3145000 ,result = 1, instruction = 00100793
+next_pc = 0000002c
+next_pc = 00000030
+next_pc = 00000034
+next_pc = 0000003c
+next_pc = 00000040
+next_pc = 00000044
+time:              3205000 ,result = 1, instruction = fe842703
+next_pc = 00000048
+next_pc = 00000074
+next_pc = 00000078
+next_pc = 0000007c
+next_pc = 00000080
+next_pc = 00000048
+next_pc = 0000004c
+next_pc = 00000050
+next_pc = 00000054
+next_pc = 00000058
+time:              3305000 ,result = 3, instruction = fef42623
+next_pc = 0000005c
+next_pc = 00000060
+time:              3325000 ,result = 1, instruction = fef42423
+next_pc = 00000064
+next_pc = 00000068
+time:              3345000 ,result = 3, instruction = 00178793
+next_pc = 0000006c
+next_pc = 00000070
+next_pc = 00000074
+time:              3375000 ,result = 2, instruction = fe042783
+next_pc = 00000078
+next_pc = 0000007c
+next_pc = 00000080
+next_pc = 00000048
+next_pc = 0000004c
+next_pc = 00000050
+next_pc = 00000054
+next_pc = 00000058
+time:              3455000 ,result = 3, instruction = fef42623
+next_pc = 0000005c
+next_pc = 00000060
+time:              3475000 ,result = 3, instruction = fef42423
+next_pc = 00000064
+next_pc = 00000068
+time:              3495000 ,result = 3, instruction = 00178793
+next_pc = 0000006c
+next_pc = 00000070
+next_pc = 00000074
+time:              3525000 ,result = 3, instruction = fe042783
+next_pc = 00000078
+next_pc = 0000007c
+next_pc = 00000080
+next_pc = 00000048
+next_pc = 0000004c
+next_pc = 00000050
+next_pc = 00000054
+next_pc = 00000058
+time:              3605000 ,result = 6, instruction = fef42623
+next_pc = 0000005c
+next_pc = 00000060
+time:              3625000 ,result = 3, instruction = fef42423
+next_pc = 00000064
+next_pc = 00000068
+time:              3645000 ,result = 6, instruction = 00178793
+next_pc = 0000006c
+next_pc = 00000070
+next_pc = 00000074
+time:              3675000 ,result = 4, instruction = fe042783
+next_pc = 00000078
+next_pc = 0000007c
+next_pc = 00000080
+next_pc = 00000084
+next_pc = 00000088
+next_pc = 0000008c
+next_pc = 00000090
+next_pc = 00000094
+next_pc = 00000098
+next_pc = 00000000
+next_pc = 00000004
+next_pc = 00000008
+next_pc = 0000000c
+time:              3805000 ,result = 0, instruction = 03010413
+next_pc = 00000010
+time:              3815000 ,result = 0, instruction = 00300793
+next_pc = 00000014
+next_pc = 00000018
+next_pc = 0000001c
+time:              3845000 ,result = 3, instruction = 00100793
+next_pc = 00000020
+time:              3855000 ,result = 0, instruction = fef42423
+next_pc = 00000024
+next_pc = 00000028
+time:              3875000 ,result = 1, instruction = 00100793
+next_pc = 0000002c
+next_pc = 00000030
+next_pc = 00000034
+next_pc = 0000003c
+next_pc = 00000040
+next_pc = 00000044
+time:              3935000 ,result = 1, instruction = fe842703
+next_pc = 00000048
+next_pc = 00000074
+next_pc = 00000078
+next_pc = 0000007c
+next_pc = 00000080
+next_pc = 00000048
+next_pc = 0000004c
+next_pc = 00000050
+next_pc = 00000054
+next_pc = 00000058
+time:              4035000 ,result = 3, instruction = fef42623
+next_pc = 0000005c
+next_pc = 00000060
+time:              4055000 ,result = 1, instruction = fef42423
+next_pc = 00000064
+next_pc = 00000068
+time:              4075000 ,result = 3, instruction = 00178793
+next_pc = 0000006c
+next_pc = 00000070
+next_pc = 00000074
+time:              4105000 ,result = 2, instruction = fe042783
+next_pc = 00000078
+next_pc = 0000007c
+next_pc = 00000080
+next_pc = 00000048
+next_pc = 0000004c
+next_pc = 00000050
+next_pc = 00000054
+next_pc = 00000058
+time:              4185000 ,result = 3, instruction = fef42623
+next_pc = 0000005c
+next_pc = 00000060
+time:              4205000 ,result = 3, instruction = fef42423
+next_pc = 00000064
+next_pc = 00000068
+time:              4225000 ,result = 3, instruction = 00178793
+next_pc = 0000006c
+next_pc = 00000070
+next_pc = 00000074
+time:              4255000 ,result = 3, instruction = fe042783
+next_pc = 00000078
+next_pc = 0000007c
+next_pc = 00000080
+next_pc = 00000048
+next_pc = 0000004c
+next_pc = 00000050
+next_pc = 00000054
+next_pc = 00000058
+time:              4335000 ,result = 6, instruction = fef42623
+next_pc = 0000005c
+next_pc = 00000060
+time:              4355000 ,result = 3, instruction = fef42423
+next_pc = 00000064
+next_pc = 00000068
+time:              4375000 ,result = 6, instruction = 00178793
+next_pc = 0000006c
+next_pc = 00000070
+next_pc = 00000074
+time:              4405000 ,result = 4, instruction = fe042783
+next_pc = 00000078
+next_pc = 0000007c
+next_pc = 00000080
+next_pc = 00000084
+next_pc = 00000088
+next_pc = 0000008c
+next_pc = 00000090
+next_pc = 00000094
+next_pc = 00000098
+next_pc = 00000000
+next_pc = 00000004
+next_pc = 00000008
+next_pc = 0000000c
+time:              4535000 ,result = 0, instruction = 03010413
+next_pc = 00000010
+time:              4545000 ,result = 0, instruction = 00300793
+next_pc = 00000014
+next_pc = 00000018
+next_pc = 0000001c
+time:              4575000 ,result = 3, instruction = 00100793
+next_pc = 00000020
+time:              4585000 ,result = 0, instruction = fef42423
+next_pc = 00000024
+next_pc = 00000028
+time:              4605000 ,result = 1, instruction = 00100793
+next_pc = 0000002c
+next_pc = 00000030
+next_pc = 00000034
+next_pc = 0000003c
+next_pc = 00000040
+next_pc = 00000044
+time:              4665000 ,result = 1, instruction = fe842703
+next_pc = 00000048
+next_pc = 00000074
+next_pc = 00000078
+next_pc = 0000007c
+next_pc = 00000080
+next_pc = 00000048
+next_pc = 0000004c
+next_pc = 00000050
+next_pc = 00000054
+next_pc = 00000058
+time:              4765000 ,result = 3, instruction = fef42623
+next_pc = 0000005c
+next_pc = 00000060
+time:              4785000 ,result = 1, instruction = fef42423
+next_pc = 00000064
+next_pc = 00000068
+time:              4805000 ,result = 3, instruction = 00178793
+next_pc = 0000006c
+next_pc = 00000070
+next_pc = 00000074
+time:              4835000 ,result = 2, instruction = fe042783
+next_pc = 00000078
+next_pc = 0000007c
+next_pc = 00000080
+next_pc = 00000048
+next_pc = 0000004c
+next_pc = 00000050
+next_pc = 00000054
+next_pc = 00000058
+time:              4915000 ,result = 3, instruction = fef42623
+next_pc = 0000005c
+next_pc = 00000060
+time:              4935000 ,result = 3, instruction = fef42423
+next_pc = 00000064
+next_pc = 00000068
+time:              4955000 ,result = 3, instruction = 00178793
+next_pc = 0000006c
+next_pc = 00000070
+next_pc = 00000074
+time:              4985000 ,result = 3, instruction = fe042783
+next_pc = 00000078
+next_pc = 0000007c
+next_pc = 00000080
+next_pc = 00000048
+next_pc = 0000004c
+next_pc = 00000050
+next_pc = 00000054
+next_pc = 00000058
+time:              5065000 ,result = 6, instruction = fef42623
+next_pc = 0000005c
+next_pc = 00000060
+time:              5085000 ,result = 3, instruction = fef42423
+next_pc = 00000064
+next_pc = 00000068
+time:              5105000 ,result = 6, instruction = 00178793
+next_pc = 0000006c
+next_pc = 00000070
+next_pc = 00000074
+time:              5135000 ,result = 4, instruction = fe042783
+next_pc = 00000078
+next_pc = 0000007c
+next_pc = 00000080
+next_pc = 00000084
+next_pc = 00000088
+next_pc = 0000008c
+next_pc = 00000090
+next_pc = 00000094
+next_pc = 00000098
+next_pc = 00000000
+next_pc = 00000004
+next_pc = 00000008
+next_pc = 0000000c
+time:              5265000 ,result = 0, instruction = 03010413
+next_pc = 00000010
+time:              5275000 ,result = 0, instruction = 00300793
+next_pc = 00000014
+next_pc = 00000018
+next_pc = 0000001c
+time:              5305000 ,result = 3, instruction = 00100793
+next_pc = 00000020
+time:              5315000 ,result = 0, instruction = fef42423
+next_pc = 00000024
+next_pc = 00000028
+time:              5335000 ,result = 1, instruction = 00100793
+next_pc = 0000002c
+next_pc = 00000030
+next_pc = 00000034
+next_pc = 0000003c
+next_pc = 00000040
+next_pc = 00000044
+time:              5395000 ,result = 1, instruction = fe842703
+next_pc = 00000048
+next_pc = 00000074
+next_pc = 00000078
+next_pc = 0000007c
+next_pc = 00000080
+next_pc = 00000048
+next_pc = 0000004c
+next_pc = 00000050
+next_pc = 00000054
+next_pc = 00000058
+time:              5495000 ,result = 3, instruction = fef42623
+next_pc = 0000005c
+next_pc = 00000060
+time:              5515000 ,result = 1, instruction = fef42423
+next_pc = 00000064
+next_pc = 00000068
+time:              5535000 ,result = 3, instruction = 00178793
+next_pc = 0000006c
+next_pc = 00000070
+next_pc = 00000074
+time:              5565000 ,result = 2, instruction = fe042783
+next_pc = 00000078
+next_pc = 0000007c
+next_pc = 00000080
+next_pc = 00000048
+next_pc = 0000004c
+next_pc = 00000050
+next_pc = 00000054
+next_pc = 00000058
+time:              5645000 ,result = 3, instruction = fef42623
+next_pc = 0000005c
+next_pc = 00000060
+time:              5665000 ,result = 3, instruction = fef42423
+next_pc = 00000064
+next_pc = 00000068
+time:              5685000 ,result = 3, instruction = 00178793
+next_pc = 0000006c
+next_pc = 00000070
+next_pc = 00000074
+time:              5715000 ,result = 3, instruction = fe042783
+next_pc = 00000078
+next_pc = 0000007c
+next_pc = 00000080
+next_pc = 00000048
+next_pc = 0000004c
+next_pc = 00000050
+next_pc = 00000054
+next_pc = 00000058
+time:              5795000 ,result = 6, instruction = fef42623
+next_pc = 0000005c
+next_pc = 00000060
+time:              5815000 ,result = 3, instruction = fef42423
+next_pc = 00000064
+next_pc = 00000068
+time:              5835000 ,result = 6, instruction = 00178793
+next_pc = 0000006c
+next_pc = 00000070
+next_pc = 00000074
+time:              5865000 ,result = 4, instruction = fe042783
+next_pc = 00000078
+next_pc = 0000007c
+next_pc = 00000080
+next_pc = 00000084
+next_pc = 00000088
+next_pc = 0000008c
+next_pc = 00000090
+next_pc = 00000094
+next_pc = 00000098
+next_pc = 00000000
+next_pc = 00000004
+next_pc = 00000008
+next_pc = 0000000c
+time:              5995000 ,result = 0, instruction = 03010413
+next_pc = 00000010
+time:              6005000 ,result = 0, instruction = 00300793
+next_pc = 00000014
+next_pc = 00000018
+next_pc = 0000001c
+time:              6035000 ,result = 3, instruction = 00100793
+next_pc = 00000020
+time:              6045000 ,result = 0, instruction = fef42423
+next_pc = 00000024
+next_pc = 00000028
+time:              6065000 ,result = 1, instruction = 00100793
+next_pc = 0000002c
+next_pc = 00000030
+next_pc = 00000034
+next_pc = 0000003c
+next_pc = 00000040
+next_pc = 00000044
+time:              6125000 ,result = 1, instruction = fe842703
+next_pc = 00000048
+next_pc = 00000074
+next_pc = 00000078
+next_pc = 0000007c
+next_pc = 00000080
+next_pc = 00000048
+next_pc = 0000004c
+next_pc = 00000050
+next_pc = 00000054
+next_pc = 00000058
+time:              6225000 ,result = 3, instruction = fef42623
+next_pc = 0000005c
+next_pc = 00000060
+time:              6245000 ,result = 1, instruction = fef42423
+next_pc = 00000064
+next_pc = 00000068
+time:              6265000 ,result = 3, instruction = 00178793
+next_pc = 0000006c
+next_pc = 00000070
+next_pc = 00000074
+time:              6295000 ,result = 2, instruction = fe042783
+next_pc = 00000078
+next_pc = 0000007c
+next_pc = 00000080
+next_pc = 00000048
+next_pc = 0000004c
+next_pc = 00000050
+next_pc = 00000054
+next_pc = 00000058
+time:              6375000 ,result = 3, instruction = fef42623
+next_pc = 0000005c
+next_pc = 00000060
+time:              6395000 ,result = 3, instruction = fef42423
+next_pc = 00000064
+next_pc = 00000068
+time:              6415000 ,result = 3, instruction = 00178793
+next_pc = 0000006c
+next_pc = 00000070
+next_pc = 00000074
+time:              6445000 ,result = 3, instruction = fe042783
+next_pc = 00000078
+next_pc = 0000007c
+next_pc = 00000080
+next_pc = 00000048
+next_pc = 0000004c
+next_pc = 00000050
+next_pc = 00000054
+next_pc = 00000058
+time:              6525000 ,result = 6, instruction = fef42623
+next_pc = 0000005c
+next_pc = 00000060
+time:              6545000 ,result = 3, instruction = fef42423
+next_pc = 00000064
+next_pc = 00000068
+time:              6565000 ,result = 6, instruction = 00178793
+next_pc = 0000006c
+next_pc = 00000070
+next_pc = 00000074
+time:              6595000 ,result = 4, instruction = fe042783
+next_pc = 00000078
+next_pc = 0000007c
+next_pc = 00000080
+next_pc = 00000084
+next_pc = 00000088
+next_pc = 0000008c
+next_pc = 00000090
+next_pc = 00000094
+next_pc = 00000098
+next_pc = 00000000
+next_pc = 00000004
+next_pc = 00000008
+next_pc = 0000000c
+time:              6725000 ,result = 0, instruction = 03010413
+next_pc = 00000010
+time:              6735000 ,result = 0, instruction = 00300793
+next_pc = 00000014
+next_pc = 00000018
+next_pc = 0000001c
+time:              6765000 ,result = 3, instruction = 00100793
+next_pc = 00000020
+time:              6775000 ,result = 0, instruction = fef42423
+next_pc = 00000024
+next_pc = 00000028
+time:              6795000 ,result = 1, instruction = 00100793
+next_pc = 0000002c
+next_pc = 00000030
+next_pc = 00000034
+next_pc = 0000003c
+next_pc = 00000040
+next_pc = 00000044
+time:              6855000 ,result = 1, instruction = fe842703
+next_pc = 00000048
+next_pc = 00000074
+next_pc = 00000078
+next_pc = 0000007c
+next_pc = 00000080
+next_pc = 00000048
+next_pc = 0000004c
+next_pc = 00000050
+next_pc = 00000054
+next_pc = 00000058
+time:              6955000 ,result = 3, instruction = fef42623
+next_pc = 0000005c
+next_pc = 00000060
+time:              6975000 ,result = 1, instruction = fef42423
+next_pc = 00000064
+next_pc = 00000068
+time:              6995000 ,result = 3, instruction = 00178793
+next_pc = 0000006c
+next_pc = 00000070
+next_pc = 00000074
+time:              7025000 ,result = 2, instruction = fe042783
+next_pc = 00000078
+next_pc = 0000007c
+next_pc = 00000080
+next_pc = 00000048
+next_pc = 0000004c
+next_pc = 00000050
+next_pc = 00000054
+next_pc = 00000058
+time:              7105000 ,result = 3, instruction = fef42623
+next_pc = 0000005c
+next_pc = 00000060
+time:              7125000 ,result = 3, instruction = fef42423
+next_pc = 00000064
+next_pc = 00000068
+time:              7145000 ,result = 3, instruction = 00178793
+next_pc = 0000006c
+next_pc = 00000070
+next_pc = 00000074
+time:              7175000 ,result = 3, instruction = fe042783
+next_pc = 00000078
+next_pc = 0000007c
+next_pc = 00000080
+next_pc = 00000048
+next_pc = 0000004c
+next_pc = 00000050
+next_pc = 00000054
+next_pc = 00000058
+time:              7255000 ,result = 6, instruction = fef42623
+next_pc = 0000005c
+next_pc = 00000060
+time:              7275000 ,result = 3, instruction = fef42423
+next_pc = 00000064
+next_pc = 00000068
+time:              7295000 ,result = 6, instruction = 00178793
+next_pc = 0000006c
+next_pc = 00000070
+next_pc = 00000074
+time:              7325000 ,result = 4, instruction = fe042783
+next_pc = 00000078
+next_pc = 0000007c
+next_pc = 00000080
+next_pc = 00000084
+next_pc = 00000088
+next_pc = 0000008c
+next_pc = 00000090
+next_pc = 00000094
+next_pc = 00000098
+next_pc = 00000000
+next_pc = 00000004
+next_pc = 00000008
+next_pc = 0000000c
+time:              7455000 ,result = 0, instruction = 03010413
+next_pc = 00000010
+time:              7465000 ,result = 0, instruction = 00300793
+next_pc = 00000014
+next_pc = 00000018
+next_pc = 0000001c
+time:              7495000 ,result = 3, instruction = 00100793
+next_pc = 00000020
+time:              7505000 ,result = 0, instruction = fef42423
+next_pc = 00000024
+next_pc = 00000028
+time:              7525000 ,result = 1, instruction = 00100793
+next_pc = 0000002c
+next_pc = 00000030
+next_pc = 00000034
+next_pc = 0000003c
+next_pc = 00000040
+next_pc = 00000044
+time:              7585000 ,result = 1, instruction = fe842703
+next_pc = 00000048
+next_pc = 00000074
+next_pc = 00000078
+next_pc = 0000007c
+next_pc = 00000080
+next_pc = 00000048
+next_pc = 0000004c
+next_pc = 00000050
+next_pc = 00000054
+next_pc = 00000058
+time:              7685000 ,result = 3, instruction = fef42623
+next_pc = 0000005c
+next_pc = 00000060
+time:              7705000 ,result = 1, instruction = fef42423
+next_pc = 00000064
+next_pc = 00000068
+time:              7725000 ,result = 3, instruction = 00178793
+next_pc = 0000006c
+next_pc = 00000070
+next_pc = 00000074
+time:              7755000 ,result = 2, instruction = fe042783
+next_pc = 00000078
+next_pc = 0000007c
+next_pc = 00000080
+next_pc = 00000048
+next_pc = 0000004c
+next_pc = 00000050
+next_pc = 00000054
+next_pc = 00000058
+time:              7835000 ,result = 3, instruction = fef42623
+next_pc = 0000005c
+next_pc = 00000060
+time:              7855000 ,result = 3, instruction = fef42423
+next_pc = 00000064
+next_pc = 00000068
+time:              7875000 ,result = 3, instruction = 00178793
+next_pc = 0000006c
+next_pc = 00000070
+next_pc = 00000074
+time:              7905000 ,result = 3, instruction = fe042783
+next_pc = 00000078
+next_pc = 0000007c
+next_pc = 00000080
+next_pc = 00000048
+next_pc = 0000004c
+next_pc = 00000050
+next_pc = 00000054
+next_pc = 00000058
+time:              7985000 ,result = 6, instruction = fef42623
+next_pc = 0000005c
+next_pc = 00000060
+time:              8005000 ,result = 3, instruction = fef42423
+next_pc = 00000064
+next_pc = 00000068
+time:              8025000 ,result = 6, instruction = 00178793
+next_pc = 0000006c
+next_pc = 00000070
+next_pc = 00000074
+time:              8055000 ,result = 4, instruction = fe042783
+next_pc = 00000078
+next_pc = 0000007c
+next_pc = 00000080
+next_pc = 00000084
+next_pc = 00000088
+next_pc = 0000008c
+next_pc = 00000090
+next_pc = 00000094
+next_pc = 00000098
+next_pc = 00000000
+next_pc = 00000004
+next_pc = 00000008
+next_pc = 0000000c
+time:              8185000 ,result = 0, instruction = 03010413
+next_pc = 00000010
+time:              8195000 ,result = 0, instruction = 00300793
+next_pc = 00000014
+next_pc = 00000018
+next_pc = 0000001c
+time:              8225000 ,result = 3, instruction = 00100793
+next_pc = 00000020
+time:              8235000 ,result = 0, instruction = fef42423
+next_pc = 00000024
+next_pc = 00000028
+time:              8255000 ,result = 1, instruction = 00100793
+next_pc = 0000002c
+next_pc = 00000030
+next_pc = 00000034
+next_pc = 0000003c
+next_pc = 00000040
+next_pc = 00000044
+time:              8315000 ,result = 1, instruction = fe842703
+next_pc = 00000048
+next_pc = 00000074
+next_pc = 00000078
+next_pc = 0000007c
+next_pc = 00000080
+next_pc = 00000048
+next_pc = 0000004c
+next_pc = 00000050
+next_pc = 00000054
+next_pc = 00000058
+time:              8415000 ,result = 3, instruction = fef42623
+next_pc = 0000005c
+next_pc = 00000060
+time:              8435000 ,result = 1, instruction = fef42423
+next_pc = 00000064
+next_pc = 00000068
+time:              8455000 ,result = 3, instruction = 00178793
+next_pc = 0000006c
+next_pc = 00000070
+next_pc = 00000074
+time:              8485000 ,result = 2, instruction = fe042783
+next_pc = 00000078
+next_pc = 0000007c
+next_pc = 00000080
+next_pc = 00000048
+next_pc = 0000004c
+next_pc = 00000050
+next_pc = 00000054
+next_pc = 00000058
+time:              8565000 ,result = 3, instruction = fef42623
+next_pc = 0000005c
+next_pc = 00000060
+time:              8585000 ,result = 3, instruction = fef42423
+next_pc = 00000064
+next_pc = 00000068
+time:              8605000 ,result = 3, instruction = 00178793
+next_pc = 0000006c
+next_pc = 00000070
+next_pc = 00000074
+time:              8635000 ,result = 3, instruction = fe042783
+next_pc = 00000078
+next_pc = 0000007c
+next_pc = 00000080
+next_pc = 00000048
+next_pc = 0000004c
+next_pc = 00000050
+next_pc = 00000054
+next_pc = 00000058
+time:              8715000 ,result = 6, instruction = fef42623
+next_pc = 0000005c
+next_pc = 00000060
+time:              8735000 ,result = 3, instruction = fef42423
+next_pc = 00000064
+next_pc = 00000068
+time:              8755000 ,result = 6, instruction = 00178793
+next_pc = 0000006c
+next_pc = 00000070
+next_pc = 00000074
+time:              8785000 ,result = 4, instruction = fe042783
+next_pc = 00000078
+next_pc = 0000007c
+next_pc = 00000080
+next_pc = 00000084
+next_pc = 00000088
+next_pc = 0000008c
+next_pc = 00000090
+next_pc = 00000094
+next_pc = 00000098
+next_pc = 00000000
+next_pc = 00000004
+next_pc = 00000008
+next_pc = 0000000c
+time:              8915000 ,result = 0, instruction = 03010413
+next_pc = 00000010
+time:              8925000 ,result = 0, instruction = 00300793
+next_pc = 00000014
+next_pc = 00000018
+next_pc = 0000001c
+time:              8955000 ,result = 3, instruction = 00100793
+next_pc = 00000020
+time:              8965000 ,result = 0, instruction = fef42423
+next_pc = 00000024
+next_pc = 00000028
+time:              8985000 ,result = 1, instruction = 00100793
+next_pc = 0000002c
+next_pc = 00000030
+next_pc = 00000034
+next_pc = 0000003c
+next_pc = 00000040
+next_pc = 00000044
+time:              9045000 ,result = 1, instruction = fe842703
+next_pc = 00000048
+next_pc = 00000074
+next_pc = 00000078
+next_pc = 0000007c
+next_pc = 00000080
+next_pc = 00000048
+next_pc = 0000004c
+next_pc = 00000050
+next_pc = 00000054
+next_pc = 00000058
+time:              9145000 ,result = 3, instruction = fef42623
+next_pc = 0000005c
+next_pc = 00000060
+time:              9165000 ,result = 1, instruction = fef42423
+next_pc = 00000064
+next_pc = 00000068
+time:              9185000 ,result = 3, instruction = 00178793
+next_pc = 0000006c
+next_pc = 00000070
+next_pc = 00000074
+time:              9215000 ,result = 2, instruction = fe042783
+next_pc = 00000078
+next_pc = 0000007c
+next_pc = 00000080
+next_pc = 00000048
+next_pc = 0000004c
+next_pc = 00000050
+next_pc = 00000054
+next_pc = 00000058
+time:              9295000 ,result = 3, instruction = fef42623
+next_pc = 0000005c
+next_pc = 00000060
+time:              9315000 ,result = 3, instruction = fef42423
+next_pc = 00000064
+next_pc = 00000068
+time:              9335000 ,result = 3, instruction = 00178793
+next_pc = 0000006c
+next_pc = 00000070
+next_pc = 00000074
+time:              9365000 ,result = 3, instruction = fe042783
+next_pc = 00000078
+next_pc = 0000007c
+next_pc = 00000080
+next_pc = 00000048
+next_pc = 0000004c
+next_pc = 00000050
+next_pc = 00000054
+next_pc = 00000058
+time:              9445000 ,result = 6, instruction = fef42623
+next_pc = 0000005c
+next_pc = 00000060
+time:              9465000 ,result = 3, instruction = fef42423
+next_pc = 00000064
+next_pc = 00000068
+time:              9485000 ,result = 6, instruction = 00178793
+next_pc = 0000006c
+next_pc = 00000070
+next_pc = 00000074
+time:              9515000 ,result = 4, instruction = fe042783
+next_pc = 00000078
+next_pc = 0000007c
+next_pc = 00000080
+next_pc = 00000084
+next_pc = 00000088
+next_pc = 0000008c
+next_pc = 00000090
+next_pc = 00000094
+next_pc = 00000098
+next_pc = 00000000
+next_pc = 00000004
+next_pc = 00000008
+next_pc = 0000000c
+time:              9645000 ,result = 0, instruction = 03010413
+next_pc = 00000010
+time:              9655000 ,result = 0, instruction = 00300793
+next_pc = 00000014
+next_pc = 00000018
+next_pc = 0000001c
+time:              9685000 ,result = 3, instruction = 00100793
+next_pc = 00000020
+time:              9695000 ,result = 0, instruction = fef42423
+next_pc = 00000024
+next_pc = 00000028
+time:              9715000 ,result = 1, instruction = 00100793
+next_pc = 0000002c
+next_pc = 00000030
+next_pc = 00000034
+next_pc = 0000003c
+next_pc = 00000040
+next_pc = 00000044
+time:              9775000 ,result = 1, instruction = fe842703
+next_pc = 00000048
+next_pc = 00000074
+next_pc = 00000078
+next_pc = 0000007c
+next_pc = 00000080
+next_pc = 00000048
+next_pc = 0000004c
+next_pc = 00000050
+next_pc = 00000054
+next_pc = 00000058
+time:              9875000 ,result = 3, instruction = fef42623
+next_pc = 0000005c
+next_pc = 00000060
+time:              9895000 ,result = 1, instruction = fef42423
+next_pc = 00000064
+next_pc = 00000068
+time:              9915000 ,result = 3, instruction = 00178793
+next_pc = 0000006c
+next_pc = 00000070
+next_pc = 00000074
+time:              9945000 ,result = 2, instruction = fe042783
+next_pc = 00000078
+next_pc = 0000007c
+next_pc = 00000080
+next_pc = 00000048
+next_pc = 0000004c
+next_pc = 00000050
+next_pc = 00000054
+next_pc = 00000058
+time:             10025000 ,result = 3, instruction = fef42623
+next_pc = 0000005c
+next_pc = 00000060
+time:             10045000 ,result = 3, instruction = fef42423
+next_pc = 00000064
+next_pc = 00000068
+time:             10065000 ,result = 3, instruction = 00178793
+next_pc = 0000006c
+next_pc = 00000070
+next_pc = 00000074
+time:             10095000 ,result = 3, instruction = fe042783
+next_pc = 00000078
+next_pc = 0000007c
+next_pc = 00000080
+next_pc = 00000048
+next_pc = 0000004c
+next_pc = 00000050
+next_pc = 00000054
+next_pc = 00000058
+time:             10175000 ,result = 6, instruction = fef42623
+next_pc = 0000005c
+next_pc = 00000060
+time:             10195000 ,result = 3, instruction = fef42423
+next_pc = 00000064
+next_pc = 00000068
+time:             10215000 ,result = 6, instruction = 00178793
+next_pc = 0000006c
+next_pc = 00000070
+next_pc = 00000074
+time:             10245000 ,result = 4, instruction = fe042783
+next_pc = 00000078
+next_pc = 0000007c
+next_pc = 00000080
+next_pc = 00000084
+next_pc = 00000088
+next_pc = 0000008c
+next_pc = 00000090
+next_pc = 00000094
+next_pc = 00000098
+next_pc = 00000000
+next_pc = 00000004
+next_pc = 00000008
+next_pc = 0000000c
+time:             10375000 ,result = 0, instruction = 03010413
+next_pc = 00000010
+time:             10385000 ,result = 0, instruction = 00300793
+next_pc = 00000014
+next_pc = 00000018
+next_pc = 0000001c
+time:             10415000 ,result = 3, instruction = 00100793
+next_pc = 00000020
+time:             10425000 ,result = 0, instruction = fef42423
+next_pc = 00000024
+next_pc = 00000028
+time:             10445000 ,result = 1, instruction = 00100793
+next_pc = 0000002c
+next_pc = 00000030
+next_pc = 00000034
+next_pc = 0000003c
+next_pc = 00000040
+next_pc = 00000044
+time:             10505000 ,result = 1, instruction = fe842703
+next_pc = 00000048
+next_pc = 00000074
+next_pc = 00000078
+next_pc = 0000007c
+next_pc = 00000080
+next_pc = 00000048
+next_pc = 0000004c
+next_pc = 00000050
+next_pc = 00000054
+next_pc = 00000058
+time:             10605000 ,result = 3, instruction = fef42623
+next_pc = 0000005c
+next_pc = 00000060
+time:             10625000 ,result = 1, instruction = fef42423
+next_pc = 00000064
+next_pc = 00000068
+time:             10645000 ,result = 3, instruction = 00178793
+next_pc = 0000006c
+next_pc = 00000070
+next_pc = 00000074
+time:             10675000 ,result = 2, instruction = fe042783
+next_pc = 00000078
+next_pc = 0000007c
+next_pc = 00000080
+next_pc = 00000048
+next_pc = 0000004c
+next_pc = 00000050
+next_pc = 00000054
+next_pc = 00000058
+time:             10755000 ,result = 3, instruction = fef42623
+next_pc = 0000005c
+next_pc = 00000060
+time:             10775000 ,result = 3, instruction = fef42423
+next_pc = 00000064
+next_pc = 00000068
+time:             10795000 ,result = 3, instruction = 00178793
+next_pc = 0000006c
+next_pc = 00000070
+next_pc = 00000074
+time:             10825000 ,result = 3, instruction = fe042783
+next_pc = 00000078
+next_pc = 0000007c
+next_pc = 00000080
+next_pc = 00000048
+next_pc = 0000004c
+next_pc = 00000050
+next_pc = 00000054
+next_pc = 00000058
+time:             10905000 ,result = 6, instruction = fef42623
+next_pc = 0000005c
+next_pc = 00000060
+time:             10925000 ,result = 3, instruction = fef42423
+next_pc = 00000064
+next_pc = 00000068
+time:             10945000 ,result = 6, instruction = 00178793
+next_pc = 0000006c
+next_pc = 00000070
+next_pc = 00000074
+time:             10975000 ,result = 4, instruction = fe042783
+next_pc = 00000078
+next_pc = 0000007c
+next_pc = 00000080
+next_pc = 00000084
+next_pc = 00000088
+next_pc = 0000008c
+next_pc = 00000090
+next_pc = 00000094
+next_pc = 00000098
+next_pc = 00000000
+next_pc = 00000004
+next_pc = 00000008
+next_pc = 0000000c
+time:             11105000 ,result = 0, instruction = 03010413
+next_pc = 00000010
+time:             11115000 ,result = 0, instruction = 00300793
+next_pc = 00000014
+next_pc = 00000018
+next_pc = 0000001c
+time:             11145000 ,result = 3, instruction = 00100793
+next_pc = 00000020
+time:             11155000 ,result = 0, instruction = fef42423
+next_pc = 00000024
+next_pc = 00000028
+time:             11175000 ,result = 1, instruction = 00100793
+next_pc = 0000002c
+next_pc = 00000030
+next_pc = 00000034
+next_pc = 0000003c
+next_pc = 00000040
+next_pc = 00000044
+time:             11235000 ,result = 1, instruction = fe842703
+next_pc = 00000048
+next_pc = 00000074
+next_pc = 00000078
+next_pc = 0000007c
+next_pc = 00000080
+next_pc = 00000048
+next_pc = 0000004c
+next_pc = 00000050
+next_pc = 00000054
+next_pc = 00000058
+time:             11335000 ,result = 3, instruction = fef42623
+next_pc = 0000005c
+next_pc = 00000060
+time:             11355000 ,result = 1, instruction = fef42423
+next_pc = 00000064
+next_pc = 00000068
+time:             11375000 ,result = 3, instruction = 00178793
+next_pc = 0000006c
+next_pc = 00000070
+next_pc = 00000074
+time:             11405000 ,result = 2, instruction = fe042783
+next_pc = 00000078
+next_pc = 0000007c
+next_pc = 00000080
+next_pc = 00000048
+next_pc = 0000004c
+next_pc = 00000050
+next_pc = 00000054
+next_pc = 00000058
+time:             11485000 ,result = 3, instruction = fef42623
+next_pc = 0000005c
+next_pc = 00000060
+time:             11505000 ,result = 3, instruction = fef42423
+next_pc = 00000064
+next_pc = 00000068
+time:             11525000 ,result = 3, instruction = 00178793
+next_pc = 0000006c
+next_pc = 00000070
+next_pc = 00000074
+time:             11555000 ,result = 3, instruction = fe042783
+next_pc = 00000078
+next_pc = 0000007c
+next_pc = 00000080
+next_pc = 00000048
+next_pc = 0000004c
+next_pc = 00000050
+next_pc = 00000054
+next_pc = 00000058
+time:             11635000 ,result = 6, instruction = fef42623
+next_pc = 0000005c
+next_pc = 00000060
+time:             11655000 ,result = 3, instruction = fef42423
+next_pc = 00000064
+next_pc = 00000068
+time:             11675000 ,result = 6, instruction = 00178793
+next_pc = 0000006c
+next_pc = 00000070
+next_pc = 00000074
+time:             11705000 ,result = 4, instruction = fe042783
+next_pc = 00000078
+next_pc = 0000007c
+next_pc = 00000080
+next_pc = 00000084
+next_pc = 00000088
+next_pc = 0000008c
+next_pc = 00000090
+next_pc = 00000094
+next_pc = 00000098
+next_pc = 00000000
+next_pc = 00000004
+next_pc = 00000008
+next_pc = 0000000c
+time:             11835000 ,result = 0, instruction = 03010413
+next_pc = 00000010
+time:             11845000 ,result = 0, instruction = 00300793
+next_pc = 00000014
+next_pc = 00000018
+next_pc = 0000001c
+time:             11875000 ,result = 3, instruction = 00100793
+next_pc = 00000020
+time:             11885000 ,result = 0, instruction = fef42423
+next_pc = 00000024
+next_pc = 00000028
+time:             11905000 ,result = 1, instruction = 00100793
+next_pc = 0000002c
+next_pc = 00000030
+next_pc = 00000034
+next_pc = 0000003c
+next_pc = 00000040
+next_pc = 00000044
+time:             11965000 ,result = 1, instruction = fe842703
+next_pc = 00000048
+next_pc = 00000074
+next_pc = 00000078
+next_pc = 0000007c
+next_pc = 00000080
+next_pc = 00000048
+next_pc = 0000004c
+next_pc = 00000050
+next_pc = 00000054
+next_pc = 00000058
+time:             12065000 ,result = 3, instruction = fef42623
+next_pc = 0000005c
+next_pc = 00000060
+time:             12085000 ,result = 1, instruction = fef42423
+next_pc = 00000064
+next_pc = 00000068
+time:             12105000 ,result = 3, instruction = 00178793
+next_pc = 0000006c
+next_pc = 00000070
+next_pc = 00000074
+time:             12135000 ,result = 2, instruction = fe042783
+next_pc = 00000078
+next_pc = 0000007c
+next_pc = 00000080
+next_pc = 00000048
+next_pc = 0000004c
+next_pc = 00000050
+next_pc = 00000054
+next_pc = 00000058
+time:             12215000 ,result = 3, instruction = fef42623
+next_pc = 0000005c
+next_pc = 00000060
+time:             12235000 ,result = 3, instruction = fef42423
+next_pc = 00000064
+next_pc = 00000068
+time:             12255000 ,result = 3, instruction = 00178793
+next_pc = 0000006c
+next_pc = 00000070
+next_pc = 00000074
+time:             12285000 ,result = 3, instruction = fe042783
+next_pc = 00000078
+next_pc = 0000007c
+next_pc = 00000080
+next_pc = 00000048
+next_pc = 0000004c
+next_pc = 00000050
+next_pc = 00000054
+next_pc = 00000058
+time:             12365000 ,result = 6, instruction = fef42623
+next_pc = 0000005c
+next_pc = 00000060
+time:             12385000 ,result = 3, instruction = fef42423
+next_pc = 00000064
+next_pc = 00000068
+time:             12405000 ,result = 6, instruction = 00178793
+next_pc = 0000006c
+next_pc = 00000070
+next_pc = 00000074
+time:             12435000 ,result = 4, instruction = fe042783
+next_pc = 00000078
+next_pc = 0000007c
+next_pc = 00000080
+next_pc = 00000084
+next_pc = 00000088
+next_pc = 0000008c
+next_pc = 00000090
+next_pc = 00000094
+next_pc = 00000098
+next_pc = 00000000
+next_pc = 00000004
+next_pc = 00000008
+next_pc = 0000000c
+time:             12565000 ,result = 0, instruction = 03010413
+next_pc = 00000010
+time:             12575000 ,result = 0, instruction = 00300793
+next_pc = 00000014
+next_pc = 00000018
+next_pc = 0000001c
+time:             12605000 ,result = 3, instruction = 00100793
+next_pc = 00000020
+time:             12615000 ,result = 0, instruction = fef42423
+next_pc = 00000024
+next_pc = 00000028
+time:             12635000 ,result = 1, instruction = 00100793
+next_pc = 0000002c
+next_pc = 00000030
+next_pc = 00000034
+next_pc = 0000003c
+next_pc = 00000040
+next_pc = 00000044
+time:             12695000 ,result = 1, instruction = fe842703
+next_pc = 00000048
+next_pc = 00000074
+next_pc = 00000078
+next_pc = 0000007c
+next_pc = 00000080
+next_pc = 00000048
+next_pc = 0000004c
+next_pc = 00000050
+next_pc = 00000054
+next_pc = 00000058
+time:             12795000 ,result = 3, instruction = fef42623
+next_pc = 0000005c
+next_pc = 00000060
+time:             12815000 ,result = 1, instruction = fef42423
+next_pc = 00000064
+next_pc = 00000068
+time:             12835000 ,result = 3, instruction = 00178793
+next_pc = 0000006c
+next_pc = 00000070
+next_pc = 00000074
+time:             12865000 ,result = 2, instruction = fe042783
+next_pc = 00000078
+next_pc = 0000007c
+next_pc = 00000080
+next_pc = 00000048
+next_pc = 0000004c
+next_pc = 00000050
+next_pc = 00000054
+next_pc = 00000058
+time:             12945000 ,result = 3, instruction = fef42623
+next_pc = 0000005c
+next_pc = 00000060
+time:             12965000 ,result = 3, instruction = fef42423
+next_pc = 00000064
+next_pc = 00000068
+time:             12985000 ,result = 3, instruction = 00178793
+next_pc = 0000006c
+next_pc = 00000070
+next_pc = 00000074
+time:             13015000 ,result = 3, instruction = fe042783
+next_pc = 00000078
+next_pc = 0000007c
+next_pc = 00000080
+next_pc = 00000048
+next_pc = 0000004c
+next_pc = 00000050
+next_pc = 00000054
+next_pc = 00000058
+time:             13095000 ,result = 6, instruction = fef42623
+next_pc = 0000005c
+next_pc = 00000060
+time:             13115000 ,result = 3, instruction = fef42423
+next_pc = 00000064
+next_pc = 00000068
+time:             13135000 ,result = 6, instruction = 00178793
+next_pc = 0000006c
+next_pc = 00000070
+next_pc = 00000074
+time:             13165000 ,result = 4, instruction = fe042783
+next_pc = 00000078
+next_pc = 0000007c
+next_pc = 00000080
+next_pc = 00000084
+next_pc = 00000088
+next_pc = 0000008c
+next_pc = 00000090
+next_pc = 00000094
+next_pc = 00000098
+next_pc = 00000000
+next_pc = 00000004
+next_pc = 00000008
+next_pc = 0000000c
+time:             13295000 ,result = 0, instruction = 03010413
+next_pc = 00000010
+time:             13305000 ,result = 0, instruction = 00300793
+next_pc = 00000014
+next_pc = 00000018
+next_pc = 0000001c
+time:             13335000 ,result = 3, instruction = 00100793
+next_pc = 00000020
+time:             13345000 ,result = 0, instruction = fef42423
+next_pc = 00000024
+next_pc = 00000028
+time:             13365000 ,result = 1, instruction = 00100793
+next_pc = 0000002c
+next_pc = 00000030
+next_pc = 00000034
+next_pc = 0000003c
+next_pc = 00000040
+next_pc = 00000044
+time:             13425000 ,result = 1, instruction = fe842703
+next_pc = 00000048
+next_pc = 00000074
+next_pc = 00000078
+next_pc = 0000007c
+next_pc = 00000080
+next_pc = 00000048
+next_pc = 0000004c
+next_pc = 00000050
+next_pc = 00000054
+next_pc = 00000058
+time:             13525000 ,result = 3, instruction = fef42623
+next_pc = 0000005c
+next_pc = 00000060
+time:             13545000 ,result = 1, instruction = fef42423
+next_pc = 00000064
+next_pc = 00000068
+time:             13565000 ,result = 3, instruction = 00178793
+next_pc = 0000006c
+next_pc = 00000070
+next_pc = 00000074
+time:             13595000 ,result = 2, instruction = fe042783
+next_pc = 00000078
+next_pc = 0000007c
+next_pc = 00000080
+next_pc = 00000048
+next_pc = 0000004c
+next_pc = 00000050
+next_pc = 00000054
+next_pc = 00000058
+time:             13675000 ,result = 3, instruction = fef42623
+next_pc = 0000005c
+next_pc = 00000060
+time:             13695000 ,result = 3, instruction = fef42423
+next_pc = 00000064
+next_pc = 00000068
+time:             13715000 ,result = 3, instruction = 00178793
+next_pc = 0000006c
+next_pc = 00000070
+next_pc = 00000074
+time:             13745000 ,result = 3, instruction = fe042783
+next_pc = 00000078
+next_pc = 0000007c
+next_pc = 00000080
+next_pc = 00000048
+next_pc = 0000004c
+next_pc = 00000050
+next_pc = 00000054
+next_pc = 00000058
+time:             13825000 ,result = 6, instruction = fef42623
+next_pc = 0000005c
+next_pc = 00000060
+time:             13845000 ,result = 3, instruction = fef42423
+next_pc = 00000064
+next_pc = 00000068
+time:             13865000 ,result = 6, instruction = 00178793
+next_pc = 0000006c
+next_pc = 00000070
+next_pc = 00000074
+time:             13895000 ,result = 4, instruction = fe042783
+next_pc = 00000078
+next_pc = 0000007c
+next_pc = 00000080
+next_pc = 00000084
+next_pc = 00000088
+next_pc = 0000008c
+next_pc = 00000090
+next_pc = 00000094
+next_pc = 00000098
+next_pc = 00000000
+next_pc = 00000004
+next_pc = 00000008
+next_pc = 0000000c
+time:             14025000 ,result = 0, instruction = 03010413
+next_pc = 00000010
+time:             14035000 ,result = 0, instruction = 00300793
+next_pc = 00000014
+next_pc = 00000018
+next_pc = 0000001c
+time:             14065000 ,result = 3, instruction = 00100793
+next_pc = 00000020
+time:             14075000 ,result = 0, instruction = fef42423
+next_pc = 00000024
+next_pc = 00000028
+time:             14095000 ,result = 1, instruction = 00100793
+next_pc = 0000002c
+next_pc = 00000030
+next_pc = 00000034
+next_pc = 0000003c
+next_pc = 00000040
+next_pc = 00000044
+time:             14155000 ,result = 1, instruction = fe842703
+next_pc = 00000048
+next_pc = 00000074
+next_pc = 00000078
+next_pc = 0000007c
+next_pc = 00000080
+next_pc = 00000048
+next_pc = 0000004c
+next_pc = 00000050
+next_pc = 00000054
+next_pc = 00000058
+time:             14255000 ,result = 3, instruction = fef42623
+next_pc = 0000005c
+next_pc = 00000060
+time:             14275000 ,result = 1, instruction = fef42423
+next_pc = 00000064
+next_pc = 00000068
+time:             14295000 ,result = 3, instruction = 00178793
+next_pc = 0000006c
+next_pc = 00000070
+next_pc = 00000074
+time:             14325000 ,result = 2, instruction = fe042783
+next_pc = 00000078
+next_pc = 0000007c
+next_pc = 00000080
+next_pc = 00000048
+next_pc = 0000004c
+next_pc = 00000050
+next_pc = 00000054
+next_pc = 00000058
+time:             14405000 ,result = 3, instruction = fef42623
+next_pc = 0000005c
+next_pc = 00000060
+time:             14425000 ,result = 3, instruction = fef42423
+next_pc = 00000064
+next_pc = 00000068
+time:             14445000 ,result = 3, instruction = 00178793
+next_pc = 0000006c
+next_pc = 00000070
+next_pc = 00000074
+time:             14475000 ,result = 3, instruction = fe042783
+next_pc = 00000078
+next_pc = 0000007c
+next_pc = 00000080
+next_pc = 00000048
+next_pc = 0000004c
+next_pc = 00000050
+next_pc = 00000054
+next_pc = 00000058
+time:             14555000 ,result = 6, instruction = fef42623
+next_pc = 0000005c
+next_pc = 00000060
+time:             14575000 ,result = 3, instruction = fef42423
+next_pc = 00000064
+next_pc = 00000068
+time:             14595000 ,result = 6, instruction = 00178793
+next_pc = 0000006c
+next_pc = 00000070
+next_pc = 00000074
+time:             14625000 ,result = 4, instruction = fe042783
+next_pc = 00000078
+next_pc = 0000007c
+next_pc = 00000080
+next_pc = 00000084
+next_pc = 00000088
+next_pc = 0000008c
+next_pc = 00000090
+next_pc = 00000094
+next_pc = 00000098
+next_pc = 00000000
+next_pc = 00000004
+next_pc = 00000008
+next_pc = 0000000c
+time:             14755000 ,result = 0, instruction = 03010413
+next_pc = 00000010
+time:             14765000 ,result = 0, instruction = 00300793
+next_pc = 00000014
+next_pc = 00000018
+next_pc = 0000001c
+time:             14795000 ,result = 3, instruction = 00100793
+next_pc = 00000020
+time:             14805000 ,result = 0, instruction = fef42423
+next_pc = 00000024
+next_pc = 00000028
+time:             14825000 ,result = 1, instruction = 00100793
+next_pc = 0000002c
+next_pc = 00000030
+next_pc = 00000034
+next_pc = 0000003c
+next_pc = 00000040
+next_pc = 00000044
+time:             14885000 ,result = 1, instruction = fe842703
+next_pc = 00000048
+next_pc = 00000074
+next_pc = 00000078
+next_pc = 0000007c
+next_pc = 00000080
+next_pc = 00000048
+next_pc = 0000004c
+next_pc = 00000050
+next_pc = 00000054
+next_pc = 00000058
+time:             14985000 ,result = 3, instruction = fef42623
+next_pc = 0000005c
+next_pc = 00000060
+time:             15005000 ,result = 1, instruction = fef42423
+next_pc = 00000064
+next_pc = 00000068
+time:             15025000 ,result = 3, instruction = 00178793
+next_pc = 0000006c
+next_pc = 00000070
+next_pc = 00000074
+time:             15055000 ,result = 2, instruction = fe042783
+next_pc = 00000078
+next_pc = 0000007c
+next_pc = 00000080
+next_pc = 00000048
+next_pc = 0000004c
+next_pc = 00000050
+next_pc = 00000054
+next_pc = 00000058
+time:             15135000 ,result = 3, instruction = fef42623
+next_pc = 0000005c
+next_pc = 00000060
+time:             15155000 ,result = 3, instruction = fef42423
+next_pc = 00000064
+next_pc = 00000068
+time:             15175000 ,result = 3, instruction = 00178793
+next_pc = 0000006c
+next_pc = 00000070
+next_pc = 00000074
+time:             15205000 ,result = 3, instruction = fe042783
+next_pc = 00000078
+next_pc = 0000007c
+next_pc = 00000080
+next_pc = 00000048
+next_pc = 0000004c
+next_pc = 00000050
+next_pc = 00000054
+next_pc = 00000058
+time:             15285000 ,result = 6, instruction = fef42623
+next_pc = 0000005c
+next_pc = 00000060
+time:             15305000 ,result = 3, instruction = fef42423
+next_pc = 00000064
+next_pc = 00000068
+time:             15325000 ,result = 6, instruction = 00178793
+next_pc = 0000006c
+next_pc = 00000070
+next_pc = 00000074
+time:             15355000 ,result = 4, instruction = fe042783
+next_pc = 00000078
+next_pc = 0000007c
+next_pc = 00000080
+next_pc = 00000084
+next_pc = 00000088
+next_pc = 0000008c
+next_pc = 00000090
+next_pc = 00000094
+next_pc = 00000098
+next_pc = 00000000
+next_pc = 00000004
+next_pc = 00000008
+next_pc = 0000000c
+time:             15485000 ,result = 0, instruction = 03010413
+next_pc = 00000010
+time:             15495000 ,result = 0, instruction = 00300793
+next_pc = 00000014
+next_pc = 00000018
+next_pc = 0000001c
+time:             15525000 ,result = 3, instruction = 00100793
+next_pc = 00000020
+time:             15535000 ,result = 0, instruction = fef42423
+next_pc = 00000024
+next_pc = 00000028
+time:             15555000 ,result = 1, instruction = 00100793
+next_pc = 0000002c
+next_pc = 00000030
+next_pc = 00000034
+next_pc = 0000003c
+next_pc = 00000040
+next_pc = 00000044
+time:             15615000 ,result = 1, instruction = fe842703
+next_pc = 00000048
+next_pc = 00000074
+next_pc = 00000078
+next_pc = 0000007c
+next_pc = 00000080
+next_pc = 00000048
+next_pc = 0000004c
+next_pc = 00000050
+next_pc = 00000054
+next_pc = 00000058
+time:             15715000 ,result = 3, instruction = fef42623
+next_pc = 0000005c
+next_pc = 00000060
+time:             15735000 ,result = 1, instruction = fef42423
+next_pc = 00000064
+next_pc = 00000068
+time:             15755000 ,result = 3, instruction = 00178793
+next_pc = 0000006c
+next_pc = 00000070
+next_pc = 00000074
+time:             15785000 ,result = 2, instruction = fe042783
+next_pc = 00000078
+next_pc = 0000007c
+next_pc = 00000080
+next_pc = 00000048
+next_pc = 0000004c
+next_pc = 00000050
+next_pc = 00000054
+next_pc = 00000058
+time:             15865000 ,result = 3, instruction = fef42623
+next_pc = 0000005c
+next_pc = 00000060
+time:             15885000 ,result = 3, instruction = fef42423
+next_pc = 00000064
+next_pc = 00000068
+time:             15905000 ,result = 3, instruction = 00178793
+next_pc = 0000006c
+next_pc = 00000070
+next_pc = 00000074
+time:             15935000 ,result = 3, instruction = fe042783
+next_pc = 00000078
+next_pc = 0000007c
+next_pc = 00000080
+next_pc = 00000048
+next_pc = 0000004c
+next_pc = 00000050
+next_pc = 00000054
+next_pc = 00000058
+time:             16015000 ,result = 6, instruction = fef42623
+next_pc = 0000005c
+next_pc = 00000060
+time:             16035000 ,result = 3, instruction = fef42423
+next_pc = 00000064
+next_pc = 00000068
+time:             16055000 ,result = 6, instruction = 00178793
+next_pc = 0000006c
+next_pc = 00000070
+next_pc = 00000074
+time:             16085000 ,result = 4, instruction = fe042783
+next_pc = 00000078
+next_pc = 0000007c
+next_pc = 00000080
+next_pc = 00000084
+next_pc = 00000088
+next_pc = 0000008c
+next_pc = 00000090
+next_pc = 00000094
+next_pc = 00000098
+next_pc = 00000000
+next_pc = 00000004
+next_pc = 00000008
+next_pc = 0000000c
+time:             16215000 ,result = 0, instruction = 03010413
+next_pc = 00000010
+time:             16225000 ,result = 0, instruction = 00300793
+next_pc = 00000014
+next_pc = 00000018
+next_pc = 0000001c
+time:             16255000 ,result = 3, instruction = 00100793
+next_pc = 00000020
+time:             16265000 ,result = 0, instruction = fef42423
+next_pc = 00000024
+next_pc = 00000028
+time:             16285000 ,result = 1, instruction = 00100793
+next_pc = 0000002c
+next_pc = 00000030
+next_pc = 00000034
+next_pc = 0000003c
+next_pc = 00000040
+next_pc = 00000044
+time:             16345000 ,result = 1, instruction = fe842703
+next_pc = 00000048
+next_pc = 00000074
+next_pc = 00000078
+next_pc = 0000007c
+next_pc = 00000080
+next_pc = 00000048
+next_pc = 0000004c
+next_pc = 00000050
+next_pc = 00000054
+next_pc = 00000058
+time:             16445000 ,result = 3, instruction = fef42623
+next_pc = 0000005c
+next_pc = 00000060
+time:             16465000 ,result = 1, instruction = fef42423
+next_pc = 00000064
+next_pc = 00000068
+time:             16485000 ,result = 3, instruction = 00178793
+next_pc = 0000006c
+next_pc = 00000070
+next_pc = 00000074
+time:             16515000 ,result = 2, instruction = fe042783
+next_pc = 00000078
+next_pc = 0000007c
+next_pc = 00000080
+next_pc = 00000048
+next_pc = 0000004c
+next_pc = 00000050
+next_pc = 00000054
+next_pc = 00000058
+time:             16595000 ,result = 3, instruction = fef42623
+next_pc = 0000005c
+next_pc = 00000060
+time:             16615000 ,result = 3, instruction = fef42423
+next_pc = 00000064
+next_pc = 00000068
+time:             16635000 ,result = 3, instruction = 00178793
+next_pc = 0000006c
+next_pc = 00000070
+next_pc = 00000074
+time:             16665000 ,result = 3, instruction = fe042783
+next_pc = 00000078
+next_pc = 0000007c
+next_pc = 00000080
+next_pc = 00000048
+next_pc = 0000004c
+next_pc = 00000050
+next_pc = 00000054
+next_pc = 00000058
+time:             16745000 ,result = 6, instruction = fef42623
+next_pc = 0000005c
+next_pc = 00000060
+time:             16765000 ,result = 3, instruction = fef42423
+next_pc = 00000064
+next_pc = 00000068
+time:             16785000 ,result = 6, instruction = 00178793
+next_pc = 0000006c
+next_pc = 00000070
+next_pc = 00000074
+time:             16815000 ,result = 4, instruction = fe042783
+next_pc = 00000078
+next_pc = 0000007c
+next_pc = 00000080
+next_pc = 00000084
+next_pc = 00000088
+next_pc = 0000008c
+next_pc = 00000090
+next_pc = 00000094
+next_pc = 00000098
+next_pc = 00000000
+next_pc = 00000004
+next_pc = 00000008
+next_pc = 0000000c
+time:             16945000 ,result = 0, instruction = 03010413
+next_pc = 00000010
+time:             16955000 ,result = 0, instruction = 00300793
+next_pc = 00000014
+next_pc = 00000018
+next_pc = 0000001c
+time:             16985000 ,result = 3, instruction = 00100793
+next_pc = 00000020
+time:             16995000 ,result = 0, instruction = fef42423
+next_pc = 00000024
+next_pc = 00000028
+time:             17015000 ,result = 1, instruction = 00100793
+next_pc = 0000002c
+next_pc = 00000030
+next_pc = 00000034
+next_pc = 0000003c
+next_pc = 00000040
+next_pc = 00000044
+time:             17075000 ,result = 1, instruction = fe842703
+next_pc = 00000048
+next_pc = 00000074
+next_pc = 00000078
+next_pc = 0000007c
+next_pc = 00000080
+next_pc = 00000048
+next_pc = 0000004c
+next_pc = 00000050
+next_pc = 00000054
+next_pc = 00000058
+time:             17175000 ,result = 3, instruction = fef42623
+next_pc = 0000005c
+next_pc = 00000060
+time:             17195000 ,result = 1, instruction = fef42423
+next_pc = 00000064
+next_pc = 00000068
+time:             17215000 ,result = 3, instruction = 00178793
+next_pc = 0000006c
+next_pc = 00000070
+next_pc = 00000074
+time:             17245000 ,result = 2, instruction = fe042783
+next_pc = 00000078
+next_pc = 0000007c
+next_pc = 00000080
+next_pc = 00000048
+next_pc = 0000004c
+next_pc = 00000050
+next_pc = 00000054
+next_pc = 00000058
+time:             17325000 ,result = 3, instruction = fef42623
+next_pc = 0000005c
+next_pc = 00000060
+time:             17345000 ,result = 3, instruction = fef42423
+next_pc = 00000064
+next_pc = 00000068
+time:             17365000 ,result = 3, instruction = 00178793
+next_pc = 0000006c
+next_pc = 00000070
+next_pc = 00000074
+time:             17395000 ,result = 3, instruction = fe042783
+next_pc = 00000078
+next_pc = 0000007c
+next_pc = 00000080
+next_pc = 00000048
+next_pc = 0000004c
+next_pc = 00000050
+next_pc = 00000054
+next_pc = 00000058
+time:             17475000 ,result = 6, instruction = fef42623
+next_pc = 0000005c
+next_pc = 00000060
+time:             17495000 ,result = 3, instruction = fef42423
+next_pc = 00000064
+next_pc = 00000068
+time:             17515000 ,result = 6, instruction = 00178793
+next_pc = 0000006c
+next_pc = 00000070
+next_pc = 00000074
+time:             17545000 ,result = 4, instruction = fe042783
+next_pc = 00000078
+next_pc = 0000007c
+next_pc = 00000080
+next_pc = 00000084
+next_pc = 00000088
+next_pc = 0000008c
+next_pc = 00000090
+next_pc = 00000094
+next_pc = 00000098
+next_pc = 00000000
+next_pc = 00000004
+next_pc = 00000008
+next_pc = 0000000c
+time:             17675000 ,result = 0, instruction = 03010413
+next_pc = 00000010
+time:             17685000 ,result = 0, instruction = 00300793
+next_pc = 00000014
+next_pc = 00000018
+next_pc = 0000001c
+time:             17715000 ,result = 3, instruction = 00100793
+next_pc = 00000020
+time:             17725000 ,result = 0, instruction = fef42423
+next_pc = 00000024
+next_pc = 00000028
+time:             17745000 ,result = 1, instruction = 00100793
+next_pc = 0000002c
+next_pc = 00000030
+next_pc = 00000034
+next_pc = 0000003c
+next_pc = 00000040
+next_pc = 00000044
+time:             17805000 ,result = 1, instruction = fe842703
+next_pc = 00000048
+next_pc = 00000074
+next_pc = 00000078
+next_pc = 0000007c
+next_pc = 00000080
+next_pc = 00000048
+next_pc = 0000004c
+next_pc = 00000050
+next_pc = 00000054
+next_pc = 00000058
+time:             17905000 ,result = 3, instruction = fef42623
+next_pc = 0000005c
+next_pc = 00000060
+time:             17925000 ,result = 1, instruction = fef42423
+next_pc = 00000064
+next_pc = 00000068
+time:             17945000 ,result = 3, instruction = 00178793
+next_pc = 0000006c
+next_pc = 00000070
+next_pc = 00000074
+time:             17975000 ,result = 2, instruction = fe042783
+next_pc = 00000078
+next_pc = 0000007c
+next_pc = 00000080
+next_pc = 00000048
+next_pc = 0000004c
+next_pc = 00000050
+next_pc = 00000054
+next_pc = 00000058
+time:             18055000 ,result = 3, instruction = fef42623
+next_pc = 0000005c
+next_pc = 00000060
+time:             18075000 ,result = 3, instruction = fef42423
+next_pc = 00000064
+next_pc = 00000068
+time:             18095000 ,result = 3, instruction = 00178793
+next_pc = 0000006c
+next_pc = 00000070
+next_pc = 00000074
+time:             18125000 ,result = 3, instruction = fe042783
+next_pc = 00000078
+next_pc = 0000007c
+next_pc = 00000080
+next_pc = 00000048
+next_pc = 0000004c
+next_pc = 00000050
+next_pc = 00000054
+next_pc = 00000058
+time:             18205000 ,result = 6, instruction = fef42623
+next_pc = 0000005c
+next_pc = 00000060
+time:             18225000 ,result = 3, instruction = fef42423
+next_pc = 00000064
+next_pc = 00000068
+time:             18245000 ,result = 6, instruction = 00178793
+next_pc = 0000006c
+next_pc = 00000070
+next_pc = 00000074
+time:             18275000 ,result = 4, instruction = fe042783
+next_pc = 00000078
+next_pc = 0000007c
+next_pc = 00000080
+next_pc = 00000084
+next_pc = 00000088
+next_pc = 0000008c
+next_pc = 00000090
+next_pc = 00000094
+next_pc = 00000098
+next_pc = 00000000
+next_pc = 00000004
+next_pc = 00000008
+next_pc = 0000000c
+time:             18405000 ,result = 0, instruction = 03010413
+next_pc = 00000010
+time:             18415000 ,result = 0, instruction = 00300793
+next_pc = 00000014
+next_pc = 00000018
+next_pc = 0000001c
+time:             18445000 ,result = 3, instruction = 00100793
+next_pc = 00000020
+time:             18455000 ,result = 0, instruction = fef42423
+next_pc = 00000024
+next_pc = 00000028
+time:             18475000 ,result = 1, instruction = 00100793
+next_pc = 0000002c
+next_pc = 00000030
+next_pc = 00000034
+next_pc = 0000003c
+next_pc = 00000040
+next_pc = 00000044
+time:             18535000 ,result = 1, instruction = fe842703
+next_pc = 00000048
+next_pc = 00000074
+next_pc = 00000078
+next_pc = 0000007c
+next_pc = 00000080
+next_pc = 00000048
+next_pc = 0000004c
+next_pc = 00000050
+next_pc = 00000054
+next_pc = 00000058
+time:             18635000 ,result = 3, instruction = fef42623
+next_pc = 0000005c
+next_pc = 00000060
+time:             18655000 ,result = 1, instruction = fef42423
+next_pc = 00000064
+next_pc = 00000068
+time:             18675000 ,result = 3, instruction = 00178793
+next_pc = 0000006c
+next_pc = 00000070
+next_pc = 00000074
+time:             18705000 ,result = 2, instruction = fe042783
+next_pc = 00000078
+next_pc = 0000007c
+next_pc = 00000080
+next_pc = 00000048
+next_pc = 0000004c
+next_pc = 00000050
+next_pc = 00000054
+next_pc = 00000058
+time:             18785000 ,result = 3, instruction = fef42623
+next_pc = 0000005c
+next_pc = 00000060
+time:             18805000 ,result = 3, instruction = fef42423
+next_pc = 00000064
+next_pc = 00000068
+time:             18825000 ,result = 3, instruction = 00178793
+next_pc = 0000006c
+next_pc = 00000070
+next_pc = 00000074
+time:             18855000 ,result = 3, instruction = fe042783
+next_pc = 00000078
+next_pc = 0000007c
+next_pc = 00000080
+next_pc = 00000048
+next_pc = 0000004c
+next_pc = 00000050
+next_pc = 00000054
+next_pc = 00000058
+time:             18935000 ,result = 6, instruction = fef42623
+next_pc = 0000005c
+next_pc = 00000060
+time:             18955000 ,result = 3, instruction = fef42423
+next_pc = 00000064
+next_pc = 00000068
+time:             18975000 ,result = 6, instruction = 00178793
+next_pc = 0000006c
+next_pc = 00000070
+next_pc = 00000074
+time:             19005000 ,result = 4, instruction = fe042783
+next_pc = 00000078
+next_pc = 0000007c
+next_pc = 00000080
+next_pc = 00000084
+next_pc = 00000088
+next_pc = 0000008c
+next_pc = 00000090
+next_pc = 00000094
+next_pc = 00000098
+next_pc = 00000000
+next_pc = 00000004
+next_pc = 00000008
+next_pc = 0000000c
+time:             19135000 ,result = 0, instruction = 03010413
+next_pc = 00000010
+time:             19145000 ,result = 0, instruction = 00300793
+next_pc = 00000014
+next_pc = 00000018
+next_pc = 0000001c
+time:             19175000 ,result = 3, instruction = 00100793
+next_pc = 00000020
+time:             19185000 ,result = 0, instruction = fef42423
+next_pc = 00000024
+next_pc = 00000028
+time:             19205000 ,result = 1, instruction = 00100793
+next_pc = 0000002c
+next_pc = 00000030
+next_pc = 00000034
+next_pc = 0000003c
+next_pc = 00000040
+next_pc = 00000044
+time:             19265000 ,result = 1, instruction = fe842703
+next_pc = 00000048
+next_pc = 00000074
+next_pc = 00000078
+next_pc = 0000007c
+next_pc = 00000080
+next_pc = 00000048
+next_pc = 0000004c
+next_pc = 00000050
+next_pc = 00000054
+next_pc = 00000058
+time:             19365000 ,result = 3, instruction = fef42623
+next_pc = 0000005c
+next_pc = 00000060
+time:             19385000 ,result = 1, instruction = fef42423
+next_pc = 00000064
+next_pc = 00000068
+time:             19405000 ,result = 3, instruction = 00178793
+next_pc = 0000006c
+next_pc = 00000070
+next_pc = 00000074
+time:             19435000 ,result = 2, instruction = fe042783
+next_pc = 00000078
+next_pc = 0000007c
+next_pc = 00000080
+next_pc = 00000048
+next_pc = 0000004c
+next_pc = 00000050
+next_pc = 00000054
+next_pc = 00000058
+time:             19515000 ,result = 3, instruction = fef42623
+next_pc = 0000005c
+next_pc = 00000060
+time:             19535000 ,result = 3, instruction = fef42423
+next_pc = 00000064
+next_pc = 00000068
+time:             19555000 ,result = 3, instruction = 00178793
+next_pc = 0000006c
+next_pc = 00000070
+next_pc = 00000074
+time:             19585000 ,result = 3, instruction = fe042783
+next_pc = 00000078
+next_pc = 0000007c
+next_pc = 00000080
+next_pc = 00000048
+next_pc = 0000004c
+next_pc = 00000050
+next_pc = 00000054
+next_pc = 00000058
+time:             19665000 ,result = 6, instruction = fef42623
+next_pc = 0000005c
+next_pc = 00000060
+time:             19685000 ,result = 3, instruction = fef42423
+next_pc = 00000064
+next_pc = 00000068
+time:             19705000 ,result = 6, instruction = 00178793
+next_pc = 0000006c
+next_pc = 00000070
+next_pc = 00000074
+time:             19735000 ,result = 4, instruction = fe042783
+next_pc = 00000078
+next_pc = 0000007c
+next_pc = 00000080
+next_pc = 00000084
+next_pc = 00000088
+next_pc = 0000008c
+next_pc = 00000090
+next_pc = 00000094
+next_pc = 00000098
+next_pc = 00000000
+next_pc = 00000004
+next_pc = 00000008
+next_pc = 0000000c
+time:             19865000 ,result = 0, instruction = 03010413
+next_pc = 00000010
+time:             19875000 ,result = 0, instruction = 00300793
+next_pc = 00000014
+next_pc = 00000018
+next_pc = 0000001c
+time:             19905000 ,result = 3, instruction = 00100793
+next_pc = 00000020
+time:             19915000 ,result = 0, instruction = fef42423
+next_pc = 00000024
+next_pc = 00000028
+time:             19935000 ,result = 1, instruction = 00100793
+next_pc = 0000002c
+next_pc = 00000030
+next_pc = 00000034
+next_pc = 0000003c
+next_pc = 00000040
+next_pc = 00000044
+time:             19995000 ,result = 1, instruction = fe842703
+next_pc = 00000048
+$finish called at time : 20 us : File "D:/3-Stage-Pipeline/Pipeline_via_terminal/modules/tb_pipeline.v" Line 112
+exit
+INFO: [Common 17-206] Exiting xsim at Tue Mar 17 11:56:10 2026...

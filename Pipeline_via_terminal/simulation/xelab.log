@@ -1,0 +1,23 @@
+Vivado Simulator v2025.2
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+Running: D:/AMDDesignTools/2025.2/Vivado/bin/unwrapped/win64.o/xelab.exe -top tb_pipeline -snapshot riscv_sim -debug typical 
+Multi-threading is on. Using 14 slave threads.
+Starting static elaboration
+Pass Through NonSizing Optimizer
+WARNING: [VRFC 10-3645] port 'reset' remains unconnected for this instance [D:/3-Stage-Pipeline/Pipeline_via_terminal/modules/tb_pipeline.v:82]
+WARNING: [VRFC 10-3645] port 'next_pc' remains unconnected for this instance [D:/3-Stage-Pipeline/Pipeline_via_terminal/modules/pipeline.v:201]
+Completed static elaboration
+Starting simulation data flow analysis
+Completed simulation data flow analysis
+Time Resolution for simulation is 1ps
+Compiling module work.id_ex_reg
+Compiling module work.IF_ID
+Compiling module work.ex_mem_wb_reg
+Compiling module work.execute
+Compiling module work.wb
+Compiling module work.pipe
+Compiling module work.instr_mem
+Compiling module work.data_mem
+Compiling module work.tb_pipeline
+Built simulation snapshot riscv_sim
