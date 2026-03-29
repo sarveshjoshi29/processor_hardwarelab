@@ -1,1 +1,4 @@
 .venv/
+simulation/stdout*
+simulation/*.wdb
+simulation/xsim.dir
