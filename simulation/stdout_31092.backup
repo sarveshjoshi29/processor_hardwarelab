@@ -1,0 +1,198 @@
+#-----------------------------------------------------------
+# xsim v2025.2 (64-bit)
+# SW Build 6299465 on Fri Nov 14 19:35:11 GMT 2025
+# IP Build 6300035 on Fri Nov 14 10:48:45 MST 2025
+# SharedData Build 6298862 on Thu Nov 13 04:50:51 MST 2025
+# Start of session at: Tue Mar 17 20:06:09 2026
+# Process ID         : 31092
+# Current directory  : D:/3-Stage-Pipeline/Pipeline_via_terminal/simulation
+# Command line       : xsim.exe -log stdout -mode tcl -source {xsim.dir/riscv_sim/xsim_script.tcl}
+# Log file           : D:/3-Stage-Pipeline/Pipeline_via_terminal/simulation/stdout
+# Journal file       : D:/3-Stage-Pipeline/Pipeline_via_terminal/simulation\xsim.jou
+# Running On         : LAPTOP-PEJA2QNK
+# Platform           : Windows Server 2016 or Windows 10
+# Operating System   : 26200
+# Processor Detail   : 13th Gen Intel(R) Core(TM) i5-13500H
+# CPU Frequency      : 3187 MHz
+# CPU Physical cores : 12
+# CPU Logical cores  : 16
+# Host memory        : 16890 MB
+# Swap memory        : 13421 MB
+# Total Virtual      : 30312 MB
+# Available Virtual  : 12469 MB
+#-----------------------------------------------------------
+source xsim.dir/riscv_sim/xsim_script.tcl
+# xsim {riscv_sim} -autoloadwcfg -runall
+Time resolution is 1 ps
+run -all
+time:                    0 ,result =          0
+next_pc = 00000000 , instruction = xxxxxxxx
+next_pc = 00000000 , instruction = fd010113
+next_pc = 00000000 , instruction = fd010113
+next_pc = 00000000 , instruction = fd010113
+next_pc = 00000004 , instruction = fd010113
+next_pc = 00000008 , instruction = 02112623
+next_pc = 0000000c , instruction = 02812423
+time:                75000 ,result = 0, instruction = 03010413
+time:                85000 ,result = 0, instruction = 00300793
+next_pc = 00000018 , instruction = fef42423
+next_pc = 0000001c , instruction = 00600793
+time:               115000 ,result = 3, instruction = fcf42823
+next_pc = 00000024 , instruction = 00300793
+time:               135000 ,result = 6, instruction = fcf42a23
+next_pc = 0000002c , instruction = 00900793
+time:               155000 ,result = 3, instruction = fcf42c23
+next_pc = 00000034 , instruction = fe842783
+time:               175000 ,result = 9, instruction = fef42023
+next_pc = 0000003c , instruction = fe042623
+time:               195000 ,result = 3, instruction = fe042223
+time:               205000 ,result = 0, instruction = 0a80006f
+time:               215000 ,result = 0, instruction = fe442703
+next_pc = 000000e8 , instruction = fd040793
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000ec , instruction = fe842783
+next_pc = 000000f0 , instruction = fff78793
+next_pc = 000000f4 , instruction = fe442703
+next_pc = 000000f8 , instruction = f4f748e3
+next_pc = 000000fc , instruction = fe842783
+next_pc = 00000044 , instruction = fff78793
+next_pc = 00000044 , instruction = fe442703
+next_pc = 00000044 , instruction = fe442703
+next_pc = 00000048 , instruction = fe442703
+next_pc = 0000004c , instruction = fd040793
+next_pc = 00000050 , instruction = 00271713
+next_pc = 00000054 , instruction = 00f707b3
+next_pc = 00000058 , instruction = 0007a703
+next_pc = 0000005c , instruction = fe442783
+next_pc = 00000060 , instruction = 00178693
+next_pc = 00000064 , instruction = fd040793
+next_pc = 00000068 , instruction = 00269693
+next_pc = 0000006c , instruction = 00f687b3
+next_pc = 00000070 , instruction = 0007a783
+next_pc = 00000074 , instruction = 06e7d663
+next_pc = 00000078 , instruction = fe442703
+next_pc = 0000007c , instruction = fd040793
+next_pc = 00000080 , instruction = 00271713
+next_pc = 00000084 , instruction = 00f707b3
+next_pc = 00000088 , instruction = 0007a783
+next_pc = 0000008c , instruction = fcf42e23
+next_pc = 00000090 , instruction = fe442783
+time:               525000 ,result = 6, instruction = 00178713
+next_pc = 00000098 , instruction = fd040793
+next_pc = 0000009c , instruction = 00271713
+next_pc = 000000a0 , instruction = 00f707b3
+next_pc = 000000a4 , instruction = 0007a703
+next_pc = 000000a8 , instruction = fe442683
+next_pc = 000000ac , instruction = fd040793
+next_pc = 000000b0 , instruction = 00269693
+next_pc = 000000b4 , instruction = 00f687b3
+next_pc = 000000b8 , instruction = 00e7a023
+next_pc = 000000bc , instruction = fe442783
+time:               635000 ,result = 3, instruction = 00178713
+next_pc = 000000c4 , instruction = fd040793
+next_pc = 000000c8 , instruction = 00271713
+next_pc = 000000cc , instruction = 00f707b3
+next_pc = 000000d0 , instruction = fdc42703
+next_pc = 000000d4 , instruction = 00e7a023
+next_pc = 000000d8 , instruction = 00100793
+time:               705000 ,result = 6, instruction = fef42623
+next_pc = 000000e0 , instruction = fe442783
+time:               725000 ,result = 1, instruction = 00178793
+next_pc = 000000e8 , instruction = fef42223
+next_pc = 000000ec , instruction = fe842783
+time:               755000 ,result = 1, instruction = fff78793
+next_pc = 000000f4 , instruction = fe442703
+next_pc = 000000f8 , instruction = f4f748e3
+next_pc = 000000fc , instruction = fe842783
+next_pc = 00000044 , instruction = fff78793
+next_pc = 00000044 , instruction = fe442703
+next_pc = 00000044 , instruction = fe442703
+next_pc = 00000048 , instruction = fe442703
+next_pc = 0000004c , instruction = fd040793
+next_pc = 00000050 , instruction = 00271713
+next_pc = 00000054 , instruction = 00f707b3
+next_pc = 00000058 , instruction = 0007a703
+next_pc = 0000005c , instruction = fe442783
+next_pc = 00000060 , instruction = 00178693
+next_pc = 00000064 , instruction = fd040793
+next_pc = 00000068 , instruction = 00269693
+next_pc = 0000006c , instruction = 00f687b3
+next_pc = 00000070 , instruction = 0007a783
+next_pc = 00000074 , instruction = 06e7d663
+next_pc = 00000078 , instruction = fe442703
+next_pc = 000000dc , instruction = fd040793
+next_pc = 000000dc , instruction = fe442783
+next_pc = 000000dc , instruction = fe442783
+next_pc = 000000e0 , instruction = fe442783
+next_pc = 000000e4 , instruction = 00178793
+next_pc = 000000e8 , instruction = fef42223
+next_pc = 000000ec , instruction = fe842783
+time:              1025000 ,result = 2, instruction = fff78793
+next_pc = 000000f4 , instruction = fe442703
+next_pc = 000000f8 , instruction = f4f748e3
+next_pc = 000000fc , instruction = fe842783
+next_pc = 00000100 , instruction = fff78793
+next_pc = 00000104 , instruction = fef42423
+next_pc = 00000108 , instruction = fec42703
+time:              1095000 ,result = 2, instruction = 00100793
+next_pc = 00000110 , instruction = f2f706e3
+next_pc = 00000114 , instruction = fd042783
+next_pc = 00000038 , instruction = 00078513
+next_pc = 00000038 , instruction = fe042623
+next_pc = 00000038 , instruction = fe042623
+time:              1155000 ,result = 0, instruction = fe042623
+time:              1165000 ,result = 0, instruction = fe042223
+time:              1175000 ,result = 0, instruction = 0a80006f
+time:              1185000 ,result = 0, instruction = fe442703
+next_pc = 000000e8 , instruction = fd040793
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000ec , instruction = fe842783
+next_pc = 000000f0 , instruction = fff78793
+next_pc = 000000f4 , instruction = fe442703
+next_pc = 000000f8 , instruction = f4f748e3
+next_pc = 000000fc , instruction = fe842783
+next_pc = 00000044 , instruction = fff78793
+next_pc = 00000044 , instruction = fe442703
+next_pc = 00000044 , instruction = fe442703
+next_pc = 00000048 , instruction = fe442703
+next_pc = 0000004c , instruction = fd040793
+next_pc = 00000050 , instruction = 00271713
+next_pc = 00000054 , instruction = 00f707b3
+next_pc = 00000058 , instruction = 0007a703
+next_pc = 0000005c , instruction = fe442783
+next_pc = 00000060 , instruction = 00178693
+next_pc = 00000064 , instruction = fd040793
+next_pc = 00000068 , instruction = 00269693
+next_pc = 0000006c , instruction = 00f687b3
+next_pc = 00000070 , instruction = 0007a783
+next_pc = 00000074 , instruction = 06e7d663
+next_pc = 00000078 , instruction = fe442703
+next_pc = 000000dc , instruction = fd040793
+next_pc = 000000dc , instruction = fe442783
+next_pc = 000000dc , instruction = fe442783
+next_pc = 000000e0 , instruction = fe442783
+next_pc = 000000e4 , instruction = 00178793
+next_pc = 000000e8 , instruction = fef42223
+next_pc = 000000ec , instruction = fe842783
+time:              1505000 ,result = 1, instruction = fff78793
+next_pc = 000000f4 , instruction = fe442703
+next_pc = 000000f8 , instruction = f4f748e3
+next_pc = 000000fc , instruction = fe842783
+next_pc = 00000100 , instruction = fff78793
+next_pc = 00000104 , instruction = fef42423
+next_pc = 00000108 , instruction = fec42703
+time:              1575000 ,result = 1, instruction = 00100793
+next_pc = 00000110 , instruction = f2f706e3
+next_pc = 00000114 , instruction = fd042783
+next_pc = 00000118 , instruction = 00078513
+next_pc = 0000011c , instruction = 02c12083
+next_pc = 00000120 , instruction = 02812403
+next_pc = 00000124 , instruction = 03010113
+-------------------------------------------
+TIME: 1645000 | End of Program Reached! Number of cycles = 164 
+-------------------------------------------
+$finish called at time : 1645 ns : File "D:/3-Stage-Pipeline/Pipeline_via_terminal/modules/tb_pipeline.v" Line 145
+exit
+INFO: [Common 17-206] Exiting xsim at Tue Mar 17 20:06:12 2026...

@@ -1,0 +1,98 @@
+#-----------------------------------------------------------
+# xsim v2025.2 (64-bit)
+# SW Build 6299465 on Fri Nov 14 19:35:11 GMT 2025
+# IP Build 6300035 on Fri Nov 14 10:48:45 MST 2025
+# SharedData Build 6298862 on Thu Nov 13 04:50:51 MST 2025
+# Start of session at: Tue Mar 17 18:39:28 2026
+# Process ID         : 9148
+# Current directory  : D:/3-Stage-Pipeline/Pipeline_via_terminal/simulation
+# Command line       : xsim.exe -log stdout -mode tcl -source {xsim.dir/riscv_sim/xsim_script.tcl}
+# Log file           : D:/3-Stage-Pipeline/Pipeline_via_terminal/simulation/stdout
+# Journal file       : D:/3-Stage-Pipeline/Pipeline_via_terminal/simulation\xsim.jou
+# Running On         : LAPTOP-PEJA2QNK
+# Platform           : Windows Server 2016 or Windows 10
+# Operating System   : 26200
+# Processor Detail   : 13th Gen Intel(R) Core(TM) i5-13500H
+# CPU Frequency      : 3187 MHz
+# CPU Physical cores : 12
+# CPU Logical cores  : 16
+# Host memory        : 16890 MB
+# Swap memory        : 13421 MB
+# Total Virtual      : 30312 MB
+# Available Virtual  : 14895 MB
+#-----------------------------------------------------------
+source xsim.dir/riscv_sim/xsim_script.tcl
+# xsim {riscv_sim} -autoloadwcfg -runall
+Time resolution is 1 ps
+run -all
+time:                    0 ,result =          0
+time = ext_pc = 00000005 , instruction = 00000000, stall = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx0
+time = ext_pc = 0000000f , instruction = 00000000, stall = 111111010000000100000001000100110
+time = ext_pc = 00000019 , instruction = 00000000, stall = 111111010000000100000001000100110
+time = ext_pc = 00000023 , instruction = 00000000, stall = 111111010000000100000001000100110
+time = ext_pc = 0000002d , instruction = 00000004, stall = 111111010000000100000001000100110
+time = ext_pc = 00000037 , instruction = 00000008, stall = 000000100001000100100110001000110
+time = ext_pc = 00000041 , instruction = 0000000c, stall = 000000101000000100100100001000110
+time:                75000 ,result = 0, instruction = 03010413 , stall = 0
+time:                85000 ,result = 0, instruction = 00300793 , stall = 0
+time = ext_pc = 0000005f , instruction = 00000018, stall = 111111101111010000100100001000110
+time = ext_pc = 00000069 , instruction = 0000001c, stall = 000000000110000000000111100100110
+time:               115000 ,result = 3, instruction = fcf42823 , stall = 0
+time = ext_pc = 0000007d , instruction = 00000024, stall = 000000000011000000000111100100110
+time:               135000 ,result = 6, instruction = fcf42a23 , stall = 0
+time = ext_pc = 00000091 , instruction = 0000002c, stall = 000000001001000000000111100100110
+time:               155000 ,result = 3, instruction = fcf42c23 , stall = 0
+time = ext_pc = 000000a5 , instruction = 00000034, stall = 111111101000010000100111100000110
+time:               175000 ,result = 9, instruction = fef42023 , stall = 0
+time = ext_pc = 000000b9 , instruction = 0000003c, stall = 111111100000010000100110001000110
+time:               195000 ,result = 3, instruction = fe042223 , stall = 0
+time:               205000 ,result = 0, instruction = 0a80006f , stall = 0
+time:               215000 ,result = 0, instruction = fe442703 , stall = 0
+time = ext_pc = 000000e1 , instruction = 000000ec, stall = 111111010000010000000111100100111
+time = ext_pc = 000000eb , instruction = 000000f0, stall = 111111111111011110000111100100111
+time = ext_pc = 000000f5 , instruction = 000000f0, stall = 111111100100010000100111000000110
+time = ext_pc = 000000ff , instruction = 000000f0, stall = 111111100100010000100111000000110
+time = ext_pc = 00000109 , instruction = 000000f4, stall = 111111100100010000100111000000110
+time = ext_pc = 00000113 , instruction = 000000f8, stall = 111101001111011101001000111000110
+time = ext_pc = 0000011d , instruction = 000000fc, stall = 111111101000010000100111100000110
+time = ext_pc = 00000127 , instruction = 00000048, stall = 111111111111011110000111100100111
+time = ext_pc = 00000131 , instruction = 0000004c, stall = 111111010000010000000111100100111
+time = ext_pc = 0000013b , instruction = 0000004c, stall = 000000000010011100010111000100110
+time = ext_pc = 00000145 , instruction = 0000004c, stall = 000000000010011100010111000100110
+time = ext_pc = 0000014f , instruction = 00000050, stall = 000000000010011100010111000100110
+time = ext_pc = 00000159 , instruction = 00000054, stall = 000000001111011100000111101100110
+time = ext_pc = 00000163 , instruction = 00000058, stall = 000000000000011110100111000000110
+time = ext_pc = 0000016d , instruction = 0000005c, stall = 111111100100010000100111100000110
+time = ext_pc = 00000177 , instruction = 00000060, stall = 000000000001011110000110100100110
+time = ext_pc = 00000181 , instruction = 00000064, stall = 111111010000010000000111100100110
+time = ext_pc = 0000018b , instruction = 00000068, stall = 000000000010011010010110100100110
+time = ext_pc = 00000195 , instruction = 0000006c, stall = 000000001111011010000111101100110
+time = ext_pc = 0000019f , instruction = 00000070, stall = 000000000000011110100111100000110
+time = ext_pc = 000001a9 , instruction = 00000074, stall = 000001101110011111010110011000110
+time = ext_pc = 000001b3 , instruction = 00000078, stall = 111111100100010000100111000000110
+time = ext_pc = 000001bd , instruction = 000000e0, stall = 111111010000010000000111100100111
+time = ext_pc = 000001c7 , instruction = 000000e4, stall = 000000000001011110000111100100111
+time = ext_pc = 000001d1 , instruction = 000000e4, stall = 111111101111010000100010001000110
+time = ext_pc = 000001db , instruction = 000000e4, stall = 111111101111010000100010001000110
+time = ext_pc = 000001e5 , instruction = 000000e8, stall = 111111101111010000100010001000110
+time:               495000 ,result = 3, instruction = fe842783 , stall = 0
+time:               505000 ,result = 3, instruction = fff78793 , stall = 0
+time = ext_pc = 00000203 , instruction = 000000f4, stall = 111111100100010000100111000000110
+time = ext_pc = 0000020d , instruction = 000000f8, stall = 111101001111011101001000111000110
+time = ext_pc = 00000217 , instruction = 000000fc, stall = 111111101000010000100111100000110
+time = ext_pc = 00000221 , instruction = 00000100, stall = 111111111111011110000111100100110
+time = ext_pc = 0000022b , instruction = 00000104, stall = 111111101111010000100100001000110
+time = ext_pc = 00000235 , instruction = 00000108, stall = 111111101100010000100111000000110
+time:               575000 ,result = 2, instruction = 00100793 , stall = 0
+time = ext_pc = 00000249 , instruction = 00000110, stall = 111100101111011100000110111000110
+time = ext_pc = 00000253 , instruction = 00000114, stall = 111111010000010000100111100000110
+time = ext_pc = 0000025d , instruction = 00000118, stall = 000000000000011110000101000100110
+time = ext_pc = 00000267 , instruction = 0000011c, stall = 000000101100000100100000100000110
+time = ext_pc = 00000271 , instruction = 00000120, stall = 000000101000000100100100000000110
+time = ext_pc = 0000027b , instruction = 00000124, stall = 000000110000000100000001000100110
+-------------------------------------------
+TIME: 645000 | End of Program Reached! Number of cycles = 64 
+-------------------------------------------
+$finish called at time : 645 ns : File "D:/3-Stage-Pipeline/Pipeline_via_terminal/modules/tb_pipeline.v" Line 145
+exit
+INFO: [Common 17-206] Exiting xsim at Tue Mar 17 18:39:31 2026...

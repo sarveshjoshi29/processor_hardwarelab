@@ -1,0 +1,2031 @@
+#-----------------------------------------------------------
+# xsim v2025.2 (64-bit)
+# SW Build 6299465 on Fri Nov 14 19:35:11 GMT 2025
+# IP Build 6300035 on Fri Nov 14 10:48:45 MST 2025
+# SharedData Build 6298862 on Thu Nov 13 04:50:51 MST 2025
+# Start of session at: Tue Mar 17 15:05:27 2026
+# Process ID         : 33504
+# Current directory  : D:/3-Stage-Pipeline/Pipeline_via_terminal/simulation
+# Command line       : xsim.exe -log stdout -mode tcl -source {xsim.dir/riscv_sim/xsim_script.tcl}
+# Log file           : D:/3-Stage-Pipeline/Pipeline_via_terminal/simulation/stdout
+# Journal file       : D:/3-Stage-Pipeline/Pipeline_via_terminal/simulation\xsim.jou
+# Running On         : LAPTOP-PEJA2QNK
+# Platform           : Windows Server 2016 or Windows 10
+# Operating System   : 26200
+# Processor Detail   : 13th Gen Intel(R) Core(TM) i5-13500H
+# CPU Frequency      : 3187 MHz
+# CPU Physical cores : 12
+# CPU Logical cores  : 16
+# Host memory        : 16890 MB
+# Swap memory        : 13421 MB
+# Total Virtual      : 30312 MB
+# Available Virtual  : 10563 MB
+#-----------------------------------------------------------
+source xsim.dir/riscv_sim/xsim_script.tcl
+# xsim {riscv_sim} -autoloadwcfg -runall
+Time resolution is 1 ps
+run -all
+time:                    0 ,result =          0
+next_pc = 00000000 , instruction = xxxxxxxx
+next_pc = 00000000 , instruction = fd010113
+next_pc = 00000000 , instruction = fd010113
+next_pc = 00000000 , instruction = fd010113
+next_pc = 00000004 , instruction = fd010113
+next_pc = 00000008 , instruction = 02112623
+next_pc = 0000000c , instruction = 02812423
+time:                75000 ,result = 0, instruction = 03010413
+time:                85000 ,result = 0, instruction = 00300793
+next_pc = 00000018 , instruction = fef42423
+next_pc = 0000001c , instruction = 00600793
+time:               115000 ,result = 3, instruction = fcf42823
+next_pc = 00000024 , instruction = 00300793
+time:               135000 ,result = 6, instruction = fcf42a23
+next_pc = 0000002c , instruction = 00900793
+time:               155000 ,result = 3, instruction = fcf42c23
+next_pc = 00000034 , instruction = fe842783
+time:               175000 ,result = 9, instruction = fef42023
+next_pc = 0000003c , instruction = fe042623
+time:               195000 ,result = 3, instruction = fe042223
+time:               205000 ,result = 0, instruction = 0a80006f
+time:               215000 ,result = 0, instruction = fe442703
+next_pc = 000000e8 , instruction = fd040793
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000ec , instruction = fe842783
+next_pc = 000000f0 , instruction = fff78793
+next_pc = 000000f4 , instruction = fe442703
+next_pc = 000000f8 , instruction = f4f748e3
+next_pc = 000000fc , instruction = fe842783
+next_pc = 00000048 , instruction = fff78793
+next_pc = 00000048 , instruction = fd040793
+next_pc = 00000048 , instruction = fd040793
+next_pc = 0000004c , instruction = fd040793
+next_pc = 00000050 , instruction = 00271713
+next_pc = 00000054 , instruction = 00f707b3
+next_pc = 00000058 , instruction = 0007a703
+next_pc = 0000005c , instruction = fe442783
+next_pc = 00000060 , instruction = 00178693
+next_pc = 00000064 , instruction = fd040793
+next_pc = 00000068 , instruction = 00269693
+next_pc = 0000006c , instruction = 00f687b3
+next_pc = 00000070 , instruction = 0007a783
+next_pc = 00000074 , instruction = 06e7d663
+next_pc = 00000078 , instruction = fe442703
+next_pc = 0000007c , instruction = fd040793
+next_pc = 00000080 , instruction = 00271713
+next_pc = 00000084 , instruction = 00f707b3
+next_pc = 00000088 , instruction = 0007a783
+next_pc = 0000008c , instruction = fcf42e23
+next_pc = 00000090 , instruction = fe442783
+time:               515000 ,result = 6, instruction = 00178713
+next_pc = 00000098 , instruction = fd040793
+next_pc = 0000009c , instruction = 00271713
+next_pc = 000000a0 , instruction = 00f707b3
+next_pc = 000000a4 , instruction = 0007a703
+next_pc = 000000a8 , instruction = fe442683
+next_pc = 000000ac , instruction = fd040793
+next_pc = 000000b0 , instruction = 00269693
+next_pc = 000000b4 , instruction = 00f687b3
+next_pc = 000000b8 , instruction = 00e7a023
+next_pc = 000000bc , instruction = fe442783
+time:               625000 ,result = 3, instruction = 00178713
+next_pc = 000000c4 , instruction = fd040793
+next_pc = 000000c8 , instruction = 00271713
+next_pc = 000000cc , instruction = 00f707b3
+next_pc = 000000d0 , instruction = fdc42703
+next_pc = 000000d4 , instruction = 00e7a023
+next_pc = 000000d8 , instruction = 00100793
+time:               695000 ,result = 6, instruction = fef42623
+next_pc = 000000e0 , instruction = fe442783
+time:               715000 ,result = 1, instruction = 00178793
+next_pc = 000000e8 , instruction = fef42223
+next_pc = 000000ec , instruction = fe842783
+time:               745000 ,result = 1, instruction = fff78793
+next_pc = 000000f4 , instruction = fe442703
+next_pc = 000000f8 , instruction = f4f748e3
+next_pc = 000000fc , instruction = fe842783
+next_pc = 00000048 , instruction = fff78793
+next_pc = 00000048 , instruction = fd040793
+next_pc = 00000048 , instruction = fd040793
+next_pc = 0000004c , instruction = fd040793
+next_pc = 00000050 , instruction = 00271713
+next_pc = 00000054 , instruction = 00f707b3
+next_pc = 00000058 , instruction = 0007a703
+next_pc = 0000005c , instruction = fe442783
+next_pc = 00000060 , instruction = 00178693
+next_pc = 00000064 , instruction = fd040793
+next_pc = 00000068 , instruction = 00269693
+next_pc = 0000006c , instruction = 00f687b3
+next_pc = 00000070 , instruction = 0007a783
+next_pc = 00000074 , instruction = 06e7d663
+next_pc = 00000078 , instruction = fe442703
+next_pc = 000000e0 , instruction = fd040793
+next_pc = 000000e0 , instruction = 00178793
+next_pc = 000000e0 , instruction = 00178793
+next_pc = 000000e4 , instruction = 00178793
+next_pc = 000000e8 , instruction = fef42223
+next_pc = 000000ec , instruction = fe842783
+time:               995000 ,result = 12, instruction = fff78793
+next_pc = 000000f4 , instruction = fe442703
+next_pc = 000000f8 , instruction = f4f748e3
+next_pc = 000000fc , instruction = fe842783
+next_pc = 00000100 , instruction = fff78793
+next_pc = 00000104 , instruction = fef42423
+next_pc = 00000108 , instruction = fec42703
+time:              1065000 ,result = 2, instruction = 00100793
+next_pc = 00000110 , instruction = f2f706e3
+next_pc = 00000114 , instruction = fd042783
+next_pc = 0000003c , instruction = 00078513
+next_pc = 0000003c , instruction = fe042223
+next_pc = 0000003c , instruction = fe042223
+time:              1125000 ,result = 0, instruction = fe042223
+time:              1135000 ,result = 0, instruction = 0a80006f
+time:              1145000 ,result = 0, instruction = fe442703
+next_pc = 000000e8 , instruction = fd040793
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000ec , instruction = fe842783
+next_pc = 000000f0 , instruction = fff78793
+next_pc = 000000f4 , instruction = fe442703
+next_pc = 000000f8 , instruction = f4f748e3
+next_pc = 000000fc , instruction = fe842783
+next_pc = 00000048 , instruction = fff78793
+next_pc = 00000048 , instruction = fd040793
+next_pc = 00000048 , instruction = fd040793
+next_pc = 0000004c , instruction = fd040793
+next_pc = 00000050 , instruction = 00271713
+next_pc = 00000054 , instruction = 00f707b3
+next_pc = 00000058 , instruction = 0007a703
+next_pc = 0000005c , instruction = fe442783
+next_pc = 00000060 , instruction = 00178693
+next_pc = 00000064 , instruction = fd040793
+next_pc = 00000068 , instruction = 00269693
+next_pc = 0000006c , instruction = 00f687b3
+next_pc = 00000070 , instruction = 0007a783
+next_pc = 00000074 , instruction = 06e7d663
+next_pc = 00000078 , instruction = fe442703
+next_pc = 000000e0 , instruction = fd040793
+next_pc = 000000e0 , instruction = 00178793
+next_pc = 000000e0 , instruction = 00178793
+next_pc = 000000e4 , instruction = 00178793
+next_pc = 000000e8 , instruction = fef42223
+next_pc = 000000ec , instruction = fe842783
+time:              1445000 ,result = 9, instruction = fff78793
+next_pc = 000000f4 , instruction = fe442703
+next_pc = 000000f8 , instruction = f4f748e3
+next_pc = 000000fc , instruction = fe842783
+next_pc = 00000100 , instruction = fff78793
+next_pc = 00000104 , instruction = fef42423
+next_pc = 00000108 , instruction = fec42703
+time:              1515000 ,result = 1, instruction = 00100793
+next_pc = 00000110 , instruction = f2f706e3
+next_pc = 00000114 , instruction = fd042783
+next_pc = 0000003c , instruction = 00078513
+next_pc = 0000003c , instruction = fe042223
+next_pc = 0000003c , instruction = fe042223
+time:              1575000 ,result = 0, instruction = fe042223
+time:              1585000 ,result = 0, instruction = 0a80006f
+time:              1595000 ,result = 0, instruction = fe442703
+next_pc = 000000e8 , instruction = fd040793
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000ec , instruction = fe842783
+next_pc = 000000f0 , instruction = fff78793
+next_pc = 000000f4 , instruction = fe442703
+next_pc = 000000f8 , instruction = f4f748e3
+next_pc = 000000fc , instruction = fe842783
+next_pc = 00000100 , instruction = fff78793
+next_pc = 00000104 , instruction = fef42423
+next_pc = 00000108 , instruction = fec42703
+time:              1715000 ,result = 0, instruction = 00100793
+next_pc = 00000110 , instruction = f2f706e3
+next_pc = 00000114 , instruction = fd042783
+next_pc = 0000003c , instruction = 00078513
+next_pc = 0000003c , instruction = fe042223
+next_pc = 0000003c , instruction = fe042223
+time:              1775000 ,result = 0, instruction = fe042223
+time:              1785000 ,result = 0, instruction = 0a80006f
+time:              1795000 ,result = 0, instruction = fe442703
+next_pc = 000000e8 , instruction = fd040793
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000ec , instruction = fe842783
+next_pc = 000000f0 , instruction = fff78793
+next_pc = 000000f4 , instruction = fe442703
+next_pc = 000000f8 , instruction = f4f748e3
+next_pc = 000000fc , instruction = fe842783
+next_pc = 00000100 , instruction = fff78793
+next_pc = 00000104 , instruction = fef42423
+next_pc = 00000108 , instruction = fec42703
+time:              1915000 ,result = 4294967295, instruction = 00100793
+next_pc = 00000110 , instruction = f2f706e3
+next_pc = 00000114 , instruction = fd042783
+next_pc = 0000003c , instruction = 00078513
+next_pc = 0000003c , instruction = fe042223
+next_pc = 0000003c , instruction = fe042223
+time:              1975000 ,result = 0, instruction = fe042223
+time:              1985000 ,result = 0, instruction = 0a80006f
+time:              1995000 ,result = 0, instruction = fe442703
+next_pc = 000000e8 , instruction = fd040793
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000ec , instruction = fe842783
+next_pc = 000000f0 , instruction = fff78793
+next_pc = 000000f4 , instruction = fe442703
+next_pc = 000000f8 , instruction = f4f748e3
+next_pc = 000000fc , instruction = fe842783
+next_pc = 00000100 , instruction = fff78793
+next_pc = 00000104 , instruction = fef42423
+next_pc = 00000108 , instruction = fec42703
+time:              2115000 ,result = 4294967294, instruction = 00100793
+next_pc = 00000110 , instruction = f2f706e3
+next_pc = 00000114 , instruction = fd042783
+next_pc = 0000003c , instruction = 00078513
+next_pc = 0000003c , instruction = fe042223
+next_pc = 0000003c , instruction = fe042223
+time:              2175000 ,result = 0, instruction = fe042223
+time:              2185000 ,result = 0, instruction = 0a80006f
+time:              2195000 ,result = 0, instruction = fe442703
+next_pc = 000000e8 , instruction = fd040793
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000ec , instruction = fe842783
+next_pc = 000000f0 , instruction = fff78793
+next_pc = 000000f4 , instruction = fe442703
+next_pc = 000000f8 , instruction = f4f748e3
+next_pc = 000000fc , instruction = fe842783
+next_pc = 00000100 , instruction = fff78793
+next_pc = 00000104 , instruction = fef42423
+next_pc = 00000108 , instruction = fec42703
+time:              2315000 ,result = 4294967293, instruction = 00100793
+next_pc = 00000110 , instruction = f2f706e3
+next_pc = 00000114 , instruction = fd042783
+next_pc = 0000003c , instruction = 00078513
+next_pc = 0000003c , instruction = fe042223
+next_pc = 0000003c , instruction = fe042223
+time:              2375000 ,result = 0, instruction = fe042223
+time:              2385000 ,result = 0, instruction = 0a80006f
+time:              2395000 ,result = 0, instruction = fe442703
+next_pc = 000000e8 , instruction = fd040793
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000ec , instruction = fe842783
+next_pc = 000000f0 , instruction = fff78793
+next_pc = 000000f4 , instruction = fe442703
+next_pc = 000000f8 , instruction = f4f748e3
+next_pc = 000000fc , instruction = fe842783
+next_pc = 00000100 , instruction = fff78793
+next_pc = 00000104 , instruction = fef42423
+next_pc = 00000108 , instruction = fec42703
+time:              2515000 ,result = 4294967292, instruction = 00100793
+next_pc = 00000110 , instruction = f2f706e3
+next_pc = 00000114 , instruction = fd042783
+next_pc = 0000003c , instruction = 00078513
+next_pc = 0000003c , instruction = fe042223
+next_pc = 0000003c , instruction = fe042223
+time:              2575000 ,result = 0, instruction = fe042223
+time:              2585000 ,result = 0, instruction = 0a80006f
+time:              2595000 ,result = 0, instruction = fe442703
+next_pc = 000000e8 , instruction = fd040793
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000ec , instruction = fe842783
+next_pc = 000000f0 , instruction = fff78793
+next_pc = 000000f4 , instruction = fe442703
+next_pc = 000000f8 , instruction = f4f748e3
+next_pc = 000000fc , instruction = fe842783
+next_pc = 00000100 , instruction = fff78793
+next_pc = 00000104 , instruction = fef42423
+next_pc = 00000108 , instruction = fec42703
+time:              2715000 ,result = 4294967291, instruction = 00100793
+next_pc = 00000110 , instruction = f2f706e3
+next_pc = 00000114 , instruction = fd042783
+next_pc = 0000003c , instruction = 00078513
+next_pc = 0000003c , instruction = fe042223
+next_pc = 0000003c , instruction = fe042223
+time:              2775000 ,result = 0, instruction = fe042223
+time:              2785000 ,result = 0, instruction = 0a80006f
+time:              2795000 ,result = 0, instruction = fe442703
+next_pc = 000000e8 , instruction = fd040793
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000ec , instruction = fe842783
+next_pc = 000000f0 , instruction = fff78793
+next_pc = 000000f4 , instruction = fe442703
+next_pc = 000000f8 , instruction = f4f748e3
+next_pc = 000000fc , instruction = fe842783
+next_pc = 00000100 , instruction = fff78793
+next_pc = 00000104 , instruction = fef42423
+next_pc = 00000108 , instruction = fec42703
+time:              2915000 ,result = 4294967290, instruction = 00100793
+next_pc = 00000110 , instruction = f2f706e3
+next_pc = 00000114 , instruction = fd042783
+next_pc = 0000003c , instruction = 00078513
+next_pc = 0000003c , instruction = fe042223
+next_pc = 0000003c , instruction = fe042223
+time:              2975000 ,result = 0, instruction = fe042223
+time:              2985000 ,result = 0, instruction = 0a80006f
+time:              2995000 ,result = 0, instruction = fe442703
+next_pc = 000000e8 , instruction = fd040793
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000ec , instruction = fe842783
+next_pc = 000000f0 , instruction = fff78793
+next_pc = 000000f4 , instruction = fe442703
+next_pc = 000000f8 , instruction = f4f748e3
+next_pc = 000000fc , instruction = fe842783
+next_pc = 00000100 , instruction = fff78793
+next_pc = 00000104 , instruction = fef42423
+next_pc = 00000108 , instruction = fec42703
+time:              3115000 ,result = 4294967289, instruction = 00100793
+next_pc = 00000110 , instruction = f2f706e3
+next_pc = 00000114 , instruction = fd042783
+next_pc = 0000003c , instruction = 00078513
+next_pc = 0000003c , instruction = fe042223
+next_pc = 0000003c , instruction = fe042223
+time:              3175000 ,result = 0, instruction = fe042223
+time:              3185000 ,result = 0, instruction = 0a80006f
+time:              3195000 ,result = 0, instruction = fe442703
+next_pc = 000000e8 , instruction = fd040793
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000ec , instruction = fe842783
+next_pc = 000000f0 , instruction = fff78793
+next_pc = 000000f4 , instruction = fe442703
+next_pc = 000000f8 , instruction = f4f748e3
+next_pc = 000000fc , instruction = fe842783
+next_pc = 00000100 , instruction = fff78793
+next_pc = 00000104 , instruction = fef42423
+next_pc = 00000108 , instruction = fec42703
+time:              3315000 ,result = 4294967288, instruction = 00100793
+next_pc = 00000110 , instruction = f2f706e3
+next_pc = 00000114 , instruction = fd042783
+next_pc = 0000003c , instruction = 00078513
+next_pc = 0000003c , instruction = fe042223
+next_pc = 0000003c , instruction = fe042223
+time:              3375000 ,result = 0, instruction = fe042223
+time:              3385000 ,result = 0, instruction = 0a80006f
+time:              3395000 ,result = 0, instruction = fe442703
+next_pc = 000000e8 , instruction = fd040793
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000ec , instruction = fe842783
+next_pc = 000000f0 , instruction = fff78793
+next_pc = 000000f4 , instruction = fe442703
+next_pc = 000000f8 , instruction = f4f748e3
+next_pc = 000000fc , instruction = fe842783
+next_pc = 00000100 , instruction = fff78793
+next_pc = 00000104 , instruction = fef42423
+next_pc = 00000108 , instruction = fec42703
+time:              3515000 ,result = 4294967287, instruction = 00100793
+next_pc = 00000110 , instruction = f2f706e3
+next_pc = 00000114 , instruction = fd042783
+next_pc = 0000003c , instruction = 00078513
+next_pc = 0000003c , instruction = fe042223
+next_pc = 0000003c , instruction = fe042223
+time:              3575000 ,result = 0, instruction = fe042223
+time:              3585000 ,result = 0, instruction = 0a80006f
+time:              3595000 ,result = 0, instruction = fe442703
+next_pc = 000000e8 , instruction = fd040793
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000ec , instruction = fe842783
+next_pc = 000000f0 , instruction = fff78793
+next_pc = 000000f4 , instruction = fe442703
+next_pc = 000000f8 , instruction = f4f748e3
+next_pc = 000000fc , instruction = fe842783
+next_pc = 00000100 , instruction = fff78793
+next_pc = 00000104 , instruction = fef42423
+next_pc = 00000108 , instruction = fec42703
+time:              3715000 ,result = 4294967286, instruction = 00100793
+next_pc = 00000110 , instruction = f2f706e3
+next_pc = 00000114 , instruction = fd042783
+next_pc = 0000003c , instruction = 00078513
+next_pc = 0000003c , instruction = fe042223
+next_pc = 0000003c , instruction = fe042223
+time:              3775000 ,result = 0, instruction = fe042223
+time:              3785000 ,result = 0, instruction = 0a80006f
+time:              3795000 ,result = 0, instruction = fe442703
+next_pc = 000000e8 , instruction = fd040793
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000ec , instruction = fe842783
+next_pc = 000000f0 , instruction = fff78793
+next_pc = 000000f4 , instruction = fe442703
+next_pc = 000000f8 , instruction = f4f748e3
+next_pc = 000000fc , instruction = fe842783
+next_pc = 00000100 , instruction = fff78793
+next_pc = 00000104 , instruction = fef42423
+next_pc = 00000108 , instruction = fec42703
+time:              3915000 ,result = 4294967285, instruction = 00100793
+next_pc = 00000110 , instruction = f2f706e3
+next_pc = 00000114 , instruction = fd042783
+next_pc = 0000003c , instruction = 00078513
+next_pc = 0000003c , instruction = fe042223
+next_pc = 0000003c , instruction = fe042223
+time:              3975000 ,result = 0, instruction = fe042223
+time:              3985000 ,result = 0, instruction = 0a80006f
+time:              3995000 ,result = 0, instruction = fe442703
+next_pc = 000000e8 , instruction = fd040793
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000ec , instruction = fe842783
+next_pc = 000000f0 , instruction = fff78793
+next_pc = 000000f4 , instruction = fe442703
+next_pc = 000000f8 , instruction = f4f748e3
+next_pc = 000000fc , instruction = fe842783
+next_pc = 00000100 , instruction = fff78793
+next_pc = 00000104 , instruction = fef42423
+next_pc = 00000108 , instruction = fec42703
+time:              4115000 ,result = 4294967284, instruction = 00100793
+next_pc = 00000110 , instruction = f2f706e3
+next_pc = 00000114 , instruction = fd042783
+next_pc = 0000003c , instruction = 00078513
+next_pc = 0000003c , instruction = fe042223
+next_pc = 0000003c , instruction = fe042223
+time:              4175000 ,result = 0, instruction = fe042223
+time:              4185000 ,result = 0, instruction = 0a80006f
+time:              4195000 ,result = 0, instruction = fe442703
+next_pc = 000000e8 , instruction = fd040793
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000ec , instruction = fe842783
+next_pc = 000000f0 , instruction = fff78793
+next_pc = 000000f4 , instruction = fe442703
+next_pc = 000000f8 , instruction = f4f748e3
+next_pc = 000000fc , instruction = fe842783
+next_pc = 00000100 , instruction = fff78793
+next_pc = 00000104 , instruction = fef42423
+next_pc = 00000108 , instruction = fec42703
+time:              4315000 ,result = 4294967283, instruction = 00100793
+next_pc = 00000110 , instruction = f2f706e3
+next_pc = 00000114 , instruction = fd042783
+next_pc = 0000003c , instruction = 00078513
+next_pc = 0000003c , instruction = fe042223
+next_pc = 0000003c , instruction = fe042223
+time:              4375000 ,result = 0, instruction = fe042223
+time:              4385000 ,result = 0, instruction = 0a80006f
+time:              4395000 ,result = 0, instruction = fe442703
+next_pc = 000000e8 , instruction = fd040793
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000ec , instruction = fe842783
+next_pc = 000000f0 , instruction = fff78793
+next_pc = 000000f4 , instruction = fe442703
+next_pc = 000000f8 , instruction = f4f748e3
+next_pc = 000000fc , instruction = fe842783
+next_pc = 00000100 , instruction = fff78793
+next_pc = 00000104 , instruction = fef42423
+next_pc = 00000108 , instruction = fec42703
+time:              4515000 ,result = 4294967282, instruction = 00100793
+next_pc = 00000110 , instruction = f2f706e3
+next_pc = 00000114 , instruction = fd042783
+next_pc = 0000003c , instruction = 00078513
+next_pc = 0000003c , instruction = fe042223
+next_pc = 0000003c , instruction = fe042223
+time:              4575000 ,result = 0, instruction = fe042223
+time:              4585000 ,result = 0, instruction = 0a80006f
+time:              4595000 ,result = 0, instruction = fe442703
+next_pc = 000000e8 , instruction = fd040793
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000ec , instruction = fe842783
+next_pc = 000000f0 , instruction = fff78793
+next_pc = 000000f4 , instruction = fe442703
+next_pc = 000000f8 , instruction = f4f748e3
+next_pc = 000000fc , instruction = fe842783
+next_pc = 00000100 , instruction = fff78793
+next_pc = 00000104 , instruction = fef42423
+next_pc = 00000108 , instruction = fec42703
+time:              4715000 ,result = 4294967281, instruction = 00100793
+next_pc = 00000110 , instruction = f2f706e3
+next_pc = 00000114 , instruction = fd042783
+next_pc = 0000003c , instruction = 00078513
+next_pc = 0000003c , instruction = fe042223
+next_pc = 0000003c , instruction = fe042223
+time:              4775000 ,result = 0, instruction = fe042223
+time:              4785000 ,result = 0, instruction = 0a80006f
+time:              4795000 ,result = 0, instruction = fe442703
+next_pc = 000000e8 , instruction = fd040793
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000ec , instruction = fe842783
+next_pc = 000000f0 , instruction = fff78793
+next_pc = 000000f4 , instruction = fe442703
+next_pc = 000000f8 , instruction = f4f748e3
+next_pc = 000000fc , instruction = fe842783
+next_pc = 00000100 , instruction = fff78793
+next_pc = 00000104 , instruction = fef42423
+next_pc = 00000108 , instruction = fec42703
+time:              4915000 ,result = 4294967280, instruction = 00100793
+next_pc = 00000110 , instruction = f2f706e3
+next_pc = 00000114 , instruction = fd042783
+next_pc = 0000003c , instruction = 00078513
+next_pc = 0000003c , instruction = fe042223
+next_pc = 0000003c , instruction = fe042223
+time:              4975000 ,result = 0, instruction = fe042223
+time:              4985000 ,result = 0, instruction = 0a80006f
+time:              4995000 ,result = 0, instruction = fe442703
+next_pc = 000000e8 , instruction = fd040793
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000ec , instruction = fe842783
+next_pc = 000000f0 , instruction = fff78793
+next_pc = 000000f4 , instruction = fe442703
+next_pc = 000000f8 , instruction = f4f748e3
+next_pc = 000000fc , instruction = fe842783
+next_pc = 00000100 , instruction = fff78793
+next_pc = 00000104 , instruction = fef42423
+next_pc = 00000108 , instruction = fec42703
+time:              5115000 ,result = 4294967279, instruction = 00100793
+next_pc = 00000110 , instruction = f2f706e3
+next_pc = 00000114 , instruction = fd042783
+next_pc = 0000003c , instruction = 00078513
+next_pc = 0000003c , instruction = fe042223
+next_pc = 0000003c , instruction = fe042223
+time:              5175000 ,result = 0, instruction = fe042223
+time:              5185000 ,result = 0, instruction = 0a80006f
+time:              5195000 ,result = 0, instruction = fe442703
+next_pc = 000000e8 , instruction = fd040793
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000ec , instruction = fe842783
+next_pc = 000000f0 , instruction = fff78793
+next_pc = 000000f4 , instruction = fe442703
+next_pc = 000000f8 , instruction = f4f748e3
+next_pc = 000000fc , instruction = fe842783
+next_pc = 00000100 , instruction = fff78793
+next_pc = 00000104 , instruction = fef42423
+next_pc = 00000108 , instruction = fec42703
+time:              5315000 ,result = 4294967278, instruction = 00100793
+next_pc = 00000110 , instruction = f2f706e3
+next_pc = 00000114 , instruction = fd042783
+next_pc = 0000003c , instruction = 00078513
+next_pc = 0000003c , instruction = fe042223
+next_pc = 0000003c , instruction = fe042223
+time:              5375000 ,result = 0, instruction = fe042223
+time:              5385000 ,result = 0, instruction = 0a80006f
+time:              5395000 ,result = 0, instruction = fe442703
+next_pc = 000000e8 , instruction = fd040793
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000ec , instruction = fe842783
+next_pc = 000000f0 , instruction = fff78793
+next_pc = 000000f4 , instruction = fe442703
+next_pc = 000000f8 , instruction = f4f748e3
+next_pc = 000000fc , instruction = fe842783
+next_pc = 00000100 , instruction = fff78793
+next_pc = 00000104 , instruction = fef42423
+next_pc = 00000108 , instruction = fec42703
+time:              5515000 ,result = 4294967277, instruction = 00100793
+next_pc = 00000110 , instruction = f2f706e3
+next_pc = 00000114 , instruction = fd042783
+next_pc = 0000003c , instruction = 00078513
+next_pc = 0000003c , instruction = fe042223
+next_pc = 0000003c , instruction = fe042223
+time:              5575000 ,result = 0, instruction = fe042223
+time:              5585000 ,result = 0, instruction = 0a80006f
+time:              5595000 ,result = 0, instruction = fe442703
+next_pc = 000000e8 , instruction = fd040793
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000ec , instruction = fe842783
+next_pc = 000000f0 , instruction = fff78793
+next_pc = 000000f4 , instruction = fe442703
+next_pc = 000000f8 , instruction = f4f748e3
+next_pc = 000000fc , instruction = fe842783
+next_pc = 00000100 , instruction = fff78793
+next_pc = 00000104 , instruction = fef42423
+next_pc = 00000108 , instruction = fec42703
+time:              5715000 ,result = 4294967276, instruction = 00100793
+next_pc = 00000110 , instruction = f2f706e3
+next_pc = 00000114 , instruction = fd042783
+next_pc = 0000003c , instruction = 00078513
+next_pc = 0000003c , instruction = fe042223
+next_pc = 0000003c , instruction = fe042223
+time:              5775000 ,result = 0, instruction = fe042223
+time:              5785000 ,result = 0, instruction = 0a80006f
+time:              5795000 ,result = 0, instruction = fe442703
+next_pc = 000000e8 , instruction = fd040793
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000ec , instruction = fe842783
+next_pc = 000000f0 , instruction = fff78793
+next_pc = 000000f4 , instruction = fe442703
+next_pc = 000000f8 , instruction = f4f748e3
+next_pc = 000000fc , instruction = fe842783
+next_pc = 00000100 , instruction = fff78793
+next_pc = 00000104 , instruction = fef42423
+next_pc = 00000108 , instruction = fec42703
+time:              5915000 ,result = 4294967275, instruction = 00100793
+next_pc = 00000110 , instruction = f2f706e3
+next_pc = 00000114 , instruction = fd042783
+next_pc = 0000003c , instruction = 00078513
+next_pc = 0000003c , instruction = fe042223
+next_pc = 0000003c , instruction = fe042223
+time:              5975000 ,result = 0, instruction = fe042223
+time:              5985000 ,result = 0, instruction = 0a80006f
+time:              5995000 ,result = 0, instruction = fe442703
+next_pc = 000000e8 , instruction = fd040793
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000ec , instruction = fe842783
+next_pc = 000000f0 , instruction = fff78793
+next_pc = 000000f4 , instruction = fe442703
+next_pc = 000000f8 , instruction = f4f748e3
+next_pc = 000000fc , instruction = fe842783
+next_pc = 00000100 , instruction = fff78793
+next_pc = 00000104 , instruction = fef42423
+next_pc = 00000108 , instruction = fec42703
+time:              6115000 ,result = 4294967274, instruction = 00100793
+next_pc = 00000110 , instruction = f2f706e3
+next_pc = 00000114 , instruction = fd042783
+next_pc = 0000003c , instruction = 00078513
+next_pc = 0000003c , instruction = fe042223
+next_pc = 0000003c , instruction = fe042223
+time:              6175000 ,result = 0, instruction = fe042223
+time:              6185000 ,result = 0, instruction = 0a80006f
+time:              6195000 ,result = 0, instruction = fe442703
+next_pc = 000000e8 , instruction = fd040793
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000ec , instruction = fe842783
+next_pc = 000000f0 , instruction = fff78793
+next_pc = 000000f4 , instruction = fe442703
+next_pc = 000000f8 , instruction = f4f748e3
+next_pc = 000000fc , instruction = fe842783
+next_pc = 00000100 , instruction = fff78793
+next_pc = 00000104 , instruction = fef42423
+next_pc = 00000108 , instruction = fec42703
+time:              6315000 ,result = 4294967273, instruction = 00100793
+next_pc = 00000110 , instruction = f2f706e3
+next_pc = 00000114 , instruction = fd042783
+next_pc = 0000003c , instruction = 00078513
+next_pc = 0000003c , instruction = fe042223
+next_pc = 0000003c , instruction = fe042223
+time:              6375000 ,result = 0, instruction = fe042223
+time:              6385000 ,result = 0, instruction = 0a80006f
+time:              6395000 ,result = 0, instruction = fe442703
+next_pc = 000000e8 , instruction = fd040793
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000ec , instruction = fe842783
+next_pc = 000000f0 , instruction = fff78793
+next_pc = 000000f4 , instruction = fe442703
+next_pc = 000000f8 , instruction = f4f748e3
+next_pc = 000000fc , instruction = fe842783
+next_pc = 00000100 , instruction = fff78793
+next_pc = 00000104 , instruction = fef42423
+next_pc = 00000108 , instruction = fec42703
+time:              6515000 ,result = 4294967272, instruction = 00100793
+next_pc = 00000110 , instruction = f2f706e3
+next_pc = 00000114 , instruction = fd042783
+next_pc = 0000003c , instruction = 00078513
+next_pc = 0000003c , instruction = fe042223
+next_pc = 0000003c , instruction = fe042223
+time:              6575000 ,result = 0, instruction = fe042223
+time:              6585000 ,result = 0, instruction = 0a80006f
+time:              6595000 ,result = 0, instruction = fe442703
+next_pc = 000000e8 , instruction = fd040793
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000ec , instruction = fe842783
+next_pc = 000000f0 , instruction = fff78793
+next_pc = 000000f4 , instruction = fe442703
+next_pc = 000000f8 , instruction = f4f748e3
+next_pc = 000000fc , instruction = fe842783
+next_pc = 00000100 , instruction = fff78793
+next_pc = 00000104 , instruction = fef42423
+next_pc = 00000108 , instruction = fec42703
+time:              6715000 ,result = 4294967271, instruction = 00100793
+next_pc = 00000110 , instruction = f2f706e3
+next_pc = 00000114 , instruction = fd042783
+next_pc = 0000003c , instruction = 00078513
+next_pc = 0000003c , instruction = fe042223
+next_pc = 0000003c , instruction = fe042223
+time:              6775000 ,result = 0, instruction = fe042223
+time:              6785000 ,result = 0, instruction = 0a80006f
+time:              6795000 ,result = 0, instruction = fe442703
+next_pc = 000000e8 , instruction = fd040793
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000ec , instruction = fe842783
+next_pc = 000000f0 , instruction = fff78793
+next_pc = 000000f4 , instruction = fe442703
+next_pc = 000000f8 , instruction = f4f748e3
+next_pc = 000000fc , instruction = fe842783
+next_pc = 00000100 , instruction = fff78793
+next_pc = 00000104 , instruction = fef42423
+next_pc = 00000108 , instruction = fec42703
+time:              6915000 ,result = 4294967270, instruction = 00100793
+next_pc = 00000110 , instruction = f2f706e3
+next_pc = 00000114 , instruction = fd042783
+next_pc = 0000003c , instruction = 00078513
+next_pc = 0000003c , instruction = fe042223
+next_pc = 0000003c , instruction = fe042223
+time:              6975000 ,result = 0, instruction = fe042223
+time:              6985000 ,result = 0, instruction = 0a80006f
+time:              6995000 ,result = 0, instruction = fe442703
+next_pc = 000000e8 , instruction = fd040793
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000ec , instruction = fe842783
+next_pc = 000000f0 , instruction = fff78793
+next_pc = 000000f4 , instruction = fe442703
+next_pc = 000000f8 , instruction = f4f748e3
+next_pc = 000000fc , instruction = fe842783
+next_pc = 00000100 , instruction = fff78793
+next_pc = 00000104 , instruction = fef42423
+next_pc = 00000108 , instruction = fec42703
+time:              7115000 ,result = 4294967269, instruction = 00100793
+next_pc = 00000110 , instruction = f2f706e3
+next_pc = 00000114 , instruction = fd042783
+next_pc = 0000003c , instruction = 00078513
+next_pc = 0000003c , instruction = fe042223
+next_pc = 0000003c , instruction = fe042223
+time:              7175000 ,result = 0, instruction = fe042223
+time:              7185000 ,result = 0, instruction = 0a80006f
+time:              7195000 ,result = 0, instruction = fe442703
+next_pc = 000000e8 , instruction = fd040793
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000ec , instruction = fe842783
+next_pc = 000000f0 , instruction = fff78793
+next_pc = 000000f4 , instruction = fe442703
+next_pc = 000000f8 , instruction = f4f748e3
+next_pc = 000000fc , instruction = fe842783
+next_pc = 00000100 , instruction = fff78793
+next_pc = 00000104 , instruction = fef42423
+next_pc = 00000108 , instruction = fec42703
+time:              7315000 ,result = 4294967268, instruction = 00100793
+next_pc = 00000110 , instruction = f2f706e3
+next_pc = 00000114 , instruction = fd042783
+next_pc = 0000003c , instruction = 00078513
+next_pc = 0000003c , instruction = fe042223
+next_pc = 0000003c , instruction = fe042223
+time:              7375000 ,result = 0, instruction = fe042223
+time:              7385000 ,result = 0, instruction = 0a80006f
+time:              7395000 ,result = 0, instruction = fe442703
+next_pc = 000000e8 , instruction = fd040793
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000ec , instruction = fe842783
+next_pc = 000000f0 , instruction = fff78793
+next_pc = 000000f4 , instruction = fe442703
+next_pc = 000000f8 , instruction = f4f748e3
+next_pc = 000000fc , instruction = fe842783
+next_pc = 00000100 , instruction = fff78793
+next_pc = 00000104 , instruction = fef42423
+next_pc = 00000108 , instruction = fec42703
+time:              7515000 ,result = 4294967267, instruction = 00100793
+next_pc = 00000110 , instruction = f2f706e3
+next_pc = 00000114 , instruction = fd042783
+next_pc = 0000003c , instruction = 00078513
+next_pc = 0000003c , instruction = fe042223
+next_pc = 0000003c , instruction = fe042223
+time:              7575000 ,result = 0, instruction = fe042223
+time:              7585000 ,result = 0, instruction = 0a80006f
+time:              7595000 ,result = 0, instruction = fe442703
+next_pc = 000000e8 , instruction = fd040793
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000ec , instruction = fe842783
+next_pc = 000000f0 , instruction = fff78793
+next_pc = 000000f4 , instruction = fe442703
+next_pc = 000000f8 , instruction = f4f748e3
+next_pc = 000000fc , instruction = fe842783
+next_pc = 00000100 , instruction = fff78793
+next_pc = 00000104 , instruction = fef42423
+next_pc = 00000108 , instruction = fec42703
+time:              7715000 ,result = 4294967266, instruction = 00100793
+next_pc = 00000110 , instruction = f2f706e3
+next_pc = 00000114 , instruction = fd042783
+next_pc = 0000003c , instruction = 00078513
+next_pc = 0000003c , instruction = fe042223
+next_pc = 0000003c , instruction = fe042223
+time:              7775000 ,result = 0, instruction = fe042223
+time:              7785000 ,result = 0, instruction = 0a80006f
+time:              7795000 ,result = 0, instruction = fe442703
+next_pc = 000000e8 , instruction = fd040793
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000ec , instruction = fe842783
+next_pc = 000000f0 , instruction = fff78793
+next_pc = 000000f4 , instruction = fe442703
+next_pc = 000000f8 , instruction = f4f748e3
+next_pc = 000000fc , instruction = fe842783
+next_pc = 00000100 , instruction = fff78793
+next_pc = 00000104 , instruction = fef42423
+next_pc = 00000108 , instruction = fec42703
+time:              7915000 ,result = 4294967265, instruction = 00100793
+next_pc = 00000110 , instruction = f2f706e3
+next_pc = 00000114 , instruction = fd042783
+next_pc = 0000003c , instruction = 00078513
+next_pc = 0000003c , instruction = fe042223
+next_pc = 0000003c , instruction = fe042223
+time:              7975000 ,result = 0, instruction = fe042223
+time:              7985000 ,result = 0, instruction = 0a80006f
+time:              7995000 ,result = 0, instruction = fe442703
+next_pc = 000000e8 , instruction = fd040793
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000ec , instruction = fe842783
+next_pc = 000000f0 , instruction = fff78793
+next_pc = 000000f4 , instruction = fe442703
+next_pc = 000000f8 , instruction = f4f748e3
+next_pc = 000000fc , instruction = fe842783
+next_pc = 00000100 , instruction = fff78793
+next_pc = 00000104 , instruction = fef42423
+next_pc = 00000108 , instruction = fec42703
+time:              8115000 ,result = 4294967264, instruction = 00100793
+next_pc = 00000110 , instruction = f2f706e3
+next_pc = 00000114 , instruction = fd042783
+next_pc = 0000003c , instruction = 00078513
+next_pc = 0000003c , instruction = fe042223
+next_pc = 0000003c , instruction = fe042223
+time:              8175000 ,result = 0, instruction = fe042223
+time:              8185000 ,result = 0, instruction = 0a80006f
+time:              8195000 ,result = 0, instruction = fe442703
+next_pc = 000000e8 , instruction = fd040793
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000ec , instruction = fe842783
+next_pc = 000000f0 , instruction = fff78793
+next_pc = 000000f4 , instruction = fe442703
+next_pc = 000000f8 , instruction = f4f748e3
+next_pc = 000000fc , instruction = fe842783
+next_pc = 00000100 , instruction = fff78793
+next_pc = 00000104 , instruction = fef42423
+next_pc = 00000108 , instruction = fec42703
+time:              8315000 ,result = 4294967263, instruction = 00100793
+next_pc = 00000110 , instruction = f2f706e3
+next_pc = 00000114 , instruction = fd042783
+next_pc = 0000003c , instruction = 00078513
+next_pc = 0000003c , instruction = fe042223
+next_pc = 0000003c , instruction = fe042223
+time:              8375000 ,result = 0, instruction = fe042223
+time:              8385000 ,result = 0, instruction = 0a80006f
+time:              8395000 ,result = 0, instruction = fe442703
+next_pc = 000000e8 , instruction = fd040793
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000ec , instruction = fe842783
+next_pc = 000000f0 , instruction = fff78793
+next_pc = 000000f4 , instruction = fe442703
+next_pc = 000000f8 , instruction = f4f748e3
+next_pc = 000000fc , instruction = fe842783
+next_pc = 00000100 , instruction = fff78793
+next_pc = 00000104 , instruction = fef42423
+next_pc = 00000108 , instruction = fec42703
+time:              8515000 ,result = 4294967262, instruction = 00100793
+next_pc = 00000110 , instruction = f2f706e3
+next_pc = 00000114 , instruction = fd042783
+next_pc = 0000003c , instruction = 00078513
+next_pc = 0000003c , instruction = fe042223
+next_pc = 0000003c , instruction = fe042223
+time:              8575000 ,result = 0, instruction = fe042223
+time:              8585000 ,result = 0, instruction = 0a80006f
+time:              8595000 ,result = 0, instruction = fe442703
+next_pc = 000000e8 , instruction = fd040793
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000ec , instruction = fe842783
+next_pc = 000000f0 , instruction = fff78793
+next_pc = 000000f4 , instruction = fe442703
+next_pc = 000000f8 , instruction = f4f748e3
+next_pc = 000000fc , instruction = fe842783
+next_pc = 00000100 , instruction = fff78793
+next_pc = 00000104 , instruction = fef42423
+next_pc = 00000108 , instruction = fec42703
+time:              8715000 ,result = 4294967261, instruction = 00100793
+next_pc = 00000110 , instruction = f2f706e3
+next_pc = 00000114 , instruction = fd042783
+next_pc = 0000003c , instruction = 00078513
+next_pc = 0000003c , instruction = fe042223
+next_pc = 0000003c , instruction = fe042223
+time:              8775000 ,result = 0, instruction = fe042223
+time:              8785000 ,result = 0, instruction = 0a80006f
+time:              8795000 ,result = 0, instruction = fe442703
+next_pc = 000000e8 , instruction = fd040793
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000ec , instruction = fe842783
+next_pc = 000000f0 , instruction = fff78793
+next_pc = 000000f4 , instruction = fe442703
+next_pc = 000000f8 , instruction = f4f748e3
+next_pc = 000000fc , instruction = fe842783
+next_pc = 00000100 , instruction = fff78793
+next_pc = 00000104 , instruction = fef42423
+next_pc = 00000108 , instruction = fec42703
+time:              8915000 ,result = 4294967260, instruction = 00100793
+next_pc = 00000110 , instruction = f2f706e3
+next_pc = 00000114 , instruction = fd042783
+next_pc = 0000003c , instruction = 00078513
+next_pc = 0000003c , instruction = fe042223
+next_pc = 0000003c , instruction = fe042223
+time:              8975000 ,result = 0, instruction = fe042223
+time:              8985000 ,result = 0, instruction = 0a80006f
+time:              8995000 ,result = 0, instruction = fe442703
+next_pc = 000000e8 , instruction = fd040793
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000ec , instruction = fe842783
+next_pc = 000000f0 , instruction = fff78793
+next_pc = 000000f4 , instruction = fe442703
+next_pc = 000000f8 , instruction = f4f748e3
+next_pc = 000000fc , instruction = fe842783
+next_pc = 00000100 , instruction = fff78793
+next_pc = 00000104 , instruction = fef42423
+next_pc = 00000108 , instruction = fec42703
+time:              9115000 ,result = 4294967259, instruction = 00100793
+next_pc = 00000110 , instruction = f2f706e3
+next_pc = 00000114 , instruction = fd042783
+next_pc = 0000003c , instruction = 00078513
+next_pc = 0000003c , instruction = fe042223
+next_pc = 0000003c , instruction = fe042223
+time:              9175000 ,result = 0, instruction = fe042223
+time:              9185000 ,result = 0, instruction = 0a80006f
+time:              9195000 ,result = 0, instruction = fe442703
+next_pc = 000000e8 , instruction = fd040793
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000ec , instruction = fe842783
+next_pc = 000000f0 , instruction = fff78793
+next_pc = 000000f4 , instruction = fe442703
+next_pc = 000000f8 , instruction = f4f748e3
+next_pc = 000000fc , instruction = fe842783
+next_pc = 00000100 , instruction = fff78793
+next_pc = 00000104 , instruction = fef42423
+next_pc = 00000108 , instruction = fec42703
+time:              9315000 ,result = 4294967258, instruction = 00100793
+next_pc = 00000110 , instruction = f2f706e3
+next_pc = 00000114 , instruction = fd042783
+next_pc = 0000003c , instruction = 00078513
+next_pc = 0000003c , instruction = fe042223
+next_pc = 0000003c , instruction = fe042223
+time:              9375000 ,result = 0, instruction = fe042223
+time:              9385000 ,result = 0, instruction = 0a80006f
+time:              9395000 ,result = 0, instruction = fe442703
+next_pc = 000000e8 , instruction = fd040793
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000ec , instruction = fe842783
+next_pc = 000000f0 , instruction = fff78793
+next_pc = 000000f4 , instruction = fe442703
+next_pc = 000000f8 , instruction = f4f748e3
+next_pc = 000000fc , instruction = fe842783
+next_pc = 00000100 , instruction = fff78793
+next_pc = 00000104 , instruction = fef42423
+next_pc = 00000108 , instruction = fec42703
+time:              9515000 ,result = 4294967257, instruction = 00100793
+next_pc = 00000110 , instruction = f2f706e3
+next_pc = 00000114 , instruction = fd042783
+next_pc = 0000003c , instruction = 00078513
+next_pc = 0000003c , instruction = fe042223
+next_pc = 0000003c , instruction = fe042223
+time:              9575000 ,result = 0, instruction = fe042223
+time:              9585000 ,result = 0, instruction = 0a80006f
+time:              9595000 ,result = 0, instruction = fe442703
+next_pc = 000000e8 , instruction = fd040793
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000ec , instruction = fe842783
+next_pc = 000000f0 , instruction = fff78793
+next_pc = 000000f4 , instruction = fe442703
+next_pc = 000000f8 , instruction = f4f748e3
+next_pc = 000000fc , instruction = fe842783
+next_pc = 00000100 , instruction = fff78793
+next_pc = 00000104 , instruction = fef42423
+next_pc = 00000108 , instruction = fec42703
+time:              9715000 ,result = 4294967256, instruction = 00100793
+next_pc = 00000110 , instruction = f2f706e3
+next_pc = 00000114 , instruction = fd042783
+next_pc = 0000003c , instruction = 00078513
+next_pc = 0000003c , instruction = fe042223
+next_pc = 0000003c , instruction = fe042223
+time:              9775000 ,result = 0, instruction = fe042223
+time:              9785000 ,result = 0, instruction = 0a80006f
+time:              9795000 ,result = 0, instruction = fe442703
+next_pc = 000000e8 , instruction = fd040793
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000ec , instruction = fe842783
+next_pc = 000000f0 , instruction = fff78793
+next_pc = 000000f4 , instruction = fe442703
+next_pc = 000000f8 , instruction = f4f748e3
+next_pc = 000000fc , instruction = fe842783
+next_pc = 00000100 , instruction = fff78793
+next_pc = 00000104 , instruction = fef42423
+next_pc = 00000108 , instruction = fec42703
+time:              9915000 ,result = 4294967255, instruction = 00100793
+next_pc = 00000110 , instruction = f2f706e3
+next_pc = 00000114 , instruction = fd042783
+next_pc = 0000003c , instruction = 00078513
+next_pc = 0000003c , instruction = fe042223
+next_pc = 0000003c , instruction = fe042223
+time:              9975000 ,result = 0, instruction = fe042223
+time:              9985000 ,result = 0, instruction = 0a80006f
+time:              9995000 ,result = 0, instruction = fe442703
+next_pc = 000000e8 , instruction = fd040793
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000ec , instruction = fe842783
+next_pc = 000000f0 , instruction = fff78793
+next_pc = 000000f4 , instruction = fe442703
+next_pc = 000000f8 , instruction = f4f748e3
+next_pc = 000000fc , instruction = fe842783
+next_pc = 00000100 , instruction = fff78793
+next_pc = 00000104 , instruction = fef42423
+next_pc = 00000108 , instruction = fec42703
+time:             10115000 ,result = 4294967254, instruction = 00100793
+next_pc = 00000110 , instruction = f2f706e3
+next_pc = 00000114 , instruction = fd042783
+next_pc = 0000003c , instruction = 00078513
+next_pc = 0000003c , instruction = fe042223
+next_pc = 0000003c , instruction = fe042223
+time:             10175000 ,result = 0, instruction = fe042223
+time:             10185000 ,result = 0, instruction = 0a80006f
+time:             10195000 ,result = 0, instruction = fe442703
+next_pc = 000000e8 , instruction = fd040793
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000ec , instruction = fe842783
+next_pc = 000000f0 , instruction = fff78793
+next_pc = 000000f4 , instruction = fe442703
+next_pc = 000000f8 , instruction = f4f748e3
+next_pc = 000000fc , instruction = fe842783
+next_pc = 00000100 , instruction = fff78793
+next_pc = 00000104 , instruction = fef42423
+next_pc = 00000108 , instruction = fec42703
+time:             10315000 ,result = 4294967253, instruction = 00100793
+next_pc = 00000110 , instruction = f2f706e3
+next_pc = 00000114 , instruction = fd042783
+next_pc = 0000003c , instruction = 00078513
+next_pc = 0000003c , instruction = fe042223
+next_pc = 0000003c , instruction = fe042223
+time:             10375000 ,result = 0, instruction = fe042223
+time:             10385000 ,result = 0, instruction = 0a80006f
+time:             10395000 ,result = 0, instruction = fe442703
+next_pc = 000000e8 , instruction = fd040793
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000ec , instruction = fe842783
+next_pc = 000000f0 , instruction = fff78793
+next_pc = 000000f4 , instruction = fe442703
+next_pc = 000000f8 , instruction = f4f748e3
+next_pc = 000000fc , instruction = fe842783
+next_pc = 00000100 , instruction = fff78793
+next_pc = 00000104 , instruction = fef42423
+next_pc = 00000108 , instruction = fec42703
+time:             10515000 ,result = 4294967252, instruction = 00100793
+next_pc = 00000110 , instruction = f2f706e3
+next_pc = 00000114 , instruction = fd042783
+next_pc = 0000003c , instruction = 00078513
+next_pc = 0000003c , instruction = fe042223
+next_pc = 0000003c , instruction = fe042223
+time:             10575000 ,result = 0, instruction = fe042223
+time:             10585000 ,result = 0, instruction = 0a80006f
+time:             10595000 ,result = 0, instruction = fe442703
+next_pc = 000000e8 , instruction = fd040793
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000ec , instruction = fe842783
+next_pc = 000000f0 , instruction = fff78793
+next_pc = 000000f4 , instruction = fe442703
+next_pc = 000000f8 , instruction = f4f748e3
+next_pc = 000000fc , instruction = fe842783
+next_pc = 00000100 , instruction = fff78793
+next_pc = 00000104 , instruction = fef42423
+next_pc = 00000108 , instruction = fec42703
+time:             10715000 ,result = 4294967251, instruction = 00100793
+next_pc = 00000110 , instruction = f2f706e3
+next_pc = 00000114 , instruction = fd042783
+next_pc = 0000003c , instruction = 00078513
+next_pc = 0000003c , instruction = fe042223
+next_pc = 0000003c , instruction = fe042223
+time:             10775000 ,result = 0, instruction = fe042223
+time:             10785000 ,result = 0, instruction = 0a80006f
+time:             10795000 ,result = 0, instruction = fe442703
+next_pc = 000000e8 , instruction = fd040793
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000ec , instruction = fe842783
+next_pc = 000000f0 , instruction = fff78793
+next_pc = 000000f4 , instruction = fe442703
+next_pc = 000000f8 , instruction = f4f748e3
+next_pc = 000000fc , instruction = fe842783
+next_pc = 00000100 , instruction = fff78793
+next_pc = 00000104 , instruction = fef42423
+next_pc = 00000108 , instruction = fec42703
+time:             10915000 ,result = 4294967250, instruction = 00100793
+next_pc = 00000110 , instruction = f2f706e3
+next_pc = 00000114 , instruction = fd042783
+next_pc = 0000003c , instruction = 00078513
+next_pc = 0000003c , instruction = fe042223
+next_pc = 0000003c , instruction = fe042223
+time:             10975000 ,result = 0, instruction = fe042223
+time:             10985000 ,result = 0, instruction = 0a80006f
+time:             10995000 ,result = 0, instruction = fe442703
+next_pc = 000000e8 , instruction = fd040793
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000ec , instruction = fe842783
+next_pc = 000000f0 , instruction = fff78793
+next_pc = 000000f4 , instruction = fe442703
+next_pc = 000000f8 , instruction = f4f748e3
+next_pc = 000000fc , instruction = fe842783
+next_pc = 00000100 , instruction = fff78793
+next_pc = 00000104 , instruction = fef42423
+next_pc = 00000108 , instruction = fec42703
+time:             11115000 ,result = 4294967249, instruction = 00100793
+next_pc = 00000110 , instruction = f2f706e3
+next_pc = 00000114 , instruction = fd042783
+next_pc = 0000003c , instruction = 00078513
+next_pc = 0000003c , instruction = fe042223
+next_pc = 0000003c , instruction = fe042223
+time:             11175000 ,result = 0, instruction = fe042223
+time:             11185000 ,result = 0, instruction = 0a80006f
+time:             11195000 ,result = 0, instruction = fe442703
+next_pc = 000000e8 , instruction = fd040793
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000ec , instruction = fe842783
+next_pc = 000000f0 , instruction = fff78793
+next_pc = 000000f4 , instruction = fe442703
+next_pc = 000000f8 , instruction = f4f748e3
+next_pc = 000000fc , instruction = fe842783
+next_pc = 00000100 , instruction = fff78793
+next_pc = 00000104 , instruction = fef42423
+next_pc = 00000108 , instruction = fec42703
+time:             11315000 ,result = 4294967248, instruction = 00100793
+next_pc = 00000110 , instruction = f2f706e3
+next_pc = 00000114 , instruction = fd042783
+next_pc = 0000003c , instruction = 00078513
+next_pc = 0000003c , instruction = fe042223
+next_pc = 0000003c , instruction = fe042223
+time:             11375000 ,result = 0, instruction = fe042223
+time:             11385000 ,result = 0, instruction = 0a80006f
+time:             11395000 ,result = 0, instruction = fe442703
+next_pc = 000000e8 , instruction = fd040793
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000ec , instruction = fe842783
+next_pc = 000000f0 , instruction = fff78793
+next_pc = 000000f4 , instruction = fe442703
+next_pc = 000000f8 , instruction = f4f748e3
+next_pc = 000000fc , instruction = fe842783
+next_pc = 00000100 , instruction = fff78793
+next_pc = 00000104 , instruction = fef42423
+next_pc = 00000108 , instruction = fec42703
+time:             11515000 ,result = 4294967247, instruction = 00100793
+next_pc = 00000110 , instruction = f2f706e3
+next_pc = 00000114 , instruction = fd042783
+next_pc = 0000003c , instruction = 00078513
+next_pc = 0000003c , instruction = fe042223
+next_pc = 0000003c , instruction = fe042223
+time:             11575000 ,result = 0, instruction = fe042223
+time:             11585000 ,result = 0, instruction = 0a80006f
+time:             11595000 ,result = 0, instruction = fe442703
+next_pc = 000000e8 , instruction = fd040793
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000ec , instruction = fe842783
+next_pc = 000000f0 , instruction = fff78793
+next_pc = 000000f4 , instruction = fe442703
+next_pc = 000000f8 , instruction = f4f748e3
+next_pc = 000000fc , instruction = fe842783
+next_pc = 00000100 , instruction = fff78793
+next_pc = 00000104 , instruction = fef42423
+next_pc = 00000108 , instruction = fec42703
+time:             11715000 ,result = 4294967246, instruction = 00100793
+next_pc = 00000110 , instruction = f2f706e3
+next_pc = 00000114 , instruction = fd042783
+next_pc = 0000003c , instruction = 00078513
+next_pc = 0000003c , instruction = fe042223
+next_pc = 0000003c , instruction = fe042223
+time:             11775000 ,result = 0, instruction = fe042223
+time:             11785000 ,result = 0, instruction = 0a80006f
+time:             11795000 ,result = 0, instruction = fe442703
+next_pc = 000000e8 , instruction = fd040793
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000ec , instruction = fe842783
+next_pc = 000000f0 , instruction = fff78793
+next_pc = 000000f4 , instruction = fe442703
+next_pc = 000000f8 , instruction = f4f748e3
+next_pc = 000000fc , instruction = fe842783
+next_pc = 00000100 , instruction = fff78793
+next_pc = 00000104 , instruction = fef42423
+next_pc = 00000108 , instruction = fec42703
+time:             11915000 ,result = 4294967245, instruction = 00100793
+next_pc = 00000110 , instruction = f2f706e3
+next_pc = 00000114 , instruction = fd042783
+next_pc = 0000003c , instruction = 00078513
+next_pc = 0000003c , instruction = fe042223
+next_pc = 0000003c , instruction = fe042223
+time:             11975000 ,result = 0, instruction = fe042223
+time:             11985000 ,result = 0, instruction = 0a80006f
+time:             11995000 ,result = 0, instruction = fe442703
+next_pc = 000000e8 , instruction = fd040793
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000ec , instruction = fe842783
+next_pc = 000000f0 , instruction = fff78793
+next_pc = 000000f4 , instruction = fe442703
+next_pc = 000000f8 , instruction = f4f748e3
+next_pc = 000000fc , instruction = fe842783
+next_pc = 00000100 , instruction = fff78793
+next_pc = 00000104 , instruction = fef42423
+next_pc = 00000108 , instruction = fec42703
+time:             12115000 ,result = 4294967244, instruction = 00100793
+next_pc = 00000110 , instruction = f2f706e3
+next_pc = 00000114 , instruction = fd042783
+next_pc = 0000003c , instruction = 00078513
+next_pc = 0000003c , instruction = fe042223
+next_pc = 0000003c , instruction = fe042223
+time:             12175000 ,result = 0, instruction = fe042223
+time:             12185000 ,result = 0, instruction = 0a80006f
+time:             12195000 ,result = 0, instruction = fe442703
+next_pc = 000000e8 , instruction = fd040793
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000ec , instruction = fe842783
+next_pc = 000000f0 , instruction = fff78793
+next_pc = 000000f4 , instruction = fe442703
+next_pc = 000000f8 , instruction = f4f748e3
+next_pc = 000000fc , instruction = fe842783
+next_pc = 00000100 , instruction = fff78793
+next_pc = 00000104 , instruction = fef42423
+next_pc = 00000108 , instruction = fec42703
+time:             12315000 ,result = 4294967243, instruction = 00100793
+next_pc = 00000110 , instruction = f2f706e3
+next_pc = 00000114 , instruction = fd042783
+next_pc = 0000003c , instruction = 00078513
+next_pc = 0000003c , instruction = fe042223
+next_pc = 0000003c , instruction = fe042223
+time:             12375000 ,result = 0, instruction = fe042223
+time:             12385000 ,result = 0, instruction = 0a80006f
+time:             12395000 ,result = 0, instruction = fe442703
+next_pc = 000000e8 , instruction = fd040793
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000ec , instruction = fe842783
+next_pc = 000000f0 , instruction = fff78793
+next_pc = 000000f4 , instruction = fe442703
+next_pc = 000000f8 , instruction = f4f748e3
+next_pc = 000000fc , instruction = fe842783
+next_pc = 00000100 , instruction = fff78793
+next_pc = 00000104 , instruction = fef42423
+next_pc = 00000108 , instruction = fec42703
+time:             12515000 ,result = 4294967242, instruction = 00100793
+next_pc = 00000110 , instruction = f2f706e3
+next_pc = 00000114 , instruction = fd042783
+next_pc = 0000003c , instruction = 00078513
+next_pc = 0000003c , instruction = fe042223
+next_pc = 0000003c , instruction = fe042223
+time:             12575000 ,result = 0, instruction = fe042223
+time:             12585000 ,result = 0, instruction = 0a80006f
+time:             12595000 ,result = 0, instruction = fe442703
+next_pc = 000000e8 , instruction = fd040793
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000ec , instruction = fe842783
+next_pc = 000000f0 , instruction = fff78793
+next_pc = 000000f4 , instruction = fe442703
+next_pc = 000000f8 , instruction = f4f748e3
+next_pc = 000000fc , instruction = fe842783
+next_pc = 00000100 , instruction = fff78793
+next_pc = 00000104 , instruction = fef42423
+next_pc = 00000108 , instruction = fec42703
+time:             12715000 ,result = 4294967241, instruction = 00100793
+next_pc = 00000110 , instruction = f2f706e3
+next_pc = 00000114 , instruction = fd042783
+next_pc = 0000003c , instruction = 00078513
+next_pc = 0000003c , instruction = fe042223
+next_pc = 0000003c , instruction = fe042223
+time:             12775000 ,result = 0, instruction = fe042223
+time:             12785000 ,result = 0, instruction = 0a80006f
+time:             12795000 ,result = 0, instruction = fe442703
+next_pc = 000000e8 , instruction = fd040793
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000ec , instruction = fe842783
+next_pc = 000000f0 , instruction = fff78793
+next_pc = 000000f4 , instruction = fe442703
+next_pc = 000000f8 , instruction = f4f748e3
+next_pc = 000000fc , instruction = fe842783
+next_pc = 00000100 , instruction = fff78793
+next_pc = 00000104 , instruction = fef42423
+next_pc = 00000108 , instruction = fec42703
+time:             12915000 ,result = 4294967240, instruction = 00100793
+next_pc = 00000110 , instruction = f2f706e3
+next_pc = 00000114 , instruction = fd042783
+next_pc = 0000003c , instruction = 00078513
+next_pc = 0000003c , instruction = fe042223
+next_pc = 0000003c , instruction = fe042223
+time:             12975000 ,result = 0, instruction = fe042223
+time:             12985000 ,result = 0, instruction = 0a80006f
+time:             12995000 ,result = 0, instruction = fe442703
+next_pc = 000000e8 , instruction = fd040793
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000ec , instruction = fe842783
+next_pc = 000000f0 , instruction = fff78793
+next_pc = 000000f4 , instruction = fe442703
+next_pc = 000000f8 , instruction = f4f748e3
+next_pc = 000000fc , instruction = fe842783
+next_pc = 00000100 , instruction = fff78793
+next_pc = 00000104 , instruction = fef42423
+next_pc = 00000108 , instruction = fec42703
+time:             13115000 ,result = 4294967239, instruction = 00100793
+next_pc = 00000110 , instruction = f2f706e3
+next_pc = 00000114 , instruction = fd042783
+next_pc = 0000003c , instruction = 00078513
+next_pc = 0000003c , instruction = fe042223
+next_pc = 0000003c , instruction = fe042223
+time:             13175000 ,result = 0, instruction = fe042223
+time:             13185000 ,result = 0, instruction = 0a80006f
+time:             13195000 ,result = 0, instruction = fe442703
+next_pc = 000000e8 , instruction = fd040793
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000ec , instruction = fe842783
+next_pc = 000000f0 , instruction = fff78793
+next_pc = 000000f4 , instruction = fe442703
+next_pc = 000000f8 , instruction = f4f748e3
+next_pc = 000000fc , instruction = fe842783
+next_pc = 00000100 , instruction = fff78793
+next_pc = 00000104 , instruction = fef42423
+next_pc = 00000108 , instruction = fec42703
+time:             13315000 ,result = 4294967238, instruction = 00100793
+next_pc = 00000110 , instruction = f2f706e3
+next_pc = 00000114 , instruction = fd042783
+next_pc = 0000003c , instruction = 00078513
+next_pc = 0000003c , instruction = fe042223
+next_pc = 0000003c , instruction = fe042223
+time:             13375000 ,result = 0, instruction = fe042223
+time:             13385000 ,result = 0, instruction = 0a80006f
+time:             13395000 ,result = 0, instruction = fe442703
+next_pc = 000000e8 , instruction = fd040793
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000ec , instruction = fe842783
+next_pc = 000000f0 , instruction = fff78793
+next_pc = 000000f4 , instruction = fe442703
+next_pc = 000000f8 , instruction = f4f748e3
+next_pc = 000000fc , instruction = fe842783
+next_pc = 00000100 , instruction = fff78793
+next_pc = 00000104 , instruction = fef42423
+next_pc = 00000108 , instruction = fec42703
+time:             13515000 ,result = 4294967237, instruction = 00100793
+next_pc = 00000110 , instruction = f2f706e3
+next_pc = 00000114 , instruction = fd042783
+next_pc = 0000003c , instruction = 00078513
+next_pc = 0000003c , instruction = fe042223
+next_pc = 0000003c , instruction = fe042223
+time:             13575000 ,result = 0, instruction = fe042223
+time:             13585000 ,result = 0, instruction = 0a80006f
+time:             13595000 ,result = 0, instruction = fe442703
+next_pc = 000000e8 , instruction = fd040793
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000ec , instruction = fe842783
+next_pc = 000000f0 , instruction = fff78793
+next_pc = 000000f4 , instruction = fe442703
+next_pc = 000000f8 , instruction = f4f748e3
+next_pc = 000000fc , instruction = fe842783
+next_pc = 00000100 , instruction = fff78793
+next_pc = 00000104 , instruction = fef42423
+next_pc = 00000108 , instruction = fec42703
+time:             13715000 ,result = 4294967236, instruction = 00100793
+next_pc = 00000110 , instruction = f2f706e3
+next_pc = 00000114 , instruction = fd042783
+next_pc = 0000003c , instruction = 00078513
+next_pc = 0000003c , instruction = fe042223
+next_pc = 0000003c , instruction = fe042223
+time:             13775000 ,result = 0, instruction = fe042223
+time:             13785000 ,result = 0, instruction = 0a80006f
+time:             13795000 ,result = 0, instruction = fe442703
+next_pc = 000000e8 , instruction = fd040793
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000ec , instruction = fe842783
+next_pc = 000000f0 , instruction = fff78793
+next_pc = 000000f4 , instruction = fe442703
+next_pc = 000000f8 , instruction = f4f748e3
+next_pc = 000000fc , instruction = fe842783
+next_pc = 00000100 , instruction = fff78793
+next_pc = 00000104 , instruction = fef42423
+next_pc = 00000108 , instruction = fec42703
+time:             13915000 ,result = 4294967235, instruction = 00100793
+next_pc = 00000110 , instruction = f2f706e3
+next_pc = 00000114 , instruction = fd042783
+next_pc = 0000003c , instruction = 00078513
+next_pc = 0000003c , instruction = fe042223
+next_pc = 0000003c , instruction = fe042223
+time:             13975000 ,result = 0, instruction = fe042223
+time:             13985000 ,result = 0, instruction = 0a80006f
+time:             13995000 ,result = 0, instruction = fe442703
+next_pc = 000000e8 , instruction = fd040793
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000ec , instruction = fe842783
+next_pc = 000000f0 , instruction = fff78793
+next_pc = 000000f4 , instruction = fe442703
+next_pc = 000000f8 , instruction = f4f748e3
+next_pc = 000000fc , instruction = fe842783
+next_pc = 00000100 , instruction = fff78793
+next_pc = 00000104 , instruction = fef42423
+next_pc = 00000108 , instruction = fec42703
+time:             14115000 ,result = 4294967234, instruction = 00100793
+next_pc = 00000110 , instruction = f2f706e3
+next_pc = 00000114 , instruction = fd042783
+next_pc = 0000003c , instruction = 00078513
+next_pc = 0000003c , instruction = fe042223
+next_pc = 0000003c , instruction = fe042223
+time:             14175000 ,result = 0, instruction = fe042223
+time:             14185000 ,result = 0, instruction = 0a80006f
+time:             14195000 ,result = 0, instruction = fe442703
+next_pc = 000000e8 , instruction = fd040793
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000ec , instruction = fe842783
+next_pc = 000000f0 , instruction = fff78793
+next_pc = 000000f4 , instruction = fe442703
+next_pc = 000000f8 , instruction = f4f748e3
+next_pc = 000000fc , instruction = fe842783
+next_pc = 00000100 , instruction = fff78793
+next_pc = 00000104 , instruction = fef42423
+next_pc = 00000108 , instruction = fec42703
+time:             14315000 ,result = 4294967233, instruction = 00100793
+next_pc = 00000110 , instruction = f2f706e3
+next_pc = 00000114 , instruction = fd042783
+next_pc = 0000003c , instruction = 00078513
+next_pc = 0000003c , instruction = fe042223
+next_pc = 0000003c , instruction = fe042223
+time:             14375000 ,result = 0, instruction = fe042223
+time:             14385000 ,result = 0, instruction = 0a80006f
+time:             14395000 ,result = 0, instruction = fe442703
+next_pc = 000000e8 , instruction = fd040793
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000ec , instruction = fe842783
+next_pc = 000000f0 , instruction = fff78793
+next_pc = 000000f4 , instruction = fe442703
+next_pc = 000000f8 , instruction = f4f748e3
+next_pc = 000000fc , instruction = fe842783
+next_pc = 00000100 , instruction = fff78793
+next_pc = 00000104 , instruction = fef42423
+next_pc = 00000108 , instruction = fec42703
+time:             14515000 ,result = 4294967232, instruction = 00100793
+next_pc = 00000110 , instruction = f2f706e3
+next_pc = 00000114 , instruction = fd042783
+next_pc = 0000003c , instruction = 00078513
+next_pc = 0000003c , instruction = fe042223
+next_pc = 0000003c , instruction = fe042223
+time:             14575000 ,result = 0, instruction = fe042223
+time:             14585000 ,result = 0, instruction = 0a80006f
+time:             14595000 ,result = 0, instruction = fe442703
+next_pc = 000000e8 , instruction = fd040793
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000ec , instruction = fe842783
+next_pc = 000000f0 , instruction = fff78793
+next_pc = 000000f4 , instruction = fe442703
+next_pc = 000000f8 , instruction = f4f748e3
+next_pc = 000000fc , instruction = fe842783
+next_pc = 00000100 , instruction = fff78793
+next_pc = 00000104 , instruction = fef42423
+next_pc = 00000108 , instruction = fec42703
+time:             14715000 ,result = 4294967231, instruction = 00100793
+next_pc = 00000110 , instruction = f2f706e3
+next_pc = 00000114 , instruction = fd042783
+next_pc = 0000003c , instruction = 00078513
+next_pc = 0000003c , instruction = fe042223
+next_pc = 0000003c , instruction = fe042223
+time:             14775000 ,result = 0, instruction = fe042223
+time:             14785000 ,result = 0, instruction = 0a80006f
+time:             14795000 ,result = 0, instruction = fe442703
+next_pc = 000000e8 , instruction = fd040793
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000ec , instruction = fe842783
+next_pc = 000000f0 , instruction = fff78793
+next_pc = 000000f4 , instruction = fe442703
+next_pc = 000000f8 , instruction = f4f748e3
+next_pc = 000000fc , instruction = fe842783
+next_pc = 00000100 , instruction = fff78793
+next_pc = 00000104 , instruction = fef42423
+next_pc = 00000108 , instruction = fec42703
+time:             14915000 ,result = 4294967230, instruction = 00100793
+next_pc = 00000110 , instruction = f2f706e3
+next_pc = 00000114 , instruction = fd042783
+next_pc = 0000003c , instruction = 00078513
+next_pc = 0000003c , instruction = fe042223
+next_pc = 0000003c , instruction = fe042223
+time:             14975000 ,result = 0, instruction = fe042223
+time:             14985000 ,result = 0, instruction = 0a80006f
+time:             14995000 ,result = 0, instruction = fe442703
+next_pc = 000000e8 , instruction = fd040793
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000ec , instruction = fe842783
+next_pc = 000000f0 , instruction = fff78793
+next_pc = 000000f4 , instruction = fe442703
+next_pc = 000000f8 , instruction = f4f748e3
+next_pc = 000000fc , instruction = fe842783
+next_pc = 00000100 , instruction = fff78793
+next_pc = 00000104 , instruction = fef42423
+next_pc = 00000108 , instruction = fec42703
+time:             15115000 ,result = 4294967229, instruction = 00100793
+next_pc = 00000110 , instruction = f2f706e3
+next_pc = 00000114 , instruction = fd042783
+next_pc = 0000003c , instruction = 00078513
+next_pc = 0000003c , instruction = fe042223
+next_pc = 0000003c , instruction = fe042223
+time:             15175000 ,result = 0, instruction = fe042223
+time:             15185000 ,result = 0, instruction = 0a80006f
+time:             15195000 ,result = 0, instruction = fe442703
+next_pc = 000000e8 , instruction = fd040793
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000ec , instruction = fe842783
+next_pc = 000000f0 , instruction = fff78793
+next_pc = 000000f4 , instruction = fe442703
+next_pc = 000000f8 , instruction = f4f748e3
+next_pc = 000000fc , instruction = fe842783
+next_pc = 00000100 , instruction = fff78793
+next_pc = 00000104 , instruction = fef42423
+next_pc = 00000108 , instruction = fec42703
+time:             15315000 ,result = 4294967228, instruction = 00100793
+next_pc = 00000110 , instruction = f2f706e3
+next_pc = 00000114 , instruction = fd042783
+next_pc = 0000003c , instruction = 00078513
+next_pc = 0000003c , instruction = fe042223
+next_pc = 0000003c , instruction = fe042223
+time:             15375000 ,result = 0, instruction = fe042223
+time:             15385000 ,result = 0, instruction = 0a80006f
+time:             15395000 ,result = 0, instruction = fe442703
+next_pc = 000000e8 , instruction = fd040793
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000ec , instruction = fe842783
+next_pc = 000000f0 , instruction = fff78793
+next_pc = 000000f4 , instruction = fe442703
+next_pc = 000000f8 , instruction = f4f748e3
+next_pc = 000000fc , instruction = fe842783
+next_pc = 00000100 , instruction = fff78793
+next_pc = 00000104 , instruction = fef42423
+next_pc = 00000108 , instruction = fec42703
+time:             15515000 ,result = 4294967227, instruction = 00100793
+next_pc = 00000110 , instruction = f2f706e3
+next_pc = 00000114 , instruction = fd042783
+next_pc = 0000003c , instruction = 00078513
+next_pc = 0000003c , instruction = fe042223
+next_pc = 0000003c , instruction = fe042223
+time:             15575000 ,result = 0, instruction = fe042223
+time:             15585000 ,result = 0, instruction = 0a80006f
+time:             15595000 ,result = 0, instruction = fe442703
+next_pc = 000000e8 , instruction = fd040793
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000ec , instruction = fe842783
+next_pc = 000000f0 , instruction = fff78793
+next_pc = 000000f4 , instruction = fe442703
+next_pc = 000000f8 , instruction = f4f748e3
+next_pc = 000000fc , instruction = fe842783
+next_pc = 00000100 , instruction = fff78793
+next_pc = 00000104 , instruction = fef42423
+next_pc = 00000108 , instruction = fec42703
+time:             15715000 ,result = 4294967226, instruction = 00100793
+next_pc = 00000110 , instruction = f2f706e3
+next_pc = 00000114 , instruction = fd042783
+next_pc = 0000003c , instruction = 00078513
+next_pc = 0000003c , instruction = fe042223
+next_pc = 0000003c , instruction = fe042223
+time:             15775000 ,result = 0, instruction = fe042223
+time:             15785000 ,result = 0, instruction = 0a80006f
+time:             15795000 ,result = 0, instruction = fe442703
+next_pc = 000000e8 , instruction = fd040793
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000ec , instruction = fe842783
+next_pc = 000000f0 , instruction = fff78793
+next_pc = 000000f4 , instruction = fe442703
+next_pc = 000000f8 , instruction = f4f748e3
+next_pc = 000000fc , instruction = fe842783
+next_pc = 00000100 , instruction = fff78793
+next_pc = 00000104 , instruction = fef42423
+next_pc = 00000108 , instruction = fec42703
+time:             15915000 ,result = 4294967225, instruction = 00100793
+next_pc = 00000110 , instruction = f2f706e3
+next_pc = 00000114 , instruction = fd042783
+next_pc = 0000003c , instruction = 00078513
+next_pc = 0000003c , instruction = fe042223
+next_pc = 0000003c , instruction = fe042223
+time:             15975000 ,result = 0, instruction = fe042223
+time:             15985000 ,result = 0, instruction = 0a80006f
+time:             15995000 ,result = 0, instruction = fe442703
+next_pc = 000000e8 , instruction = fd040793
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000ec , instruction = fe842783
+next_pc = 000000f0 , instruction = fff78793
+next_pc = 000000f4 , instruction = fe442703
+next_pc = 000000f8 , instruction = f4f748e3
+next_pc = 000000fc , instruction = fe842783
+next_pc = 00000100 , instruction = fff78793
+next_pc = 00000104 , instruction = fef42423
+next_pc = 00000108 , instruction = fec42703
+time:             16115000 ,result = 4294967224, instruction = 00100793
+next_pc = 00000110 , instruction = f2f706e3
+next_pc = 00000114 , instruction = fd042783
+next_pc = 0000003c , instruction = 00078513
+next_pc = 0000003c , instruction = fe042223
+next_pc = 0000003c , instruction = fe042223
+time:             16175000 ,result = 0, instruction = fe042223
+time:             16185000 ,result = 0, instruction = 0a80006f
+time:             16195000 ,result = 0, instruction = fe442703
+next_pc = 000000e8 , instruction = fd040793
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000ec , instruction = fe842783
+next_pc = 000000f0 , instruction = fff78793
+next_pc = 000000f4 , instruction = fe442703
+next_pc = 000000f8 , instruction = f4f748e3
+next_pc = 000000fc , instruction = fe842783
+next_pc = 00000100 , instruction = fff78793
+next_pc = 00000104 , instruction = fef42423
+next_pc = 00000108 , instruction = fec42703
+time:             16315000 ,result = 4294967223, instruction = 00100793
+next_pc = 00000110 , instruction = f2f706e3
+next_pc = 00000114 , instruction = fd042783
+next_pc = 0000003c , instruction = 00078513
+next_pc = 0000003c , instruction = fe042223
+next_pc = 0000003c , instruction = fe042223
+time:             16375000 ,result = 0, instruction = fe042223
+time:             16385000 ,result = 0, instruction = 0a80006f
+time:             16395000 ,result = 0, instruction = fe442703
+next_pc = 000000e8 , instruction = fd040793
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000ec , instruction = fe842783
+next_pc = 000000f0 , instruction = fff78793
+next_pc = 000000f4 , instruction = fe442703
+next_pc = 000000f8 , instruction = f4f748e3
+next_pc = 000000fc , instruction = fe842783
+next_pc = 00000100 , instruction = fff78793
+next_pc = 00000104 , instruction = fef42423
+next_pc = 00000108 , instruction = fec42703
+time:             16515000 ,result = 4294967222, instruction = 00100793
+next_pc = 00000110 , instruction = f2f706e3
+next_pc = 00000114 , instruction = fd042783
+next_pc = 0000003c , instruction = 00078513
+next_pc = 0000003c , instruction = fe042223
+next_pc = 0000003c , instruction = fe042223
+time:             16575000 ,result = 0, instruction = fe042223
+time:             16585000 ,result = 0, instruction = 0a80006f
+time:             16595000 ,result = 0, instruction = fe442703
+next_pc = 000000e8 , instruction = fd040793
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000ec , instruction = fe842783
+next_pc = 000000f0 , instruction = fff78793
+next_pc = 000000f4 , instruction = fe442703
+next_pc = 000000f8 , instruction = f4f748e3
+next_pc = 000000fc , instruction = fe842783
+next_pc = 00000100 , instruction = fff78793
+next_pc = 00000104 , instruction = fef42423
+next_pc = 00000108 , instruction = fec42703
+time:             16715000 ,result = 4294967221, instruction = 00100793
+next_pc = 00000110 , instruction = f2f706e3
+next_pc = 00000114 , instruction = fd042783
+next_pc = 0000003c , instruction = 00078513
+next_pc = 0000003c , instruction = fe042223
+next_pc = 0000003c , instruction = fe042223
+time:             16775000 ,result = 0, instruction = fe042223
+time:             16785000 ,result = 0, instruction = 0a80006f
+time:             16795000 ,result = 0, instruction = fe442703
+next_pc = 000000e8 , instruction = fd040793
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000ec , instruction = fe842783
+next_pc = 000000f0 , instruction = fff78793
+next_pc = 000000f4 , instruction = fe442703
+next_pc = 000000f8 , instruction = f4f748e3
+next_pc = 000000fc , instruction = fe842783
+next_pc = 00000100 , instruction = fff78793
+next_pc = 00000104 , instruction = fef42423
+next_pc = 00000108 , instruction = fec42703
+time:             16915000 ,result = 4294967220, instruction = 00100793
+next_pc = 00000110 , instruction = f2f706e3
+next_pc = 00000114 , instruction = fd042783
+next_pc = 0000003c , instruction = 00078513
+next_pc = 0000003c , instruction = fe042223
+next_pc = 0000003c , instruction = fe042223
+time:             16975000 ,result = 0, instruction = fe042223
+time:             16985000 ,result = 0, instruction = 0a80006f
+time:             16995000 ,result = 0, instruction = fe442703
+next_pc = 000000e8 , instruction = fd040793
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000ec , instruction = fe842783
+next_pc = 000000f0 , instruction = fff78793
+next_pc = 000000f4 , instruction = fe442703
+next_pc = 000000f8 , instruction = f4f748e3
+next_pc = 000000fc , instruction = fe842783
+next_pc = 00000100 , instruction = fff78793
+next_pc = 00000104 , instruction = fef42423
+next_pc = 00000108 , instruction = fec42703
+time:             17115000 ,result = 4294967219, instruction = 00100793
+next_pc = 00000110 , instruction = f2f706e3
+next_pc = 00000114 , instruction = fd042783
+next_pc = 0000003c , instruction = 00078513
+next_pc = 0000003c , instruction = fe042223
+next_pc = 0000003c , instruction = fe042223
+time:             17175000 ,result = 0, instruction = fe042223
+time:             17185000 ,result = 0, instruction = 0a80006f
+time:             17195000 ,result = 0, instruction = fe442703
+next_pc = 000000e8 , instruction = fd040793
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000ec , instruction = fe842783
+next_pc = 000000f0 , instruction = fff78793
+next_pc = 000000f4 , instruction = fe442703
+next_pc = 000000f8 , instruction = f4f748e3
+next_pc = 000000fc , instruction = fe842783
+next_pc = 00000100 , instruction = fff78793
+next_pc = 00000104 , instruction = fef42423
+next_pc = 00000108 , instruction = fec42703
+time:             17315000 ,result = 4294967218, instruction = 00100793
+next_pc = 00000110 , instruction = f2f706e3
+next_pc = 00000114 , instruction = fd042783
+next_pc = 0000003c , instruction = 00078513
+next_pc = 0000003c , instruction = fe042223
+next_pc = 0000003c , instruction = fe042223
+time:             17375000 ,result = 0, instruction = fe042223
+time:             17385000 ,result = 0, instruction = 0a80006f
+time:             17395000 ,result = 0, instruction = fe442703
+next_pc = 000000e8 , instruction = fd040793
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000ec , instruction = fe842783
+next_pc = 000000f0 , instruction = fff78793
+next_pc = 000000f4 , instruction = fe442703
+next_pc = 000000f8 , instruction = f4f748e3
+next_pc = 000000fc , instruction = fe842783
+next_pc = 00000100 , instruction = fff78793
+next_pc = 00000104 , instruction = fef42423
+next_pc = 00000108 , instruction = fec42703
+time:             17515000 ,result = 4294967217, instruction = 00100793
+next_pc = 00000110 , instruction = f2f706e3
+next_pc = 00000114 , instruction = fd042783
+next_pc = 0000003c , instruction = 00078513
+next_pc = 0000003c , instruction = fe042223
+next_pc = 0000003c , instruction = fe042223
+time:             17575000 ,result = 0, instruction = fe042223
+time:             17585000 ,result = 0, instruction = 0a80006f
+time:             17595000 ,result = 0, instruction = fe442703
+next_pc = 000000e8 , instruction = fd040793
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000ec , instruction = fe842783
+next_pc = 000000f0 , instruction = fff78793
+next_pc = 000000f4 , instruction = fe442703
+next_pc = 000000f8 , instruction = f4f748e3
+next_pc = 000000fc , instruction = fe842783
+next_pc = 00000100 , instruction = fff78793
+next_pc = 00000104 , instruction = fef42423
+next_pc = 00000108 , instruction = fec42703
+time:             17715000 ,result = 4294967216, instruction = 00100793
+next_pc = 00000110 , instruction = f2f706e3
+next_pc = 00000114 , instruction = fd042783
+next_pc = 0000003c , instruction = 00078513
+next_pc = 0000003c , instruction = fe042223
+next_pc = 0000003c , instruction = fe042223
+time:             17775000 ,result = 0, instruction = fe042223
+time:             17785000 ,result = 0, instruction = 0a80006f
+time:             17795000 ,result = 0, instruction = fe442703
+next_pc = 000000e8 , instruction = fd040793
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000ec , instruction = fe842783
+next_pc = 000000f0 , instruction = fff78793
+next_pc = 000000f4 , instruction = fe442703
+next_pc = 000000f8 , instruction = f4f748e3
+next_pc = 000000fc , instruction = fe842783
+next_pc = 00000100 , instruction = fff78793
+next_pc = 00000104 , instruction = fef42423
+next_pc = 00000108 , instruction = fec42703
+time:             17915000 ,result = 4294967215, instruction = 00100793
+next_pc = 00000110 , instruction = f2f706e3
+next_pc = 00000114 , instruction = fd042783
+next_pc = 0000003c , instruction = 00078513
+next_pc = 0000003c , instruction = fe042223
+next_pc = 0000003c , instruction = fe042223
+time:             17975000 ,result = 0, instruction = fe042223
+time:             17985000 ,result = 0, instruction = 0a80006f
+time:             17995000 ,result = 0, instruction = fe442703
+next_pc = 000000e8 , instruction = fd040793
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000ec , instruction = fe842783
+next_pc = 000000f0 , instruction = fff78793
+next_pc = 000000f4 , instruction = fe442703
+next_pc = 000000f8 , instruction = f4f748e3
+next_pc = 000000fc , instruction = fe842783
+next_pc = 00000100 , instruction = fff78793
+next_pc = 00000104 , instruction = fef42423
+next_pc = 00000108 , instruction = fec42703
+time:             18115000 ,result = 4294967214, instruction = 00100793
+next_pc = 00000110 , instruction = f2f706e3
+next_pc = 00000114 , instruction = fd042783
+next_pc = 0000003c , instruction = 00078513
+next_pc = 0000003c , instruction = fe042223
+next_pc = 0000003c , instruction = fe042223
+time:             18175000 ,result = 0, instruction = fe042223
+time:             18185000 ,result = 0, instruction = 0a80006f
+time:             18195000 ,result = 0, instruction = fe442703
+next_pc = 000000e8 , instruction = fd040793
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000ec , instruction = fe842783
+next_pc = 000000f0 , instruction = fff78793
+next_pc = 000000f4 , instruction = fe442703
+next_pc = 000000f8 , instruction = f4f748e3
+next_pc = 000000fc , instruction = fe842783
+next_pc = 00000100 , instruction = fff78793
+next_pc = 00000104 , instruction = fef42423
+next_pc = 00000108 , instruction = fec42703
+time:             18315000 ,result = 4294967213, instruction = 00100793
+next_pc = 00000110 , instruction = f2f706e3
+next_pc = 00000114 , instruction = fd042783
+next_pc = 0000003c , instruction = 00078513
+next_pc = 0000003c , instruction = fe042223
+next_pc = 0000003c , instruction = fe042223
+time:             18375000 ,result = 0, instruction = fe042223
+time:             18385000 ,result = 0, instruction = 0a80006f
+time:             18395000 ,result = 0, instruction = fe442703
+next_pc = 000000e8 , instruction = fd040793
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000ec , instruction = fe842783
+next_pc = 000000f0 , instruction = fff78793
+next_pc = 000000f4 , instruction = fe442703
+next_pc = 000000f8 , instruction = f4f748e3
+next_pc = 000000fc , instruction = fe842783
+next_pc = 00000100 , instruction = fff78793
+next_pc = 00000104 , instruction = fef42423
+next_pc = 00000108 , instruction = fec42703
+time:             18515000 ,result = 4294967212, instruction = 00100793
+next_pc = 00000110 , instruction = f2f706e3
+next_pc = 00000114 , instruction = fd042783
+next_pc = 0000003c , instruction = 00078513
+next_pc = 0000003c , instruction = fe042223
+next_pc = 0000003c , instruction = fe042223
+time:             18575000 ,result = 0, instruction = fe042223
+time:             18585000 ,result = 0, instruction = 0a80006f
+time:             18595000 ,result = 0, instruction = fe442703
+next_pc = 000000e8 , instruction = fd040793
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000ec , instruction = fe842783
+next_pc = 000000f0 , instruction = fff78793
+next_pc = 000000f4 , instruction = fe442703
+next_pc = 000000f8 , instruction = f4f748e3
+next_pc = 000000fc , instruction = fe842783
+next_pc = 00000100 , instruction = fff78793
+next_pc = 00000104 , instruction = fef42423
+next_pc = 00000108 , instruction = fec42703
+time:             18715000 ,result = 4294967211, instruction = 00100793
+next_pc = 00000110 , instruction = f2f706e3
+next_pc = 00000114 , instruction = fd042783
+next_pc = 0000003c , instruction = 00078513
+next_pc = 0000003c , instruction = fe042223
+next_pc = 0000003c , instruction = fe042223
+time:             18775000 ,result = 0, instruction = fe042223
+time:             18785000 ,result = 0, instruction = 0a80006f
+time:             18795000 ,result = 0, instruction = fe442703
+next_pc = 000000e8 , instruction = fd040793
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000ec , instruction = fe842783
+next_pc = 000000f0 , instruction = fff78793
+next_pc = 000000f4 , instruction = fe442703
+next_pc = 000000f8 , instruction = f4f748e3
+next_pc = 000000fc , instruction = fe842783
+next_pc = 00000100 , instruction = fff78793
+next_pc = 00000104 , instruction = fef42423
+next_pc = 00000108 , instruction = fec42703
+time:             18915000 ,result = 4294967210, instruction = 00100793
+next_pc = 00000110 , instruction = f2f706e3
+next_pc = 00000114 , instruction = fd042783
+next_pc = 0000003c , instruction = 00078513
+next_pc = 0000003c , instruction = fe042223
+next_pc = 0000003c , instruction = fe042223
+time:             18975000 ,result = 0, instruction = fe042223
+time:             18985000 ,result = 0, instruction = 0a80006f
+time:             18995000 ,result = 0, instruction = fe442703
+next_pc = 000000e8 , instruction = fd040793
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000ec , instruction = fe842783
+next_pc = 000000f0 , instruction = fff78793
+next_pc = 000000f4 , instruction = fe442703
+next_pc = 000000f8 , instruction = f4f748e3
+next_pc = 000000fc , instruction = fe842783
+next_pc = 00000100 , instruction = fff78793
+next_pc = 00000104 , instruction = fef42423
+next_pc = 00000108 , instruction = fec42703
+time:             19115000 ,result = 4294967209, instruction = 00100793
+next_pc = 00000110 , instruction = f2f706e3
+next_pc = 00000114 , instruction = fd042783
+next_pc = 0000003c , instruction = 00078513
+next_pc = 0000003c , instruction = fe042223
+next_pc = 0000003c , instruction = fe042223
+time:             19175000 ,result = 0, instruction = fe042223
+time:             19185000 ,result = 0, instruction = 0a80006f
+time:             19195000 ,result = 0, instruction = fe442703
+next_pc = 000000e8 , instruction = fd040793
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000ec , instruction = fe842783
+next_pc = 000000f0 , instruction = fff78793
+next_pc = 000000f4 , instruction = fe442703
+next_pc = 000000f8 , instruction = f4f748e3
+next_pc = 000000fc , instruction = fe842783
+next_pc = 00000100 , instruction = fff78793
+next_pc = 00000104 , instruction = fef42423
+next_pc = 00000108 , instruction = fec42703
+time:             19315000 ,result = 4294967208, instruction = 00100793
+next_pc = 00000110 , instruction = f2f706e3
+next_pc = 00000114 , instruction = fd042783
+next_pc = 0000003c , instruction = 00078513
+next_pc = 0000003c , instruction = fe042223
+next_pc = 0000003c , instruction = fe042223
+time:             19375000 ,result = 0, instruction = fe042223
+time:             19385000 ,result = 0, instruction = 0a80006f
+time:             19395000 ,result = 0, instruction = fe442703
+next_pc = 000000e8 , instruction = fd040793
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000ec , instruction = fe842783
+next_pc = 000000f0 , instruction = fff78793
+next_pc = 000000f4 , instruction = fe442703
+next_pc = 000000f8 , instruction = f4f748e3
+next_pc = 000000fc , instruction = fe842783
+next_pc = 00000100 , instruction = fff78793
+next_pc = 00000104 , instruction = fef42423
+next_pc = 00000108 , instruction = fec42703
+time:             19515000 ,result = 4294967207, instruction = 00100793
+next_pc = 00000110 , instruction = f2f706e3
+next_pc = 00000114 , instruction = fd042783
+next_pc = 0000003c , instruction = 00078513
+next_pc = 0000003c , instruction = fe042223
+next_pc = 0000003c , instruction = fe042223
+time:             19575000 ,result = 0, instruction = fe042223
+time:             19585000 ,result = 0, instruction = 0a80006f
+time:             19595000 ,result = 0, instruction = fe442703
+next_pc = 000000e8 , instruction = fd040793
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000ec , instruction = fe842783
+next_pc = 000000f0 , instruction = fff78793
+next_pc = 000000f4 , instruction = fe442703
+next_pc = 000000f8 , instruction = f4f748e3
+next_pc = 000000fc , instruction = fe842783
+next_pc = 00000100 , instruction = fff78793
+next_pc = 00000104 , instruction = fef42423
+next_pc = 00000108 , instruction = fec42703
+time:             19715000 ,result = 4294967206, instruction = 00100793
+next_pc = 00000110 , instruction = f2f706e3
+next_pc = 00000114 , instruction = fd042783
+next_pc = 0000003c , instruction = 00078513
+next_pc = 0000003c , instruction = fe042223
+next_pc = 0000003c , instruction = fe042223
+time:             19775000 ,result = 0, instruction = fe042223
+time:             19785000 ,result = 0, instruction = 0a80006f
+time:             19795000 ,result = 0, instruction = fe442703
+next_pc = 000000e8 , instruction = fd040793
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000e8 , instruction = fe842783
+next_pc = 000000ec , instruction = fe842783
+next_pc = 000000f0 , instruction = fff78793
+next_pc = 000000f4 , instruction = fe442703
+next_pc = 000000f8 , instruction = f4f748e3
+next_pc = 000000fc , instruction = fe842783
+next_pc = 00000100 , instruction = fff78793
+next_pc = 00000104 , instruction = fef42423
+next_pc = 00000108 , instruction = fec42703
+time:             19915000 ,result = 4294967205, instruction = 00100793
+next_pc = 00000110 , instruction = f2f706e3
+next_pc = 00000114 , instruction = fd042783
+next_pc = 0000003c , instruction = 00078513
+next_pc = 0000003c , instruction = fe042223
+next_pc = 0000003c , instruction = fe042223
+time:             19975000 ,result = 0, instruction = fe042223
+time:             19985000 ,result = 0, instruction = 0a80006f
+time:             19995000 ,result = 0, instruction = fe442703
+$finish called at time : 20 us : File "D:/3-Stage-Pipeline/Pipeline_via_terminal/modules/tb_pipeline.v" Line 113
+exit
+INFO: [Common 17-206] Exiting xsim at Tue Mar 17 15:05:29 2026...

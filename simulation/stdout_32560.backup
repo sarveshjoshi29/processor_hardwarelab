@@ -1,0 +1,55 @@
+#-----------------------------------------------------------
+# xsim v2025.2 (64-bit)
+# SW Build 6299465 on Fri Nov 14 19:35:11 GMT 2025
+# IP Build 6300035 on Fri Nov 14 10:48:45 MST 2025
+# SharedData Build 6298862 on Thu Nov 13 04:50:51 MST 2025
+# Start of session at: Tue Mar 17 20:04:06 2026
+# Process ID         : 32560
+# Current directory  : D:/3-Stage-Pipeline/Pipeline_via_terminal/simulation
+# Command line       : xsim.exe -log stdout -mode tcl -source {xsim.dir/riscv_sim/xsim_script.tcl}
+# Log file           : D:/3-Stage-Pipeline/Pipeline_via_terminal/simulation/stdout
+# Journal file       : D:/3-Stage-Pipeline/Pipeline_via_terminal/simulation\xsim.jou
+# Running On         : LAPTOP-PEJA2QNK
+# Platform           : Windows Server 2016 or Windows 10
+# Operating System   : 26200
+# Processor Detail   : 13th Gen Intel(R) Core(TM) i5-13500H
+# CPU Frequency      : 3187 MHz
+# CPU Physical cores : 12
+# CPU Logical cores  : 16
+# Host memory        : 16890 MB
+# Swap memory        : 13421 MB
+# Total Virtual      : 30312 MB
+# Available Virtual  : 12409 MB
+#-----------------------------------------------------------
+source xsim.dir/riscv_sim/xsim_script.tcl
+# xsim {riscv_sim} -autoloadwcfg -runall
+Time resolution is 1 ps
+run -all
+time:                    0 ,result =          0
+next_pc = 00000000 , instruction = xxxxxxxx
+next_pc = 00000000 , instruction = fe010113
+next_pc = 00000000 , instruction = fe010113
+next_pc = 00000000 , instruction = fe010113
+next_pc = 00000004 , instruction = fe010113
+next_pc = 00000008 , instruction = 00112e23
+next_pc = 0000000c , instruction = 00812c23
+time:                75000 ,result = 0, instruction = 02010413
+time:                85000 ,result = 0, instruction = 06400793
+next_pc = 00000018 , instruction = fef42623
+next_pc = 0000001c , instruction = 00200793
+time:               115000 ,result = 100, instruction = fef42423
+next_pc = 00000024 , instruction = fec42703
+time:               135000 ,result = 2, instruction = fe842783
+next_pc = 0000002c , instruction = 00f707b3
+next_pc = 00000030 , instruction = fef42223
+next_pc = 00000034 , instruction = fe442783
+time:               175000 ,result = 102, instruction = 00078513
+next_pc = 0000003c , instruction = 01c12083
+next_pc = 00000040 , instruction = 01812403
+next_pc = 00000044 , instruction = 02010113
+-------------------------------------------
+TIME: 215000 | End of Program Reached! Number of cycles = 21 
+-------------------------------------------
+$finish called at time : 215 ns : File "D:/3-Stage-Pipeline/Pipeline_via_terminal/modules/tb_pipeline.v" Line 145
+exit
+INFO: [Common 17-206] Exiting xsim at Tue Mar 17 20:04:09 2026...

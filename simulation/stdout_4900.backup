@@ -1,0 +1,70 @@
+#-----------------------------------------------------------
+# xsim v2025.2 (64-bit)
+# SW Build 6299465 on Fri Nov 14 19:35:11 GMT 2025
+# IP Build 6300035 on Fri Nov 14 10:48:45 MST 2025
+# SharedData Build 6298862 on Thu Nov 13 04:50:51 MST 2025
+# Start of session at: Mon Mar 16 22:49:43 2026
+# Process ID         : 4900
+# Current directory  : D:/3-Stage-Pipeline/Pipeline_via_terminal/simulation
+# Command line       : xsim.exe -log stdout -mode tcl -source {xsim.dir/riscv_sim/xsim_script.tcl}
+# Log file           : D:/3-Stage-Pipeline/Pipeline_via_terminal/simulation/stdout
+# Journal file       : D:/3-Stage-Pipeline/Pipeline_via_terminal/simulation\xsim.jou
+# Running On         : LAPTOP-PEJA2QNK
+# Platform           : Windows Server 2016 or Windows 10
+# Operating System   : 26200
+# Processor Detail   : 13th Gen Intel(R) Core(TM) i5-13500H
+# CPU Frequency      : 3187 MHz
+# CPU Physical cores : 12
+# CPU Logical cores  : 16
+# Host memory        : 16890 MB
+# Swap memory        : 13421 MB
+# Total Virtual      : 30312 MB
+# Available Virtual  : 15891 MB
+#-----------------------------------------------------------
+source xsim.dir/riscv_sim/xsim_script.tcl
+# xsim {riscv_sim} -autoloadwcfg -runall
+Time resolution is 1 ps
+run -all
+time: 5 , result = 0, mem_write = 0, rs1 = 0, rs2 = 0, scr1 = 0, scr2 = 0
+time: 15 , result = 0, mem_write = 0, rs1 = 0, rs2 = 0, scr1 = 0, scr2 = 0
+time: 25 , result = 0, mem_write = 0, rs1 = 0, rs2 = 0, scr1 = 0, scr2 = 0
+time: 35 , result = 0, mem_write = 0, rs1 = 0, rs2 = 0, scr1 = 0, scr2 = 0
+time: 45 , result = 0, mem_write = 0, rs1 = 0, rs2 = 0, scr1 = 0, scr2 = 0
+time: 55 , result = 0, mem_write = 0, rs1 = 0, rs2 = 0, scr1 = 0, scr2 = 0
+time: 65 , result = 0, mem_write = 0, rs1 = 0, rs2 = 0, scr1 = 0, scr2 = 0
+time: 75 , result = 0, mem_write = 0, rs1 = 0, rs2 = 0, scr1 = 0, scr2 = 0
+time: 85 , result = 0, mem_write = 0, rs1 = 0, rs2 = 0, scr1 = 0, scr2 = 0
+time: 95 , result = 0, mem_write = 0, rs1 = 0, rs2 = 0, scr1 = 0, scr2 = 0
+time: 105 , result = 0, mem_write = 0, rs1 = 0, rs2 = 0, scr1 = 0, scr2 = 0
+time: 115 , result = 0, mem_write = 0, rs1 = 0, rs2 = 0, scr1 = 0, scr2 = 0
+time: 125 , result = 0, mem_write = 0, rs1 = 0, rs2 = 0, scr1 = 2, scr2 = 0
+time: 135 , result = 4294967264, mem_write = 0, rs1 = 4294967264, rs2 = 0, scr1 = 2, scr2 = 0
+time: 145 , result = 4294967232, mem_write = 0, rs1 = 4294967232, rs2 = 0, scr1 = 2, scr2 = 1
+time: 155 , result = 0, mem_write = 1, rs1 = 4294967232, rs2 = 0, scr1 = 2, scr2 = 8
+time: 165 , result = 0, mem_write = 1, rs1 = 4294967232, rs2 = 0, scr1 = 2, scr2 = 0
+time: 175 , result = 4294967264, mem_write = 0, rs1 = 0, rs2 = 0, scr1 = 0, scr2 = 4
+time: 185 , result = 100, mem_write = 0, rs1 = 4294967264, rs2 = 100, scr1 = 8, scr2 = 15
+time: 195 , result = 100, mem_write = 1, rs1 = 0, rs2 = 4294967232, scr1 = 0, scr2 = 2
+time: 205 , result = 2, mem_write = 0, rs1 = 4294967264, rs2 = 2, scr1 = 8, scr2 = 15
+time: 215 , result = 2, mem_write = 1, rs1 = 4294967264, rs2 = 0, scr1 = 8, scr2 = 12
+time: 225 , result = 0, mem_write = 0, rs1 = 4294967264, rs2 = 4294967264, scr1 = 8, scr2 = 8
+time: 235 , result = 0, mem_write = 0, rs1 = x, rs2 = x, scr1 = 14, scr2 = 15
+time: 245 , result = x, mem_write = 0, rs1 = 4294967264, rs2 = x, scr1 = 8, scr2 = 15
+time: 255 , result = x, mem_write = 1, rs1 = 4294967264, rs2 = 0, scr1 = 8, scr2 = 4
+time: 265 , result = 0, mem_write = 0, rs1 = x, rs2 = 0, scr1 = 15, scr2 = 0
+time: 275 , result = x, mem_write = 0, rs1 = 4294967232, rs2 = 0, scr1 = 2, scr2 = 28
+time: 285 , result = 0, mem_write = 0, rs1 = 4294967232, rs2 = 0, scr1 = 2, scr2 = 24
+time: 295 , result = 0, mem_write = 0, rs1 = 4294967232, rs2 = 0, scr1 = 2, scr2 = 0
+time: 305 , result = 4294967264, mem_write = 0, rs1 = x, rs2 = 0, scr1 = 1, scr2 = 0
+time: 315 , result = x, mem_write = 0, rs1 = 0, rs2 = 0, scr1 = 0, scr2 = 0
+time: 325 , result = 0, mem_write = 0, rs1 = 0, rs2 = 0, scr1 = 0, scr2 = 0
+time: 335 , result = 0, mem_write = 0, rs1 = x, rs2 = x, scr1 = x, scr2 = x
+time: 345 , result = 0, mem_write = x, rs1 = x, rs2 = x, scr1 = x, scr2 = x
+time: 355 , result = 0, mem_write = x, rs1 = x, rs2 = x, scr1 = x, scr2 = x
+time: 365 , result = 0, mem_write = x, rs1 = x, rs2 = x, scr1 = x, scr2 = x
+time: 375 , result = 0, mem_write = x, rs1 = x, rs2 = x, scr1 = x, scr2 = x
+time: 385 , result = 0, mem_write = x, rs1 = x, rs2 = x, scr1 = x, scr2 = x
+time: 395 , result = 0, mem_write = x, rs1 = x, rs2 = x, scr1 = x, scr2 = x
+$finish called at time : 400 ns : File "D:/3-Stage-Pipeline/Pipeline_via_terminal/modules/tb_pipeline.v" Line 127
+exit
+INFO: [Common 17-206] Exiting xsim at Mon Mar 16 22:49:45 2026...

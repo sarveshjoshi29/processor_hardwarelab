@@ -1,0 +1,60 @@
+#-----------------------------------------------------------
+# xsim v2025.2 (64-bit)
+# SW Build 6299465 on Fri Nov 14 19:35:11 GMT 2025
+# IP Build 6300035 on Fri Nov 14 10:48:45 MST 2025
+# SharedData Build 6298862 on Thu Nov 13 04:50:51 MST 2025
+# Start of session at: Mon Mar 16 20:07:48 2026
+# Process ID         : 21400
+# Current directory  : D:/3-Stage-Pipeline/Pipeline_via_terminal/simulation
+# Command line       : xsim.exe -log stdout -mode tcl -source {xsim.dir/riscv_sim/xsim_script.tcl}
+# Log file           : D:/3-Stage-Pipeline/Pipeline_via_terminal/simulation/stdout
+# Journal file       : D:/3-Stage-Pipeline/Pipeline_via_terminal/simulation\xsim.jou
+# Running On         : LAPTOP-PEJA2QNK
+# Platform           : Windows Server 2016 or Windows 10
+# Operating System   : 26200
+# Processor Detail   : 13th Gen Intel(R) Core(TM) i5-13500H
+# CPU Frequency      : 3187 MHz
+# CPU Physical cores : 12
+# CPU Logical cores  : 16
+# Host memory        : 16890 MB
+# Swap memory        : 13421 MB
+# Total Virtual      : 30312 MB
+# Available Virtual  : 15471 MB
+#-----------------------------------------------------------
+source xsim.dir/riscv_sim/xsim_script.tcl
+# xsim {riscv_sim} -autoloadwcfg -runall
+Time resolution is 1 ps
+run -all
+Time: 105000 | PC: 00000000 | Instruction: fe010113
+Time: 115000 | PC: 00000000 | Instruction: fe010113
+Time: 125000 | PC: 00000004 | Instruction: fe010113
+Time: 135000 | PC: 00000008 | Instruction: 00112e23
+Time: 145000 | PC: 0000000c | Instruction: 00812c23
+Time: 155000 | PC: 00000010 | Instruction: 02010413
+Time: 165000 | PC: 00000014 | Instruction: 06400793
+Time: 175000 | PC: 00000018 | Instruction: fef42623
+Time: 185000 | PC: 0000001c | Instruction: 00200793
+Time: 195000 | PC: 00000020 | Instruction: fef42423
+Time: 205000 | PC: 00000024 | Instruction: fec42703
+Time: 215000 | PC: 00000028 | Instruction: fe842783
+Time: 225000 | PC: 0000002c | Instruction: 00f707b3
+Time: 235000 | PC: 00000030 | Instruction: fef42223
+Time: 245000 | PC: 00000034 | Instruction: fe442783
+Time: 255000 | PC: 00000038 | Instruction: 00078513
+Time: 265000 | PC: 0000003c | Instruction: 01c12083
+Time: 275000 | PC: 00000040 | Instruction: 01812403
+Time: 285000 | PC: 00000044 | Instruction: 02010113
+Time: 295000 | PC: 00000048 | Instruction: 00008067
+Time: 305000 | PC: 0000004c | Instruction: 00000000
+Time: 315000 | PC: xxxxxxxx | Instruction: 00000000
+Time: 325000 | PC: xxxxxxxx | Instruction: xxxxxxxx
+Time: 335000 | PC: xxxxxxxx | Instruction: xxxxxxxx
+Time: 345000 | PC: xxxxxxxx | Instruction: xxxxxxxx
+Time: 355000 | PC: xxxxxxxx | Instruction: xxxxxxxx
+Time: 365000 | PC: xxxxxxxx | Instruction: xxxxxxxx
+Time: 375000 | PC: xxxxxxxx | Instruction: xxxxxxxx
+Time: 385000 | PC: xxxxxxxx | Instruction: xxxxxxxx
+Time: 395000 | PC: xxxxxxxx | Instruction: xxxxxxxx
+$finish called at time : 400 ns : File "D:/3-Stage-Pipeline/Pipeline_via_terminal/modules/tb_pipeline.v" Line 92
+exit
+INFO: [Common 17-206] Exiting xsim at Mon Mar 16 20:07:51 2026...

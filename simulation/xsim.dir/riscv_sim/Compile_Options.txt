@@ -1,0 +1,1 @@
+-top "tb_pipeline" -snapshot "riscv_sim" -debug "typical" 
