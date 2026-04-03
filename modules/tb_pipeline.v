@@ -1,4 +1,10 @@
 `timescale 1ns / 1ps
+// ============================================================================
+// Testbench — 5-Stage RV32IM Pipeline (Phase 4: L1 Caches)
+// ============================================================================
+// Memory (instr_mem + data_mem) and caches are now instantiated INSIDE pipe.
+// This testbench only needs: clk, reset, and monitoring outputs.
+// ============================================================================
 
 module tb_pipeline;
 
@@ -8,15 +14,13 @@ module tb_pipeline;
 reg clk;
 reg reset;
 
-
 // 100 MHz clock
 initial begin
-
    clk = 0;
    forever #5 clk = ~clk;
 end
 
-// Reset sequence (active high based on your initial block)
+// Reset sequence (active high)
 initial begin
    reset = 1;
    #20;
@@ -24,142 +28,69 @@ initial begin
 end
 
 ////////////////////////////////////////////////////////////
-// INTERCONNECT WIRES (Declared to connect DUT to Memories)
+// MONITORING WIRES (outputs of pipe)
 ////////////////////////////////////////////////////////////
-
-// Instruction Memory interconnects
-wire [31:0] inst_mem_read_data;
-wire        inst_mem_is_valid = 1'b1;
-wire [31:0] inst_mem_address;
 wire [31:0] inst_fetch_pc;
-
-// Data Memory interconnects
-wire [31:0] dmem_read_data;
-wire        dmem_write_valid = 1'b1;
-wire        dmem_read_valid  = 1'b1;
-wire        dmem_read_ready;
-wire [31:0] dmem_read_address;
-wire        dmem_write_ready;
-wire [31:0] dmem_write_addr;
+wire [31:0] inst_word_out;     // instruction in IF/ID
+wire        dmem_write_ready;  // store committed (gated: no cache-miss duplicates)
 wire [31:0] dmem_write_data;
-wire [3:0]  dmem_write_byte;
-
-// CPU Status interconnects
+wire [ 3:0] dmem_write_byte;
 wire        exception;
 wire [31:0] pc_out;
 
 ////////////////////////////////////////////////////////////
-// DUT : PIPELINE CPU
+// DUT : 5-STAGE PIPELINE CPU (caches + memory inside)
 ////////////////////////////////////////////////////////////
 pipe DUT (
-   .clk(clk),
-   .reset(reset),
-   .stall(1'b0),
-   .exception(exception),
-   .pc_out(pc_out),
-
-   // Instruction Memory Interface
-   .inst_mem_is_valid(inst_mem_is_valid),
-   .inst_mem_read_data(inst_mem_read_data),
-   .inst_mem_address(inst_mem_address),
-   .inst_fetch_pc(inst_fetch_pc),
-
-   // Data Memory Interface
-   .dmem_read_data_temp(dmem_read_data),
-   .dmem_write_valid(dmem_write_valid),
-   .dmem_read_valid(dmem_read_valid),
-   .dmem_read_ready(dmem_read_ready),
-   .dmem_read_address(dmem_read_address),
+   .clk             (clk),
+   .reset           (reset),
+   .stall           (1'b0),
+   .exception       (exception),
+   .pc_out          (pc_out),
+   .inst_fetch_pc   (inst_fetch_pc),
+   .inst_word_out   (inst_word_out),
    .dmem_write_ready(dmem_write_ready),
-   .dmem_write_addr(dmem_write_addr),
-   .dmem_write_data(dmem_write_data),
-   .dmem_write_byte(dmem_write_byte)
+   .dmem_write_data (dmem_write_data),
+   .dmem_write_byte (dmem_write_byte)
 );
 
 ////////////////////////////////////////////////////////////
-// INSTRUCTION MEMORY 
-////////////////////////////////////////////////////////////
-instr_mem IMEM (
-   .clk(clk),
-   .pc(inst_mem_address),
-   .instr(inst_mem_read_data)
-);
-
-////////////////////////////////////////////////////////////
-// DATA MEMORY 
-////////////////////////////////////////////////////////////
-data_mem DMEM (
-   .clk(clk),
-
-   .re(dmem_read_ready),
-   .raddr(dmem_read_address),
-   .rdata(dmem_read_data),
-
-   .we(dmem_write_ready),
-   .waddr(dmem_write_addr),
-   .wdata(dmem_write_data),
-   .wstrb(dmem_write_byte)
-);
-
-////////////////////////////////////////////////////////////
-// SIMULATION TIME & WAVEFORM DUMPING
+// SIMULATION TIMEOUT
 ////////////////////////////////////////////////////////////
 initial begin
-   // Enable waveform generation to view in GTKWave / ModelSim
    $dumpfile("pipeline_waveforms.vcd");
    $dumpvars(0, tb_pipeline);
-   
-   #20000;   // run long enough to see program execute
+   #50000;
    $finish;
 end
 
 ////////////////////////////////////////////////////////////
-// TERMINAL OUTPUT (To see results without Vivado)
+// TERMINAL OUTPUT
 ////////////////////////////////////////////////////////////
 reg [31:0] ctr;
-// Print the initial 0 time / 0 result line at the very beginning
+
 initial begin
    ctr = 32'b0;
-   #1; // Small delay to ensure it prints at the top of the console
+   #1;
    $display("time: %17t ,result = %10d", 0, 0);
 end
 
-
-
 always @(posedge clk) begin
-   ctr <= ctr+1;
-   // 1. Print Time and Result when memory is written
-   // This is placed before the PC display so it appears above it in the terminal
-   if(dmem_write_ready) begin
-      $display("time: %17t ,result = %0d, instruction = %h", $time, dmem_write_data, inst_mem_read_data);
+   ctr <= ctr + 1;
+
+   if (dmem_write_ready) begin
+      $display("time: %17t ,result = %0d, instruction = %h",
+               $time, dmem_write_data, inst_word_out);
    end
-
-   // 2. Print the PC on every clock cycle
-   // Note: I'm using inst_fetch_pc. If it stays at 0, change it to pc_out.
-   
-
-   else if (inst_mem_read_data == 32'h00008067) begin
-        $display("-------------------------------------------");
-        $display("TIME: %0t | End of Program Reached! Number of cycles = %0d ", $time,ctr);
-        $display("-------------------------------------------");
-        $finish; // This kills the simulation immediately
-    end
-
-    else begin
-      $display("next_pc = %08h , instruction = %h", inst_fetch_pc,inst_mem_read_data);
-    end
-
-   //$display("no way");
-   // 3. Print the "All instructions are Fetched" message
-   // IMPORTANT: You will need to change '32'h00000048' to whatever the actual 
-   // final PC address of your program is. 
-   // if(inst_fetch_pc == 32'h00000048) begin
-   //    $display("All instructions are Fetched");
-   
-   //    // Optional: Stop the simulation gracefully after fetching the last instruction
-   //    // #20; 
-   //    // $finish; 
-   // end
+   else if (inst_word_out == 32'h00008067 || inst_word_out == 32'h00000067) begin
+      $display("-------------------------------------------");
+      $display("TIME: %0t | End of Program Reached! Number of cycles = %0d ", $time, ctr);
+      $display("-------------------------------------------");
+      $finish;
+   end
+   else begin
+      $display("next_pc = %08h , instruction = %h", inst_fetch_pc, inst_word_out);
+   end
 end
 
 endmodule

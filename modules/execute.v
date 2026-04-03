@@ -1,230 +1,293 @@
 `timescale 1ns/1ps
-
-////////////////////////////////////////////////////////////// Stage 2: Execute////////////////////////////////////////////////////////////
+// ============================================================================
+// Stage 2: Execute (EX) — with RV32M Extension
+// ============================================================================
+// Changes from Phase 1:
+//   - Added RV32M multiply (single-cycle) and divide (multi-cycle) support
+//   - Multiplier uses `*` operators for DSP48 inference
+//   - Divider is an iterative 32-cycle module with div_busy stall
+//   - New `muldiv` input flag from ID/EX register
+//   - New `div_busy` output to hazard unit
+// Phase 3 changes:
+//   - `pc` is now actual instruction PC (not PC+4)
+//   - Branch targets use pc+imm (was (pc-4)+imm)
+//   - Return address for JAL/JALR is pc+4 (was pc)
+//   - AUIPC uses pc+imm (was (pc-4)+imm)
+//   - Removed `fetch_pc` input (no longer needed)
+//   - Added `predicted_taken`, `predicted_target` inputs for mispredict detection
+//   - New `mispredict` output
+// ============================================================================
 module execute
 #(
-	parameter [31:0] RESET = 32'h0000_0000
+    parameter [31:0] RESET = 32'h0000_0000
 )
 (
-	input clk,
-	input reset,
-	
+    input             clk,
+    input             reset,
 
-	// -----------------------------	// FROM ID/EX	// -----------------------------
-	input  [31:0] reg_rdata1,
-	input  [31:0] reg_rdata2,
-	input  [31:0] execute_imm,
-	input  [31:0] pc,
-	input  [31:0] fetch_pc,
-	input     	immediate_sel,
-	input     	mem_write,
-	input     	jal,
-	input     	jalr,
-	input     	lui,
-	input     	alu,
-	input     	branch,
-	input     	arithsubtype,
-	input     	mem_to_reg,
-	input     	stall_read,
+    // ---- From ID/EX register ----
+    input  [31:0] reg_rdata1,        // register file rs1 value
+    input  [31:0] reg_rdata2,        // register file rs2 value
+    input  [31:0] execute_imm,       // sign-extended immediate
+    input  [31:0] pc,                // actual PC of this instruction
+    input         immediate_sel,     // 1 = use immediate as ALU operand B
+    input         mem_write,         // 1 = store instruction
+    input         jal,
+    input         jalr,
+    input         lui,
+    input         auipc,
+    input         alu,
+    input         branch,
+    input         arithsubtype,
+    input         muldiv,            // 1 = RV32M multiply/divide instruction
+    input         mem_to_reg,        // 1 = load instruction
+    input  [4:0]  dest_reg_sel,      // rd address
+    input  [2:0]  alu_op,            // funct3
+    input  [4:0]  rs1_addr,          // rs1 register address (for forwarding unit)
+    input  [4:0]  rs2_addr,          // rs2 register address (for forwarding unit)
 
-	input  [4:0]  dest_reg_sel,
-	input  [2:0]  alu_op,
-	input  [1:0]  dmem_raddr,
+    // ---- Forwarded values from hazard unit ----
+    input  [1:0]  forward_a,        // 00=reg, 01=EX/MEM, 10=MEM/WB
+    input  [1:0]  forward_b,        // 00=reg, 01=EX/MEM, 10=MEM/WB
+    input  [31:0] ex_mem_fwd_data,  // ALU result from EX/MEM register
+    input  [31:0] mem_wb_fwd_data,  // writeback data from MEM/WB register
 
-	// -----------------------------	// FROM WB	// -----------------------------
-	input  wb_branch_i,
-	input  wb_branch_nxt_i,
+    // ---- Branch prediction inputs ----
+    input         predicted_taken,   // prediction from BTB/BHT
+    input  [31:0] predicted_target,  // predicted target from BTB
 
-	// -----------------------------	// EX → PIPE	// -----------------------------
-	output [31:0] alu_operand1,
-	output [31:0] alu_operand2,
-	output [31:0] write_address,
-	output    	branch_stall,
+    // ---- Outputs to pipeline ----
+    output reg [31:0] next_pc,       // resolved next PC (always correct)
+    output reg        branch_taken,  // 1 = branch/jump taken
 
-	output reg [31:0] next_pc,
-	output reg    	branch_taken,
+    // ---- Outputs to EX/MEM register ----
+    output [31:0] ex_alu_result,     // ALU result
+    output [31:0] ex_store_data,     // forwarded rs2 value (for stores)
+    output [31:0] ex_pc,             // PC passthrough
+    output        ex_mem_write,      // store flag
+    output        ex_mem_to_reg,     // load flag
+    output        ex_reg_write_en,   // will this instruction write rd?
+    output [4:0]  ex_rd,             // destination register
+    output [2:0]  ex_funct3,         // funct3 passthrough
 
-	// -----------------------------  // EX → WB	// -----------------------------
-	output [31:0] wb_result,
-	output    	wb_mem_write,
-	output    	wb_alu_to_reg,
-	output [4:0]  wb_dest_reg_sel,
-	output    	wb_branch,
-	output    	wb_branch_nxt,
-	output    	wb_mem_to_reg,
-	output [1:0]  wb_read_address,
-	output [2:0]  mem_alu_operation
+    // ---- Divider stall signal ----
+    output        div_busy,          // 1 = divider is computing, stall pipeline
+    output        div_done,          // 1 = divider result ready (1-cycle pulse)
+
+    // ---- Branch prediction output ----
+    output        mispredict          // 1 = branch prediction was wrong
 );
 
 `include "opcode.vh"
 
-////////////////////////////////////////////////////////////// LOCAL INTERNAL SIGNALS/////////////////////////////////
-reg  [31:0] ex_result;
-wire [32:0] ex_result_subs;
-wire [32:0] ex_result_subu;
+// ============================================================================
+// Forwarding muxes — select actual operand values
+// ============================================================================
+reg [31:0] fwd_rs1, fwd_rs2;
 
-////////////////////////////////////////////////////////////// Operand selection///////////////////////////////////////////////////////
-assign alu_operand1 = reg_rdata1;
-assign alu_operand2 = immediate_sel? execute_imm : reg_rdata2;
-
-////////////////////////////////////////////////////////////// Subtractions////////////////////////////////////////////////////////////
-assign ex_result_subs =
-	{alu_operand1[31], alu_operand1} -
-	{alu_operand2[31], alu_operand2};
-assign ex_result_subu = alu_operand1 - alu_operand2;
-
-////////////////////////////////////////////////////////////// Address & branch stall////////////////////////////////////////
-assign write_address = alu_operand1 + execute_imm;
-assign branch_stall  = wb_branch_nxt_i || wb_branch_i;
-
-////////////////////////////////////////////////////////////// Next PC logic////////////////////////////////////////////////////////////
 always @(*) begin
-    next_pc      = pc + 4;
-    branch_taken = !branch_stall;
-    case (1'b1)
-        jal  :begin  next_pc = (pc - 4) + execute_imm; 
-			branch_taken = 1'b1;
-		end 
-        jalr :begin  next_pc = alu_operand1 + execute_imm;
-			branch_taken = 1'b1;
-		end // jalr uses register, no PC fix needed
-        branch: begin
-            case (alu_op)
-                BEQ:  begin
-                    next_pc = (ex_result_subs == 0) ? (pc - 4) + execute_imm : fetch_pc + 4;
-                    if (ex_result_subs != 0) branch_taken = 1'b0;
-                end
-                BNE:  begin
-                    next_pc = (ex_result_subs != 0) ? (pc - 4) + execute_imm : fetch_pc + 4;
-                    if (ex_result_subs == 0) branch_taken = 1'b0;
-                end
-                BLT:  begin
-                    next_pc = ex_result_subs[32] ? (pc - 4) + execute_imm : fetch_pc + 4;
-                    if (!ex_result_subs[32]) branch_taken = 1'b0;
-                end
-                BGE:  begin
-                    next_pc = (!ex_result_subs[32]) ? (pc - 4) + execute_imm : fetch_pc + 4;                
-                    if (ex_result_subs[32]) branch_taken = 1'b0;
-                end
-                BLTU: begin
-                    next_pc = ex_result_subu[32] ? (pc - 4) + execute_imm : fetch_pc + 4;
-                    if (!ex_result_subu[32]) branch_taken = 1'b0;
-                end
-                BGEU: begin
-                    next_pc = (!ex_result_subu[32]) ? (pc - 4) + execute_imm : fetch_pc + 4;                                                                                                         
-                    if (ex_result_subu[32]) branch_taken = 1'b0;
-                end
-                default: next_pc = fetch_pc + 4;
-            endcase
-        end
-        default: begin       
-            next_pc      = fetch_pc + 4;
-            branch_taken = 1'b0;
-        end
+    case (forward_a)
+        2'b01:   fwd_rs1 = ex_mem_fwd_data;  // forward from EX/MEM
+        2'b10:   fwd_rs1 = mem_wb_fwd_data;  // forward from MEM/WB
+        default: fwd_rs1 = reg_rdata1;        // no forwarding
+    endcase
+
+    case (forward_b)
+        2'b01:   fwd_rs2 = ex_mem_fwd_data;
+        2'b10:   fwd_rs2 = mem_wb_fwd_data;
+        default: fwd_rs2 = reg_rdata2;
     endcase
 end
 
-////////////////////////////////////////////////////////////// ALU result logic////////////////////////////////////////////////////////////
+// ---- ALU operands after forwarding + immediate selection ----
+wire [31:0] alu_operand1 = fwd_rs1;
+wire [31:0] alu_operand2 = immediate_sel ? execute_imm : fwd_rs2;
+
+// ---- Subtraction results for branches and SLT ----
+wire [32:0] ex_result_subs = {alu_operand1[31], alu_operand1} -
+                              {alu_operand2[31], alu_operand2};
+wire [32:0] ex_result_subu = alu_operand1 - alu_operand2;
+
+// ============================================================================
+// RV32M — Single-Cycle Multiplier (DSP48 inference)
+// ============================================================================
+wire signed [32:0] mul_op_a = (alu_op == MULHU)
+                            ? {1'b0, fwd_rs1}                      // unsigned
+                            : {fwd_rs1[31], fwd_rs1};              // signed
+
+wire signed [32:0] mul_op_b = (alu_op == MULHU || alu_op == MULHSU)
+                            ? {1'b0, fwd_rs2}                      // unsigned
+                            : {fwd_rs2[31], fwd_rs2};              // signed
+
+wire signed [65:0] mul_product = mul_op_a * mul_op_b;
+
+reg [31:0] mul_result;
 always @(*) begin
-	case (1'b1)
-    	mem_write: ex_result = alu_operand2;
-		jal, 
-    	jalr:  	ex_result = pc;
-    	lui:   	ex_result = execute_imm;
-		alu: begin
-        	case (alu_op)  
-            	ADD : ex_result = arithsubtype ? alu_operand1 - alu_operand2 : alu_operand1 + alu_operand2;
-				SLL : ex_result = alu_operand1 << alu_operand2;
-            	SLT : ex_result = ex_result_subs[32];
-            	SLTU: ex_result = ex_result_subu[32];
-				XOR : ex_result = alu_operand1 ^ alu_operand2;
-            	SR  : ex_result = arithsubtype ? $signed(alu_operand1) >>> alu_operand2 : alu_operand1 >> alu_operand2;
-				OR  : ex_result = alu_operand1 | alu_operand2;
-            	AND : ex_result = alu_operand1 & alu_operand2;
-            	default: ex_result = 'h0;
-			endcase
-    	end
-    	default: ex_result = 'h0;
-	endcase
+    case (alu_op)
+        MUL:     mul_result = mul_product[31:0];    // lower 32 bits
+        MULH:    mul_result = mul_product[63:32];   // upper 32 bits (signed × signed)
+        MULHSU:  mul_result = mul_product[63:32];   // upper 32 bits (signed × unsigned)
+        MULHU:   mul_result = mul_product[63:32];   // upper 32 bits (unsigned × unsigned)
+        default: mul_result = 32'h0;
+    endcase
 end
 
-////////////////////////////////////////////////////////////// EX → WB pipeline register/////////////////////////////////////////
-ex_mem_wb_reg u_ex_mem_wb (
-	.clk        	(clk),
-	.reset_n    	(reset),
-	.stall_n    	(stall_read),
-	.ex_result  	(ex_result),
-	.mem_write  	(mem_write && !branch_stall),
-	.alu_to_reg 	((alu | lui | jal | jalr | mem_to_reg ) && !branch_stall),
-	.dest_reg_sel   (dest_reg_sel),
-	.branch_taken   (branch_taken),
-	.mem_to_reg 	(mem_to_reg),
-	.read_address   (dmem_raddr),
-	.alu_operation  (alu_op),
+// ============================================================================
+// RV32M — Multi-Cycle Iterative Divider
+// ============================================================================
+wire        div_start;
+wire [31:0] div_quotient;
+wire [31:0] div_remainder;
+wire        div_signed_op = (alu_op == DIV) || (alu_op == REM);
+wire        is_div_op     = muldiv && (alu_op[2] == 1'b1);  // funct3[2]=1 → DIV/DIVU/REM/REMU
 
-	.ex_mem_result    	(wb_result),
-	.ex_mem_mem_write 	(wb_mem_write),
-	.ex_mem_alu_to_reg	(wb_alu_to_reg),
-	.ex_mem_dest_reg_sel  (wb_dest_reg_sel),
-	.ex_mem_branch    	(wb_branch),
-	.ex_mem_branch_nxt	(wb_branch_nxt),
-	.ex_mem_mem_to_reg	(wb_mem_to_reg),
-	.ex_mem_read_address  (wb_read_address),
-	.ex_mem_alu_operation (mem_alu_operation)
-);
-endmodule
+// Start divider when a new div instruction arrives and divider is idle.
+// Suppress restart on the cycle div_done=1 (result just became available).
+assign div_start = is_div_op && !div_busy && !div_done;
 
-module ex_mem_wb_reg (
-	input     	clk,
-	input     	reset_n,
-	input     	stall_n,
-
-	// Data
-	input  [31:0] ex_result,
-
-	// Control inputs from EX/MEM
-	input     	mem_write,
-	input     	alu_to_reg,
-	input  [4:0]  dest_reg_sel,
-	input     	branch_taken,
-	input     	mem_to_reg,
-	input  [1:0]  read_address,
-	input  [2:0]  alu_operation,
-
-	// Outputs to WB
-	output reg [31:0] ex_mem_result,
-	output reg    	ex_mem_mem_write,
-	output reg    	ex_mem_alu_to_reg,
-	output reg [4:0]  ex_mem_dest_reg_sel,
-	output reg    	ex_mem_branch,
-	output reg    	ex_mem_branch_nxt,
-	output reg    	ex_mem_mem_to_reg,
-	output reg [1:0]  ex_mem_read_address,
-	output reg [2:0]  ex_mem_alu_operation
+divider u_divider (
+    .clk        (clk),
+    .reset      (reset),
+    .start      (div_start),
+    .signed_op  (div_signed_op),
+    .dividend   (fwd_rs1),
+    .divisor    (fwd_rs2),
+    .busy       (div_busy),
+    .done       (div_done),
+    .quotient   (div_quotient),
+    .remainder  (div_remainder)
 );
 
-always @(posedge clk or negedge reset_n) begin
-	if (!reset_n) begin
-    	ex_mem_result     	<= 32'h0;
-		ex_mem_mem_write  	<= 1'b0;
-    	ex_mem_alu_to_reg 	<= 1'b0;
-    	ex_mem_dest_reg_sel   <= 5'h0;
-    	ex_mem_branch     	<= 1'b0;
-		ex_mem_branch_nxt 	<= 1'b0;
-    	ex_mem_mem_to_reg 	<= 1'b0;
-    	ex_mem_read_address   <= 2'h0;
-    	ex_mem_alu_operation  <= 3'h0;
-	end
-	else if (!stall_n) begin
-    	ex_mem_result     	<= ex_result;
-    	ex_mem_mem_write  	<= mem_write;
-		ex_mem_alu_to_reg 	<= alu_to_reg;
-    	ex_mem_dest_reg_sel   <= dest_reg_sel;
-    	ex_mem_branch     	<= branch_taken;
-    	ex_mem_branch_nxt 	<= ex_mem_branch;
-		ex_mem_mem_to_reg 	<= mem_to_reg;
-    	ex_mem_read_address   <= read_address;
-    	ex_mem_alu_operation  <= alu_operation;
-	end
+reg [31:0] div_result;
+always @(*) begin
+    case (alu_op)
+        DIV,  DIVU: div_result = div_quotient;
+        REM,  REMU: div_result = div_remainder;
+        default:    div_result = 32'h0;
+    endcase
 end
+
+// ============================================================================
+// ALU result mux
+// ============================================================================
+reg [31:0] alu_result;
+
+always @(*) begin
+    case (1'b1)
+        lui:      alu_result = execute_imm;
+        auipc:    alu_result = pc + execute_imm;              // rd = PC + imm20
+        jal,
+        jalr:     alu_result = pc + 32'd4;                   // return address = PC + 4
+        (alu && muldiv && !is_div_op): begin
+            // RV32M multiply — single cycle
+            alu_result = mul_result;
+        end
+        (alu && muldiv && is_div_op): begin
+            // RV32M divide — result available when div_done
+            alu_result = div_result;
+        end
+        (alu && !muldiv): begin
+            case (alu_op)
+                ADD:     alu_result = arithsubtype ? alu_operand1 - alu_operand2
+                                                   : alu_operand1 + alu_operand2;
+                SLL:     alu_result = alu_operand1 << alu_operand2[4:0];
+                SLT:     alu_result = {31'b0, ex_result_subs[32]};
+                SLTU:    alu_result = {31'b0, ex_result_subu[32]};
+                XOR:     alu_result = alu_operand1 ^ alu_operand2;
+                SR:      if (arithsubtype)
+                             alu_result = $signed(alu_operand1) >>> alu_operand2[4:0];
+                         else
+                             alu_result = alu_operand1 >> alu_operand2[4:0];
+                OR:      alu_result = alu_operand1 | alu_operand2;
+                AND:     alu_result = alu_operand1 & alu_operand2;
+                default: alu_result = 32'h0;
+            endcase
+        end
+        // LOAD/STORE: compute address = rs1 + immediate
+        mem_to_reg,
+        mem_write: alu_result = fwd_rs1 + execute_imm;
+        default:   alu_result = 32'h0;
+    endcase
+end
+
+// ============================================================================
+// Branch / Jump resolution
+// ============================================================================
+always @(*) begin
+    next_pc      = pc + 32'd4;         // default: next sequential PC
+    branch_taken = 1'b0;
+
+    case (1'b1)
+        jal: begin
+            next_pc      = pc + execute_imm;
+            branch_taken = 1'b1;
+        end
+        jalr: begin
+            next_pc      = fwd_rs1 + execute_imm;  // uses forwarded rs1
+            branch_taken = 1'b1;
+        end
+        branch: begin
+            case (alu_op)
+                BEQ: begin
+                    if (ex_result_subs == 0) begin
+                        next_pc      = pc + execute_imm;
+                        branch_taken = 1'b1;
+                    end
+                end
+                BNE: begin
+                    if (ex_result_subs != 0) begin
+                        next_pc      = pc + execute_imm;
+                        branch_taken = 1'b1;
+                    end
+                end
+                BLT: begin
+                    if (ex_result_subs[32]) begin
+                        next_pc      = pc + execute_imm;
+                        branch_taken = 1'b1;
+                    end
+                end
+                BGE: begin
+                    if (!ex_result_subs[32]) begin
+                        next_pc      = pc + execute_imm;
+                        branch_taken = 1'b1;
+                    end
+                end
+                BLTU: begin
+                    if (ex_result_subu[32]) begin
+                        next_pc      = pc + execute_imm;
+                        branch_taken = 1'b1;
+                    end
+                end
+                BGEU: begin
+                    if (!ex_result_subu[32]) begin
+                        next_pc      = pc + execute_imm;
+                        branch_taken = 1'b1;
+                    end
+                end
+                default: ; // no branch
+            endcase
+        end
+        default: ; // not a branch/jump
+    endcase
+end
+
+// ============================================================================
+// Mispredict detection
+// ============================================================================
+// Mispredict if: direction mismatch OR (both taken but target mismatch)
+assign mispredict = (predicted_taken != branch_taken) ||
+                    (predicted_taken && branch_taken && (predicted_target != next_pc));
+
+// ============================================================================
+// Output assignments to EX/MEM register
+// ============================================================================
+assign ex_alu_result   = alu_result;
+assign ex_store_data   = fwd_rs2;    // forwarded rs2 for stores
+assign ex_pc           = pc;
+assign ex_mem_write    = mem_write;
+assign ex_mem_to_reg   = mem_to_reg;
+assign ex_reg_write_en = alu | lui | auipc | jal | jalr | mem_to_reg;  // includes muldiv (alu is set)
+assign ex_rd           = dest_reg_sel;
+assign ex_funct3       = alu_op;
+
 endmodule

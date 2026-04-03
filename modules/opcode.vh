@@ -1,4 +1,5 @@
 //  OPCODE and parameter definitions
+//  Shared header for all pipeline stages
 
 `define OPCODE      6:0
 `define FUNC3       14:12
@@ -12,6 +13,7 @@ localparam  [31: 0] NOP        = 32'h0000_0013;     // addi x0, x0, 0
 
 // OPCODE, INST[6:0]
 localparam  [ 6: 0] LUI     = 7'b0110111,        // U-type
+                    AUIPC   = 7'b0010111,        // U-type
                     JAL     = 7'b1101111,        // J-type
                     JALR    = 7'b1100111,        // I-type
                     BRANCH  = 7'b1100011,        // B-type
@@ -41,7 +43,7 @@ localparam  [ 2: 0] LB      = 3'b000,
 localparam  [ 2: 0] SB      = 3'b000,
                     SH      = 3'b001,
                     SW      = 3'b010;
-                    
+
 // FUNC3, INST[14:12], INST[6:0] = 7'b0110011, 7'b0010011
 localparam  [ 2: 0] ADD     = 3'b000,    // inst[30] == 0: ADD, inst[31] == 1: SUB
                     SLL     = 3'b001,
@@ -52,3 +54,18 @@ localparam  [ 2: 0] ADD     = 3'b000,    // inst[30] == 0: ADD, inst[31] == 1: S
                     OR      = 3'b110,
                     AND     = 3'b111;
 
+// ============================================================================
+// RV32M Extension — funct7 = 7'b0000001, opcode = ARITHR (7'b0110011)
+// ============================================================================
+// FUNC3 encodings for multiply/divide instructions
+localparam  [ 2: 0] MUL     = 3'b000,
+                    MULH    = 3'b001,
+                    MULHSU  = 3'b010,
+                    MULHU   = 3'b011,
+                    DIV     = 3'b100,
+                    DIVU    = 3'b101,
+                    REM     = 3'b110,
+                    REMU    = 3'b111;
+
+// funct7 for M-extension detection
+localparam  [ 6: 0] FUNCT7_MULDIV = 7'b0000001;
