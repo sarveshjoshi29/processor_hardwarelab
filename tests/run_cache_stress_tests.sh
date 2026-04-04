@@ -71,7 +71,7 @@ run_test "test_back_to_back_loads" 77 88 99 264
 echo "============================================"
 echo "Results: $PASS passed, $FAIL failed, $TOTAL total"
 
-rm -f test_sim pipeline_waveforms.vcd imem.hex dmem.hex
+rm -f test_sim pipeline_waveforms.vcd imem.hex dmem.hex test_*_imem.hex test_*_dmem.hex
 
 if [ "$FAIL" -gt 0 ]; then
     exit 1

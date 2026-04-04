@@ -487,6 +487,12 @@ if __name__ == "__main__":
             "test_muldiv": test_muldiv,
             "test_auipc": test_auipc,
             "test_alu": test_alu,
+            "test_cross_line": test_cross_line,
+            "test_store_load": test_store_load,
+            "test_dirty_evict": test_dirty_evict,
+            "test_loop_store": test_loop_store,
+            "test_subword": test_subword,
+            "test_back_to_back_loads": test_back_to_back_loads,
         }
         if test_name in tests:
             write_hex("imem.hex", tests[test_name])
