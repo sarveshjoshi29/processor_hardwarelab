@@ -1,16 +1,12 @@
 #!/bin/bash
 # ============================================================================
-# Automated Test Runner for 5-Stage RV32IM Pipeline
-# ============================================================================
-# Compiles the pipeline with Icarus Verilog, generates test hex files,
-# and runs each test, checking expected store values.
+# Automated Cache Stress Test Runner for 5-Stage RV32IM Pipeline
 # ============================================================================
 
 set -e
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 cd "$SCRIPT_DIR"
 
-# macOS doesn't have GNU timeout by default; use gtimeout (coreutils) if available
 if command -v gtimeout &>/dev/null; then
     TIMEOUT="gtimeout 60"
 elif command -v timeout &>/dev/null; then
@@ -19,11 +15,9 @@ else
     TIMEOUT=""
 fi
 
-# Generate hex files
 echo "Generating test hex files..."
 python3 gen_hex.py
 
-# Compile
 echo "Compiling pipeline..."
 iverilog -g2005 -o test_sim -I ../modules ../modules/pipeline.v ../modules/tb_pipeline.v
 
@@ -40,7 +34,6 @@ run_test() {
     cp "${name}_imem.hex" imem.hex
     cp "${name}_dmem.hex" dmem.hex
 
-    # Run simulation, extract store results
     local results
     results=$($TIMEOUT vvp test_sim 2>&1 | grep "Data Written:" | awk -F'Data Written:' '{print $2}' | awk '{print $1}')
 
@@ -66,35 +59,21 @@ run_test() {
 }
 
 echo ""
-echo "Running tests..."
+echo "Running cache stress tests..."
 echo "============================================"
 
-# Test 1: Forwarding (EX→EX, MEM→EX, x0 bypass)
-run_test "test_forward" 120 120
-
-# Test 2: Load-use hazard (stall + forwarding)
-run_test "test_hazard" 42 50 92
-
-# Test 3: Branch/jump (loop, BNE not-taken, JAL)
-run_test "test_branch" 100 6 77
-
-# Test 4: RV32M multiply/divide
-# MUL=91, MUL_signed=-91, DIV=13, REM=0, DIV_zero=-1, REM_zero=100, MULH=0, DIVU=0x55555555
-run_test "test_muldiv" 91 4294967205 13 0 4294967295 100 0 1431655765
-
-# Test 5: AUIPC
-run_test "test_auipc" 4104 8208
-
-# Test 6: ALU comprehensive (SLT, SLTU, XOR, OR, AND, SLL, SRL, SRA)
-run_test "test_alu" 0 1 240 255 15 510 268435455 4294967295
+run_test "test_cross_line" 10 20 30 40 50
+run_test "test_store_load" 42 50 42 84
+run_test "test_dirty_evict" 99 99
+run_test "test_loop_store" 1 3 6 10 15 21 28 36 45 55
+run_test "test_back_to_back_loads" 77 88 99 264
 
 echo "============================================"
 echo "Results: $PASS passed, $FAIL failed, $TOTAL total"
 
-# Cleanup
 rm -f test_sim pipeline_waveforms.vcd imem.hex dmem.hex
 
 if [ "$FAIL" -gt 0 ]; then
     exit 1
 fi
-echo "All tests passed!"
+echo "All cache stress tests passed!"
