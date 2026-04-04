@@ -18,6 +18,7 @@ SRC_SORT     = code_sort.c
 SRC_NEGATIVE = code_negative.c
 SRC_FIB = fibonacci.c
 SRC_XOR = xor.c
+SRC_MULDIV = code_muldiv.c
 
 TARGET   = code.elf
 
@@ -60,6 +61,13 @@ xor: $(SRC_XOR)
 	$(OBJCOPY) -j .data -O binary $(TARGET) ./imem_dmem/dmem.bin
 	$(OBJDUMP) -d $(TARGET) > ./imem_dmem/code.dis
 	cd imem_dmem && python bin2hex.py
+muldiv: $(SRC_MULDIV)
+	$(CC) -c  $(SRC_MULDIV) -o $(TARGET) $(CFLAGS)
+	$(OBJCOPY) -O binary $(TARGET) ./imem_dmem/imem.bin
+	$(OBJCOPY) -j .data -O binary $(TARGET) ./imem_dmem/dmem.bin
+	$(OBJDUMP) -d $(TARGET) > ./imem_dmem/code.dis
+	cd imem_dmem && python bin2hex.py
+
 
 # /////clean function
 clean:
