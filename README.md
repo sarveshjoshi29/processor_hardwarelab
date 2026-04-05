@@ -72,6 +72,30 @@ graph LR
 
 ---
 
+## File Details :-
+
+| File | Module | Purpose | Type |
+| :--- | :--- | :--- | :--- |
+| [`modules/IF_ID.v`](./modules/IF_ID.v) | IF/ID Register | Pipeline register between Instruction Fetch and Decode stages | Hardware (Verilog) |
+| [`modules/branch_predictor.v`](./modules/branch_predictor.v) | Branch Predictor | Predicts branch outcomes to minimize control hazards | Hardware (Verilog) |
+| [`modules/dcache.v`](./modules/dcache.v) | Data Cache | Caches frequently accessed data to reduce memory latency | Hardware (Verilog) |
+| [`modules/divider.v`](./modules/divider.v) | Hardware Divider | Performs division operations (part of the `M` extension) | Hardware (Verilog) |
+| [`modules/ex_mem_reg.v`](./modules/ex_mem_reg.v) | EX/MEM Register | Pipeline register between Execute and Memory stages | Hardware (Verilog) |
+| [`modules/execute.v`](./modules/execute.v) | Execute Stage | Contains the ALU and handles instruction execution | Hardware (Verilog) |
+| [`modules/hazard_forward_unit.v`](./modules/hazard_forward_unit.v) | Hazard & Forwarding Unit | Detects data/control hazards and forwards data or stalls the pipeline | Hardware (Verilog) |
+| [`modules/icache.v`](./modules/icache.v) | Instruction Cache | Caches frequently accessed instructions | Hardware (Verilog) |
+| [`modules/mem_stage.v`](./modules/mem_stage.v) | Memory Stage | Handles logic for loading from and storing to memory | Hardware (Verilog) |
+| [`modules/mem_wb_reg.v`](./modules/mem_wb_reg.v) | MEM/WB Register | Pipeline register between Memory and Write-Back stages | Hardware (Verilog) |
+| [`modules/memory.v`](./modules/memory.v) | Main Memory | Top-level memory module or memory controller interface | Hardware (Verilog) |
+| [`modules/opcode.vh`](./modules/opcode.vh) | Opcode Definitions | Header containing constant definitions for instruction opcodes | Hardware Header (Verilog) |
+| [`modules/pipeline.v`](./modules/pipeline.v) | Pipeline Top | Connects and manages the 5 stages of a single-core pipeline | Hardware (Verilog) |
+| [`modules/tb_pipeline.v`](./modules/tb_pipeline.v) | Pipeline Testbench | Simulation environment to verify the single pipeline core | Simulation/Testbench (Verilog) |
+| [`modules/wb.v`](./modules/wb.v) | Write-Back Stage | Writes execution results / loaded data back to the register file | Hardware (Verilog) |
+
+
+
+---
+
 ## 🛠️ Toolchain Installation
 
 Prepare your environment before running the simulation. It is recommended to use **Git Bash** on Windows for all commands.
