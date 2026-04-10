@@ -452,6 +452,92 @@ test_back_to_back_loads = [
 # Expected stores: 77, 88, 99, 264
 
 # ============================================================================
+# Test 13: TIMING DIAGRAM Code A — Rigorous Hazard & Branch Stress Test
+# ============================================================================
+# Tests demonstrated:
+#   1. EX→EX forwarding (back-to-back RAW on rs1)
+#   2. Dual EX→EX + MEM→EX forwarding (both ports simultaneously)
+#   3. Load-use stall (LW immediately followed by dependent ADD)
+#   4. Branch mispredict + 2-cycle flush (BTB cold miss, predict NT, actual T)
+#   5. Correct branch prediction on 2nd encounter (counter=01→predict NT, actual NT)
+#   6. I-cache cold miss stall at each new cache line boundary
+#
+# I-cache line 0: 0x00–0x0C (4 instrs)     I-cache line 1: 0x10–0x1C (4 instrs)
+# ---------------------------------------------------------------------------
+# After first I-cache miss resolves, I0–I3 flow showing forwarding.
+# At 0x10, second I-cache miss. After resolve, I4–I7 flow with:
+#   - I5 causes LOAD-USE stall (depends on I4=LW)
+#   - I7 is BNE: taken on 1st encounter → mispredict + flush
+# After mispredict: PC→0x10 (I-cache HIT). 2nd iter: I4'–I7':
+#   - I7' BNE not taken → correct prediction, falls through to I8
+# ============================================================================
+test_timing_hazard_branch = [
+    # ---- I-cache line 0 (0x00–0x0C): forwarding chain ----
+    ADDI(1, 0, 10),       # 0x00 I0: x1 = 10
+    ADDI(2, 1, 5),        # 0x04 I1: x2 = 15      ← EX→EX fwd x1
+    ADD(3, 1, 2),         # 0x08 I2: x3 = 25      ← MEM→EX fwd x1, EX→EX fwd x2
+    ADDI(6, 0, 2),        # 0x0C I3: x6 = 2       (loop counter)
+
+    # ---- I-cache line 1 (0x10–0x1C): load-use + branch ----
+    LW(4, 0, 0x100),      # 0x10 I4: x4 = MEM[0x100] = 0 ← D-cache MISS (cold)
+    ADD(5, 4, 1),         # 0x14 I5: x5 = x4 + x1      ← LOAD-USE STALL on x4
+    ADDI(6, 6, -1),       # 0x18 I6: x6 = x6 - 1 = 1
+    BNE(6, 0, -12),       # 0x1C I7: if x6≠0 goto 0x10  ← MISPREDICT (BTB empty, NT vs T)
+
+    # ---- I-cache line 2 (0x20–0x2C): after-loop (reached on 2nd iter fall-through) ----
+    # NOTE: On 2nd iter, I7' BNE x6=0→NT, BTB counter=01→predict NT→CORRECT.
+    # Fall through to 0x20 which is a new I-cache line → miss.
+    ADD(7, 3, 5),         # 0x20 I8: x7 = x3 + x5 = 25 + 10 = 35
+    NOP(),                # 0x24
+    NOP(),                # 0x28
+    JALR(0, 0, 0),        # 0x2C halt
+]
+
+# ============================================================================
+# Test 14: TIMING DIAGRAM Code B — Rigorous Cache Stress Test
+# ============================================================================
+# Tests demonstrated:
+#   1. I-cache cold miss (line 0, line 1, line 2, line 3)
+#   2. D-cache cold miss with write-allocate (SW to empty set)
+#   3. D-cache read hit (LW to just-allocated line)
+#   4. D-cache write hit → line becomes DIRTY
+#   5. D-cache miss with dirty eviction (conflicting addr → WRITEBACK + FETCH)
+#   6. D-cache re-fetch after eviction (proves writeback preserved data)
+#
+# Address mapping:
+#   0x100: D-cache set = addr[9:4] = 0b010000 = 16, tag = addr[31:10] = 0
+#   0x500: D-cache set = 0x500[9:4] = 0b010000 = 16, tag = 0x500[31:10] = 1
+#   → Same set, different tag → CONFLICT → dirty eviction!
+# ============================================================================
+test_timing_cache = [
+    # ---- I-cache line 0 (0x00–0x0C) ----
+    ADDI(1, 0, 42),       # 0x00 I0: x1 = 42
+    ADDI(10, 0, 0x100),   # 0x04 I1: x10 = 0x100 (base addr, D-cache set 16)
+    SW(1, 10, 0),         # 0x08 I2: MEM[0x100] = 42 ← D-CACHE MISS (write-allocate)
+    LW(2, 10, 0),         # 0x0C I3: x2 = 42         ← D-CACHE HIT (just allocated)
+
+    # ---- I-cache line 1 (0x10–0x1C) ----
+    SW(2, 10, 4),         # 0x10 I4: MEM[0x104] = 42 ← D-CACHE HIT (same line, now DIRTY)
+    ADDI(11, 0, 0x500),   # 0x14 I5: x11 = 0x500     (conflicting addr, same set 16)
+    NOP(),                # 0x18 I6: padding
+    NOP(),                # 0x1C I7: padding
+
+    # ---- I-cache line 2 (0x20–0x2C) ----
+    LW(3, 11, 0),         # 0x20 I8: x3 = MEM[0x500]=0 ← D-CACHE MISS, DIRTY EVICTION!
+                          #          (writeback 0x100 line, then fetch 0x500 line)
+    NOP(),                # 0x24 I9: padding
+    NOP(),                # 0x28 I10
+    NOP(),                # 0x2C I11
+
+    # ---- I-cache line 3 (0x30–0x3C) ----
+    LW(4, 10, 0),         # 0x30 I12: x4 = MEM[0x100]=42 ← D-CACHE MISS (re-fetch after eviction)
+    SW(4, 10, 8),         # 0x34 I13: MEM[0x108] = 42    ← proves writeback preserved data
+    NOP(),                # 0x38 I14
+    JALR(0, 0, 0),        # 0x3C I15: halt
+]
+
+
+# ============================================================================
 # Generate all test hex files
 # ============================================================================
 import os, sys
@@ -476,6 +562,8 @@ if __name__ == "__main__":
     gen_test("test_loop_store", test_loop_store)
     gen_test("test_subword", test_subword)
     gen_test("test_back_to_back_loads", test_back_to_back_loads)
+    gen_test("test_timing_hazard_branch", test_timing_hazard_branch)
+    gen_test("test_timing_cache", test_timing_cache)
 
     # Also generate default imem/dmem for whichever test is specified
     if len(sys.argv) > 1:
@@ -493,6 +581,8 @@ if __name__ == "__main__":
             "test_loop_store": test_loop_store,
             "test_subword": test_subword,
             "test_back_to_back_loads": test_back_to_back_loads,
+            "test_timing_hazard_branch": test_timing_hazard_branch,
+            "test_timing_cache": test_timing_cache,
         }
         if test_name in tests:
             write_hex("imem.hex", tests[test_name])

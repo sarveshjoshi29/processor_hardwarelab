@@ -109,7 +109,15 @@ module data_mem #(
     input         dc_wb_req,
     input  [31:0] dc_wb_addr,     // cache-line aligned
     input [127:0] dc_wb_wdata,
-    output reg    dc_wb_ready
+    output reg    dc_wb_ready,
+
+    // Atomic word-level port (lr.w / sc.w — bypasses D-cache)
+    input         atomic_req,
+    input         atomic_we,       // 0=read(lr.w), 1=write(sc.w)
+    input  [31:0] atomic_addr,     // byte address (word-aligned)
+    input  [31:0] atomic_wdata,
+    output [31:0] atomic_rdata,
+    output reg    atomic_ready
 );
 
     (* ram_style = "block" *)
@@ -207,5 +215,43 @@ module data_mem #(
             endcase
         end
     end
+
+    // ---- Atomic word-level port (1-cycle latency) ----
+    localparam A_IDLE = 1'b0, A_DONE = 1'b1;
+    reg        a_state;
+    reg [31:0] a_addr_lat;
+    reg [31:0] a_wdata_lat;
+    reg        a_we_lat;
+
+    always @(posedge clk or posedge reset) begin
+        if (reset) begin
+            a_state     <= A_IDLE;
+            a_addr_lat  <= 32'b0;
+            a_wdata_lat <= 32'b0;
+            a_we_lat    <= 1'b0;
+            atomic_ready <= 1'b0;
+        end else begin
+            atomic_ready <= 1'b0;
+            case (a_state)
+                A_IDLE: begin
+                    if (atomic_req) begin
+                        a_addr_lat  <= atomic_addr;
+                        a_wdata_lat <= atomic_wdata;
+                        a_we_lat    <= atomic_we;
+                        a_state     <= A_DONE;
+                    end
+                end
+                A_DONE: begin
+                    if (a_we_lat)
+                        dmem[a_addr_lat[11:2]] <= a_wdata_lat;
+                    atomic_ready <= 1'b1;
+                    a_state      <= A_IDLE;
+                end
+            endcase
+        end
+    end
+
+    // Combinational read from latched address (available on atomic_ready cycle)
+    assign atomic_rdata = dmem[a_addr_lat[11:2]];
 
 endmodule
