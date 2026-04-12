@@ -4,7 +4,7 @@
 # ============================================================================
 
 set -e
-SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+SCRIPT_DIR="$(dirname "$0")"
 cd "$SCRIPT_DIR"
 
 if command -v gtimeout &>/dev/null; then
