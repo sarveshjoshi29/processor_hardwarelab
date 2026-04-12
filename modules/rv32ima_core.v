@@ -1,32 +1,21 @@
-// ============================================================================
-// 5-Stage RISC-V RV32IM Pipeline — Top Level (Phase 4: L1 Caches)
-// ============================================================================
-// Phase 4 additions:
-//   - L1 I-Cache (icache.v): 1 KB direct-mapped, 4-word lines, read-only
-//   - L1 D-Cache (dcache.v): 1 KB direct-mapped, 4-word lines, write-back/allocate
-//   - Backing memory (memory.v) now has cache-line-only ports (4-cycle latency)
-//   - mem_stall = icache_stall || dcache_stall — freezes all pipeline registers
-//   - pipeline_stall = stall_read || mem_stall  (replaces raw stall_read usage)
-//   - dmem_write_ready gated with !pipeline_stall so each store is reported once
-// ============================================================================
-
-`include "IF_ID.v"
-`include "execute.v"
-`include "ex_mem_reg.v"
-`include "mem_stage.v"
-`include "mem_wb_reg.v"
-`include "wb.v"
-`include "hazard_forward_unit.v"
-`include "divider.v"
-`include "memory.v"
-`include "branch_predictor.v"
-`include "icache.v"
-`include "dcache.v"
-
+// rv32ima_core.v
 `timescale 1ns/1ps
-module pipe
+// ============================================================================
+// RV32IMA Single-Core Pipeline — Phase 4.5
+// ============================================================================
+// Refactored from pipe (pipeline.v) for dual-core integration:
+//   - Memory modules (instr_mem, data_mem) removed — ports exposed externally
+//   - I-cache fill and D-cache fill/writeback ports go to bus arbiter
+//   - CORE_ID parameter for per-core identification
+//
+// This module instantiates:
+//   icache, dcache, IF_ID, execute, ex_mem_reg, mem_stage, mem_wb_reg, wb,
+//   hazard_forward_unit, divider, branch_predictor
+// ============================================================================
+module rv32ima_core
 #(
-    parameter [31:0] RESET = 32'h0000_0000
+    parameter [31:0] RESET   = 32'h0000_0000,
+    parameter        CORE_ID = 0
 )
 (
     input                clk,
@@ -37,10 +26,34 @@ module pipe
     output [31:0]        inst_fetch_pc,
 
     // Testbench monitoring outputs
-    output [31:0]        inst_word_out,   // instruction in IF/ID (end-of-program check)
-    output               dmem_write_ready,// store committed this cycle
-    output [31:0]        dmem_write_data, // store data
-    output [ 3:0]        dmem_write_byte  // store byte enables
+    output [31:0]        inst_word_out,
+    output               dmem_write_ready,
+    output [31:0]        dmem_write_data,
+    output [ 3:0]        dmem_write_byte,
+
+    // ====================================================================
+    // I-cache ↔ Bus Arbiter (fill port)
+    // ====================================================================
+    output               ic_fill_req,
+    output [31:0]        ic_fill_addr,
+    input  [127:0]       ic_fill_rdata,
+    input                ic_fill_ready,
+
+    // ====================================================================
+    // D-cache ↔ Bus Arbiter (fill port — cache miss read)
+    // ====================================================================
+    output               dc_fill_req,
+    output [31:0]        dc_fill_addr,
+    input  [127:0]       dc_fill_rdata,
+    input                dc_fill_ready,
+
+    // ====================================================================
+    // D-cache ↔ Bus Arbiter (writeback port — dirty eviction)
+    // ====================================================================
+    output               dc_wb_req,
+    output [31:0]        dc_wb_addr,
+    output [127:0]       dc_wb_wdata,
+    input                dc_wb_ready
 );
 
     // ======================================================================
@@ -64,6 +77,9 @@ module pipe
     wire         id_ex_illegal;
     wire [31:0]  instruction;
 
+    // ---- RV32A: ID/EX atomic outputs ----
+    wire         id_ex_atomic_lr, id_ex_atomic_sc;
+
     // ---- EX stage outputs ----
     wire [31:0]  ex_next_pc;
     wire         ex_branch_taken;
@@ -71,6 +87,7 @@ module pipe
     wire         ex_mem_write, ex_mem_to_reg, ex_reg_write_en;
     wire [ 4:0]  ex_rd;
     wire [ 2:0]  ex_funct3;
+    wire         ex_atomic_lr, ex_atomic_sc;
 
     // ---- EX/MEM register outputs ----
     wire [31:0]  em_alu_result, em_store_data, em_pc;
@@ -78,6 +95,7 @@ module pipe
     wire [ 4:0]  em_rd;
     wire [ 2:0]  em_funct3;
     wire         em_branch_taken;
+    wire         em_atomic_lr, em_atomic_sc;
 
     // ---- MEM stage outputs ----
     wire [31:0]  mem_dmem_addr, mem_dmem_write_data;
@@ -119,103 +137,76 @@ module pipe
     reg  [31:0]  if_id_predicted_target;
 
     // ======================================================================
-    //  CACHE WIRES
+    //  CACHE WIRES (internal: cache ↔ core; external ports go to arbiter)
     // ======================================================================
-
-    // I-cache ↔ instr_mem
-    wire         ic_fill_req;
-    wire [31:0]  ic_fill_addr;
-    wire [127:0] ic_fill_rdata;
-    wire         ic_fill_ready;
-
-    // D-cache ↔ data_mem (fill)
-    wire         dc_fill_req;
-    wire [31:0]  dc_fill_addr;
-    wire [127:0] dc_fill_rdata;
-    wire         dc_fill_ready;
-
-    // D-cache ↔ data_mem (writeback)
-    wire         dc_wb_req;
-    wire [31:0]  dc_wb_addr;
-    wire [127:0] dc_wb_wdata;
-    wire         dc_wb_ready;
 
     // Cache stall signals
     wire         icache_stall;
     wire         dcache_stall;
-    wire         mem_stall        = icache_stall || dcache_stall;
 
-    // ---- Unified pipeline freeze (cache miss OR system stall) ----
-    wire pipeline_stall = stall_read || mem_stall;
+    // ---- RV32A: Store enable ----
+    wire mem_write_eff  = em_mem_write;
+
+    wire mem_stall       = icache_stall || dcache_stall;
+
+    // ---- Unified pipeline freeze ----
+    wire pipeline_stall  = stall_read || mem_stall;
 
     // ---- Suppress hazard-unit signals during cache stall ----
-    // (mem_stall already handles the freeze; hazard actions would corrupt state)
     wire eff_hz_stall_if    = hz_stall_if   && !mem_stall;
     wire eff_pipeline_flush = pipeline_flush && !mem_stall;
 
-    // I-cache instruction output (registered, 1-cycle hit latency)
+    // I-cache instruction output
     wire [31:0]  icache_instr;
 
-    // D-cache read data (combinational)
+    // D-cache read data
     wire [31:0]  dcache_rdata;
 
     // ======================================================================
-    //  CACHE + BACKING MEMORY INSTANTIATION
+    //  MEM/WB INPUT MUXING FOR ATOMICS
+    // ======================================================================
+    // sc.w: override alu_result with zero for both WB and forwarding
+    wire [31:0] em_fwd_data       = em_alu_result;
+    wire [31:0] mw_alu_result_in  = em_fwd_data;
+    wire [31:0] mw_mem_data_in    = mem_read_data;
+    wire        mw_mem_to_reg_in  = em_mem_to_reg;
+
+    // ======================================================================
+    //  CACHE INSTANTIATION (memory ports go external)
     // ======================================================================
 
     icache u_icache (
-        .clk        (clk),
-        .reset      (reset),
-        .fetch_pc   (fetch_pc),
-        .pipeline_stall(pipeline_stall),
-        .instr      (icache_instr),
-        .icache_stall(icache_stall),
-        .mem_req    (ic_fill_req),
-        .mem_addr   (ic_fill_addr),
-        .mem_rdata  (ic_fill_rdata),
-        .mem_ready  (ic_fill_ready)
-    );
-
-    instr_mem u_instr_mem (
-        .clk        (clk),
-        .reset      (reset),
-        .ic_req     (ic_fill_req),
-        .ic_addr    (ic_fill_addr),
-        .ic_rdata   (ic_fill_rdata),
-        .ic_ready   (ic_fill_ready)
-    );
-
-    dcache u_dcache (
-        .clk        (clk),
-        .reset      (reset),
-        .req        ((em_mem_write || em_mem_to_reg) && !icache_stall),
-        .we         (em_mem_write),
-        .be         (mem_dmem_write_byte),
-        .addr       (mem_dmem_addr),
-        .wdata      (mem_dmem_write_data),
-        .rdata      (dcache_rdata),
-        .dcache_stall(dcache_stall),
-        .fill_req   (dc_fill_req),
-        .fill_addr  (dc_fill_addr),
-        .fill_rdata (dc_fill_rdata),
-        .fill_ready (dc_fill_ready),
-        .wb_req     (dc_wb_req),
-        .wb_addr    (dc_wb_addr),
-        .wb_wdata   (dc_wb_wdata),
-        .wb_ready   (dc_wb_ready)
-    );
-
-    data_mem u_data_mem (
         .clk            (clk),
         .reset          (reset),
-        .dc_fill_req    (dc_fill_req),
-        .dc_fill_addr   (dc_fill_addr),
-        .dc_fill_rdata  (dc_fill_rdata),
-        .dc_fill_ready  (dc_fill_ready),
-        .dc_wb_req      (dc_wb_req),
-        .dc_wb_addr     (dc_wb_addr),
-        .dc_wb_wdata    (dc_wb_wdata),
-        .dc_wb_ready    (dc_wb_ready)
+        .fetch_pc       (fetch_pc),
+        .pipeline_stall (pipeline_stall),
+        .instr          (icache_instr),
+        .icache_stall   (icache_stall),
+        .mem_req        (ic_fill_req),
+        .mem_addr       (ic_fill_addr),
+        .mem_rdata      (ic_fill_rdata),
+        .mem_ready      (ic_fill_ready)
+    );
+
+    // D-cache req gated: suppress when I-cache is stalling
+    dcache u_dcache (
+        .clk            (clk),
+        .reset          (reset),
+        .req            ((em_mem_write || em_mem_to_reg) && !icache_stall),
+        .we             (mem_write_eff),
+        .be             (mem_dmem_write_byte),
+        .addr           (mem_dmem_addr),
+        .wdata          (mem_dmem_write_data),
+        .rdata          (dcache_rdata),
+        .dcache_stall   (dcache_stall),
+        .fill_req       (dc_fill_req),
+        .fill_addr      (dc_fill_addr),
+        .fill_rdata     (dc_fill_rdata),
+        .fill_ready     (dc_fill_ready),
+        .wb_req         (dc_wb_req),
+        .wb_addr        (dc_wb_addr),
+        .wb_wdata       (dc_wb_wdata),
+        .wb_ready       (dc_wb_ready)
     );
 
     // ======================================================================
@@ -234,7 +225,7 @@ module pipe
         end
         else if (eff_hz_stall_if) begin
             if (!if_id_stall_held)
-                if_id_instr_reg <= icache_instr;   // save I-cache output for replay
+                if_id_instr_reg <= icache_instr;
             if_id_stall_held <= 1'b1;
         end
         else if (!mem_stall) begin
@@ -252,15 +243,14 @@ module pipe
     // ======================================================================
     assign pc_out          = fetch_pc;
     assign inst_fetch_pc   = fetch_pc;
-    assign inst_word_out   = if_id_instruction;   // testbench end-of-program check
+    assign inst_word_out   = if_id_instruction;
 
-    // Store visible to testbench only on the cycle the write commits (no stall)
     assign dmem_write_ready = mem_dmem_write_en && !pipeline_stall;
     assign dmem_write_data  = mem_dmem_write_data;
     assign dmem_write_byte  = mem_dmem_write_byte;
 
     // ======================================================================
-    //  FLUSH DELAY REGISTER (2-cycle mispredict penalty)
+    //  FLUSH DELAY REGISTER
     // ======================================================================
     always @(posedge clk or posedge reset) begin
         if (reset)
@@ -270,7 +260,7 @@ module pipe
     end
 
     // ======================================================================
-    //  IF/ID PC REGISTER (tracks actual PC of instruction in IF/ID)
+    //  IF/ID PC REGISTER
     // ======================================================================
     always @(posedge clk or posedge reset) begin
         if (reset)
@@ -316,7 +306,7 @@ module pipe
     end
 
     // ======================================================================
-    //  STALL REGISTER (startup stall)
+    //  STALL REGISTER
     // ======================================================================
     always @(posedge clk or posedge reset) begin
         if (reset) stall_read <= 1'b1;
@@ -357,13 +347,13 @@ module pipe
         .exception           (exception),
         .inst_mem_is_valid   (1'b1),
         .inst_mem_read_data  (if_id_instruction),
-        .stall_read_i        (pipeline_stall),       // freeze on cache miss too
+        .stall_read_i        (pipeline_stall),
         .inst_fetch_pc       (if_id_pc),
         .instruction_i       (instruction),
 
-        .stall_if_id         (eff_hz_stall_if),      // suppress during cache stall
-        .stall_div           (eff_div_busy || mem_stall), // hold ID/EX during cache stall
-        .flush_if_id         (eff_pipeline_flush),   // suppress flush during cache stall
+        .stall_if_id         (eff_hz_stall_if),
+        .stall_div           (eff_div_busy || mem_stall),
+        .flush_if_id         (eff_pipeline_flush),
 
         .inst_mem_offset     (fetch_pc[1:0]),
         .execute_immediate_w (id_ex_immediate),
@@ -389,7 +379,10 @@ module pipe
         .predicted_taken_i   (if_id_predicted_taken),
         .predicted_target_i  (if_id_predicted_target),
         .predicted_taken_w   (id_ex_predicted_taken),
-        .predicted_target_w  (id_ex_predicted_target)
+        .predicted_target_w  (id_ex_predicted_target),
+
+        .atomic_lr_w         (id_ex_atomic_lr),
+        .atomic_sc_w         (id_ex_atomic_sc)
     );
 
     // ======================================================================
@@ -419,8 +412,10 @@ module pipe
         .rs2_addr        (id_ex_rs2),
         .forward_a       (forward_a),
         .forward_b       (forward_b),
-        .ex_mem_fwd_data (em_alu_result),
+        .ex_mem_fwd_data (em_fwd_data),
         .mem_wb_fwd_data (wb_data),
+        .atomic_lr       (id_ex_atomic_lr),
+        .atomic_sc       (id_ex_atomic_sc),
         .predicted_taken  (id_ex_predicted_taken),
         .predicted_target (id_ex_predicted_target),
         .next_pc         (ex_next_pc),
@@ -435,6 +430,8 @@ module pipe
         .ex_funct3       (ex_funct3),
         .div_busy        (div_busy),
         .div_done        (div_done_w),
+        .ex_atomic_lr    (ex_atomic_lr),
+        .ex_atomic_sc    (ex_atomic_sc),
         .mispredict      (bp_mispredict)
     );
 
@@ -444,8 +441,8 @@ module pipe
     ex_mem_reg u_ex_mem (
         .clk             (clk),
         .reset_n         (!reset),
-        .stall           (pipeline_stall),            // freeze on cache miss
-        .flush           (eff_div_busy && !mem_stall),// bubble for div, not cache
+        .stall           (pipeline_stall),
+        .flush           (eff_div_busy && !mem_stall),
 
         .alu_result_i    (ex_alu_result),
         .reg_write_data_i(ex_store_data),
@@ -456,6 +453,8 @@ module pipe
         .rd_i            (ex_rd),
         .funct3_i        (ex_funct3),
         .branch_taken_i  (ex_branch_taken),
+        .atomic_lr_i     (ex_atomic_lr),
+        .atomic_sc_i     (ex_atomic_sc),
 
         .alu_result_o    (em_alu_result),
         .reg_write_data_o(em_store_data),
@@ -465,7 +464,9 @@ module pipe
         .reg_write_en_o  (em_reg_write_en),
         .rd_o            (em_rd),
         .funct3_o        (em_funct3),
-        .branch_taken_o  (em_branch_taken)
+        .branch_taken_o  (em_branch_taken),
+        .atomic_lr_o     (em_atomic_lr),
+        .atomic_sc_o     (em_atomic_sc)
     );
 
     // ======================================================================
@@ -474,10 +475,10 @@ module pipe
     mem_stage mem_stage_inst (
         .alu_result_i       (em_alu_result),
         .reg_write_data_i   (em_store_data),
-        .mem_write_i        (em_mem_write),
+        .mem_write_i        (mem_write_eff),
         .mem_to_reg_i       (em_mem_to_reg),
         .funct3_i           (em_funct3),
-        .dmem_read_data_i   (dcache_rdata),      // from D-cache (not raw data_mem)
+        .dmem_read_data_i   (dcache_rdata),
         .dmem_addr_o        (mem_dmem_addr),
         .dmem_write_data_o  (mem_dmem_write_data),
         .dmem_write_byte_o  (mem_dmem_write_byte),
@@ -488,17 +489,17 @@ module pipe
     );
 
     // ======================================================================
-    //  MEM/WB PIPELINE REGISTER
+    //  MEM/WB PIPELINE REGISTER (with atomic muxing)
     // ======================================================================
     mem_wb_reg u_mem_wb (
         .clk             (clk),
         .reset_n         (!reset),
-        .stall           (pipeline_stall),   // freeze on cache miss
+        .stall           (pipeline_stall),
 
-        .alu_result_i    (em_alu_result),
-        .mem_read_data_i (mem_read_data),
+        .alu_result_i    (mw_alu_result_in),
+        .mem_read_data_i (mw_mem_data_in),
         .pc_i            (em_pc),
-        .mem_to_reg_i    (em_mem_to_reg),
+        .mem_to_reg_i    (mw_mem_to_reg_in),
         .reg_write_en_i  (em_reg_write_en),
         .rd_i            (em_rd),
         .funct3_i        (em_funct3),
