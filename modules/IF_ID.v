@@ -61,7 +61,11 @@ module IF_ID
     input         predicted_taken_i,
     input  [31:0] predicted_target_i,
     output        predicted_taken_w,
-    output [31:0] predicted_target_w
+    output [31:0] predicted_target_w,
+
+    // RV32A atomic passthrough
+    output        atomic_lr_w,
+    output        atomic_sc_w
 );
 
 `include "opcode.vh"
@@ -110,6 +114,7 @@ always @(*) begin
         AUIPC : immediate = {instruction_i[31:12], 12'b0};
         JAL   : immediate = {{12{instruction_i[31]}}, instruction_i[19:12],
                               instruction_i[20], instruction_i[30:21], 1'b0};
+        AMO   : immediate = 32'h0;  // lr.w/sc.w: address = rs1, no immediate
         default: illegal_inst = 1'b1;
     endcase
 end
@@ -139,7 +144,8 @@ id_ex_reg u_id_ex (
     .jalr_i          (instruction_i[`OPCODE] == JALR),
     .branch_i        (instruction_i[`OPCODE] == BRANCH),
     .mem_write_i     (instruction_i[`OPCODE] == STORE),
-    .mem_to_reg_i    (instruction_i[`OPCODE] == LOAD),
+    .mem_to_reg_i    (instruction_i[`OPCODE] == LOAD ||
+                      (instruction_i[`OPCODE] == AMO && instruction_i[31:27] == FUNCT5_LR)),
     .arithsubtype_i  (
         instruction_i[`SUBTYPE] &&
         !(instruction_i[`OPCODE] == ARITHI &&
@@ -159,6 +165,10 @@ id_ex_reg u_id_ex (
     // Branch prediction passthrough
     .predicted_taken_i  (predicted_taken_i),
     .predicted_target_i (predicted_target_i),
+
+    // RV32A atomic signals
+    .atomic_lr_i         (instruction_i[`OPCODE] == AMO && instruction_i[31:27] == FUNCT5_LR),
+    .atomic_sc_i         (instruction_i[`OPCODE] == AMO && instruction_i[31:27] == FUNCT5_SC),
 
     // To EX (wires)
     .execute_immediate_o (execute_immediate_w),
@@ -182,7 +192,11 @@ id_ex_reg u_id_ex (
 
     // Branch prediction passthrough
     .predicted_taken_o   (predicted_taken_w),
-    .predicted_target_o  (predicted_target_w)
+    .predicted_target_o  (predicted_target_w),
+
+    // RV32A atomic outputs
+    .atomic_lr_o         (atomic_lr_w),
+    .atomic_sc_o         (atomic_sc_w)
 );
 endmodule
 
@@ -225,6 +239,10 @@ module id_ex_reg (
     input         predicted_taken_i,
     input  [31:0] predicted_target_i,
 
+    // RV32A atomic signals
+    input         atomic_lr_i,
+    input         atomic_sc_i,
+
     // Outputs to EX
     output reg [31:0] execute_immediate_o,
     output reg        immediate_sel_o,
@@ -247,7 +265,11 @@ module id_ex_reg (
 
     // Branch prediction passthrough
     output reg        predicted_taken_o,
-    output reg [31:0] predicted_target_o
+    output reg [31:0] predicted_target_o,
+
+    // RV32A atomic outputs
+    output reg        atomic_lr_o,
+    output reg        atomic_sc_o
 );
 
 always @(posedge clk or negedge reset_n) begin
@@ -273,6 +295,8 @@ always @(posedge clk or negedge reset_n) begin
         illegal_inst_o      <= 1'b0;
         predicted_taken_o   <= 1'b0;
         predicted_target_o  <= 32'h0;
+        atomic_lr_o         <= 1'b0;
+        atomic_sc_o         <= 1'b0;
     end
     else if (stall_div) begin
         // ---- Divider busy: hold all values (do nothing) ----
@@ -299,6 +323,8 @@ always @(posedge clk or negedge reset_n) begin
         illegal_inst_o      <= 1'b0;
         predicted_taken_o   <= 1'b0;
         predicted_target_o  <= 32'h0;
+        atomic_lr_o         <= 1'b0;
+        atomic_sc_o         <= 1'b0;
     end
     else if (!stall_n) begin
         execute_immediate_o <= immediate_i;
@@ -321,6 +347,8 @@ always @(posedge clk or negedge reset_n) begin
         illegal_inst_o      <= illegal_inst_i;
         predicted_taken_o   <= predicted_taken_i;
         predicted_target_o  <= predicted_target_i;
+        atomic_lr_o         <= atomic_lr_i;
+        atomic_sc_o         <= atomic_sc_i;
     end
 end
 endmodule

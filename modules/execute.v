@@ -52,6 +52,10 @@ module execute
     input  [31:0] ex_mem_fwd_data,  // ALU result from EX/MEM register
     input  [31:0] mem_wb_fwd_data,  // writeback data from MEM/WB register
 
+    // ---- RV32A atomic inputs ----
+    input         atomic_lr,         // 1 = lr.w instruction
+    input         atomic_sc,         // 1 = sc.w instruction
+
     // ---- Branch prediction inputs ----
     input         predicted_taken,   // prediction from BTB/BHT
     input  [31:0] predicted_target,  // predicted target from BTB
@@ -73,6 +77,10 @@ module execute
     // ---- Divider stall signal ----
     output        div_busy,          // 1 = divider is computing, stall pipeline
     output        div_done,          // 1 = divider result ready (1-cycle pulse)
+
+    // ---- RV32A atomic outputs ----
+    output        ex_atomic_lr,      // passthrough to EX/MEM
+    output        ex_atomic_sc,      // passthrough to EX/MEM
 
     // ---- Branch prediction output ----
     output        mispredict          // 1 = branch prediction was wrong
@@ -203,6 +211,9 @@ always @(*) begin
                 default: alu_result = 32'h0;
             endcase
         end
+        // RV32A: lr.w/sc.w address = rs1 (no immediate offset)
+        atomic_lr,
+        atomic_sc: alu_result = fwd_rs1;
         // LOAD/STORE: compute address = rs1 + immediate
         mem_to_reg,
         mem_write: alu_result = fwd_rs1 + execute_imm;
@@ -286,8 +297,10 @@ assign ex_store_data   = fwd_rs2;    // forwarded rs2 for stores
 assign ex_pc           = pc;
 assign ex_mem_write    = mem_write;
 assign ex_mem_to_reg   = mem_to_reg;
-assign ex_reg_write_en = alu | lui | auipc | jal | jalr | mem_to_reg;  // includes muldiv (alu is set)
+assign ex_reg_write_en = alu | lui | auipc | jal | jalr | mem_to_reg | atomic_lr | atomic_sc;
 assign ex_rd           = dest_reg_sel;
 assign ex_funct3       = alu_op;
+assign ex_atomic_lr    = atomic_lr;
+assign ex_atomic_sc    = atomic_sc;
 
 endmodule

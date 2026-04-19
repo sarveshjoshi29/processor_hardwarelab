@@ -69,3 +69,12 @@ localparam  [ 2: 0] MUL     = 3'b000,
 
 // funct7 for M-extension detection
 localparam  [ 6: 0] FUNCT7_MULDIV = 7'b0000001;
+
+// ============================================================================
+// RV32A Extension — Atomic Memory Operations
+// ============================================================================
+localparam  [ 6: 0] AMO = 7'b0101111;        // A-extension opcode
+
+// funct5 (instruction[31:27]) for atomic operations
+localparam  [ 4: 0] FUNCT5_LR = 5'b00010,    // LR.W  (Load-Reserved)
+                     FUNCT5_SC = 5'b00011;    // SC.W  (Store-Conditional)

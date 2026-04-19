@@ -25,6 +25,10 @@ module ex_mem_reg (
     input  [ 2:0] funct3_i,
     input         branch_taken_i,
 
+    // ---- RV32A atomic inputs ----
+    input         atomic_lr_i,
+    input         atomic_sc_i,
+
     // ---- Data outputs to MEM ----
     output reg [31:0] alu_result_o,
     output reg [31:0] reg_write_data_o,
@@ -36,7 +40,11 @@ module ex_mem_reg (
     output reg        reg_write_en_o,
     output reg [ 4:0] rd_o,
     output reg [ 2:0] funct3_o,
-    output reg        branch_taken_o
+    output reg        branch_taken_o,
+
+    // ---- RV32A atomic outputs ----
+    output reg        atomic_lr_o,
+    output reg        atomic_sc_o
 );
 
 always @(posedge clk or negedge reset_n) begin
@@ -51,6 +59,8 @@ always @(posedge clk or negedge reset_n) begin
         rd_o             <= 5'b0;
         funct3_o         <= 3'b0;
         branch_taken_o   <= 1'b0;
+        atomic_lr_o      <= 1'b0;
+        atomic_sc_o      <= 1'b0;
     end
     else if (!stall) begin
         alu_result_o     <= alu_result_i;
@@ -62,6 +72,8 @@ always @(posedge clk or negedge reset_n) begin
         rd_o             <= rd_i;
         funct3_o         <= funct3_i;
         branch_taken_o   <= branch_taken_i;
+        atomic_lr_o      <= atomic_lr_i;
+        atomic_sc_o      <= atomic_sc_i;
     end
 end
 

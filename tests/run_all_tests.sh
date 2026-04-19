@@ -7,7 +7,7 @@
 # ============================================================================
 
 set -e
-SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+SCRIPT_DIR="$(dirname "$0")"
 cd "$SCRIPT_DIR"
 
 # macOS doesn't have GNU timeout by default; use gtimeout (coreutils) if available
