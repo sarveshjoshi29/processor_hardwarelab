@@ -45,6 +45,7 @@ module dual_core_top
     output [31:0] c0_inst_fetch_pc,
     output [31:0] c0_inst_word_out,
     output        c0_dmem_write_ready,
+    output [31:0] c0_dmem_write_addr,
     output [31:0] c0_dmem_write_data,
     output [ 3:0] c0_dmem_write_byte,
 
@@ -54,6 +55,7 @@ module dual_core_top
     output [31:0] c1_inst_fetch_pc,
     output [31:0] c1_inst_word_out,
     output        c1_dmem_write_ready,
+    output [31:0] c1_dmem_write_addr,
     output [31:0] c1_dmem_write_data,
     output [ 3:0] c1_dmem_write_byte
 );
@@ -125,6 +127,7 @@ module dual_core_top
         .inst_fetch_pc   (c0_inst_fetch_pc),
         .inst_word_out   (c0_inst_word_out),
         .dmem_write_ready(c0_dmem_write_ready),
+        .dmem_write_addr (c0_dmem_write_addr),
         .dmem_write_data (c0_dmem_write_data),
         .dmem_write_byte (c0_dmem_write_byte),
 
@@ -163,6 +166,7 @@ module dual_core_top
         .inst_fetch_pc   (c1_inst_fetch_pc),
         .inst_word_out   (c1_inst_word_out),
         .dmem_write_ready(c1_dmem_write_ready),
+        .dmem_write_addr (c1_dmem_write_addr),
         .dmem_write_data (c1_dmem_write_data),
         .dmem_write_byte (c1_dmem_write_byte),
 
