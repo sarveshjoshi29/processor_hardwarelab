@@ -28,6 +28,7 @@ module rv32ima_core
     // Testbench monitoring outputs
     output [31:0]        inst_word_out,
     output               dmem_write_ready,
+    output [31:0]        dmem_write_addr,
     output [31:0]        dmem_write_data,
     output [ 3:0]        dmem_write_byte,
 
@@ -246,6 +247,7 @@ module rv32ima_core
     assign inst_word_out   = if_id_instruction;
 
     assign dmem_write_ready = mem_dmem_write_en && !pipeline_stall;
+    assign dmem_write_addr  = mem_dmem_addr;
     assign dmem_write_data  = mem_dmem_write_data;
     assign dmem_write_byte  = mem_dmem_write_byte;
 
