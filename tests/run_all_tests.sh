@@ -7,7 +7,7 @@
 # ============================================================================
 
 set -e
-SCRIPT_DIR="$(dirname "$0")"
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 cd "$SCRIPT_DIR"
 
 # macOS doesn't have GNU timeout by default; use gtimeout (coreutils) if available
@@ -40,9 +40,9 @@ run_test() {
     cp "${name}_imem.hex" imem.hex
     cp "${name}_dmem.hex" dmem.hex
 
-    # Run simulation, extract store results
+    # Run simulation, extract store results (skip the initial "result = 0")
     local results
-    results=$($TIMEOUT vvp test_sim 2>&1 | grep "Data Written:" | awk -F'Data Written:' '{print $2}' | awk '{print $1}')
+    results=$($TIMEOUT vvp test_sim 2>&1 | grep "result =" | grep -v "result =          0" | awk -F'result = ' '{print $2}' | awk '{print $1}' | tr -d ',')
 
     local i=0
     local ok=1
@@ -92,7 +92,7 @@ echo "============================================"
 echo "Results: $PASS passed, $FAIL failed, $TOTAL total"
 
 # Cleanup
-rm -f test_sim pipeline_waveforms.vcd imem.hex dmem.hex test_*_imem.hex test_*_dmem.hex
+rm -f test_sim pipeline_waveforms.vcd imem.hex dmem.hex
 
 if [ "$FAIL" -gt 0 ]; then
     exit 1
