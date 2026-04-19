@@ -3,10 +3,11 @@
 // ============================================================================
 // Bus Arbiter — Dual-Core → Shared Memory Multiplexer
 // ============================================================================
-// Arbitrates three independent memory port types between two cores:
+// Arbitrates four independent memory port types between two cores:
 //   1. IC fill  (I-cache miss → instr_mem read)
 //   2. DC fill  (D-cache miss → data_mem read)
 //   3. DC wb    (D-cache dirty eviction → data_mem write)
+//   4. Atomic   (lr.w / sc.w → data_mem word-level port)
 //
 // Each port type uses a lock-based arbiter:
 //   IDLE: accept new request (core 0 priority on tie)
@@ -78,6 +79,32 @@ module bus_arbiter (
     output [31:0] mem_dc_wb_addr,
     output [127:0] mem_dc_wb_wdata,
     input         mem_dc_wb_ready,
+
+    // ========================================================================
+    // Core 0 — Atomic port (lr.w / sc.w)
+    // ========================================================================
+    input         c0_atomic_req,
+    input         c0_atomic_we,
+    input  [31:0] c0_atomic_addr,
+    input  [31:0] c0_atomic_wdata,
+    output [31:0] c0_atomic_rdata,
+    output        c0_atomic_ready,
+
+    // Core 1 — Atomic port
+    input         c1_atomic_req,
+    input         c1_atomic_we,
+    input  [31:0] c1_atomic_addr,
+    input  [31:0] c1_atomic_wdata,
+    output [31:0] c1_atomic_rdata,
+    output        c1_atomic_ready,
+
+    // Shared data_mem atomic port
+    output        mem_atomic_req,
+    output        mem_atomic_we,
+    output [31:0] mem_atomic_addr,
+    output [31:0] mem_atomic_wdata,
+    input  [31:0] mem_atomic_rdata,
+    input         mem_atomic_ready,
 
     // ========================================================================
     // Snoop helper: which core owns the active writeback transaction
@@ -226,5 +253,55 @@ assign mem_dc_wb_wdata = (dc_wb_arb_state == ARB_IDLE)
 
 assign c0_dc_wb_ready = mem_dc_wb_ready && !dc_wb_grant;
 assign c1_dc_wb_ready = mem_dc_wb_ready &&  dc_wb_grant;
+
+// ============================================================================
+// 4. Atomic Port Arbiter
+// ============================================================================
+reg [1:0] atomic_arb_state;
+reg       atomic_grant;
+
+always @(posedge clk or posedge reset) begin
+    if (reset) begin
+        atomic_arb_state <= ARB_IDLE;
+        atomic_grant     <= 1'b0;
+    end else begin
+        case (atomic_arb_state)
+            ARB_IDLE: begin
+                if (c0_atomic_req) begin
+                    atomic_grant     <= 1'b0;
+                    atomic_arb_state <= ARB_BUSY;
+                end
+                else if (c1_atomic_req) begin
+                    atomic_grant     <= 1'b1;
+                    atomic_arb_state <= ARB_BUSY;
+                end
+            end
+            ARB_BUSY: begin
+                if (mem_atomic_ready)
+                    atomic_arb_state <= ARB_DONE;
+            end
+            ARB_DONE: begin
+                atomic_arb_state <= ARB_IDLE;
+            end
+        endcase
+    end
+end
+
+assign mem_atomic_req   = (atomic_arb_state == ARB_IDLE) &&
+                          (c0_atomic_req || c1_atomic_req);
+assign mem_atomic_we    = (atomic_arb_state == ARB_IDLE)
+                        ? (c0_atomic_req ? c0_atomic_we : c1_atomic_we)
+                        : 1'b0;
+assign mem_atomic_addr  = (atomic_arb_state == ARB_IDLE)
+                        ? (c0_atomic_req ? c0_atomic_addr : c1_atomic_addr)
+                        : 32'b0;
+assign mem_atomic_wdata = (atomic_arb_state == ARB_IDLE)
+                        ? (c0_atomic_req ? c0_atomic_wdata : c1_atomic_wdata)
+                        : 32'b0;
+
+assign c0_atomic_rdata = mem_atomic_rdata;
+assign c1_atomic_rdata = mem_atomic_rdata;
+assign c0_atomic_ready = mem_atomic_ready && !atomic_grant;
+assign c1_atomic_ready = mem_atomic_ready &&  atomic_grant;
 
 endmodule
