@@ -56,6 +56,9 @@ module execute
     input         atomic_lr,         // 1 = lr.w instruction
     input         atomic_sc,         // 1 = sc.w instruction
 
+    // ---- CSR input (Phase 5) ----
+    input         csr_en,            // 1 = CSR instruction
+
     // ---- Branch prediction inputs ----
     input         predicted_taken,   // prediction from BTB/BHT
     input  [31:0] predicted_target,  // predicted target from BTB
@@ -83,7 +86,11 @@ module execute
     output        ex_atomic_sc,      // passthrough to EX/MEM
 
     // ---- Branch prediction output ----
-    output        mispredict          // 1 = branch prediction was wrong
+    output        mispredict,         // 1 = branch prediction was wrong
+
+    // ---- CSR outputs (Phase 5) ----
+    output        ex_csr_en,          // passthrough to EX/MEM
+    output [31:0] ex_csr_wdata        // CSR write data (rs1 or zimm)
 );
 
 `include "opcode.vh"
@@ -297,10 +304,15 @@ assign ex_store_data   = fwd_rs2;    // forwarded rs2 for stores
 assign ex_pc           = pc;
 assign ex_mem_write    = mem_write;
 assign ex_mem_to_reg   = mem_to_reg;
-assign ex_reg_write_en = alu | lui | auipc | jal | jalr | mem_to_reg | atomic_lr | atomic_sc;
+assign ex_reg_write_en = alu | lui | auipc | jal | jalr | mem_to_reg | atomic_lr | atomic_sc | csr_en;
 assign ex_rd           = dest_reg_sel;
 assign ex_funct3       = alu_op;
 assign ex_atomic_lr    = atomic_lr;
 assign ex_atomic_sc    = atomic_sc;
+
+// CSR passthrough and write data (Phase 5)
+// alu_op[2]: 0 = register source (fwd_rs1), 1 = immediate source (zimm = {27'b0, rs1_addr})
+assign ex_csr_en       = csr_en;
+assign ex_csr_wdata    = alu_op[2] ? {27'b0, rs1_addr} : fwd_rs1;
 
 endmodule
