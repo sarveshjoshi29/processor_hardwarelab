@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 set -e
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 cd "$SCRIPT_DIR"
@@ -14,3 +14,4 @@ echo "Running bootloader TB..."
 vvp bootloader_tb
 
 rm -f bootloader_tb imem.hex dmem.hex
+
