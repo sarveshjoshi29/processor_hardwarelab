@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # ============================================================================
 # Automated Test Runner for 5-Stage RV32IM Pipeline
 # ============================================================================
@@ -9,6 +9,18 @@
 set -e
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 cd "$SCRIPT_DIR"
+
+PYTHON=(python3)
+if ! command -v python3 &>/dev/null; then
+    if command -v python &>/dev/null; then
+        PYTHON=(python)
+    elif command -v py &>/dev/null; then
+        PYTHON=(py -3)
+    else
+        echo "ERROR: Python 3 not found (need python/python3 on PATH)." >&2
+        exit 1
+    fi
+fi
 
 # macOS doesn't have GNU timeout by default; use gtimeout (coreutils) if available
 if command -v gtimeout &>/dev/null; then
@@ -21,7 +33,7 @@ fi
 
 # Generate hex files
 echo "Generating test hex files..."
-python3 gen_hex.py
+"${PYTHON[@]}" gen_hex.py
 
 # Compile
 echo "Compiling pipeline..."
@@ -98,3 +110,4 @@ if [ "$FAIL" -gt 0 ]; then
     exit 1
 fi
 echo "All tests passed!"
+

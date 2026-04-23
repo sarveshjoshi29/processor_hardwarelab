@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # ============================================================================
 # Stress Test Runner for RV32IMA Pipeline
 # ============================================================================
@@ -11,6 +11,18 @@ set -e
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 cd "$SCRIPT_DIR"
 
+PYTHON=(python3)
+if ! command -v python3 &>/dev/null; then
+    if command -v python &>/dev/null; then
+        PYTHON=(python)
+    elif command -v py &>/dev/null; then
+        PYTHON=(py -3)
+    else
+        echo "ERROR: Python 3 not found (need python/python3 on PATH)." >&2
+        exit 1
+    fi
+fi
+
 if command -v gtimeout &>/dev/null; then
     TIMEOUT="gtimeout 60"
 elif command -v timeout &>/dev/null; then
@@ -20,7 +32,7 @@ else
 fi
 
 echo "Generating stress test hex files..."
-python3 gen_hex_stress.py
+"${PYTHON[@]}" gen_hex_stress.py
 
 echo "Compiling pipeline..."
 iverilog -g2005 -o stress_sim -I ../modules ../modules/pipeline.v ../modules/tb_pipeline.v
@@ -116,3 +128,4 @@ if [ "$FAIL" -gt 0 ]; then
     exit 1
 fi
 echo "All stress tests passed!"
+
