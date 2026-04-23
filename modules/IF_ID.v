@@ -65,7 +65,10 @@ module IF_ID
 
     // RV32A atomic passthrough
     output        atomic_lr_w,
-    output        atomic_sc_w
+    output        atomic_sc_w,
+
+    // CSR passthrough (Phase 5)
+    output        csr_en_w
 );
 
 `include "opcode.vh"
@@ -89,6 +92,8 @@ always @(posedge clk or negedge reset) begin
         exception <= 1'b0;
     else if (illegal_inst || inst_mem_offset != 2'b00)
         exception <= 1'b1;
+    else
+        exception <= exception;  // explicit hold — avoid latch inference
 end
 
 // ============================================================================
@@ -115,6 +120,7 @@ always @(*) begin
         JAL   : immediate = {{12{instruction_i[31]}}, instruction_i[19:12],
                               instruction_i[20], instruction_i[30:21], 1'b0};
         AMO   : immediate = 32'h0;  // lr.w/sc.w: address = rs1, no immediate
+        SYSTEM: immediate = {{20{instruction_i[31]}}, instruction_i[31:20]}; // CSR addr in [11:0]
         default: illegal_inst = 1'b1;
     endcase
 end
@@ -170,6 +176,9 @@ id_ex_reg u_id_ex (
     .atomic_lr_i         (instruction_i[`OPCODE] == AMO && instruction_i[31:27] == FUNCT5_LR),
     .atomic_sc_i         (instruction_i[`OPCODE] == AMO && instruction_i[31:27] == FUNCT5_SC),
 
+    // CSR signals (Phase 5)
+    .csr_en_i            (instruction_i[`OPCODE] == SYSTEM && instruction_i[`FUNC3] != 3'b000),
+
     // To EX (wires)
     .execute_immediate_o (execute_immediate_w),
     .immediate_sel_o     (immediate_sel_w),
@@ -196,7 +205,10 @@ id_ex_reg u_id_ex (
 
     // RV32A atomic outputs
     .atomic_lr_o         (atomic_lr_w),
-    .atomic_sc_o         (atomic_sc_w)
+    .atomic_sc_o         (atomic_sc_w),
+
+    // CSR output (Phase 5)
+    .csr_en_o            (csr_en_w)
 );
 endmodule
 
@@ -243,6 +255,9 @@ module id_ex_reg (
     input         atomic_lr_i,
     input         atomic_sc_i,
 
+    // CSR signals (Phase 5)
+    input         csr_en_i,
+
     // Outputs to EX
     output reg [31:0] execute_immediate_o,
     output reg        immediate_sel_o,
@@ -269,7 +284,10 @@ module id_ex_reg (
 
     // RV32A atomic outputs
     output reg        atomic_lr_o,
-    output reg        atomic_sc_o
+    output reg        atomic_sc_o,
+
+    // CSR output (Phase 5)
+    output reg        csr_en_o
 );
 
 always @(posedge clk or negedge reset_n) begin
@@ -297,6 +315,7 @@ always @(posedge clk or negedge reset_n) begin
         predicted_target_o  <= 32'h0;
         atomic_lr_o         <= 1'b0;
         atomic_sc_o         <= 1'b0;
+        csr_en_o            <= 1'b0;
     end
     else if (stall_div) begin
         // ---- Divider busy: hold all values (do nothing) ----
@@ -325,6 +344,7 @@ always @(posedge clk or negedge reset_n) begin
         predicted_target_o  <= 32'h0;
         atomic_lr_o         <= 1'b0;
         atomic_sc_o         <= 1'b0;
+        csr_en_o            <= 1'b0;
     end
     else if (!stall_n) begin
         execute_immediate_o <= immediate_i;
@@ -349,6 +369,7 @@ always @(posedge clk or negedge reset_n) begin
         predicted_target_o  <= predicted_target_i;
         atomic_lr_o         <= atomic_lr_i;
         atomic_sc_o         <= atomic_sc_i;
+        csr_en_o            <= csr_en_i;
     end
 end
 endmodule
