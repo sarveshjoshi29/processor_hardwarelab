@@ -1,0 +1,1283 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Dual-Core RISC-V SoC | FPGA Development Suite</title>
+    <meta name="description" content="Custom Dual-Core RISC-V SoC Development Environment for FPGA" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
+        rel="stylesheet">
+
+    <!-- CodeMirror 6 CDN -->
+    <script type="module">
+        import { EditorView, basicSetup } from 'https://esm.sh/codemirror';
+        import { cpp } from 'https://esm.sh/@codemirror/lang-cpp';
+        import { oneDark } from 'https://esm.sh/@codemirror/theme-one-dark';
+        import { EditorState } from 'https://esm.sh/@codemirror/state';
+
+        const initialCode = `#include "lib.h"
+
+// ---------------------------------------------------------
+// OS-LESS MULTIPROCESSING: SHARED RESOURCES
+// ---------------------------------------------------------
+// We need locks to protect shared items, just like Linux pthreads uses!
+mutex_t console_lock = {0}; // Protects UART prints from mixing up
+mutex_t bank_lock = {0};    // Protects the shared bank account
+
+// The shared variable (In memory, outside L1 caches)
+volatile int bank_balance = 1000;
+
+// Simple delay function 
+void delay(int loops) {
+    volatile int i = 0;
+    while (i < loops) { i++; }
+}
+
+// Thread-safe print function
+void safe_print(const char* str) {
+    mutex_lock(&console_lock);
+    print_str(str);
+    mutex_unlock(&console_lock);
+}
+
+// ---------------------------------------------------------
+// CORE 0 THREAD: Depositing Money
+// ---------------------------------------------------------
+int main() {
+    safe_print("[CORE 0] Bare-Metal Thread Started.\\r\\n");
+    
+    for(int i = 0; i < 4; i++) {
+        // 1. Acquire Hardware Mutex Lock
+        mutex_lock(&bank_lock);
+        
+        // 2. Critical Section: Safely read shared state
+        int current_balance = atomic_read(&bank_balance);
+        
+        safe_print("[CORE 0] Depositing +$100 ...\\r\\n");
+        current_balance += 100;
+        
+        // 3. Update memory, bypassing Cache
+        atomic_write(&bank_balance, current_balance);
+        
+        // 4. Release Mutex Lock
+        mutex_unlock(&bank_lock);
+        
+        delay(400); // Simulate work
+    }
+    
+    // Wait for Core 1 to thoroughly finish
+    delay(4000); 
+    
+    mutex_lock(&console_lock);
+    print_str("\\r\\n[SYSTEM] ALL BARE-METAL THREADS FINISHED.\\r\\n");
+    print_str("[SYSTEM] STARTING BALANCE: $1000\\r\\n");
+    print_str("[SYSTEM] FINAL BALANCE:    $");
+    print_int(atomic_read(&bank_balance));
+    print_str("\\r\\n");
+    print_str("[SYSTEM] EXPECTED:         $1250\\r\\n\\r\\n");
+    mutex_unlock(&console_lock);
+    
+    return 0;
+}
+
+// ---------------------------------------------------------
+// CORE 1 THREAD: Withdrawing Money
+// ---------------------------------------------------------
+void core1_main() {
+    safe_print("[CORE 1] Bare-Metal Thread Started.\\r\\n");
+    
+    for(int i = 0; i < 3; i++) {
+        // 1. Acquire Hardware Mutex Lock
+        mutex_lock(&bank_lock);
+        
+        // 2. Critical Section
+        int current_balance = atomic_read(&bank_balance);
+        
+        safe_print("[CORE 1] Withdrawing -$50 ...\\r\\n");
+        current_balance -= 50;
+        
+        // 3. Update memory
+        atomic_write(&bank_balance, current_balance);
+        
+        // 4. Release Mutex Lock
+        mutex_unlock(&bank_lock);
+        
+        delay(600); // Simulate work at a different speed
+    }
+}`;
+
+        const customTheme = EditorView.theme({
+            "&": {
+                fontSize: "13.5px",
+                height: "100%"
+            },
+            ".cm-scroller": {
+                fontFamily: "'JetBrains Mono', monospace",
+                lineHeight: "1.6"
+            },
+            ".cm-gutters": {
+                backgroundColor: "transparent",
+                borderRight: "1px solid rgba(255,255,255,0.06)"
+            },
+            ".cm-activeLineGutter": {
+                backgroundColor: "rgba(255,255,255,0.03)"
+            },
+            ".cm-activeLine": {
+                backgroundColor: "rgba(255,255,255,0.02)"
+            }
+        }, { dark: true });
+
+        const state = EditorState.create({
+            doc: initialCode,
+            extensions: [
+                basicSetup,
+                cpp(),
+                oneDark,
+                customTheme,
+                EditorView.lineWrapping
+            ]
+        });
+
+        const editorContainer = document.getElementById('editor-mount');
+        const view = new EditorView({
+            state,
+            parent: editorContainer
+        });
+
+        // Expose editor to global scope for app.js
+        window.cmEditor = view;
+    </script>
+
+    <style>
+        :root {
+            --bg-primary: #09090b;
+            --bg-secondary: #0c0c0f;
+            --bg-card: #111114;
+            --bg-elevated: #18181b;
+            --border-subtle: rgba(255, 255, 255, 0.06);
+            --border-default: rgba(255, 255, 255, 0.1);
+            --text-primary: #fafafa;
+            --text-secondary: #a1a1aa;
+            --text-muted: #71717a;
+            --accent-green: #22c55e;
+            --accent-green-glow: rgba(34, 197, 94, 0.15);
+            --accent-amber: #f59e0b;
+            --accent-amber-glow: rgba(245, 158, 11, 0.15);
+            --accent-blue: #3b82f6;
+            --accent-blue-glow: rgba(59, 130, 246, 0.1);
+            --accent-red: #ef4444;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #000000;
+            color: var(--text-primary);
+            min-height: 100vh;
+            line-height: 1.5;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Mesmerizing Orbs Background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            width: 150vw;
+            height: 150vh;
+            transform: translate(-50%, -50%);
+            background: 
+                radial-gradient(circle at 15% 50%, rgba(59, 130, 246, 0.15), transparent 40%),
+                radial-gradient(circle at 85% 30%, rgba(139, 92, 246, 0.15), transparent 40%),
+                radial-gradient(circle at 50% 80%, rgba(34, 197, 94, 0.1), transparent 40%);
+            filter: blur(80px);
+            z-index: -2;
+            animation: orbFloat 20s infinite alternate ease-in-out;
+        }
+
+        /* Animated Grid Overlay */
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image: 
+                linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+            pointer-events: none;
+            z-index: -1;
+            mask-image: radial-gradient(circle at center, black 50%, transparent 100%);
+            -webkit-mask-image: radial-gradient(circle at center, black 50%, transparent 100%);
+        }
+
+        @keyframes orbFloat {
+            0% { transform: translate(-50%, -50%) rotate(0deg) scale(1); }
+            100% { transform: translate(-50%, -50%) rotate(5deg) scale(1.1); }
+        }
+
+        #fpga-routing-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 0;
+            pointer-events: none;
+            opacity: 0.8;
+            mix-blend-mode: screen;
+        }
+
+        .app-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 24px;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Header */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 24px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, var(--accent-blue), #8b5cf6);
+            border-radius: 12px;
+            position: relative;
+        }
+
+        .logo::after {
+            content: '';
+            position: absolute;
+            inset: -2px;
+            background: linear-gradient(135deg, var(--accent-blue), #8b5cf6);
+            border-radius: 14px;
+            opacity: 0.3;
+            filter: blur(8px);
+            z-index: -1;
+        }
+
+        .logo svg {
+            width: 28px;
+            height: 28px;
+            color: white;
+        }
+
+        .header-title h1 {
+            font-size: 20px;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+        }
+
+        .header-title p {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-top: 2px;
+        }
+
+        .header-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 12px;
+            background: var(--bg-elevated);
+            border: 1px solid var(--border-subtle);
+            border-radius: 9999px;
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--text-secondary);
+        }
+
+        .header-badge .pulse {
+            width: 8px;
+            height: 8px;
+            background: var(--accent-green);
+            border-radius: 50%;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 1;
+                box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.4);
+            }
+
+            50% {
+                opacity: 0.8;
+                box-shadow: 0 0 0 8px rgba(34, 197, 94, 0);
+            }
+        }
+
+        /* Connection Panel */
+        .connection-panel {
+            background: rgba(15, 15, 18, 0.5);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+        }
+
+        .panel-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 16px;
+        }
+
+        .panel-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .panel-title svg {
+            width: 18px;
+            height: 18px;
+            color: var(--text-muted);
+        }
+
+        .connection-grid {
+            display: grid;
+            grid-template-columns: 1fr auto auto;
+            gap: 12px;
+            align-items: end;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .form-label {
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .form-row {
+            display: flex;
+            gap: 8px;
+        }
+
+        select,
+        input[type="number"] {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-default);
+            border-radius: 8px;
+            padding: 10px 14px;
+            font-size: 13px;
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--text-primary);
+            outline: none;
+            transition: border-color 0.2s, box-shadow 0.2s;
+            min-width: 0;
+        }
+
+        select {
+            flex: 1;
+            cursor: pointer;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2371717a' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 12px center;
+            padding-right: 40px;
+        }
+
+        input[type="number"] {
+            width: 120px;
+        }
+
+        select:hover,
+        input[type="number"]:hover {
+            border-color: rgba(255, 255, 255, 0.15);
+        }
+
+        select:focus,
+        input[type="number"]:focus {
+            border-color: var(--accent-blue);
+            box-shadow: 0 0 0 3px var(--accent-blue-glow);
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 10px 16px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 500;
+            font-family: inherit;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: none;
+            outline: none;
+            white-space: nowrap;
+        }
+
+        .btn svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        .btn-secondary {
+            background: var(--bg-elevated);
+            border: 1px solid var(--border-default);
+            color: var(--text-secondary);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.08);
+            color: var(--text-primary);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            color: white;
+            box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%; width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: all 0.5s ease;
+            z-index: -1;
+        }
+
+        .btn-primary:not(:disabled):hover::before {
+            left: 100%;
+        }
+
+        .btn-primary:not(:disabled):hover {
+            box-shadow: 0 6px 20px rgba(139, 92, 246, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .btn-primary:active {
+            transform: translateY(0);
+        }
+
+        .btn-primary:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .btn-success {
+            background: var(--accent-green);
+            color: white;
+        }
+
+        .btn-success:hover {
+            filter: brightness(1.1);
+        }
+
+        .btn-danger {
+            background: rgba(239, 68, 68, 0.15);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            color: var(--accent-red);
+        }
+
+        .btn-danger:hover {
+            background: rgba(239, 68, 68, 0.25);
+        }
+
+        .btn-icon {
+            padding: 10px;
+        }
+
+        /* Main Grid */
+        .main-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        @media (max-width: 1024px) {
+            .main-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Editor Panel */
+        .editor-panel {
+            background: rgba(15, 15, 18, 0.5);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+        }
+
+        .editor-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 14px 20px;
+            background: rgba(255, 255, 255, 0.02);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .editor-tabs {
+            display: flex;
+            align-items: center;
+            gap: 2px;
+        }
+
+        .editor-tab {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 14px;
+            background: var(--bg-elevated);
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        .editor-tab svg {
+            width: 14px;
+            height: 14px;
+            color: var(--accent-amber);
+        }
+
+        .editor-actions {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        #editor-mount {
+            height: 440px;
+            overflow: hidden;
+        }
+
+        #editor-mount .cm-editor {
+            height: 100%;
+            background: transparent;
+        }
+
+        .editor-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 20px;
+            background: rgba(255, 255, 255, 0.02);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .editor-hint {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .editor-hint code {
+            font-family: 'JetBrains Mono', monospace;
+            background: var(--bg-elevated);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 11px;
+        }
+
+        /* Hidden elements for legacy file upload */
+        .hidden-legacy {
+            display: none !important;
+        }
+
+        /* Terminal Panel */
+        .terminal-panel {
+            background: rgba(15, 15, 18, 0.5);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+        }
+
+        .terminal-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 14px 20px;
+            background: rgba(255, 255, 255, 0.02);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .terminal-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .terminal-title svg {
+            width: 16px;
+            height: 16px;
+            color: var(--accent-green);
+        }
+
+        .terminal-status {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .status-indicator {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 10px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 9999px;
+            font-size: 11px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .status-indicator .dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--text-muted);
+        }
+
+        .status-indicator.connected .dot {
+            background: var(--accent-green);
+            box-shadow: 0 0 8px var(--accent-green);
+        }
+
+        .status-indicator.connecting .dot {
+            background: var(--accent-amber);
+            animation: blink 1s ease-in-out infinite;
+        }
+
+        .status-indicator.error .dot {
+            background: var(--accent-red);
+        }
+
+        @keyframes blink {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.3;
+            }
+        }
+
+        .terminal-controls {
+            display: flex;
+            gap: 6px;
+        }
+
+        .terminal-controls .btn {
+            padding: 6px 12px;
+            font-size: 12px;
+        }
+
+        #term {
+            flex: 1;
+            min-height: 400px;
+            max-height: 440px;
+            background: rgba(5, 5, 7, 0.5);
+            color: #e6edf3;
+            padding: 16px 20px;
+            overflow-y: auto;
+            white-space: pre-wrap;
+            word-break: break-word;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12.5px;
+            line-height: 1.7;
+            position: relative;
+        }
+
+        /* Custom scrollbar */
+        #term::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        #term::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        #term::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+        }
+
+        #term::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        /* Scanline effect (subtle) */
+        #term::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: repeating-linear-gradient(0deg,
+                    transparent,
+                    transparent 2px,
+                    rgba(0, 0, 0, 0.1) 2px,
+                    rgba(0, 0, 0, 0.1) 4px);
+            pointer-events: none;
+            opacity: 0.3;
+        }
+
+        .terminal-footer {
+            padding: 12px 20px;
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border-subtle);
+        }
+
+        .switch-hint {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 11px;
+            color: var(--text-muted);
+        }
+
+        .switch-hint svg {
+            width: 14px;
+            height: 14px;
+            color: var(--accent-amber);
+            flex-shrink: 0;
+        }
+
+        .switch-hint code {
+            font-family: 'JetBrains Mono', monospace;
+            background: var(--bg-elevated);
+            padding: 2px 6px;
+            border-radius: 4px;
+            color: var(--text-secondary);
+        }
+
+        /* Textarea fallback (hidden, used for value sync) */
+        #c_code {
+            position: absolute;
+            opacity: 0;
+            pointer-events: none;
+            width: 0;
+            height: 0;
+        }
+
+        /* Loading spinner */
+        .spinner {
+            width: 16px;
+            height: 16px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-top-color: white;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Connection grid responsive */
+        @media (max-width: 768px) {
+            .connection-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 12px;
+            }
+        }
+
+        /* Compile button special state */
+        .btn-compile {
+            min-width: 180px;
+        }
+
+        .btn-compile.compiling {
+            background: linear-gradient(135deg, var(--accent-amber), #d97706);
+        }
+        /* Command Palette */
+        .palette-overlay {
+            position: fixed; inset: 0; z-index: 1000;
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            padding-top: 12vh;
+            opacity: 0; pointer-events: none;
+            transition: opacity 0.2s ease;
+        }
+        .palette-overlay.open {
+            opacity: 1; pointer-events: auto;
+        }
+        .palette-modal {
+            width: 100%; max-width: 600px;
+            background: rgba(15, 15, 18, 0.85);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            box-shadow: 0 16px 40px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.05);
+            transform: scale(0.96) translateY(-10px);
+            transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+            overflow: hidden;
+            display: flex; flex-direction: column;
+        }
+        .palette-overlay.open .palette-modal {
+            transform: scale(1) translateY(0);
+        }
+        .palette-header-bar {
+            display: flex; align-items: center; padding: 16px 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            gap: 12px;
+        }
+        .palette-header-bar svg { width: 20px; height: 20px; color: var(--text-muted); }
+        .palette-header-bar input {
+            flex: 1; background: transparent; border: none; outline: none;
+            color: var(--text-primary); font-size: 16px; font-family: 'Inter', sans-serif;
+        }
+        .palette-header-bar input::placeholder { color: var(--text-muted); }
+        .palette-results { padding: 8px; max-height: 300px; overflow-y: auto; }
+        .palette-group {
+            font-size: 11px; font-weight: 600; color: var(--text-muted);
+            padding: 8px 12px; margin-top: 4px; letter-spacing: 0.05em;
+        }
+        .palette-item {
+            display: flex; align-items: center; gap: 12px;
+            padding: 12px; border-radius: 8px; cursor: pointer;
+            color: var(--text-secondary); transition: all 0.1s;
+        }
+        .palette-item svg { width: 16px; height: 16px; }
+        .palette-item.active, .palette-item:hover {
+            background: rgba(59, 130, 246, 0.15); color: var(--text-primary);
+        }
+        .palette-item.active svg, .palette-item:hover svg { color: var(--accent-blue); }
+        .palette-footer {
+            padding: 10px 20px; border-top: 1px solid rgba(255, 255, 255, 0.08);
+            display: flex; align-items: center; justify-content: space-between;
+            font-size: 11px; color: var(--text-muted); background: rgba(0,0,0,0.2);
+        }
+        kbd {
+            background: rgba(255,255,255,0.1); padding: 2px 4px; border-radius: 4px;
+            font-family: inherit; margin: 0 2px;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="fpga-routing-canvas"></canvas>
+    
+    <div class="app-container">
+
+        <!-- Header -->
+        <header class="header">
+            <div class="header-left">
+                <div class="logo">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <rect x="4" y="4" width="16" height="16" rx="2" />
+                        <rect x="9" y="9" width="6" height="6" />
+                        <path d="M9 2v2" />
+                        <path d="M15 2v2" />
+                        <path d="M9 20v2" />
+                        <path d="M15 20v2" />
+                        <path d="M2 9h2" />
+                        <path d="M2 15h2" />
+                        <path d="M20 9h2" />
+                        <path d="M20 15h2" />
+                    </svg>
+                </div>
+                <div class="header-title">
+                    <h1>Dual-Core RISC-V SoC</h1>
+                    <p>Custom FPGA Development Suite</p>
+                </div>
+            </div>
+            <div class="header-badge">
+                <span class="pulse"></span>
+                <span>CS224 Lab Project</span>
+            </div>
+        </header>
+
+        <!-- Connection Panel -->
+        <section class="connection-panel">
+            <div class="panel-header">
+                <div class="panel-title">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z" />
+                        <path d="m2 12 5.5 3L12 12l-4.5-3L2 12z" />
+                        <path d="m12 12 4.5 3 5.5-3-5.5-3-4.5 3z" />
+                        <path d="M12 12v10" />
+                    </svg>
+                    <span>UART Connection</span>
+                </div>
+            </div>
+            <div class="connection-grid">
+                <div class="form-group">
+                    <label class="form-label">Serial Port</label>
+                    <div class="form-row">
+                        <select id="port"></select>
+                        <button id="refreshPorts" class="btn btn-secondary btn-icon" title="Refresh Ports">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M21 12a9 9 0 1 1-9-9c2.52 0 4.93 1 6.74 2.74L21 8" />
+                                <path d="M21 3v5h-5" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Baud Rate</label>
+                    <input id="baud" type="number" value="115200" />
+                </div>
+                <div class="form-group">
+                    <label class="form-label">&nbsp;</label>
+                    <button id="compileBtn" class="btn btn-primary btn-compile">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path
+                                d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z" />
+                        </svg>
+                        <span>Compile & Load</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Main Grid -->
+        <div class="main-grid">
+            <!-- Editor Panel -->
+            <section class="editor-panel">
+                <div class="editor-header">
+                    <div class="editor-tabs">
+                        <div class="editor-tab">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path d="m18 16 4-4-4-4" />
+                                <path d="m6 8-4 4 4 4" />
+                                <path d="m14.5 4-5 16" />
+                            </svg>
+                            <span>demo.c</span>
+                        </div>
+                    </div>
+                    <div class="editor-actions">
+                        <span style="font-size: 11px; color: var(--text-muted);">RISC-V C</span>
+                    </div>
+                </div>
+                <div id="editor-mount"></div>
+                <textarea id="c_code" aria-hidden="true"></textarea>
+                <div class="editor-footer">
+                    <div class="editor-hint">
+                        <svg style="width:14px;height:14px;display:inline;vertical-align:middle;margin-right:6px;color:var(--text-muted);"
+                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10" />
+                            <path d="M12 16v-4" />
+                            <path d="M12 8h.01" />
+                        </svg>
+                        Implements <code>main()</code> for Core 0 and <code>core1_main()</code> for Core 1
+                    </div>
+                </div>
+            </section>
+
+            <!-- Terminal Panel -->
+            <section class="terminal-panel">
+                <div class="terminal-header">
+                    <div class="terminal-title">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="4 17 10 11 4 5" />
+                            <line x1="12" x2="20" y1="19" y2="19" />
+                        </svg>
+                        <span>UART Monitor</span>
+                    </div>
+                    <div class="terminal-status">
+                        <div id="statusIndicator" class="status-indicator">
+                            <span class="dot"></span>
+                            <span id="status">disconnected</span>
+                        </div>
+                        <div class="terminal-controls">
+                            <button id="connect" class="btn btn-success">Connect</button>
+                            <button id="disconnect" class="btn btn-danger">Disconnect</button>
+                        </div>
+                    </div>
+                </div>
+                <div id="term"></div>
+                <div class="terminal-footer">
+                    <div class="switch-hint">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path
+                                d="m21 2-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0 3 3L22 7l-3-3m-3.5 3.5L19 4" />
+                        </svg>
+                        <span>FPGA switches: <code>SW[15:14]=11</code> <code>SW[0]=1</code> <code>SW[2]=1</code> while
+                            programming → <code>SW[2]=0</code> to run</span>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Hidden Legacy Upload (keep IDs for backend compatibility) -->
+        <div class="hidden-legacy">
+            <input id="imem" type="file" accept=".hex,.txt" />
+            <input id="dmem" type="file" accept=".hex,.txt" />
+            <button id="program">Program Manual</button>
+        </div>
+    </div>
+
+    <!-- COMMAND PALETTE (CMD+K) -->
+    <div class="palette-overlay" id="palette-overlay">
+        <div class="palette-modal">
+            <div class="palette-header-bar">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                <input type="text" id="palette-input" placeholder="Type a command or search..." autocomplete="off">
+            </div>
+            <div class="palette-results" id="palette-results">
+                <div class="palette-group">SYSTEM ACTIONS</div>
+                <div class="palette-item active" data-action="compile">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                    <span>Compile & Load to FPGA</span>
+                </div>
+                <div class="palette-item" data-action="clear-term">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"></path></svg>
+                    <span>Clear UART Console</span>
+                </div>
+                <div class="palette-group">HARDWARE MONITOR</div>
+                <div class="palette-item" data-action="connect">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4M10 17l5-5-5-5M15 12H3"></path></svg>
+                    <span>Connect UART Stream</span>
+                </div>
+                <div class="palette-item" data-action="disconnect">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"></path></svg>
+                    <span>Disconnect UART Stream</span>
+                </div>
+                <div class="palette-group">EFFECTS</div>
+                <div class="palette-item" data-action="overclock">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                    <span>Trigger Animation (Overclock Mode)</span>
+                </div>
+            </div>
+            <div class="palette-footer">
+                <span><kbd>↑</kbd> <kbd>↓</kbd> to navigate</span>
+                <span><kbd>enter</kbd> to select</span>
+                <span><kbd>esc</kbd> to close</span>
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/app.js"></script>
+    <script>
+        // Advanced 3D Tilt Effect for premium UI feel
+        document.addEventListener('DOMContentLoaded', () => {
+            const panels = document.querySelectorAll('.connection-panel, .editor-panel, .terminal-panel');
+            
+            panels.forEach(panel => {
+                panel.addEventListener('mousemove', (e) => {
+                    const rect = panel.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+                    
+                    const rotateX = ((y - centerY) / centerY) * -2.5; // Max 2.5 deg tilt
+                    const rotateY = ((x - centerX) / centerX) * 2.5;
+                    
+                    panel.style.transform = \`perspective(1200px) rotateX(\${rotateX}deg) rotateY(\${rotateY}deg) scale3d(1.01, 1.01, 1.01)\`;
+                    panel.style.transition = 'none';
+                });
+                
+                panel.addEventListener('mouseleave', () => {
+                    panel.style.transform = 'perspective(1200px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+                    panel.style.transition = 'transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+                });
+            });
+        });
+
+        // ----------------------------------------------------
+        // EXTREME WOW FACTOR: LIVE FPGA MANHATTAN ROUTING CANVAS
+        // ----------------------------------------------------
+        const canvas = document.getElementById('fpga-routing-canvas');
+        const ctx = canvas.getContext('2d');
+        
+        let width, height;
+        let particles = [];
+        let routingConfig = {
+            baseSpeed: 0.6,
+            color: 'rgba(56, 189, 248, ', // Cyber Cyan base
+            glow: '#0ea5e9'
+        };
+
+        function resize() {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resize);
+        resize();
+
+        class DataPacket {
+            constructor() {
+                this.x = Math.random() * width;
+                this.y = Math.random() * height;
+                this.dir = Math.floor(Math.random() * 4); // 0:up, 1:right, 2:down, 3:left
+                this.speed = routingConfig.baseSpeed + Math.random() * 0.5;
+            }
+            update() {
+                if (this.dir === 0) this.y -= this.speed;
+                if (this.dir === 1) this.x += this.speed;
+                if (this.dir === 2) this.y += this.speed;
+                if (this.dir === 3) this.x -= this.speed;
+
+                // Randomly turn 90 degrees to mimic silicon wire routing
+                if (Math.random() < 0.008) {
+                    this.dir = (this.dir + (Math.random() > 0.5 ? 1 : 3)) % 4; 
+                }
+
+                // Wrap around edges cleanly
+                if (this.x < 0) this.x = width;
+                if (this.x > width) this.x = 0;
+                if (this.y < 0) this.y = height;
+                if (this.y > height) this.y = 0;
+            }
+            draw() {
+                ctx.fillStyle = routingConfig.glow;
+                ctx.shadowBlur = 10;
+                ctx.shadowColor = routingConfig.glow;
+                ctx.fillRect(this.x - 1.5, this.y - 1.5, 3, 3);
+            }
+        }
+
+        // Spawn data packets
+        for (let i = 0; i < 70; i++) particles.push(new DataPacket());
+
+        function animateRouting() {
+            ctx.clearRect(0, 0, width, height);
+            
+            for (let i = 0; i < particles.length; i++) {
+                particles[i].update();
+                particles[i].draw();
+                
+                // Draw Manhattan connections to nearby nodes (Right angles only!)
+                for (let j = i + 1; j < particles.length; j++) {
+                    let dx = Math.abs(particles[i].x - particles[j].x);
+                    let dy = Math.abs(particles[i].y - particles[j].y);
+                    let dist = Math.sqrt(dx*dx + dy*dy);
+                    
+                    if (dist < 120) {
+                        ctx.beginPath();
+                        ctx.shadowBlur = 0;
+                        ctx.strokeStyle = routingConfig.color + (1 - dist/120) + ')';
+                        ctx.lineWidth = 1;
+                        
+                        ctx.moveTo(particles[i].x, particles[i].y);
+                        // Draw elbow joint 
+                        if (i % 2 === 0) {
+                            ctx.lineTo(particles[j].x, particles[i].y);
+                        } else {
+                            ctx.lineTo(particles[i].x, particles[j].y);
+                        }
+                        ctx.lineTo(particles[j].x, particles[j].y);
+                        ctx.stroke();
+                    }
+                }
+            }
+            requestAnimationFrame(animateRouting);
+        }
+        animateRouting();
+
+        // ----------------------------------------------------
+        // SYSTEM EVENT LISTENERS FOR VISUAL REACTIONS
+        // ----------------------------------------------------
+        window.addEventListener('compileStarted', () => {
+            routingConfig.baseSpeed = 4.0; // Overclock the routing!
+            routingConfig.color = 'rgba(245, 158, 11, '; // Amber
+            routingConfig.glow = '#f59e0b';
+            particles.forEach(p => p.speed = routingConfig.baseSpeed + Math.random() * 2);
+        });
+        
+        window.addEventListener('compileSuccess', () => {
+            routingConfig.baseSpeed = 0.5;
+            routingConfig.color = 'rgba(34, 197, 94, '; // Success Green
+            routingConfig.glow = '#22c55e';
+            particles.forEach(p => p.speed = routingConfig.baseSpeed + Math.random() * 0.5);
+            // Slowly cool down back to blue
+            setTimeout(() => {
+                routingConfig.color = 'rgba(56, 189, 248, ';
+                routingConfig.glow = '#0ea5e9';
+            }, 3000);
+        });
+
+        window.addEventListener('compileError', () => {
+            routingConfig.baseSpeed = 0.05; // Freeze/Crash
+            routingConfig.color = 'rgba(239, 68, 68, '; // Red
+            routingConfig.glow = '#ef4444';
+            particles.forEach(p => p.speed = routingConfig.baseSpeed);
+        });
+    </script>
+</body>
+
+</html>
