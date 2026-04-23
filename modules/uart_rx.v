@@ -32,6 +32,22 @@ module uart_rx #(
     reg [2:0]  bit_idx;
     reg [7:0]  shift_reg;
 
+    // 2-FF metastability synchronizer on async rx_in. Without this, the
+    // FSM samples a glitching/metastable input directly and can shift in
+    // corrupted bits (observed: single-bit flips like 't'→'|').
+    (* ASYNC_REG = "TRUE" *)
+    reg rx_sync_0, rx_sync_1;
+    always @(posedge clk or posedge reset) begin
+        if (reset) begin
+            rx_sync_0 <= 1'b1;
+            rx_sync_1 <= 1'b1;
+        end else begin
+            rx_sync_0 <= rx_in;
+            rx_sync_1 <= rx_sync_0;
+        end
+    end
+    wire rx_s = rx_sync_1;
+
     always @(posedge clk or posedge reset) begin
         if (reset) begin
             state      <= S_IDLE;
@@ -46,7 +62,7 @@ module uart_rx #(
                 S_IDLE: begin
                     baud_cnt <= 32'd0;
                     bit_idx  <= 3'd0;
-                    if (!rx_in) begin
+                    if (!rx_s) begin
                         // Potential start bit detected
                         state    <= S_START;
                         baud_cnt <= 32'd0;
@@ -56,7 +72,7 @@ module uart_rx #(
                 S_START: begin
                     // Wait half a bit, then confirm start bit still low
                     if (baud_cnt >= (CLKS_PER_BIT/2)) begin
-                        if (!rx_in) begin
+                        if (!rx_s) begin
                             state    <= S_DATA;
                             baud_cnt <= 32'd0;
                             bit_idx  <= 3'd0;
@@ -71,7 +87,7 @@ module uart_rx #(
                 S_DATA: begin
                     if (baud_cnt == CLKS_PER_BIT - 1) begin
                         baud_cnt <= 32'd0;
-                        shift_reg[bit_idx] <= rx_in; // LSB first
+                        shift_reg[bit_idx] <= rx_s; // LSB first
                         if (bit_idx == 3'd7) begin
                             state   <= S_STOP;
                         end else begin
