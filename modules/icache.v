@@ -1,9 +1,9 @@
 `timescale 1ns/1ps
 // ============================================================================
-// L1 Instruction Cache — 1KB Direct-Mapped, Read-Only
+// L1 Instruction Cache — 256B Direct-Mapped, Read-Only
 // ============================================================================
-// Geometry  : 64 sets × 16-byte lines (4 words), direct-mapped
-// Address   : tag[31:10] | index[9:4] | word_off[3:2] | byte_off[1:0]
+// Geometry  : 16 sets × 16-byte lines (4 words), direct-mapped
+// Address   : tag[31:8] | index[7:4] | word_off[3:2] | byte_off[1:0]
 // Interface : Registered output (1-cycle hit latency, identical to sync IMEM).
 //             Asserts icache_stall on miss; deasserts the cycle after fill.
 // Miss path : IDLE → FETCH (wait mem_ready) → IDLE
@@ -27,15 +27,21 @@ module icache #(
     input             mem_ready // pulses 1 cycle when fill data is valid
 );
 
-// ---- Cache arrays: 64 lines ----
-reg         valid    [0:63];
-reg  [21:0] tag_arr  [0:63];
-reg [127:0] data_arr [0:63];
+// ---- Cache arrays: 16 lines ----
+// tag_arr / data_arr are never reset (contents are guarded by `valid`),
+// so they are forced to distributed RAM to avoid thousands of FFs and
+// to stop Vivado from hunting for an impossible BRAM mapping during
+// place/route.
+reg         valid    [0:15];
+(* ram_style = "distributed" *)
+reg  [23:0] tag_arr  [0:15];
+(* ram_style = "distributed" *)
+reg [127:0] data_arr [0:15];
 
 // ---- Address fields ----
 wire  [1:0] woff = fetch_pc[3:2];   // word offset within line
-wire  [5:0] idx  = fetch_pc[9:4];   // set index
-wire [21:0] ptag = fetch_pc[31:10]; // tag
+wire  [3:0] idx  = fetch_pc[7:4];   // set index (4 bits for 16 sets)
+wire [23:0] ptag = fetch_pc[31:8];  // tag (24 bits)
 
 // ---- Hit detection (combinational) ----
 wire hit = valid[idx] && (tag_arr[idx] == ptag);
@@ -69,10 +75,18 @@ localparam IDLE  = 1'b0;
 localparam FETCH = 1'b1;
 reg state;
 
+// Extract tag and data arrays writes into a pure synchronous block
+always @(posedge clk) begin
+    if (state == FETCH && mem_ready) begin
+        tag_arr[idx]  <= ptag;
+        data_arr[idx] <= mem_rdata;
+    end
+end
+
 integer j;
 always @(posedge clk or posedge reset) begin
     if (reset) begin
-        for (j = 0; j < 64; j = j + 1)
+        for (j = 0; j < 16; j = j + 1)
             valid[j] <= 1'b0;
         mem_req  <= 1'b0;
         mem_addr <= 32'b0;
@@ -92,8 +106,6 @@ always @(posedge clk or posedge reset) begin
                 if (mem_ready) begin
                     // Refill: write line into cache
                     valid[idx]    <= 1'b1;
-                    tag_arr[idx]  <= ptag;
-                    data_arr[idx] <= mem_rdata;
                     mem_req       <= 1'b0;
                     state         <= IDLE;
                     // hit becomes 1 combinationally after this posedge;
