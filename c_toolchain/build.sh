@@ -14,7 +14,7 @@ if ! command -v python3 &>/dev/null; then
 fi
 
 # Setup compiler flags
-CFLAGS="-march=rv32ima -mabi=ilp32 -O1 -ffreestanding -nostdlib -mstrict-align"
+CFLAGS="-march=rv32ima_zicsr -mabi=ilp32 -O1 -ffreestanding -nostdlib -mstrict-align"
 
 echo "Compiling C files..."
 riscv64-unknown-elf-gcc $CFLAGS -T link.ld boot.S lib.c demo.c -o firmware.elf

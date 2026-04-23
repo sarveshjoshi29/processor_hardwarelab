@@ -93,3 +93,21 @@ void atomic_write(volatile int* addr, int val) {
         : "memory"
     );
 }
+
+// ------------------------------------------------------------------
+// CSR PERFORMANCE COUNTER DISPLAY
+// ------------------------------------------------------------------
+
+void print_perf_counters(const char* label) {
+    print_str("\r\n===== PERF COUNTERS: ");
+    print_str(label);
+    print_str(" =====\r\n");
+
+    print_str("  Cycles      : "); print_int(csr_read_cycle());   print_str("\r\n");
+    print_str("  Instret     : "); print_int(csr_read_instret()); print_str("\r\n");
+    print_str("  I-Cache Miss: "); print_int(csr_read_icmiss());  print_str("\r\n");
+    print_str("  D-Cache Miss: "); print_int(csr_read_dcmiss());  print_str("\r\n");
+    print_str("  Branch Miss : "); print_int(csr_read_brmiss());  print_str("\r\n");
+    print_str("  Stall Cycles: "); print_int(csr_read_stalls());  print_str("\r\n");
+    print_str("=========================\r\n");
+}
