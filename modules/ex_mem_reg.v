@@ -29,6 +29,10 @@ module ex_mem_reg (
     input         atomic_lr_i,
     input         atomic_sc_i,
 
+    // ---- CSR inputs (Phase 5) ----
+    input         csr_en_i,
+    input  [31:0] csr_wdata_i,
+
     // ---- Data outputs to MEM ----
     output reg [31:0] alu_result_o,
     output reg [31:0] reg_write_data_o,
@@ -44,7 +48,11 @@ module ex_mem_reg (
 
     // ---- RV32A atomic outputs ----
     output reg        atomic_lr_o,
-    output reg        atomic_sc_o
+    output reg        atomic_sc_o,
+
+    // ---- CSR outputs (Phase 5) ----
+    output reg        csr_en_o,
+    output reg [31:0] csr_wdata_o
 );
 
 always @(posedge clk or negedge reset_n) begin
@@ -61,6 +69,8 @@ always @(posedge clk or negedge reset_n) begin
         branch_taken_o   <= 1'b0;
         atomic_lr_o      <= 1'b0;
         atomic_sc_o      <= 1'b0;
+        csr_en_o         <= 1'b0;
+        csr_wdata_o      <= 32'b0;
     end
     else if (!stall) begin
         alu_result_o     <= alu_result_i;
@@ -74,6 +84,8 @@ always @(posedge clk or negedge reset_n) begin
         branch_taken_o   <= branch_taken_i;
         atomic_lr_o      <= atomic_lr_i;
         atomic_sc_o      <= atomic_sc_i;
+        csr_en_o         <= csr_en_i;
+        csr_wdata_o      <= csr_wdata_i;
     end
 end
 
