@@ -29,7 +29,7 @@
 //   2'b00 — 1 Hz  (step-through debug)
 //   2'b01 — 10 Hz (slow trace)
 //   2'b10 — 1 kHz (fast trace)
-//   2'b11 — 25 MHz (full speed, UART works at 115200 baud)
+//   2'b11 — 50 MHz (full speed, UART works at 115200 baud)
 //
 // AXI4-Lite master is left unconnected (directly tied ready/valid for
 // Vivado synthesis; a real SoC would attach an AXI interconnect here).
@@ -78,7 +78,7 @@ module top_fpga (
         (SW[15:14] == 2'b00) ? 26'd49_999_999 :   // 1 Hz
         (SW[15:14] == 2'b01) ? 26'd4_999_999  :   // 10 Hz
         (SW[15:14] == 2'b10) ? 26'd49_999     :   // 1 kHz
-                               26'd1;              // ~25 MHz
+                               26'd0;              // 50 MHz (100/2)
 
     always @(posedge CLK100MHZ) begin
         if (sys_reset) begin
@@ -95,35 +95,73 @@ module top_fpga (
     end
 
     // ======================================================================
-    //  GLITCH-FREE CLOCK MUX
+    //  SYSTEM CLOCK
     // ======================================================================
-    // In full-speed mode (SW[15:14]==11), use 100 MHz for correct UART baud.
-    wire clk_sel = (SW[15:14] == 2'b11);
+    // All modes now use div_clk. In full-speed mode (threshold=0),
+    // div_clk toggles every CLK100MHZ cycle → 50 MHz.
+    // This eliminates the BUFGMUX CDC crossing and halves the timing
+    // requirement, easily meeting Artix-7 timing constraints.
     wire sys_clk;
 
 `ifdef SYNTHESIS
-    // Xilinx BUFGMUX primitive: glitch-free clock switching on FPGA
-    BUFGMUX #(
-        .CLK_SEL_TYPE ("ASYNC")
-    ) u_clk_mux (
-        .O  (sys_clk),
-        .I0 (div_clk),            // slow clock (debug modes)
-        .I1 (CLK100MHZ),          // fast clock (full speed)
-        .S  (clk_sel)
+    // Use BUFG to drive the divided clock onto a global clock network
+    BUFG u_bufg_sys (
+        .I (div_clk),
+        .O (sys_clk)
     );
 `else
-    // Simulation fallback: simple mux (glitches OK in sim)
-    assign sys_clk = clk_sel ? CLK100MHZ : div_clk;
+    assign sys_clk = div_clk;
 `endif
 
-    // Run/halt gating
-    wire run = SW[0];
-    wire boot_mode = SW[2];
+    // ======================================================================
+    //  SW INPUT SYNCHRONIZERS (SW[0]=run, SW[2]=boot_mode)
+    // ======================================================================
+    // Raw slide switches are async wrt sys_clk. Feeding them directly into
+    // the SoC reset combinational net caused glitches / metastability on
+    // the FPGA (sim doesn't model this). Two-FF sync on sys_clk fixes it.
+    (* ASYNC_REG = "TRUE" *) reg sw0_m, sw0_s;
+    (* ASYNC_REG = "TRUE" *) reg sw2_m, sw2_s;
+    always @(posedge sys_clk) begin
+        sw0_m <= SW[0];
+        sw0_s <= sw0_m;
+        sw2_m <= SW[2];
+        sw2_s <= sw2_m;
+    end
+    wire run       = sw0_s;
+    wire boot_mode = sw2_s;
+
+    // ======================================================================
+    //  RESET SYNCHRONIZERS on sys_clk (async-assert, sync-deassert)
+    // ======================================================================
+    // sys_reset is registered on CLK100MHZ. When sys_clk is the slower
+    // div_clk, or the mux is mid-switch, a direct combinational reset can
+    // deassert asynchronously with respect to sys_clk — allowing half the
+    // pipeline FFs to see reset=0 one cycle before the other half. That
+    // manifests as corrupted startup state that never appears in sim.
+    //
+    // sys_rst_s   : only BTNC/power-up reset, used by uart_rx + bootloader
+    //               (they must remain live while boot_mode=1).
+    // soc_reset   : full SoC reset — also asserted in boot_mode and !run.
+    wire raw_sys_rst = sys_reset;
+    (* ASYNC_REG = "TRUE" *) reg [1:0] sys_rst_sync_ff;
+    always @(posedge sys_clk or posedge raw_sys_rst) begin
+        if (raw_sys_rst) sys_rst_sync_ff <= 2'b11;
+        else             sys_rst_sync_ff <= {sys_rst_sync_ff[0], 1'b0};
+    end
+    wire sys_rst_s = sys_rst_sync_ff[1];
+
+    wire raw_reset = sys_reset || !run || boot_mode;
+    (* ASYNC_REG = "TRUE" *) reg [1:0] soc_rst_sync;
+    always @(posedge sys_clk or posedge raw_reset) begin
+        if (raw_reset) soc_rst_sync <= 2'b11;
+        else           soc_rst_sync <= {soc_rst_sync[0], 1'b0};
+    end
+    wire soc_reset = soc_rst_sync[1];
 
     // ======================================================================
     //  SoC INSTANTIATION
     // ======================================================================
-    // UART baud rate: only accurate in full-speed mode (100 MHz).
+    // UART baud rate: only accurate in full-speed mode (50 MHz).
     // In debug modes the baud is proportionally slower — use a logic
     // analyzer or oscilloscope, not a serial terminal.
 
@@ -154,11 +192,11 @@ module top_fpga (
     soc_axi_top #(
         .RESET_C0  (32'h0000_0000),
         .RESET_C1  (32'h0000_0200),
-        .CLK_FREQ  (100_000_000),
+        .CLK_FREQ  (50_000_000),
         .BAUD_RATE (115200)
     ) u_soc (
         .clk              (sys_clk),
-        .reset            (sys_reset || !run || boot_mode),
+        .reset            (soc_reset),
 
         // Bootloader write ports
         .bl_imem_we        (bl_imem_we),
@@ -212,11 +250,11 @@ module top_fpga (
     wire       uart_rx_valid;
 
     uart_rx #(
-        .CLK_FREQ (100_000_000),
+        .CLK_FREQ (50_000_000),
         .BAUD     (115200)
     ) u_uart_rx (
         .clk        (sys_clk),
-        .reset      (sys_reset),
+        .reset      (sys_rst_s),
         .rx_in      (JA2),
         .data_out   (uart_rx_byte),
         .data_valid (uart_rx_valid)
@@ -227,7 +265,7 @@ module top_fpga (
         .DMEM_WORDS (1024)
     ) u_boot (
         .clk        (sys_clk),
-        .reset      (sys_reset),
+        .reset      (sys_rst_s),
         .enable     (boot_mode),
         .rx_valid   (uart_rx_valid),
         .rx_byte    (uart_rx_byte),
@@ -249,7 +287,7 @@ module top_fpga (
     reg        c0_heartbeat, c1_heartbeat;
 
     always @(posedge sys_clk) begin
-        if (sys_reset) begin
+        if (sys_rst_s) begin
             c0_pc_prev  <= 32'd0;
             c1_pc_prev  <= 32'd0;
             c0_heartbeat <= 1'b0;
