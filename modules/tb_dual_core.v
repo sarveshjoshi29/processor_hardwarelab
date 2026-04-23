@@ -55,6 +55,14 @@ dual_core_top #(
    .reset            (reset),
    .stall            (1'b0),
 
+   .bl_imem_we        (1'b0),
+   .bl_imem_addr      (10'd0),
+   .bl_imem_wdata     (32'd0),
+
+   .bl_dmem_we        (1'b0),
+   .bl_dmem_addr      (10'd0),
+   .bl_dmem_wdata     (32'd0),
+
    .c0_exception     (c0_exception),
    .c0_pc_out        (c0_pc_out),
    .c0_inst_fetch_pc (c0_inst_fetch_pc),
@@ -69,7 +77,16 @@ dual_core_top #(
    .c1_inst_word_out (c1_inst_word_out),
    .c1_dmem_write_ready(c1_dmem_write_ready),
    .c1_dmem_write_data (c1_dmem_write_data),
-   .c1_dmem_write_byte (c1_dmem_write_byte)
+   .c1_dmem_write_byte (c1_dmem_write_byte),
+
+   // MMIO stub (Phase 5 — not used in atomic tests)
+   .mmio_req           (),
+   .mmio_we            (),
+   .mmio_addr          (),
+   .mmio_wdata         (),
+   .mmio_be            (),
+   .mmio_rdata         (32'h0),
+   .mmio_ready         (1'b1)
 );
 
 ////////////////////////////////////////////////////////////
@@ -78,7 +95,7 @@ dual_core_top #(
 initial begin
    $dumpfile("dual_core_waveforms.vcd");
    $dumpvars(0, tb_dual_core);
-   #20000000;
+   #200000;
    $display("TIMEOUT: simulation exceeded 200000 time units");
    $finish;
 end
@@ -112,13 +129,13 @@ always @(posedge clk) begin
 
 
    // Core 0 end-of-program
-   if (!c0_done && (c0_inst_word_out == 32'h0000006f || c0_inst_word_out == 32'h00008067 || c0_inst_word_out == 32'h00000067 || c0_inst_word_out == 32'hffdff06f )) begin
+   if (!c0_done && (c0_inst_word_out == 32'h0000006f || c0_inst_word_out == 32'h00008067 || c0_inst_word_out == 32'h00000067)) begin
       $display("--- Core 0 finished at time %0t, cycles = %0d ---", $time, ctr);
       c0_done <= 1'b1;
    end
 
    // Core 1 end-of-program
-   if (!c1_done && (c1_inst_word_out == 32'h0000006f || c1_inst_word_out == 32'h00008067 || c1_inst_word_out == 32'h00000067 || c1_inst_word_out == 32'hffdff06f)) begin
+   if (!c1_done && (c1_inst_word_out == 32'h0000006f || c1_inst_word_out == 32'h00008067 || c1_inst_word_out == 32'h00000067)) begin
       $display("--- Core 1 finished at time %0t, cycles = %0d ---", $time, ctr);
       c1_done <= 1'b1;
    end
