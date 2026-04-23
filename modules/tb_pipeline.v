@@ -68,65 +68,28 @@ end
 // TERMINAL OUTPUT
 ////////////////////////////////////////////////////////////
 reg [31:0] ctr;
-reg [31:0] prev_fetch_pc;
-reg [63:0] instr_type;
 
 initial begin
    ctr = 32'b0;
-   prev_fetch_pc = 32'hFFFFFFFF;
    #1;
-   $display("\n============================================================");
-   $display("   🚀 STARTING RISC-V PIPELINE SIMULATION");
-   $display("============================================================\n");
+   $display("time: %17t ,result = %10d", 0, 0);
 end
 
 always @(posedge clk) begin
-   if (!reset) begin
-      ctr <= ctr + 1;
+   ctr <= ctr + 1;
 
-      // Decode the instruction type for the current cycle
-      if (inst_word_out === 32'hxxxxxxxx) begin
-         instr_type = "UNKNOWN";
-      end else begin
-         case (inst_word_out[6:0])
-            7'b0110111: instr_type = "LUI";
-            7'b0010111: instr_type = "AUIPC";
-            7'b1101111: instr_type = "JAL";
-            7'b1100111: instr_type = "JALR";
-            7'b1100011: instr_type = "BRANCH";
-            7'b0000011: instr_type = "LOAD";
-            7'b0100011: instr_type = "STORE";
-            7'b0010011: instr_type = "ARITHI";
-            7'b0110011: instr_type = (inst_word_out[31:25] == 7'b0000001) ? "MULDIV" : "ARITHR";
-            default: instr_type = "UNKNOWN";
-         endcase
-         if (inst_word_out == 32'h00000000 || inst_word_out == 32'h00000013) begin
-            instr_type = "NOP";
-         end
-      end
-
-      // ALWAYS display the current instruction being processed in this cycle
-      $display("[%9t] ➡️  PROCESS      | Cycle: %-5d | Fetch PC: 0x%08h | Instr: 0x%08h (%0s)", 
-               $time, ctr, inst_fetch_pc, inst_word_out, instr_type);
-
-      // Log Memory Writes (These reflect actual computed side effects)
-      if (dmem_write_ready) begin
-         $display("[%9t] 💾 MEMORY WRITE | Cycle: %-5d | Data Written: %10d (0x%08h) | Instr: %08h", 
-                  $time, ctr, dmem_write_data, dmem_write_data, inst_word_out);
-      end
-      
-      // End Of Program Condition (Return instruction 'ret' / 'jalr x0, 0(x1)')
-      if (inst_word_out == 32'h00008067 || inst_word_out == 32'h00000067) begin
-         $display("\n============================================================");
-         $display("   ✅ SIMULATION COMPLETED SUCCESSFULLY!");
-         $display("------------------------------------------------------------");
-         $display("   ⏱️  Total Clock Cycles : %0d", ctr);
-         $display("   ⏳ Final Sim Time      : %0t", $time);
-         $display("============================================================\n");
-         $finish;
-      end
-      
-      prev_fetch_pc <= inst_fetch_pc;
+   if (dmem_write_ready) begin
+      $display("time: %17t ,result = %0d, instruction = %h",
+               $time, dmem_write_data, inst_word_out);
+   end
+   else if (inst_word_out == 32'h00008067 || inst_word_out == 32'h00000067) begin
+      $display("-------------------------------------------");
+      $display("TIME: %0t | End of Program Reached! Number of cycles = %0d ", $time, ctr);
+      $display("-------------------------------------------");
+      $finish;
+   end
+   else begin
+      $display("next_pc = %08h , instruction = %h", inst_fetch_pc, inst_word_out);
    end
 end
 
