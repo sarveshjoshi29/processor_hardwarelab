@@ -1,16 +1,14 @@
 `timescale 1ns/1ps
 // ============================================================================
-// Main Memory — Backing Store for L1 Caches
+// Main Memory — Backing Store for L1 Caches (BRAM-friendly)
 // ============================================================================
 // Two independent modules:
-//   instr_mem  — 1024-word instruction BRAM; cache-line read port only
-//   data_mem   — 1024-word data BRAM; separate fill (read) and writeback (write)
-//                cache-line ports
+//   instr_mem  — 1024-word instruction BRAM; serialized cache-line reads
+//   data_mem   — 1024-word data BRAM; serialized fill reads & writeback writes
 //
-// Latency model (per port):
-//   IDLE: new request accepted → latch address, start countdown
-//   BUSY: counts MISS_CYCLES-1 down to 0, then asserts ready for 1 cycle
-//   DONE: 1-cycle cooldown so the cache can deassert req before next request
+// Architecture: All array accesses go through a single read port and a single
+// write port with registered outputs, so Vivado infers Block RAM.  Multi-word
+// cache-line transfers are serialized over MISS_CYCLES (default 4) cycles.
 //
 // Cache-line layout (128-bit, little-endian word order):
 //   rdata[31:0]   = word at addr+0   (word_off 0)
@@ -18,6 +16,7 @@
 //   rdata[95:64]  = word at addr+8   (word_off 2)
 //   rdata[127:96] = word at addr+12  (word_off 3)
 // ============================================================================
+
 
 // ============================================================================
 // Instruction Memory
@@ -28,77 +27,106 @@ module instr_mem #(
     input         clk,
     input         reset,
 
+    // Bootloader write port (word writes)
+    input         bl_we,
+    input  [ 9:0] bl_addr,
+    input  [31:0] bl_wdata,
+
     // I-cache fill port
     input         ic_req,
-    input  [31:0] ic_addr,    // cache-line aligned byte address
-    output [127:0] ic_rdata,  // 4-word cache line
-    output reg    ic_ready    // pulses 1 cycle when data is valid
+    input  [31:0] ic_addr,       // cache-line aligned byte address
+    output reg [127:0] ic_rdata, // 4-word cache line (registered)
+    output reg    ic_ready       // pulses 1 cycle when data is valid
 );
 
-    // Store as cache-lines to map naturally to BRAM.
-    // 1024 x 32-bit words = 256 x 128-bit cache lines.
+    // ---- Block RAM (single read port, registered output) ----
     (* ram_style = "block" *)
-    reg [127:0] imem_line [0:255];
+    reg [31:0] imem [0:1023];
 
-    // imem.hex is generated as 32-bit words; pack into 128-bit cache lines.
-    integer ii;
-    reg [31:0] imem_words [0:1023];
     initial begin
-        $readmemh("imem.hex", imem_words);
-        for (ii = 0; ii < 256; ii = ii + 1) begin
-            imem_line[ii] = {imem_words[ii*4 + 3],
-                             imem_words[ii*4 + 2],
-                             imem_words[ii*4 + 1],
-                             imem_words[ii*4 + 0]};
-        end
+        $readmemh("imem.hex", imem);
     end
 
-    // ---- Latency state machine ----
-    localparam M_IDLE = 2'd0, M_BUSY = 2'd1, M_DONE = 2'd2;
-    reg  [1:0] ic_state;
-    reg  [3:0] ic_cnt;
-    reg [31:0]  ic_addr_lat;
-    reg [127:0] ic_rdata_lat;
+    // Bootloader write port (no reset clearing; BRAM contents persist)
+    always @(posedge clk) begin
+        if (bl_we)
+            imem[bl_addr] <= bl_wdata;
+    end
+
+    reg  [9:0]  rd_addr;
+    reg  [31:0] rd_dout;
+
+    always @(posedge clk) begin
+        rd_dout <= imem[rd_addr];
+    end
+
+    // ---- FSM ----
+    // Reads 4 words over MISS_CYCLES cycles using pipelined BRAM access.
+    // The combinational address mux presents the first address on the same
+    // cycle that ic_req fires (IDLE→BUSY transition), so rd_dout has word 0
+    // ready on the first BUSY cycle.
+    localparam S_IDLE = 2'd0, S_BUSY = 2'd1, S_DONE = 2'd2;
+    reg  [1:0] state;
+    reg  [3:0] cnt;
+    reg  [1:0] word;        // word being captured this cycle (0..3)
+    reg [31:0] addr_lat;
+    wire [9:0] base = addr_lat[11:2];
 
     always @(posedge clk or posedge reset) begin
         if (reset) begin
-            ic_state   <= M_IDLE;
-            ic_cnt     <= 4'd0;
-            ic_addr_lat<= 32'b0;
-            ic_ready   <= 1'b0;
-            ic_rdata_lat <= 128'b0;
+            state    <= S_IDLE;
+            cnt      <= 4'd0;
+            word     <= 2'd0;
+            addr_lat <= 32'd0;
+            ic_ready <= 1'b0;
+            ic_rdata <= 128'd0;
         end else begin
             ic_ready <= 1'b0;   // default: deasserted
-            case (ic_state)
-                M_IDLE: begin
+            case (state)
+                S_IDLE: begin
                     if (ic_req) begin
-                        ic_addr_lat <= ic_addr;
-                        ic_cnt      <= MISS_CYCLES - 1;
-                        ic_state    <= M_BUSY;
-                        // Synchronous BRAM-style read (data available next cycle).
-                        ic_rdata_lat <= imem_line[ic_addr[11:4]];
+                        addr_lat <= ic_addr;
+                        cnt      <= MISS_CYCLES - 1;
+                        word     <= 2'd0;
+                        state    <= S_BUSY;
                     end
                 end
-                M_BUSY: begin
-                    // Keep output stable throughout BUSY.
-                    ic_rdata_lat <= ic_rdata_lat;
-                    if (ic_cnt == 4'd0) begin
-                        ic_ready <= 1'b1;   // assert ready for 1 cycle
-                        ic_state <= M_DONE;
+                S_BUSY: begin
+                    // Capture current word from BRAM read port
+                    case (word)
+                        2'd0: ic_rdata[ 31: 0] <= rd_dout;
+                        2'd1: ic_rdata[ 63:32] <= rd_dout;
+                        2'd2: ic_rdata[ 95:64] <= rd_dout;
+                        2'd3: ic_rdata[127:96] <= rd_dout;
+                    endcase
+
+                    if (cnt == 4'd0) begin
+                        ic_ready <= 1'b1;
+                        state    <= S_DONE;
                     end else begin
-                        ic_cnt <= ic_cnt - 4'd1;
+                        cnt  <= cnt - 4'd1;
+                        word <= word + 2'd1;
                     end
                 end
-                M_DONE: begin
-                    // Cooldown: let cache see ready and deassert req
-                    ic_state <= M_IDLE;
+                S_DONE: begin
+                    state <= S_IDLE;
                 end
             endcase
         end
     end
 
-    // Cache-line read is synchronous and held in ic_rdata_lat.
-    assign ic_rdata = ic_rdata_lat;
+    // ---- Read address mux (combinational — feeds BRAM address port) ----
+    // On the IDLE→BUSY transition cycle, presents base+0 so the BRAM
+    // output is valid on the first BUSY cycle.  During BUSY, prefetches
+    // the next word (word+1).
+    always @(*) begin
+        if (state == S_IDLE && ic_req)
+            rd_addr = ic_addr[11:2];                   // word 0
+        else if (state == S_BUSY)
+            rd_addr = base + {8'd0, word + 2'd1};      // next word
+        else
+            rd_addr = 10'd0;
+    end
 
 endmodule
 
@@ -106,325 +134,271 @@ endmodule
 // ============================================================================
 // Data Memory
 // ============================================================================
-
-// ---------------------------------------------------------------------------
-// True dual-port BRAM template (Xilinx-friendly)
-// - 256 deep × 128-bit (16-byte write enable)
-// - Registered read data (1-cycle)
-// - Separate always block per port
-// ---------------------------------------------------------------------------
-module bram_tdp_128x256 #(
-    parameter INIT_FILE = "dmem.hex"
-)(
-    input         clk,
-
-    // Port A
-    input         ena,
-    input  [7:0]  addra,
-    input  [127:0] dina,
-    input  [15:0] wea,      // 1 bit per byte
-    output reg [127:0] douta,
-
-    // Port B
-    input         enb,
-    input  [7:0]  addrb,
-    input  [127:0] dinb,
-    input  [15:0] web,
-    output reg [127:0] doutb
-);
-    (* ram_style = "block" *)
-    reg [127:0] mem [0:255];
-
-    // INIT_FILE is generated as 32-bit words; pack into 128-bit cache lines.
-    integer i;
-    reg [31:0] words [0:1023];
-    initial begin
-        $readmemh(INIT_FILE, words);
-        for (i = 0; i < 256; i = i + 1) begin
-            mem[i] = {words[i*4 + 3],
-                      words[i*4 + 2],
-                      words[i*4 + 1],
-                      words[i*4 + 0]};
-        end
-    end
-
-    integer b;
-
-    always @(posedge clk) begin
-        if (ena) begin
-            douta <= mem[addra];
-            for (b = 0; b < 16; b = b + 1) begin
-                if (wea[b])
-                    mem[addra][b*8 +: 8] <= dina[b*8 +: 8];
-            end
-        end
-    end
-
-    always @(posedge clk) begin
-        if (enb) begin
-            doutb <= mem[addrb];
-            for (b = 0; b < 16; b = b + 1) begin
-                if (web[b])
-                    mem[addrb][b*8 +: 8] <= dinb[b*8 +: 8];
-            end
-        end
-    end
-endmodule
-
 module data_mem #(
     parameter MISS_CYCLES = 4
 )(
     input         clk,
     input         reset,
 
+    // Bootloader write port (word writes)
+    input         bl_we,
+    input  [ 9:0] bl_addr,
+    input  [31:0] bl_wdata,
+
     // D-cache fill port (read: cache miss)
     input         dc_fill_req,
-    input  [31:0] dc_fill_addr,   // cache-line aligned
-    output [127:0] dc_fill_rdata,
+    input  [31:0] dc_fill_addr,       // cache-line aligned
+    output reg [127:0] dc_fill_rdata, // registered
     output reg    dc_fill_ready,
 
     // D-cache writeback port (write: dirty eviction)
     input         dc_wb_req,
-    input  [31:0] dc_wb_addr,     // cache-line aligned
+    input  [31:0] dc_wb_addr,         // cache-line aligned
     input [127:0] dc_wb_wdata,
     output reg    dc_wb_ready,
 
     // Atomic word-level port (lr.w / sc.w — bypasses D-cache)
     input         atomic_req,
-    input         atomic_we,       // 0=read(lr.w), 1=write(sc.w)
-    input  [31:0] atomic_addr,     // byte address (word-aligned)
+    input         atomic_we,           // 0=read(lr.w), 1=write(sc.w)
+    input  [31:0] atomic_addr,         // byte address (word-aligned)
     input  [31:0] atomic_wdata,
-    output [31:0] atomic_rdata,
+    output reg [31:0] atomic_rdata,    // registered
     output reg    atomic_ready
 );
 
-    // Backing BRAM (true dual-port)
-    reg         bram_ena;
-    reg  [7:0]  bram_addra;
-    reg  [127:0] bram_dina;
-    reg  [15:0] bram_wea;
-    wire [127:0] bram_douta;
+    // ---- Block RAM (Simple Dual Port: 1 read + 1 write) ----
+    (* ram_style = "block" *)
+    reg [31:0] dmem [0:1023];
 
-    reg         bram_enb;
-    reg  [7:0]  bram_addrb;
-    reg  [127:0] bram_dinb;
-    reg  [15:0] bram_web;
-    wire [127:0] bram_doutb;
+    initial begin
+        $readmemh("dmem.hex", dmem);
+    end
 
-    bram_tdp_128x256 #(
-        .INIT_FILE("dmem.hex")
-    ) u_dmem_bram (
-        .clk   (clk),
+    // Read port (registered output)
+    reg  [9:0]  rd_addr;
+    reg  [31:0] rd_dout;
+    always @(posedge clk) begin
+        rd_dout <= dmem[rd_addr];
+    end
 
-        .ena   (bram_ena),
-        .addra (bram_addra),
-        .dina  (bram_dina),
-        .wea   (bram_wea),
-        .douta (bram_douta),
+    // Write port
+    reg         wr_en;
+    reg  [9:0]  wr_addr;
+    reg  [31:0] wr_din;
+    always @(posedge clk) begin
+        if (wr_en)
+            dmem[wr_addr] <= wr_din;
+    end
 
-        .enb   (bram_enb),
-        .addrb (bram_addrb),
-        .dinb  (bram_dinb),
-        .web   (bram_web),
-        .doutb (bram_doutb)
-    );
-
-    // ---- Fill (read) port state machine ----
-    localparam M_IDLE = 2'd0, M_BUSY = 2'd1, M_DONE = 2'd2;
-
-    reg  [1:0] fill_state;
-    reg  [3:0] fill_cnt;
-    reg [31:0] fill_addr_lat;
-    reg [127:0] fill_rdata_lat;
-
-    // ---- Port A (shared) ----
-    // Shared BRAM port A for fill + atomic. Only one operation issued at a time.
-    reg        porta_is_atomic;
-    reg        porta_wait;
-
-    // ---- Atomic word-level port ----
-    // Serialized with fill reads so the memory remains 2-port.
-    localparam A_IDLE = 2'd0, A_READ = 2'd1, A_WRITE = 2'd2;
-    reg  [1:0] a_state;
-    reg [31:0] a_addr_lat;
-    reg [31:0] a_wdata_lat;
-    reg        a_we_lat;
-    reg [127:0] a_line_lat;
-
-    // Helper: byte-enable + aligned write data for one word within 128-bit line
-    wire [1:0]   a_word_sel = a_addr_lat[3:2];
-    wire [127:0] a_wdata_aligned = (a_we_lat) ? ({96'b0, a_wdata_lat} << (a_word_sel * 32)) : 128'b0;
-    wire [15:0]  a_wstrb = (a_we_lat) ? (16'h000F << (a_word_sel * 4)) : 16'h0000;
+    // ========================================================================
+    //  Fill (read) FSM — serialized 4-word BRAM reads
+    // ========================================================================
+    localparam F_IDLE = 2'd0, F_BUSY = 2'd1, F_DONE = 2'd2;
+    reg  [1:0] f_state;
+    reg  [3:0] f_cnt;
+    reg  [1:0] f_word;
+    reg [31:0] f_addr;
+    wire [9:0] f_base = f_addr[11:2];
 
     always @(posedge clk or posedge reset) begin
         if (reset) begin
-            fill_state     <= M_IDLE;
-            fill_cnt       <= 4'd0;
-            fill_addr_lat  <= 32'b0;
-            dc_fill_ready  <= 1'b0;
-            fill_rdata_lat <= 128'b0;
-
-            a_state        <= A_IDLE;
-            a_addr_lat     <= 32'b0;
-            a_wdata_lat    <= 32'b0;
-            a_we_lat       <= 1'b0;
-            a_line_lat     <= 128'b0;
-            atomic_ready   <= 1'b0;
-
-            bram_ena        <= 1'b0;
-            bram_addra      <= 8'd0;
-            bram_dina       <= 128'b0;
-            bram_wea        <= 16'h0000;
-
-            porta_is_atomic <= 1'b0;
-            porta_wait      <= 1'b0;
+            f_state       <= F_IDLE;
+            f_cnt         <= 4'd0;
+            f_word        <= 2'd0;
+            f_addr        <= 32'd0;
+            dc_fill_ready <= 1'b0;
+            dc_fill_rdata <= 128'd0;
         end else begin
             dc_fill_ready <= 1'b0;
-            atomic_ready <= 1'b0;
-
-            // Default: no BRAM ops.
-            bram_ena <= 1'b0;
-            bram_wea <= 16'h0000;
-
-            // Capture port-A read data into the right destination.
-            if (porta_wait) begin
-                if (porta_is_atomic)
-                    a_line_lat <= bram_douta;
-                else
-                    fill_rdata_lat <= bram_douta;
-                porta_wait <= 1'b0;
-            end
-
-            // Priority: atomic over fill (only when fill is idle).
-            if (a_state == A_IDLE) begin
-                if (atomic_req && (fill_state == M_IDLE)) begin
-                    a_addr_lat      <= atomic_addr;
-                    a_wdata_lat     <= atomic_wdata;
-                    a_we_lat        <= atomic_we;
-
-                    // Issue atomic read on port A
-                    bram_addra      <= atomic_addr[11:4];
-                    bram_ena        <= 1'b1;
-                    bram_wea        <= 16'h0000;
-                    porta_is_atomic <= 1'b1;
-                    porta_wait      <= 1'b1;
-                    a_state         <= A_READ;
-                end else if (dc_fill_req) begin
-                    fill_addr_lat   <= dc_fill_addr;
-                    fill_cnt        <= MISS_CYCLES - 1;
-                    fill_state      <= M_BUSY;
-
-                    // Issue fill read on port A
-                    bram_addra      <= dc_fill_addr[11:4];
-                    bram_ena        <= 1'b1;
-                    bram_wea        <= 16'h0000;
-                    porta_is_atomic <= 1'b0;
-                    porta_wait      <= 1'b1;
-                end
-            end
-
-            // Fill latency FSM.
-            case (fill_state)
-                M_IDLE: begin
-                    // filled by logic above
-                end
-                M_BUSY: begin
-                    if (fill_cnt == 4'd0) begin
-                        dc_fill_ready <= 1'b1;
-                        fill_state    <= M_DONE;
-                    end else begin
-                        fill_cnt <= fill_cnt - 4'd1;
+            case (f_state)
+                F_IDLE: begin
+                    if (dc_fill_req) begin
+                        f_addr  <= dc_fill_addr;
+                        f_cnt   <= MISS_CYCLES - 1;
+                        f_word  <= 2'd0;
+                        f_state <= F_BUSY;
                     end
                 end
-                M_DONE: begin
-                    fill_state <= M_IDLE;
+                F_BUSY: begin
+                    // Capture word from BRAM read port (1-cycle pipelined)
+                    case (f_word)
+                        2'd0: dc_fill_rdata[ 31: 0] <= rd_dout;
+                        2'd1: dc_fill_rdata[ 63:32] <= rd_dout;
+                        2'd2: dc_fill_rdata[ 95:64] <= rd_dout;
+                        2'd3: dc_fill_rdata[127:96] <= rd_dout;
+                    endcase
+
+                    if (f_cnt == 4'd0) begin
+                        dc_fill_ready <= 1'b1;
+                        f_state       <= F_DONE;
+                    end else begin
+                        f_cnt  <= f_cnt - 4'd1;
+                        f_word <= f_word + 2'd1;
+                    end
+                end
+                F_DONE: begin
+                    f_state <= F_IDLE;
                 end
             endcase
-
-            // Atomic state machine.
-            // - A_READ: we have issued a read and will capture it via porta_wait.
-            // - A_WRITE: optional byte-write to selected word.
-            if (a_state == A_READ) begin
-                // When porta_wait clears, a_line_lat has been updated with bram_douta.
-                if (!porta_wait) begin
-                    if (a_we_lat) begin
-                        // Issue byte write on port A (selected 4 bytes)
-                        bram_addra <= a_addr_lat[11:4];
-                        bram_ena   <= 1'b1;
-                        bram_dina  <= a_wdata_aligned;
-                        bram_wea   <= a_wstrb;
-                        a_state    <= A_WRITE;
-                    end else begin
-                        atomic_ready <= 1'b1;
-                        a_state      <= A_IDLE;
-                    end
-                end
-            end else if (a_state == A_WRITE) begin
-                // Write is committed on this clock edge.
-                atomic_ready <= 1'b1;
-                a_state      <= A_IDLE;
-            end
         end
     end
 
-    assign dc_fill_rdata = fill_rdata_lat;
-
-    // ---- Writeback (write) port state machine ----
-    reg  [1:0] wb_state;
-    reg  [3:0] wb_cnt;
-    reg [31:0] wb_addr_lat;
-    reg [127:0] wb_data_lat;
+    // ========================================================================
+    //  Writeback (write) FSM — serialized 4-word BRAM writes
+    // ========================================================================
+    localparam W_IDLE = 2'd0, W_BUSY = 2'd1, W_DONE = 2'd2;
+    reg  [1:0] w_state;
+    reg  [3:0] w_cnt;
+    reg  [1:0] w_word;
+    reg [31:0] w_addr;
+    reg [127:0] w_data;
+    wire [9:0] w_base = w_addr[11:2];
 
     always @(posedge clk or posedge reset) begin
         if (reset) begin
-            wb_state    <= M_IDLE;
-            wb_cnt      <= 4'd0;
-            wb_addr_lat <= 32'b0;
-            wb_data_lat <= 128'b0;
+            w_state     <= W_IDLE;
+            w_cnt       <= 4'd0;
+            w_word      <= 2'd0;
+            w_addr      <= 32'd0;
+            w_data      <= 128'd0;
             dc_wb_ready <= 1'b0;
-
-            bram_enb    <= 1'b0;
-            bram_addrb  <= 8'd0;
-            bram_dinb   <= 128'b0;
-            bram_web    <= 16'h0000;
         end else begin
             dc_wb_ready <= 1'b0;
-            // Default: no BRAM port B op.
-            bram_enb <= 1'b0;
-            bram_web <= 16'h0000;
-            case (wb_state)
-                M_IDLE: begin
+            case (w_state)
+                W_IDLE: begin
                     if (dc_wb_req) begin
-                        wb_addr_lat <= dc_wb_addr;
-                        wb_data_lat <= dc_wb_wdata;
-                        wb_cnt      <= MISS_CYCLES - 1;
-                        wb_state    <= M_BUSY;
+                        w_addr  <= dc_wb_addr;
+                        w_data  <= dc_wb_wdata;
+                        w_cnt   <= MISS_CYCLES - 1;
+                        w_word  <= 2'd0;
+                        w_state <= W_BUSY;
                     end
                 end
-                M_BUSY: begin
-                    if (wb_cnt == 4'd0) begin
-                        // Commit cache-line to BRAM (full 16 bytes) on port B
-                        bram_addrb <= wb_addr_lat[11:4];
-                        bram_dinb  <= wb_data_lat;
-                        bram_enb   <= 1'b1;
-                        bram_web   <= 16'hFFFF;
+                W_BUSY: begin
+                    // Write port mux handles the actual BRAM write
+                    if (w_cnt == 4'd0) begin
                         dc_wb_ready <= 1'b1;
-                        wb_state    <= M_DONE;
+                        w_state     <= W_DONE;
                     end else begin
-                        wb_cnt <= wb_cnt - 4'd1;
+                        w_cnt  <= w_cnt - 4'd1;
+                        w_word <= w_word + 2'd1;
                     end
                 end
-                M_DONE: begin
-                    wb_state <= M_IDLE;
+                W_DONE: begin
+                    w_state <= W_IDLE;
                 end
             endcase
         end
     end
 
-    // Read returned on atomic_ready cycle.
-    assign atomic_rdata = (a_word_sel == 2'd0) ? a_line_lat[31:0] :
-                          (a_word_sel == 2'd1) ? a_line_lat[63:32] :
-                          (a_word_sel == 2'd2) ? a_line_lat[95:64] :
-                                                 a_line_lat[127:96];
+    // ========================================================================
+    //  Atomic FSM (lr.w / sc.w — single word)
+    // ========================================================================
+    // NOTE: bus_arbiter has independent FSMs per port, so atomic_req can fire
+    // concurrently with dc_fill_req or dc_wb_req. The rd/wr port muxes below
+    // give fill/wb priority, so atomic must wait for them to release the port.
+    //
+    // States:
+    //   A_IDLE — waiting for request
+    //   A_WAIT — request latched, waiting for read/write port to be free
+    //   A_DONE — port granted this cycle; capture rd_dout / assert wr_en
+    localparam A_IDLE = 2'd0, A_WAIT = 2'd1, A_DONE = 2'd2;
+    reg  [1:0] a_state;
+    reg [31:0] a_addr;
+    reg [31:0] a_wdata;
+    reg        a_we;
+
+    // Port-availability flags (combinational, checked this cycle)
+    wire atomic_rd_ok = (f_state == F_IDLE) && !dc_fill_req;
+    wire atomic_wr_ok = (w_state == W_IDLE) && !dc_wb_req && !bl_we;
+    // SC.W needs write port; LR.W only needs read port
+    wire a_go_new     = atomic_we ? (atomic_rd_ok && atomic_wr_ok) : atomic_rd_ok;
+    wire a_go_wait    = a_we      ? (atomic_rd_ok && atomic_wr_ok) : atomic_rd_ok;
+
+    always @(posedge clk or posedge reset) begin
+        if (reset) begin
+            a_state      <= A_IDLE;
+            a_addr       <= 32'd0;
+            a_wdata      <= 32'd0;
+            a_we         <= 1'b0;
+            atomic_ready <= 1'b0;
+            atomic_rdata <= 32'd0;
+        end else begin
+            atomic_ready <= 1'b0;
+            case (a_state)
+                A_IDLE: begin
+                    if (atomic_req) begin
+                        a_addr  <= atomic_addr;
+                        a_wdata <= atomic_wdata;
+                        a_we    <= atomic_we;
+                        a_state <= a_go_new ? A_DONE : A_WAIT;
+                    end
+                end
+                A_WAIT: begin
+                    if (a_go_wait)
+                        a_state <= A_DONE;
+                end
+                A_DONE: begin
+                    // For LR.W: rd_dout reflects the cycle where a_addr was
+                    //          presented on rd_addr (prev cycle: A_IDLE fast
+                    //          path, or A_WAIT slow path).
+                    // For SC.W: write port mux fires this cycle (atomic priority).
+                    atomic_rdata <= rd_dout;
+                    atomic_ready <= 1'b1;
+                    a_state      <= A_IDLE;
+                end
+            endcase
+        end
+    end
+
+    // ========================================================================
+    //  BRAM read address mux (combinational)
+    // ========================================================================
+    // Priority: active fill > atomic (LR.W or SC.W pre-read).
+    // Fast path: atomic_req arrives with fill idle → present atomic addr
+    //            immediately; rd_dout valid next cycle in A_DONE.
+    // Slow path: atomic_req arrives during fill → latch into A_WAIT and
+    //            present atomic addr once fill releases the port.
+    always @(*) begin
+        if (f_state == F_IDLE && dc_fill_req)
+            rd_addr = dc_fill_addr[11:2];              // fill: word 0
+        else if (f_state == F_BUSY)
+            rd_addr = f_base + {8'd0, f_word + 2'd1};  // fill: next word
+        else if (a_state == A_IDLE && atomic_req && atomic_rd_ok)
+            rd_addr = atomic_addr[11:2];               // atomic fast path
+        else if (a_state == A_WAIT && atomic_rd_ok)
+            rd_addr = a_addr[11:2];                    // atomic slow path
+        else
+            rd_addr = 10'd0;
+    end
+
+    // ========================================================================
+    //  BRAM write port mux (combinational)
+    // ========================================================================
+    always @(*) begin
+        wr_en   = 1'b0;
+        wr_addr = 10'd0;
+        wr_din  = 32'd0;
+
+        if (bl_we) begin
+            // Highest priority: bootloader programming
+            wr_en   = 1'b1;
+            wr_addr = bl_addr;
+            wr_din  = bl_wdata;
+        end else if (w_state == W_BUSY) begin
+            wr_en   = 1'b1;
+            wr_addr = w_base + {8'd0, w_word};
+            case (w_word)
+                2'd0: wr_din = w_data[ 31: 0];
+                2'd1: wr_din = w_data[ 63:32];
+                2'd2: wr_din = w_data[ 95:64];
+                2'd3: wr_din = w_data[127:96];
+            endcase
+        end else if (a_state == A_DONE && a_we) begin
+            wr_en   = 1'b1;
+            wr_addr = a_addr[11:2];
+            wr_din  = a_wdata;
+        end
+    end
 
 endmodule
