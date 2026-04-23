@@ -1,9 +1,9 @@
 `timescale 1ns/1ps
 // ============================================================================
-// L1 Data Cache — 1KB Direct-Mapped, Write-Back / Write-Allocate
+// L1 Data Cache — 256B Direct-Mapped, Write-Back / Write-Allocate
 // ============================================================================
-// Geometry  : 64 sets × 16-byte lines (4 words), direct-mapped
-// Address   : tag[31:10] | index[9:4] | word_off[3:2] | byte_off[1:0]
+// Geometry  : 16 sets × 16-byte lines (4 words), direct-mapped
+// Address   : tag[31:8] | index[7:4] | word_off[3:2] | byte_off[1:0]
 // Write policy  : write-back  (dirty lines evicted to memory only when replaced)
 // Allocate policy: write-allocate (write miss → fetch line, then apply write)
 //
@@ -42,16 +42,21 @@ module dcache #(
     input              wb_ready
 );
 
-// ---- Cache arrays: 64 lines ----
-reg         valid    [0:63];
-reg         dirty    [0:63];
-reg  [21:0] tag_arr  [0:63];
-reg [127:0] data_arr [0:63];
+// ---- Cache arrays: 16 lines ----
+// tag_arr / data_arr are never reset (guarded by `valid`), so force
+// distributed-RAM inference — avoids thousands of FFs and the Vivado
+// BRAM-vs-LUTRAM decision thrash that drags out place/route.
+reg         valid    [0:15];
+reg         dirty    [0:15];
+(* ram_style = "distributed" *)
+reg  [23:0] tag_arr  [0:15];
+(* ram_style = "distributed" *)
+reg [127:0] data_arr [0:15];
 
 // ---- Address fields (from live CPU addr) ----
 wire  [1:0] woff = addr[3:2];
-wire  [5:0] idx  = addr[9:4];
-wire [21:0] ptag = addr[31:10];
+wire  [3:0] idx  = addr[7:4];     // 4-bit index for 16 sets
+wire [23:0] ptag = addr[31:8];    // 24-bit tag
 
 // ---- Hit detection (combinational) ----
 wire hit = valid[idx] && (tag_arr[idx] == ptag);
@@ -80,9 +85,6 @@ reg [31:0] saved_addr;
 reg [31:0] saved_wdata;
 reg  [3:0] saved_be;
 reg        saved_we;
-
-// ---- Registered pending new_line for FETCH completion ----
-reg [127:0] new_line;
 
 // ============================================================================
 // Helper: apply a word write (with byte-enable) into a 128-bit cache line.
@@ -118,10 +120,27 @@ endfunction
 // ============================================================================
 // Main FSM
 // ============================================================================
+// Extract tag and data arrays writes into a pure synchronous block
+always @(posedge clk) begin
+    if (state == IDLE) begin
+        if (req && hit && !miss_just_resolved && we) begin
+            data_arr[idx] <= apply_write(data_arr[idx], woff, wdata, be);
+        end
+    end
+    else if (state == FETCH) begin
+        if (fill_ready) begin
+            tag_arr[saved_addr[7:4]] <= saved_addr[31:8];
+            data_arr[saved_addr[7:4]] <= saved_we
+                ? apply_write(fill_rdata, saved_addr[3:2], saved_wdata, saved_be)
+                : fill_rdata;
+        end
+    end
+end
+
 integer j;
 always @(posedge clk or posedge reset) begin
     if (reset) begin
-        for (j = 0; j < 64; j = j + 1) begin
+        for (j = 0; j < 16; j = j + 1) begin
             valid[j] <= 1'b0;
             dirty[j] <= 1'b0;
         end
@@ -135,7 +154,6 @@ always @(posedge clk or posedge reset) begin
         saved_wdata        <= 32'b0;
         saved_be           <= 4'b0;
         saved_we           <= 1'b0;
-        new_line           <= 128'b0;
         miss_just_resolved <= 1'b0;
     end
     else begin
@@ -150,7 +168,6 @@ always @(posedge clk or posedge reset) begin
                 if (req && hit && !miss_just_resolved) begin
                     if (we) begin
                         // Write hit: update word in place, mark line dirty
-                        data_arr[idx] <= apply_write(data_arr[idx], woff, wdata, be);
                         dirty[idx]    <= 1'b1;
                     end
                     // Read hit: rdata is combinational; nothing to register.
@@ -191,17 +208,9 @@ always @(posedge clk or posedge reset) begin
             // ------------------------------------------------------------------
             FETCH: begin
                 if (fill_ready) begin
-                    // Apply pending write if this was a write miss
-                    new_line = fill_rdata;
-                    if (saved_we)
-                        new_line = apply_write(new_line, saved_addr[3:2],
-                                               saved_wdata, saved_be);
-
                     // Install the (possibly modified) line
-                    valid[saved_addr[9:4]]    <= 1'b1;
-                    dirty[saved_addr[9:4]]    <= saved_we;  // dirty only on write
-                    tag_arr[saved_addr[9:4]]  <= saved_addr[31:10];
-                    data_arr[saved_addr[9:4]] <= new_line;
+                    valid[saved_addr[7:4]]    <= 1'b1;
+                    dirty[saved_addr[7:4]]    <= saved_we;  // dirty only on write
 
                     fill_req           <= 1'b0;
                     miss_just_resolved <= 1'b1;
