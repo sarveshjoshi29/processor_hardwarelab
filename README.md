@@ -132,6 +132,12 @@ Only required to re-synthesize. The pre-built `final_bitstream/top_fpga.bit` is 
 
 Detailed pin assignments and the full LED legend are documented at the top of `modules/top_fpga.v`.
 
+### Resource Utilization
+
+Post-implementation utilization on the `xc7a100tcsg324-1` (reported by Vivado):
+
+![Resource Consumption](./resource_consumption.jpeg)
+
 ---
 
 ## Web-Based UART Loader
