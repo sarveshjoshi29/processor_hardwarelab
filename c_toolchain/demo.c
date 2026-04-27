@@ -64,6 +64,11 @@ int main() {
     
     safe_print("[CORE 0] Finished Producing.\r\n");
     
+    // Print Core 0 performance counters
+    mutex_lock(&console_lock);
+    print_perf_counters("Core 0");
+    mutex_unlock(&console_lock);
+    
     // Keep Core 0 alive while Core 1 finishes
     fast_delay(20000);
     return 0;
@@ -95,4 +100,9 @@ void core1_main() {
     }
     
     safe_print("[CORE 1] Finished Consuming.\r\n");
+    
+    // Print Core 1 performance counters
+    mutex_lock(&console_lock);
+    print_perf_counters("Core 1");
+    mutex_unlock(&console_lock);
 }

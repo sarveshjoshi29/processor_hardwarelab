@@ -63,6 +63,7 @@ int main() {
     print_str("[SYSTEM] ACTUAL COUNTER:   ");
     print_int(atomic_read(&shared_counter));
     print_str("\r\n================================\r\n");
+    print_perf_counters("Core 0");
     mutex_unlock(&console_lock);
     
     return 0;
@@ -92,4 +93,9 @@ void core1_main() {
     for(int i = 0; i < 10; i++) {
         safe_print("[CORE 1] UART SPAM!\r\n");
     }
+    
+    // Print Core 1 performance counters
+    mutex_lock(&console_lock);
+    print_perf_counters("Core 1");
+    mutex_unlock(&console_lock);
 }

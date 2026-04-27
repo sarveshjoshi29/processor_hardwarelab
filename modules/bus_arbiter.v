@@ -211,23 +211,33 @@ assign c0_dc_fill_ready = mem_dc_fill_ready && !dc_fill_grant;
 assign c1_dc_fill_ready = mem_dc_fill_ready &&  dc_fill_grant;
 
 // ============================================================================
-// 3. D-Cache Writeback Arbiter
+// 3. D-Cache Writeback Arbiter (registered data path)
 // ============================================================================
-reg [1:0] dc_wb_arb_state;
+// The 128-bit wb_wdata is registered on the IDLE→BUSY transition to cut
+// combinational fanout and reduce routing pressure on the Artix-7 fabric.
+reg [1:0]   dc_wb_arb_state;
+reg [31:0]  dc_wb_addr_r;
+reg [127:0] dc_wb_wdata_r;
 
 always @(posedge clk or posedge reset) begin
     if (reset) begin
         dc_wb_arb_state <= ARB_IDLE;
         dc_wb_grant     <= 1'b0;
+        dc_wb_addr_r    <= 32'b0;
+        dc_wb_wdata_r   <= 128'b0;
     end else begin
         case (dc_wb_arb_state)
             ARB_IDLE: begin
                 if (c0_dc_wb_req) begin
                     dc_wb_grant     <= 1'b0;
+                    dc_wb_addr_r    <= c0_dc_wb_addr;
+                    dc_wb_wdata_r   <= c0_dc_wb_wdata;
                     dc_wb_arb_state <= ARB_BUSY;
                 end
                 else if (c1_dc_wb_req) begin
                     dc_wb_grant     <= 1'b1;
+                    dc_wb_addr_r    <= c1_dc_wb_addr;
+                    dc_wb_wdata_r   <= c1_dc_wb_wdata;
                     dc_wb_arb_state <= ARB_BUSY;
                 end
             end
@@ -242,14 +252,9 @@ always @(posedge clk or posedge reset) begin
     end
 end
 
-assign mem_dc_wb_req   = (dc_wb_arb_state == ARB_IDLE) &&
-                         (c0_dc_wb_req || c1_dc_wb_req);
-assign mem_dc_wb_addr  = (dc_wb_arb_state == ARB_IDLE)
-                       ? (c0_dc_wb_req ? c0_dc_wb_addr : c1_dc_wb_addr)
-                       : 32'b0;
-assign mem_dc_wb_wdata = (dc_wb_arb_state == ARB_IDLE)
-                       ? (c0_dc_wb_req ? c0_dc_wb_wdata : c1_dc_wb_wdata)
-                       : 128'b0;
+assign mem_dc_wb_req   = (dc_wb_arb_state == ARB_BUSY);
+assign mem_dc_wb_addr  = dc_wb_addr_r;
+assign mem_dc_wb_wdata = dc_wb_wdata_r;
 
 assign c0_dc_wb_ready = mem_dc_wb_ready && !dc_wb_grant;
 assign c1_dc_wb_ready = mem_dc_wb_ready &&  dc_wb_grant;
